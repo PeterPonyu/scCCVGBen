@@ -152,12 +152,14 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
       data.forEach(d => {
         const tr = document.createElement("tr");
 
-        // filename_key as compact monospace text
+        // filename_key: link to per-dataset detail page
         const tdKey = document.createElement("td");
-        const key = document.createElement("span");
-        key.className = "dataset-key";
-        key.textContent = d.filename_key || "";
-        tdKey.appendChild(key);
+        const keyLink = document.createElement("a");
+        keyLink.className = "dt-key-link dataset-key";
+        const slug = String(d.filename_key || "").replace(/[^A-Za-z0-9_\-]+/g, "_").replace(/^_|_$/g, "");
+        keyLink.href = {{ "datasets/" | absURL }} + slug + "/";
+        keyLink.textContent = d.filename_key || "";
+        tdKey.appendChild(keyLink);
         tr.appendChild(tdKey);
 
         // GSE as hyperlink

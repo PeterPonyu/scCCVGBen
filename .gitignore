@@ -17,9 +17,19 @@ workspace/
 # Computational experiment outputs (kept local, not published)
 results/
 
+# Local figure inputs. Commit the final figures, not the source screenshots.
+figures/site_shots/
+
 # Site build artifacts
 site/public/
 site/resources/
+site/.hugo_build.lock
+
+# Local agent/runtime state
+.omx/
+.omc/state/
+.omc/sessions/
+site/.omc/
 
 # OS
 .DS_Store

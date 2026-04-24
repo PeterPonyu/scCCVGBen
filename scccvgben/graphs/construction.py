@@ -146,7 +146,10 @@ def build_gaussian_threshold(
     X = _to_numpy(X)
     D = pairwise_distances(X, metric="euclidean").astype(np.float32)
     if sigma is None:
-        sigma = float(np.median(D[D > 0]))
+        positive = D[D > 0]
+        sigma = float(np.median(positive)) if len(positive) else 1.0
+    if sigma <= 0:
+        sigma = 1.0
     if threshold is None:
         # threshold=0.5 can yield >50% density on 3000-cell subsample,
         # blowing up GAT attention memory. 0.9 keeps only edges at
@@ -157,6 +160,11 @@ def build_gaussian_threshold(
     np.fill_diagonal(W, 0.0)
     mask = W >= threshold
     rows, cols = np.where(mask)
+    if len(rows) == 0 and X.shape[0] > 1:
+        nearest = D.copy()
+        np.fill_diagonal(nearest, np.inf)
+        rows = np.arange(X.shape[0], dtype=np.int64)
+        cols = np.argmin(nearest, axis=1).astype(np.int64)
     weights = W[rows, cols].astype(np.float32)
     edge_index = torch.from_numpy(np.stack([rows.astype(np.int64), cols.astype(np.int64)])).long()
     edge_weight = torch.from_numpy(weights).float()

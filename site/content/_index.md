@@ -28,6 +28,12 @@ statistical analysis, please refer to the accompanying paper.
 
 ---
 
+## Metadata distributions
+
+{{< extended-stats >}}
+
+---
+
 ## Explore
 
 - [**Datasets →**]({{< ref "/datasets" >}}) Browse all 200 benchmark datasets

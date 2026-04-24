@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-04-24T08:38:22.206037+00:00",
+  "built_at": "2026-04-24T14:09:55.267328+00:00",
   "total_datasets": 200,
   "modality": {
     "scRNA": 100,
@@ -61,11 +61,416 @@
       "count": 7
     }
   ],
+  "tissue_modality": [
+    {
+      "tissue": "adipose",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "tissue": "airway",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "tissue": "balf",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "tissue": "bladder",
+      "modality": "scRNA",
+      "count": 2
+    },
+    {
+      "tissue": "blood",
+      "modality": "scATAC",
+      "count": 25
+    },
+    {
+      "tissue": "blood",
+      "modality": "scRNA",
+      "count": 8
+    },
+    {
+      "tissue": "bone_marrow",
+      "modality": "scATAC",
+      "count": 2
+    },
+    {
+      "tissue": "bone_marrow",
+      "modality": "scRNA",
+      "count": 7
+    },
+    {
+      "tissue": "brain",
+      "modality": "scATAC",
+      "count": 2
+    },
+    {
+      "tissue": "brain",
+      "modality": "scRNA",
+      "count": 11
+    },
+    {
+      "tissue": "breast",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "tissue": "colon",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "tissue": "embryo",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "tissue": "gut",
+      "modality": "scATAC",
+      "count": 3
+    },
+    {
+      "tissue": "gut",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "tissue": "hnscc",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "tissue": "immune",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "tissue": "kidney",
+      "modality": "scRNA",
+      "count": 3
+    },
+    {
+      "tissue": "liver",
+      "modality": "scATAC",
+      "count": 3
+    },
+    {
+      "tissue": "liver",
+      "modality": "scRNA",
+      "count": 6
+    },
+    {
+      "tissue": "lung",
+      "modality": "scATAC",
+      "count": 14
+    },
+    {
+      "tissue": "lung",
+      "modality": "scRNA",
+      "count": 7
+    },
+    {
+      "tissue": "muscle",
+      "modality": "scRNA",
+      "count": 3
+    },
+    {
+      "tissue": "neural",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "tissue": "neuro",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "tissue": "other",
+      "modality": "scATAC",
+      "count": 30
+    },
+    {
+      "tissue": "other",
+      "modality": "scRNA",
+      "count": 5
+    },
+    {
+      "tissue": "ovary",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "tissue": "pancreas",
+      "modality": "scRNA",
+      "count": 3
+    },
+    {
+      "tissue": "pbmc",
+      "modality": "scATAC",
+      "count": 3
+    },
+    {
+      "tissue": "pbmc",
+      "modality": "scRNA",
+      "count": 3
+    },
+    {
+      "tissue": "pdx",
+      "modality": "scATAC",
+      "count": 1
+    },
+    {
+      "tissue": "retina",
+      "modality": "scATAC",
+      "count": 5
+    },
+    {
+      "tissue": "retina",
+      "modality": "scRNA",
+      "count": 2
+    },
+    {
+      "tissue": "skin",
+      "modality": "scATAC",
+      "count": 3
+    },
+    {
+      "tissue": "skin",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "tissue": "stem_cell",
+      "modality": "scATAC",
+      "count": 3
+    },
+    {
+      "tissue": "stem_cell",
+      "modality": "scRNA",
+      "count": 7
+    },
+    {
+      "tissue": "stomach",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "tissue": "tcell",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "tissue": "thymus",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "tissue": "tumor",
+      "modality": "scATAC",
+      "count": 6
+    },
+    {
+      "tissue": "tumor",
+      "modality": "scRNA",
+      "count": 15
+    },
+    {
+      "tissue": "unknown",
+      "modality": "scRNA",
+      "count": 2
+    }
+  ],
   "cell_count_range": {
     "min": 585,
     "median": 8259,
     "max": 737280
   },
+  "cell_count_hist": [
+    {
+      "bin": "<1k",
+      "count": 2
+    },
+    {
+      "bin": "1–3k",
+      "count": 28
+    },
+    {
+      "bin": "3–10k",
+      "count": 91
+    },
+    {
+      "bin": "10–30k",
+      "count": 52
+    },
+    {
+      "bin": "30–100k",
+      "count": 16
+    },
+    {
+      "bin": "100–300k",
+      "count": 9
+    },
+    {
+      "bin": "300k–1M",
+      "count": 2
+    },
+    {
+      "bin": ">1M",
+      "count": 0
+    }
+  ],
+  "submission_year_timeline": [
+    {
+      "year": 2016,
+      "count": 1
+    },
+    {
+      "year": 2017,
+      "count": 1
+    },
+    {
+      "year": 2018,
+      "count": 8
+    },
+    {
+      "year": 2019,
+      "count": 11
+    },
+    {
+      "year": 2020,
+      "count": 19
+    },
+    {
+      "year": 2021,
+      "count": 29
+    },
+    {
+      "year": 2022,
+      "count": 43
+    },
+    {
+      "year": 2023,
+      "count": 43
+    },
+    {
+      "year": 2024,
+      "count": 29
+    },
+    {
+      "year": 2025,
+      "count": 11
+    }
+  ],
+  "pubmed_top15": [
+    {
+      "filename_key": "GSE128033_new",
+      "pubmed_id": "31221805; 37706427; 37566492",
+      "cell_count": 737280,
+      "species": "human",
+      "modality": "scRNA"
+    },
+    {
+      "filename_key": "GSE247719_PanSci_05_Muscle_adata",
+      "pubmed_id": "39607904",
+      "cell_count": 696410,
+      "species": "mouse",
+      "modality": "scRNA"
+    },
+    {
+      "filename_key": "GSE164378_new",
+      "pubmed_id": "34062119",
+      "cell_count": 161764,
+      "species": "human",
+      "modality": "scRNA"
+    },
+    {
+      "filename_key": "GSE262288_breastMetasisHmCancer",
+      "pubmed_id": "39955556",
+      "cell_count": 157518,
+      "species": "human",
+      "modality": "scRNA"
+    },
+    {
+      "filename_key": "GSE174367_snATAC-seq_filtered_peak_bc_matrix",
+      "pubmed_id": "34239132",
+      "cell_count": 143401,
+      "species": "human",
+      "modality": "scATAC"
+    },
+    {
+      "filename_key": "GSE222369_NKsLymphomaHmCancer",
+      "pubmed_id": "37467318",
+      "cell_count": 138805,
+      "species": "human",
+      "modality": "scRNA"
+    },
+    {
+      "filename_key": "GSE235787_bcellsALLHmCancer",
+      "pubmed_id": "38593781",
+      "cell_count": 113495,
+      "species": "human",
+      "modality": "scRNA"
+    },
+    {
+      "filename_key": "GSE181061_new",
+      "pubmed_id": "35668194",
+      "cell_count": 108421,
+      "species": "human",
+      "modality": "scRNA"
+    },
+    {
+      "filename_key": "GSE190604_new",
+      "pubmed_id": "35113687",
+      "cell_count": 103805,
+      "species": "human",
+      "modality": "scRNA"
+    },
+    {
+      "filename_key": "GSE189070_astrocytesSCIMmDev",
+      "pubmed_id": "35816276",
+      "cell_count": 103446,
+      "species": "mouse",
+      "modality": "scRNA"
+    },
+    {
+      "filename_key": "GSE120926_new",
+      "pubmed_id": "32901110",
+      "cell_count": 102525,
+      "species": "human",
+      "modality": "scRNA"
+    },
+    {
+      "filename_key": "GSE253355_bmNicheHm",
+      "pubmed_id": "38714197",
+      "cell_count": 99846,
+      "species": "human",
+      "modality": "scRNA"
+    },
+    {
+      "filename_key": "bm_GSE120446",
+      "pubmed_id": "30518681",
+      "cell_count": 90653,
+      "species": "human",
+      "modality": "scRNA"
+    },
+    {
+      "filename_key": "GSE149689_new",
+      "pubmed_id": "32651212; 36229591",
+      "cell_count": 85144,
+      "species": "human",
+      "modality": "scRNA"
+    },
+    {
+      "filename_key": "GSE225600_breast_CancerHm",
+      "pubmed_id": "36594618",
+      "cell_count": 81683,
+      "species": "human",
+      "modality": "scRNA"
+    }
+  ],
   "methods_total": 32,
   "metrics_total": 26
 }
