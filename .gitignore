@@ -41,3 +41,13 @@ Thumbs.db
 
 # Jupyter
 .ipynb_checkpoints/
+
+# Agent tooling state (local only)
+.omc/
+**/.omc/
+
+# Internal session docs (local only)
+TRAINING_STATE.md
+HANDOFF_GPU_SESSION.md
+KNOWN_ISSUES.md
+LAUNCH_BENCHMARK.md
