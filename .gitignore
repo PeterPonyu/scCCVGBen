@@ -27,9 +27,14 @@ site/.hugo_build.lock
 
 # Local agent/runtime state
 .omx/
-.omc/state/
-.omc/sessions/
+.omc/
 site/.omc/
+
+# Internal session docs (local only)
+TRAINING_STATE.md
+HANDOFF_GPU_SESSION.md
+KNOWN_ISSUES.md
+LAUNCH_BENCHMARK.md
 
 # OS
 .DS_Store
