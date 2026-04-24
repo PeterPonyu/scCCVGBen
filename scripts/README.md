@@ -27,6 +27,7 @@ For the full execution sequence see `LAUNCH_BENCHMARK.md`.
 | Script | Purpose |
 |---|---|
 | `verify_benchmark_size.py` | Asserts `workspace/data/scrna/` has 100 h5ad and `workspace/data/scatac/` has 100 h5ad; exits non-zero with diagnostics on failure. |
+| `make_figure1_site.py` | Builds `figures/fig1_scCCVGBen_site.png` and `.pdf` from local screenshots in `figures/site_shots/`. The screenshots are not committed. |
 
 ## Benchmark sweeps (GPU-bound; launch via LAUNCH_BENCHMARK.md)
 

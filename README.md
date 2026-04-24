@@ -68,11 +68,19 @@ scCCVGBen/
 ├── scripts/            # Data curation + sweep runner scripts
 ├── results/            # Committed CSV results (small files)
 ├── data/               # Committed metadata CSVs (datasets.csv, reuse_map.csv, dropped_scatac_v2.csv)
-├── figures/            # Committed publication figures
+├── figures/            # Committed final figures; source screenshots stay local
 ├── site/               # Hugo static site (dataset cards + filterable index)
 ├── tests/              # Smoke tests
 └── workspace/          # GITIGNORED — symlinked data, cached results, checkpoints
 ```
+
+---
+
+## Figures
+
+Commit final figure files such as `figures/fig1_scCCVGBen_site.png` and `.pdf`.
+Do not commit the source screenshots under `figures/site_shots/`; they are local inputs for
+`scripts/make_figure1_site.py`.
 
 ---
 

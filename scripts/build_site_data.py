@@ -8,7 +8,7 @@ Inputs:
 Outputs:
   site/data/datasets.json          — array of 200 dataset objects (for DataTables)
   site/data/methods.json           — 29 methods grouped by 3 categories
-  site/data/metrics.json           — 27 metrics grouped by 3 categories
+  site/data/metrics.json           — 26 metrics grouped by 3 categories
   site/data/summary.json           — home-page headline stats + chart data
   site/content/datasets/*.md       — one page per dataset (auto-generated)
 
@@ -256,11 +256,39 @@ def build_summary(datasets: list[dict]) -> dict:
     tissue_counts = df["tissue"].value_counts().to_dict()
     species_counts = df["species"].value_counts().to_dict()
     modality_counts = df["modality"].value_counts().to_dict()
-    # species × modality cross
     cross = df.groupby(["species","modality"]).size().reset_index(name="count")
     cross_list = cross.to_dict("records")
 
     cell_count = df["cell_count"]
+    # Cell-count bins for the skewed size distribution.
+    bins = [0, 1_000, 3_000, 10_000, 30_000, 100_000, 300_000, 1_000_000, 5_000_000]
+    labels = ["<1k", "1–3k", "3–10k", "10–30k", "30–100k", "100–300k", "300k–1M", ">1M"]
+    hist = pd.cut(cell_count, bins=bins, labels=labels, right=False).value_counts().sort_index()
+    cell_hist = [{"bin": str(k), "count": int(v)} for k, v in hist.items()]
+
+    # Submission year timeline.
+    def _year(s):
+        s = str(s or "").strip()
+        m = re.search(r"\b(19|20)\d{2}\b", s)
+        return int(m.group(0)) if m else None
+    years = pd.Series([_year(s) for s in df["submission_date"]]).dropna().astype(int)
+    year_hist = years.value_counts().sort_index()
+    timeline = [{"year": int(y), "count": int(c)} for y, c in year_hist.items()]
+
+    # Tissue × modality counts.
+    tissue_modality = (
+        df.groupby(["tissue", "modality"]).size().reset_index(name="count")
+    )
+    tissue_modality_list = tissue_modality.to_dict("records")
+
+    # Largest PubMed-linked studies by cell count.
+    with_pubmed = df[df["pubmed_id"].astype(str).str.strip() != ""]
+    pubmed_top = (
+        with_pubmed.sort_values("cell_count", ascending=False)
+        .head(15)[["filename_key", "pubmed_id", "cell_count", "species", "modality"]]
+        .to_dict("records")
+    )
+
     return {
         "built_at": datetime.now(timezone.utc).isoformat(),
         "total_datasets": int(len(df)),
@@ -268,13 +296,17 @@ def build_summary(datasets: list[dict]) -> dict:
         "species": species_counts,
         "tissue_top10": dict(sorted(tissue_counts.items(), key=lambda x: -x[1])[:10]),
         "species_modality": cross_list,
+        "tissue_modality": tissue_modality_list,
         "cell_count_range": {
             "min": int(cell_count.min()),
             "median": int(cell_count.median()),
             "max": int(cell_count.max()),
         },
-        "methods_total": 14 + 5 + 13,      # 14 scCCVGBen encoders + 5 graphs + 13 baselines
-        "metrics_total": 6 + 10 + 10,      # 6 cluster + 10 DRE + 10 LSE
+        "cell_count_hist": cell_hist,
+        "submission_year_timeline": timeline,
+        "pubmed_top15": pubmed_top,
+        "methods_total": 14 + 5 + 13,
+        "metrics_total": 6 + 10 + 10,
     }
 
 
@@ -362,6 +394,150 @@ def _slugify_filename(name: str) -> str:
     return re.sub(r"[^A-Za-z0-9_\-]+", "_", name).strip("_")
 
 
+def _slug_lower(name: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
+
+# ─────────────────── Method + Metric detail pages ─────────────────────
+
+METHOD_PAGE = """---
+title: "{name}"
+type: docs
+weight: {weight}
+geekdocHidden: false
+---
+
+# {name}
+
+| Field | Value |
+|-------|-------|
+| **Family** | {family} |
+| **Group** | {group_name} |
+
+## Description
+
+{description}
+
+{extra}
+
+---
+
+<small>Auto-generated from `scripts/build_site_data.py`. scCCVGBen benchmark
+tests each method against the same 200 datasets and 26 metrics; see the
+[Methods index](../) for the full set.</small>
+"""
+
+METHOD_EXTRA = {
+    "scCCVGBen_encoders": (
+        "## Role in scCCVGBen\n\n"
+        "Axis A (encoder-variation) sweep: CCVGAE trains a latent representation\n"
+        "with this message-passing / attention module while holding the graph fixed\n"
+        "to k-NN Euclidean. Benchmark naming for sweep rows: `scCCVGBen_{name}`.\n"
+    ),
+    "graph_constructions": (
+        "## Role in scCCVGBen\n\n"
+        "Axis B (graph-construction sweep): CCVGAE encoder is fixed to GAT while\n"
+        "this graph builder constructs the cell-cell neighbourhood fed to the\n"
+        "encoder. Benchmark naming: `scCCVGBen_GAT_{name}`.\n"
+    ),
+    "baselines": (
+        "## Role in scCCVGBen\n\n"
+        "Axis C (baseline comparison): this method produces a latent embedding\n"
+        "evaluated with the same 26 metrics as CCVGAE. Benchmark naming: `{name}`\n"
+        "(row label is the method name itself, with no scCCVGBen prefix).\n"
+    ),
+}
+
+GROUP_DISPLAY = {
+    "scCCVGBen_encoders":  "scCCVGBen graph encoder",
+    "graph_constructions": "Graph construction method",
+    "baselines":           "Dimensionality-reduction baseline",
+}
+
+
+def write_method_pages(methods: dict) -> int:
+    out_dir = CONTENT_OUT / "methods"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    for p in out_dir.glob("*.md"):
+        if p.name != "_index.md":
+            p.unlink()
+    written = 0
+    for group_key, items in methods.items():
+        gname = GROUP_DISPLAY.get(group_key, group_key)
+        extra_tpl = METHOD_EXTRA.get(group_key, "")
+        for i, m in enumerate(items):
+            name = m["name"]
+            extra = extra_tpl.format(name=name)
+            page = METHOD_PAGE.format(
+                name=name,
+                weight=100 + written,
+                family=m.get("family", "—"),
+                group_name=gname,
+                description=m.get("description", ""),
+                extra=extra,
+            )
+            (out_dir / f"{_slug_lower(name)}.md").write_text(page, encoding="utf-8")
+            written += 1
+    return written
+
+
+METRIC_PAGE = """---
+title: "{name}"
+type: docs
+weight: {weight}
+geekdocHidden: false
+---
+
+# {name}
+
+| Field | Value |
+|-------|-------|
+| **Group** | {group_name} |
+| **Source** | `{source}` |
+| **Direction** | {note} |
+
+## Description
+
+{description}
+
+---
+
+<small>Auto-generated from `scripts/build_site_data.py`. Every method's
+latent embedding is scored against this metric across all 200 benchmark
+datasets; see the [Metrics index](../) for the full set.</small>
+"""
+
+METRIC_GROUP_DISPLAY = {
+    "clustering": "Clustering quality",
+    "dre":        "Dimensionality-reduction evaluation (UMAP + tSNE)",
+    "lse":        "Latent-space intrinsic geometry",
+}
+
+
+def write_metric_pages(metrics: dict) -> int:
+    out_dir = CONTENT_OUT / "metrics"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    for p in out_dir.glob("*.md"):
+        if p.name != "_index.md":
+            p.unlink()
+    written = 0
+    for group_key, items in metrics.items():
+        gname = METRIC_GROUP_DISPLAY.get(group_key, group_key)
+        for m in items:
+            name = m["name"]
+            page = METRIC_PAGE.format(
+                name=name,
+                weight=100 + written,
+                group_name=gname,
+                description=m.get("description", ""),
+                source=m.get("source", ""),
+                note=m.get("note", "—"),
+            )
+            (out_dir / f"{_slug_lower(name)}.md").write_text(page, encoding="utf-8")
+            written += 1
+    return written
+
+
 # ───────────────────────────────── Main ──────────────────────────────────
 
 def main() -> None:
@@ -393,6 +569,14 @@ def main() -> None:
     print("→ Writing per-dataset pages ...")
     n = write_dataset_pages(datasets)
     print(f"  wrote {n} dataset pages → {CONTENT_OUT / 'datasets'}")
+
+    print("→ Writing per-method pages ...")
+    n = write_method_pages(methods)
+    print(f"  wrote {n} method pages → {CONTENT_OUT / 'methods'}")
+
+    print("→ Writing per-metric pages ...")
+    n = write_metric_pages(metrics)
+    print(f"  wrote {n} metric pages → {CONTENT_OUT / 'metrics'}")
 
     print("\n✓ Site data build complete.")
 
