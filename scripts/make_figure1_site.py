@@ -24,12 +24,12 @@ OUT_PDF = ROOT / "figures" / "fig1_scCCVGBen_site.pdf"
 DPI = 300
 CARD_WIDTH = 1600
 CARD_PAD = 30
-TITLE_HEIGHT = 84          # bigger title band (was 58)
-TITLE_FONT_PX = 44         # larger title font (was 30)
+TITLE_HEIGHT = 84
+TITLE_FONT_PX = 44
 GAP_X = 54
 GAP_Y = 48
 CANVAS_PAD = 40
-# Three columns keep the final cards aligned without large bottom gaps.
+# Three columns keep the cards aligned without large bottom gaps.
 COLUMN_ORDER = ((0, 1, 6, 7), (4, 5), (2, 3))
 
 
@@ -47,7 +47,7 @@ PANELS = [
     Panel("home.png", "Benchmark overview",
           (0.165, 0.005, 0.995, 0.122), "#1f5f9f"),
     Panel("home.png", "Tissue and species composition",
-          (0.165, 0.155, 0.995, 0.275), "#24989f"),
+          (0.165, 0.145, 0.995, 0.245), "#24989f"),
     Panel("home.png", "Metadata distributions (4 charts)",
           (0.165, 0.275, 0.995, 0.505), "#5a7d2f"),
     Panel("datasets.png", "Dataset index with filters",
