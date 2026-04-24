@@ -1,0 +1,34 @@
+---
+title: "GSE123813_bccHmCancer"
+type: docs
+weight: 103
+geekdocHidden: false
+---
+
+# GSE123813_bccHmCancer
+
+| Field | Value |
+|-------|-------|
+| **filename_key** | `GSE123813_bccHmCancer` |
+| **GSE / GSM accession** | [GSE123813](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE123813) |
+| **Modality** | scRNA |
+| **Species** | human |
+| **Tissue** | tumor |
+| **Cell count** | 53,030 |
+| **PubMed** | [PMID:31359002](https://pubmed.ncbi.nlm.nih.gov/31359002/) |
+| **Submission date** | Dec 13 2018 |
+| **Source name (GEO)** | Basal cell carinoma tumor |
+
+## GEO title
+
+> Clonal replacement of tumor-specific T cells following PD-1 blockade [single cells]
+
+## Description (local manifest)
+
+GSE123813_bccHmCancer
+
+---
+
+<small>Record auto-generated from `data/benchmark_manifest.csv` by
+`scripts/build_site_data.py`. All fields verified against GEO online
+metadata via GEOparse.</small>

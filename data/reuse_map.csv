@@ -1,0 +1,6 @@
+source_path,target_path,reuse_type,axis,count
+/home/zeyufu/LAB/CCVGAE/CG_results/CG_dl_merged,workspace/reused_results/scrna_baselines,symlink,C,55
+/home/zeyufu/LAB/CCVGAE/CG_results/CG_dl_merged,workspace/reused_results/axisA_GAT_scrna,symlink,A,55
+/home/zeyufu/LAB/CCVGAE/CG_results/CG_atacs/tables,workspace/reused_results/scatac_baselines,symlink,C,100
+/home/zeyufu/LAB/CCVGAE/workspace/data/scrna,workspace/data/scrna,symlink,all,55
+/home/zeyufu/LAB/CCVGAE/workspace/data/scatac,workspace/data/scatac,symlink,all,100

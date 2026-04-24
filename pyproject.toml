@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scccvgben"
+version = "0.1.0"
+description = "Single-cell CCVGAE Benchmark — multi-encoder, multi-graph, baseline comparison on 200 scRNA+scATAC datasets"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = [
+    "torch>=2.0",
+    "torch-geometric",
+    "scanpy",
+    "anndata",
+    "numpy",
+    "pandas",
+    "scipy",
+    "scikit-learn",
+    "matplotlib",
+    "gseapy",
+    "networkx",
+    "pyyaml",
+    "umap-learn",
+]
+
+[project.optional-dependencies]
+atac = ["episcanpy"]
+geo = ["GEOparse>=2.0.3"]
+dev = ["pytest", "ruff", "mypy"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["scccvgben*"]
+exclude = ["tests*", "scripts*", "site*", "workspace*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+markers = [
+    "integration: end-to-end pipeline smoke tests (skipped by default, use -m integration to run)",
+]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true

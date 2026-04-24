@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Workspace (large/generated, gitignored entirely)
+workspace/
+
+# Computational experiment outputs (kept local, not published)
+results/
+
+# Site build artifacts
+site/public/
+site/resources/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*~
+
+# Pytest
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/

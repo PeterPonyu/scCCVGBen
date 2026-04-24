@@ -1,0 +1,83 @@
+<section class="sccvg-controls" aria-label="Display settings">
+  <div class="sccvg-controls-title">Display</div>
+
+  <div class="sccvg-control-group">
+    <div class="sccvg-control-label">Theme</div>
+    <div class="sccvg-segment" role="group" aria-label="Theme">
+      <button type="button" data-sccvg-theme="light">Light</button>
+      <button type="button" data-sccvg-theme="dark">Dark</button>
+      <button type="button" data-sccvg-theme="system">Auto</button>
+    </div>
+  </div>
+
+  <div class="sccvg-control-group">
+    <div class="sccvg-control-label">Text scale</div>
+    <div class="sccvg-segment" role="group" aria-label="Text scale">
+      <button type="button" data-sccvg-scale="compact">S</button>
+      <button type="button" data-sccvg-scale="normal">M</button>
+      <button type="button" data-sccvg-scale="large">L</button>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  const root = document.documentElement;
+  const media = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+
+  function resolvedTheme(mode) {
+    if (mode === "system") {
+      return media && media.matches ? "dark" : "light";
+    }
+    return mode === "dark" ? "dark" : "light";
+  }
+
+  function setPressed(selector, attr, value) {
+    document.querySelectorAll(selector).forEach(button => {
+      const active = button.getAttribute(attr) === value;
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+  }
+
+  function applyTheme(mode, persist) {
+    const themeMode = mode || localStorage.getItem("sccvgben-theme") || "light";
+    root.dataset.themeMode = themeMode;
+    root.dataset.theme = resolvedTheme(themeMode);
+    setPressed("[data-sccvg-theme]", "data-sccvg-theme", themeMode);
+    if (persist) {
+      localStorage.setItem("sccvgben-theme", themeMode);
+    }
+    document.dispatchEvent(new CustomEvent("sccvgben:themechange", {
+      detail: { mode: themeMode, resolved: root.dataset.theme }
+    }));
+  }
+
+  function applyScale(scale, persist) {
+    const value = scale || localStorage.getItem("sccvgben-font-scale") || "normal";
+    root.dataset.fontScale = value;
+    setPressed("[data-sccvg-scale]", "data-sccvg-scale", value);
+    if (persist) {
+      localStorage.setItem("sccvgben-font-scale", value);
+    }
+  }
+
+  document.querySelectorAll("[data-sccvg-theme]").forEach(button => {
+    button.addEventListener("click", () => applyTheme(button.dataset.sccvgTheme, true));
+  });
+  document.querySelectorAll("[data-sccvg-scale]").forEach(button => {
+    button.addEventListener("click", () => applyScale(button.dataset.sccvgScale, true));
+  });
+
+  if (media && media.addEventListener) {
+    media.addEventListener("change", () => {
+      if ((localStorage.getItem("sccvgben-theme") || "light") === "system") {
+        applyTheme("system", false);
+      }
+    });
+  }
+
+  applyTheme(root.dataset.themeMode || localStorage.getItem("sccvgben-theme") || "light", false);
+  applyScale(root.dataset.fontScale || localStorage.getItem("sccvgben-font-scale") || "normal", false);
+})();
+</script>

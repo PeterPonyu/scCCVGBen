@@ -1,0 +1,21 @@
+<script>
+(function() {
+  try {
+    const root = document.documentElement;
+    const params = new URLSearchParams(window.location.search);
+    const themeParam = params.get("theme");
+    const scaleParam = params.get("scale") || params.get("font");
+    const themeValues = ["light", "dark", "system"];
+    const scaleValues = ["compact", "normal", "large"];
+    const savedTheme = themeValues.includes(themeParam) ? themeParam : (localStorage.getItem("sccvgben-theme") || "light");
+    const savedScale = scaleValues.includes(scaleParam) ? scaleParam : (localStorage.getItem("sccvgben-font-scale") || "normal");
+    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.themeMode = savedTheme;
+    root.dataset.theme = savedTheme === "system" ? (prefersDark ? "dark" : "light") : savedTheme;
+    root.dataset.fontScale = savedScale;
+  } catch (err) {
+    document.documentElement.dataset.theme = "light";
+    document.documentElement.dataset.fontScale = "normal";
+  }
+})();
+</script>

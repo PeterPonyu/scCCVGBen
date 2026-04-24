@@ -1,0 +1,34 @@
+---
+title: "GSE253355_bmNicheHm"
+type: docs
+weight: 134
+geekdocHidden: false
+---
+
+# GSE253355_bmNicheHm
+
+| Field | Value |
+|-------|-------|
+| **filename_key** | `GSE253355_bmNicheHm` |
+| **GSE / GSM accession** | [GSE253355](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE253355) |
+| **Modality** | scRNA |
+| **Species** | human |
+| **Tissue** | bone_marrow |
+| **Cell count** | 99,846 |
+| **PubMed** | [PMID:38714197](https://pubmed.ncbi.nlm.nih.gov/38714197/) |
+| **Submission date** | Jan 16 2024 |
+| **Source name (GEO)** | Bone marrow |
+
+## GEO title
+
+> Mapping the Cellular Biogeography of Human Bone Marrow Niches Using Single-Cell Transcriptomics
+
+## Description (local manifest)
+
+GSE253355_bmNicheHm
+
+---
+
+<small>Record auto-generated from `data/benchmark_manifest.csv` by
+`scripts/build_site_data.py`. All fields verified against GEO online
+metadata via GEOparse.</small>

@@ -1,0 +1,144 @@
+{
+  "clustering": [
+    {
+      "name": "ASW",
+      "description": "Average Silhouette Width",
+      "source": "sklearn.metrics.silhouette_score",
+      "note": "Higher is better"
+    },
+    {
+      "name": "DAV",
+      "description": "Davies–Bouldin Index",
+      "source": "sklearn.metrics.davies_bouldin_score",
+      "note": "Lower is better"
+    },
+    {
+      "name": "CAL",
+      "description": "Calinski–Harabasz Index",
+      "source": "sklearn.metrics.calinski_harabasz_score",
+      "note": "Higher is better"
+    },
+    {
+      "name": "NMI",
+      "description": "Normalised Mutual Information",
+      "source": "sklearn.metrics.normalized_mutual_info_score",
+      "note": "Higher is better"
+    },
+    {
+      "name": "ARI",
+      "description": "Adjusted Rand Index",
+      "source": "sklearn.metrics.adjusted_rand_score",
+      "note": "Higher is better"
+    },
+    {
+      "name": "COR",
+      "description": "Pairwise distance correlation",
+      "source": "Spearman on pairwise distances Z vs X_orig",
+      "note": "Higher is better"
+    }
+  ],
+  "dre": [
+    {
+      "name": "distance_correlation_umap",
+      "description": "Spearman distance corr (latent vs UMAP)",
+      "source": "DRE.evaluate_dimensionality_reduction"
+    },
+    {
+      "name": "Q_local_umap",
+      "description": "Coranking Q_NX local average (k=1..K_max)",
+      "source": "DRE Lee & Verleysen 2009"
+    },
+    {
+      "name": "Q_global_umap",
+      "description": "Coranking Q_NX global average",
+      "source": "DRE"
+    },
+    {
+      "name": "K_max_umap",
+      "description": "Argmax of Q_NX(k) — optimal neighbourhood scale",
+      "source": "DRE"
+    },
+    {
+      "name": "overall_quality_umap",
+      "description": "Weighted composite of Q_local + Q_global",
+      "source": "DRE"
+    },
+    {
+      "name": "distance_correlation_tsne",
+      "description": "Spearman dist corr (latent vs tSNE)",
+      "source": "DRE"
+    },
+    {
+      "name": "Q_local_tsne",
+      "description": "Coranking Q_NX local (tSNE)",
+      "source": "DRE"
+    },
+    {
+      "name": "Q_global_tsne",
+      "description": "Coranking Q_NX global (tSNE)",
+      "source": "DRE"
+    },
+    {
+      "name": "K_max_tsne",
+      "description": "Argmax Q_NX(k) in tSNE",
+      "source": "DRE"
+    },
+    {
+      "name": "overall_quality_tsne",
+      "description": "Weighted composite (tSNE)",
+      "source": "DRE"
+    }
+  ],
+  "lse": [
+    {
+      "name": "manifold_dimensionality_intrin",
+      "description": "Intrinsic manifold dimensionality score",
+      "source": "LSE.SingleCellLatentSpaceEvaluator"
+    },
+    {
+      "name": "spectral_decay_rate_intrin",
+      "description": "PCA eigenvalue decay rate",
+      "source": "LSE"
+    },
+    {
+      "name": "participation_ratio_intrin",
+      "description": "Effective latent dim (1/Σ w_i² when Σ w_i=1)",
+      "source": "LSE"
+    },
+    {
+      "name": "anisotropy_score_intrin",
+      "description": "Covariance eigenvalue anisotropy",
+      "source": "LSE"
+    },
+    {
+      "name": "trajectory_directionality_intrin",
+      "description": "Primary developmental axis strength",
+      "source": "LSE"
+    },
+    {
+      "name": "noise_resilience_intrin",
+      "description": "Perturbation robustness score",
+      "source": "LSE"
+    },
+    {
+      "name": "core_quality_intrin",
+      "description": "Mean of 4 core manifold metrics",
+      "source": "LSE"
+    },
+    {
+      "name": "overall_quality_intrin",
+      "description": "Weighted composite (trajectory-aware)",
+      "source": "LSE"
+    },
+    {
+      "name": "data_type_intrin",
+      "description": "Auto-classified: 'trajectory' or 'steady_state'",
+      "source": "LSE"
+    },
+    {
+      "name": "interpretation_intrin",
+      "description": "Structured dict: quality_level, strengths, weaknesses, recommendations",
+      "source": "LSE"
+    }
+  ]
+}

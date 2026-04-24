@@ -1,0 +1,17 @@
+{"t":0,"agent":"system","event":"keyword_detected","keyword":"ai-slop-cleaner"}
+{"t":0,"agent":"system","event":"skill_invoked","skill_name":"oh-my-claudecode:deep-interview"}
+{"t":0,"agent":"system","event":"skill_invoked","skill_name":"oh-my-claudecode:autopilot"}
+{"t":0,"agent":"a402a27","agent_type":"architect","event":"agent_start","parent_mode":"autopilot"}
+{"t":0,"agent":"a402a27","agent_type":"architect","event":"agent_stop","success":true,"duration_ms":352633}
+{"t":0,"agent":"a23f9a2","agent_type":"critic","event":"agent_start","parent_mode":"autopilot"}
+{"t":0,"agent":"a23f9a2","agent_type":"critic","event":"agent_stop","success":true,"duration_ms":257562}
+{"t":0,"agent":"af7e5e5","agent_type":"explore","event":"agent_start","parent_mode":"autopilot"}
+{"t":0,"agent":"af7e5e5","agent_type":"explore","event":"agent_stop","success":true,"duration_ms":85550}
+{"t":0,"agent":"ac8c495","agent_type":"executor","event":"agent_start","parent_mode":"autopilot"}
+{"t":0,"agent":"aca6131","agent_type":"executor","event":"agent_start","parent_mode":"autopilot"}
+{"t":0,"agent":"a485305","agent_type":"executor","event":"agent_start","parent_mode":"autopilot"}
+{"t":0,"agent":"ac8c495","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":197359}
+{"t":0,"agent":"a485305","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":171476}
+{"t":0,"agent":"aca6131","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":240689}
+{"t":0,"agent":"aeb3a4d","agent_type":"executor","event":"agent_start","parent_mode":"autopilot"}
+{"t":0,"agent":"aeb3a4d","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":183334}

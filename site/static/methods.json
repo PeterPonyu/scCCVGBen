@@ -1,0 +1,168 @@
+{
+  "scCCVGBen_encoders": [
+    {
+      "name": "GAT",
+      "family": "attention",
+      "description": "Graph Attention Network (Veličković 2018)"
+    },
+    {
+      "name": "GATv2",
+      "family": "attention",
+      "description": "Dynamic attention Graph Attention v2 (Brody 2022) — scCCVGBen extension"
+    },
+    {
+      "name": "Transformer",
+      "family": "attention",
+      "description": "TransformerConv — Attention is All You Need graph variant (Shi 2020)"
+    },
+    {
+      "name": "SuperGAT",
+      "family": "attention",
+      "description": "Self-supervised edge prediction GAT (Kim 2020) — scCCVGBen extension"
+    },
+    {
+      "name": "GCN",
+      "family": "message-pass",
+      "description": "Graph Convolutional Network (Kipf 2017)"
+    },
+    {
+      "name": "SAGE",
+      "family": "message-pass",
+      "description": "GraphSAGE inductive (Hamilton 2017)"
+    },
+    {
+      "name": "Graph",
+      "family": "message-pass",
+      "description": "GraphConv — general message-passing variant"
+    },
+    {
+      "name": "Cheb",
+      "family": "message-pass",
+      "description": "ChebNet — Chebyshev polynomial filters (Defferrard 2016)"
+    },
+    {
+      "name": "TAG",
+      "family": "message-pass",
+      "description": "Topology-Adaptive Graph Conv (Du 2017)"
+    },
+    {
+      "name": "ARMA",
+      "family": "message-pass",
+      "description": "ARMA filter Conv (Bianchi 2021)"
+    },
+    {
+      "name": "SG",
+      "family": "message-pass",
+      "description": "Simplified Graph Conv (Wu 2019)"
+    },
+    {
+      "name": "SSG",
+      "family": "message-pass",
+      "description": "Simple Spectral Graph Conv (Zhu 2021)"
+    },
+    {
+      "name": "GIN",
+      "family": "message-pass",
+      "description": "Graph Isomorphism Network (Xu 2019) — scCCVGBen extension"
+    },
+    {
+      "name": "EdgeConv",
+      "family": "message-pass",
+      "description": "Dynamic Edge Conv (Wang 2019) — scCCVGBen extension"
+    }
+  ],
+  "graph_constructions": [
+    {
+      "name": "kNN_euclidean",
+      "family": "graph",
+      "description": "Standard k-NN with Euclidean distance (k=15) — CCVGAE benchmark default"
+    },
+    {
+      "name": "kNN_cosine",
+      "family": "graph",
+      "description": "k-NN with cosine similarity — rewards direction, invariant to magnitude"
+    },
+    {
+      "name": "snn",
+      "family": "graph",
+      "description": "Shared Nearest Neighbour — 2 cells connected if they share a fraction of neighbours"
+    },
+    {
+      "name": "mutual_knn",
+      "family": "graph",
+      "description": "Mutual k-NN — only edges where both cells are in each other's k-NN list; stricter connectivity"
+    },
+    {
+      "name": "gaussian_threshold",
+      "family": "graph",
+      "description": "Gaussian heat-kernel weights w=exp(-d²/(2σ²)); edges pruned at threshold 0.9"
+    }
+  ],
+  "baselines": [
+    {
+      "name": "PCA",
+      "family": "baseline",
+      "description": "Linear PCA — sklearn.decomposition.PCA"
+    },
+    {
+      "name": "KPCA",
+      "family": "baseline",
+      "description": "Kernel PCA (RBF) — sklearn.decomposition.KernelPCA"
+    },
+    {
+      "name": "ICA",
+      "family": "baseline",
+      "description": "Independent Component Analysis (FastICA) — sklearn.decomposition.FastICA"
+    },
+    {
+      "name": "FA",
+      "family": "baseline",
+      "description": "Factor Analysis — sklearn.decomposition.FactorAnalysis"
+    },
+    {
+      "name": "NMF",
+      "family": "baseline",
+      "description": "Non-negative Matrix Factorisation — sklearn.decomposition.NMF"
+    },
+    {
+      "name": "TSVD",
+      "family": "baseline",
+      "description": "Truncated SVD — sklearn.decomposition.TruncatedSVD"
+    },
+    {
+      "name": "DICL",
+      "family": "baseline",
+      "description": "Dictionary Learning — sklearn.decomposition.DictionaryLearning"
+    },
+    {
+      "name": "scVI",
+      "family": "baseline",
+      "description": "Single-cell Variational Inference — Lopez 2018"
+    },
+    {
+      "name": "DIP",
+      "family": "baseline",
+      "description": "DIP-VAE disentangled autoencoder — Kumar 2017"
+    },
+    {
+      "name": "INFO",
+      "family": "baseline",
+      "description": "InfoVAE — Zhao 2017"
+    },
+    {
+      "name": "TC",
+      "family": "baseline",
+      "description": "β-TCVAE — Chen 2018"
+    },
+    {
+      "name": "highBeta",
+      "family": "baseline",
+      "description": "Hyper-parameterised VAE with high β (β=100)"
+    },
+    {
+      "name": "CCVGAE",
+      "family": "baseline",
+      "description": "Reference CCVGAE — upstream baseline; scCCVGBen extends this with 12 encoder + 5 graph variants"
+    }
+  ]
+}

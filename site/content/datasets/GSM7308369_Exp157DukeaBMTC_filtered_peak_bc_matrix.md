@@ -1,0 +1,34 @@
+---
+title: "GSM7308369_Exp157DukeaBMTC_filtered_peak_bc_matrix"
+type: docs
+weight: 202
+geekdocHidden: false
+---
+
+# GSM7308369_Exp157DukeaBMTC_filtered_peak_bc_matrix
+
+| Field | Value |
+|-------|-------|
+| **filename_key** | `GSM7308369_Exp157DukeaBMTC_filtered_peak_bc_matrix` |
+| **GSE / GSM accession** | [GSM7308369](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7308369) |
+| **Modality** | scATAC |
+| **Species** | human |
+| **Tissue** | blood |
+| **Cell count** | 9,302 |
+| **PubMed** | [PMID:nan](https://pubmed.ncbi.nlm.nih.gov/nan/) |
+| **Submission date** | May 08 2023 |
+| **Source name (GEO)** | PBMC |
+
+## GEO title
+
+> Pre-transplant, no_future_aGVHD, rep1
+
+## Description (local manifest)
+
+GSM7308369_Exp157DukeaBMTC_filtered_peak_bc_matrix
+
+---
+
+<small>Record auto-generated from `data/benchmark_manifest.csv` by
+`scripts/build_site_data.py`. All fields verified against GEO online
+metadata via GEOparse.</small>

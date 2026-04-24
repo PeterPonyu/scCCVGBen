@@ -1,0 +1,18 @@
+{
+  "active": true,
+  "iteration": 0,
+  "max_iterations": 10,
+  "current_phase": "phase-1-planning",
+  "task_description": "scCCVGBen v0.1.0 launch-prep — fix all 9 KNOWN_ISSUES + implement fetch_geo + inventory + download + handoff doc",
+  "plan_path": ".omc/specs/deep-interview-scccvgben-launch-prep.md",
+  "started_at": "2026-04-23T09:30:00Z",
+  "spec_path": ".omc/specs/deep-interview-scccvgben-launch-prep.md",
+  "phase_0_skipped": "deep-interview-spec-exists",
+  "phase": "1-planning-architect-spawned",
+  "_meta": {
+    "mode": "autopilot",
+    "sessionId": null,
+    "updatedAt": "2026-04-23T09:29:07.876Z",
+    "updatedBy": "state_write_tool"
+  }
+}

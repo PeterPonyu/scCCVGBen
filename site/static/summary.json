@@ -1,0 +1,71 @@
+{
+  "built_at": "2026-04-24T08:38:22.206037+00:00",
+  "total_datasets": 200,
+  "modality": {
+    "scRNA": 100,
+    "scATAC": 100
+  },
+  "species": {
+    "human": 137,
+    "mouse": 54,
+    "zebrafish": 7,
+    "rat": 1,
+    "pig": 1
+  },
+  "tissue_top10": {
+    "other": 35,
+    "blood": 33,
+    "tumor": 21,
+    "lung": 21,
+    "brain": 13,
+    "stem_cell": 10,
+    "liver": 9,
+    "bone_marrow": 9,
+    "retina": 7,
+    "pbmc": 6
+  },
+  "species_modality": [
+    {
+      "species": "human",
+      "modality": "scATAC",
+      "count": 58
+    },
+    {
+      "species": "human",
+      "modality": "scRNA",
+      "count": 79
+    },
+    {
+      "species": "mouse",
+      "modality": "scATAC",
+      "count": 35
+    },
+    {
+      "species": "mouse",
+      "modality": "scRNA",
+      "count": 19
+    },
+    {
+      "species": "pig",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "species": "rat",
+      "modality": "scRNA",
+      "count": 1
+    },
+    {
+      "species": "zebrafish",
+      "modality": "scATAC",
+      "count": 7
+    }
+  ],
+  "cell_count_range": {
+    "min": 585,
+    "median": 8259,
+    "max": 737280
+  },
+  "methods_total": 32,
+  "metrics_total": 26
+}

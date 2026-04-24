@@ -1,0 +1,58 @@
+{{/*
+  dataset-card.html — renders a single dataset card.
+
+  Expected context (.): a dict with keys:
+    filename_key, GSE, tissue, species, modality, cell_count, category, description
+*/}}
+<div class="dataset-card">
+  <div class="dataset-card-header">
+    <span class="dataset-key">{{ .filename_key }}</span>
+    <span class="badge badge-{{ .modality | lower }}">{{ .modality }}</span>
+    <span class="badge badge-cells">{{ .cell_count }} cells</span>
+  </div>
+  <div class="dataset-card-body">
+    <p class="dataset-meta">
+      <strong>GSE:</strong>
+      <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc={{ .GSE }}"
+         target="_blank" rel="noopener noreferrer">{{ .GSE }}</a>
+      &nbsp;|&nbsp;
+      <strong>Tissue:</strong> {{ .tissue }}
+      &nbsp;|&nbsp;
+      <strong>Species:</strong> {{ .species }}
+      &nbsp;|&nbsp;
+      <strong>Category:</strong> {{ .category }}
+    </p>
+    {{ with .description }}
+    <p class="dataset-description">{{ . }}</p>
+    {{ end }}
+  </div>
+</div>
+
+<style>
+.dataset-card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+  background: #fafafa;
+}
+.dataset-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+.dataset-key { font-family: monospace; font-size: 0.85em; }
+.badge {
+  display: inline-block;
+  padding: 0.15em 0.5em;
+  border-radius: 3px;
+  font-size: 0.75em;
+  font-weight: bold;
+}
+.badge-scrna  { background: #f4d4bf; color: #6b2000; }
+.badge-scatac { background: #bfd4f4; color: #00206b; }
+.badge-cells  { background: #e8e8e8; color: #333; }
+.dataset-meta { margin: 0; font-size: 0.85em; color: #555; }
+.dataset-description { margin: 0.3rem 0 0; font-size: 0.88em; }
+</style>

@@ -1,0 +1,9 @@
+baseURL = "https://peterponyu.github.io/scCCVGBen/"
+languageCode = "en-us"
+title = "scCCVGBen — single-cell CCVGAE Benchmark"
+theme = "hugo-book"
+
+[params]
+  description = "Multi-encoder, multi-graph, baseline benchmark for CCVGAE on 200 scRNA+scATAC datasets"
+  BookSearch = true
+  BookToC = true

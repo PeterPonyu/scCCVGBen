@@ -1,0 +1,1438 @@
+{
+  "GSE115571": {
+    "organism": "Mus musculus",
+    "title": "Single-cell transcriptomics reveals distinct microglia signatures under inflammation",
+    "pubmed_id": "30206190; 39014482",
+    "submission_date": "Jun 11 2018",
+    "source_name": "microglia isolated from saline control mice"
+  },
+  "GSE117988": {
+    "organism": "Homo sapiens",
+    "title": "scRNAseq reveals mechanisms of Merkel cell carcinoma acquired immunotherapy resistance [1]",
+    "pubmed_id": "30250229",
+    "submission_date": "Aug 01 2018",
+    "source_name": "Tumor"
+  },
+  "GSE120505": {
+    "organism": "Mus musculus",
+    "title": "Single-cell RNA seq of aging peripheral blood",
+    "pubmed_id": "36622281",
+    "submission_date": "Sep 26 2018",
+    "source_name": "peripheral blood"
+  },
+  "GSE123813": {
+    "organism": "Homo sapiens",
+    "title": "Clonal replacement of tumor-specific T cells following PD-1 blockade [single cells]",
+    "pubmed_id": "31359002",
+    "submission_date": "Dec 13 2018",
+    "source_name": "Basal cell carinoma tumor"
+  },
+  "GSE123902": {
+    "organism": "Homo sapiens",
+    "title": "The single cell transcriptional landscape of human lung adenocarcinoma (primary tumours and metastases)",
+    "pubmed_id": "32042191",
+    "submission_date": "Dec 16 2018",
+    "source_name": "Patient primary lung adenocarcinoma"
+  },
+  "GSE124310": {
+    "organism": "Homo sapiens",
+    "title": "Single-cell RNA sequencing reveals compromised immune microenvironment in precursor stages of multiple myeloma",
+    "pubmed_id": "33409501",
+    "submission_date": "Dec 23 2018",
+    "source_name": "Bone Marrow"
+  },
+  "GSE130148": {
+    "organism": "Homo sapiens",
+    "title": "Single cell RNA sequencing analysis of fresh resected human lung tissue",
+    "pubmed_id": "31209336",
+    "submission_date": "Apr 22 2019",
+    "source_name": "Parenchymal lung tissue"
+  },
+  "GSE130646": {
+    "organism": "Homo sapiens",
+    "title": "Single-cell transcriptional profiles in human skeletal muscle",
+    "pubmed_id": "31937892",
+    "submission_date": "May 02 2019",
+    "source_name": "Vastus Lateralis Biopsy Mononuclear Cells"
+  },
+  "GSE132509": {
+    "organism": "Homo sapiens",
+    "title": "Single-cell analysis of childhood leukemia reveals a link between developmental states and ribosomal protein expression as a source of intra-individual heterogeneity",
+    "pubmed_id": "32415257",
+    "submission_date": "Jun 10 2019",
+    "source_name": "ETV6-RUNX1"
+  },
+  "GSE138709": {
+    "organism": "Homo sapiens",
+    "title": "Dissecting the transcriptomic landscape of the human intrahepatic cholangiocarcinoma by single cell RNA-sequencing",
+    "pubmed_id": "",
+    "submission_date": "Oct 10 2019",
+    "source_name": "adjacent"
+  },
+  "GSE142653": {
+    "organism": "Homo sapiens",
+    "title": "Single-cell Transcriptomics Reveals the Divergent Developmental Lineage Trajectories during Human Pituitary Development",
+    "pubmed_id": "33077725; 36754052",
+    "submission_date": "Dec 27 2019",
+    "source_name": "fetal pituitary cells"
+  },
+  "GSE143423": {
+    "organism": "Homo sapiens",
+    "title": "Single-Cell Map of Diverse Immune Phenotypes in the Metastatic Brain Tumor Microenvironment of Non Small Cell Lung Cancer and triple negative breast cancer",
+    "pubmed_id": "39311908",
+    "submission_date": "Jan 10 2020",
+    "source_name": "brain"
+  },
+  "GSE145929": {
+    "organism": "Mus musculus",
+    "title": "Single-cell RNA-sequencing of adult mouse lower urinary tracts",
+    "pubmed_id": "32497356",
+    "submission_date": "Feb 25 2020",
+    "source_name": "Viable mouse prostate"
+  },
+  "GSE148215": {
+    "organism": "Homo sapiens",
+    "title": "Characterization and generation of human definitive multipotent hematopoietic stem/progenitor cells",
+    "pubmed_id": "33298886",
+    "submission_date": "Apr 07 2020",
+    "source_name": "human embryonic cells"
+  },
+  "GSE148218": {
+    "organism": "Homo sapiens",
+    "title": "Single cell characterization of arrested B-lymphoid differentiation and leukemic cell states in ETV6-RUNX1-positive pediatric leukemia",
+    "pubmed_id": "33218352",
+    "submission_date": "Apr 07 2020",
+    "source_name": "Primary pre-B-ALL BM"
+  },
+  "GSE149655": {
+    "organism": "Homo sapiens",
+    "title": "Single cell RNAseq of human early stage lung adenocarcinoma with activating somatic KRAS mutations and associated normal lung tissues reveals alterations of key gene expression in alveolar type II pneumocytes",
+    "pubmed_id": "32891189",
+    "submission_date": "Apr 30 2020",
+    "source_name": "lung distal normal tissue from patient 01"
+  },
+  "GSE155109": {
+    "organism": "Homo sapiens",
+    "title": "Single cell atlas identifies lipid-processing and immunomodulatory endothelial cells in healthy and malignant breast",
+    "pubmed_id": "36127427",
+    "submission_date": "Jul 24 2020",
+    "source_name": "breast_1z"
+  },
+  "GSE165784": {
+    "organism": "Homo sapiens",
+    "title": "Single-cell RNA-sequencing reveals the heterogeneity of microglia in fibrous membrane derived from proliferative diabetic retinopathy and proliferative vitreoretinopathy",
+    "pubmed_id": "35061025",
+    "submission_date": "Jan 29 2021",
+    "source_name": "Fibrous membrane_PVR"
+  },
+  "GSE165844": {
+    "organism": "Mus musculus",
+    "title": "External signals regulate continuous transcriptional states in hematopoietic stem cells",
+    "pubmed_id": "34939923",
+    "submission_date": "Jan 30 2021",
+    "source_name": "FACS sorted bone marrow"
+  },
+  "GSE167597": {
+    "organism": "Mus musculus",
+    "title": "Single nucleus RNA-sequencing defines unexpected diversity of cholinergic neuron types in the adult mouse spinal cord",
+    "pubmed_id": "37559423",
+    "submission_date": "Feb 26 2021",
+    "source_name": "Cervical spinal cord"
+  },
+  "GSE168181": {
+    "organism": "Mus musculus",
+    "title": "Single-cell sequencing reveals cancer cell heterogeneity in a murine breast cancer lymph node metastasis model",
+    "pubmed_id": "37341991",
+    "submission_date": "Mar 03 2021",
+    "source_name": "inguinal lymph node"
+  },
+  "GSE183904": {
+    "organism": "Homo sapiens",
+    "title": "Single-cell atlas of lineage states, tumor microenvironment and subtype specific expression programs in gastric cancer",
+    "pubmed_id": "34642171",
+    "submission_date": "Sep 10 2021",
+    "source_name": "Stomach"
+  },
+  "GSE189070": {
+    "organism": "Mus musculus",
+    "title": "Heterogeneity analysis of astrocytes following spinal cord injury at single-cell resolution",
+    "pubmed_id": "35816276",
+    "submission_date": "Nov 18 2021",
+    "source_name": "uninjured spinal cord  tissue"
+  },
+  "GSE189357": {
+    "organism": "Homo sapiens",
+    "title": "Spatiotemporal transcriptional atlas of lung adenocarcinoma from adenocarcinoma in situ to invasive carcinoma [scRNA-seq]",
+    "pubmed_id": "36434043",
+    "submission_date": "Nov 22 2021",
+    "source_name": "Lung adenocarcinoma"
+  },
+  "GSE192857": {
+    "organism": "Homo sapiens",
+    "title": "Gene expression analysis of hESCs undergoing neuronal differentiation [scRNA-seq]",
+    "pubmed_id": "36304110; 37731623",
+    "submission_date": "Dec 31 2021",
+    "source_name": "HS360, day 0, hESCs undifferentiated"
+  },
+  "GSE213740": {
+    "organism": "Homo sapiens",
+    "title": "Single-Cell RNA-Seq Analysis Reveals Macrophage Involved in Pathogenesis of Human sporadic type A aortic dissection",
+    "pubmed_id": "36830768",
+    "submission_date": "Sep 20 2022",
+    "source_name": "Ascending aortic wall tissue"
+  },
+  "GSE222002": {
+    "organism": "Mus musculus",
+    "title": "Targeting tumor cells toward the antigenic specificity of bystander T cells in tumor microenvironment potentiates cancer immunotherapy",
+    "pubmed_id": "38609488",
+    "submission_date": "Jan 02 2023",
+    "source_name": "TME"
+  },
+  "GSE222369": {
+    "organism": "Homo sapiens",
+    "title": "Nicotinamide enhances natural killer cell function and yields remissions in patients with non-Hodgkin lymphoma",
+    "pubmed_id": "37467318",
+    "submission_date": "Jan 07 2023",
+    "source_name": "blood"
+  },
+  "GSE225600": {
+    "organism": "Homo sapiens",
+    "title": "Single-cell profiling and spatial transcriptome of primary tumors and paired metastatic lymph nodes in breast cancer patients",
+    "pubmed_id": "36594618",
+    "submission_date": "Feb 19 2023",
+    "source_name": "human breast cancer"
+  },
+  "GSE225857": {
+    "organism": "Homo sapiens",
+    "title": "Single-cell and spatial transcriptome analysis reveals the cellular heterogeneity of liver metastatic colorectal cancer",
+    "pubmed_id": "37327339",
+    "submission_date": "Feb 22 2023",
+    "source_name": "colorectal and liver tissues"
+  },
+  "GSE226131": {
+    "organism": "Mus musculus",
+    "title": "Single-cell RNA sequencing of hematopoietic stem and progenitor cells from young and aged mice",
+    "pubmed_id": "37069150",
+    "submission_date": "Feb 26 2023",
+    "source_name": "Bone Marrow"
+  },
+  "GSE228499": {
+    "organism": "Homo sapiens",
+    "title": "Single cell RNA sequencing of primary breast cancer",
+    "pubmed_id": "38892065",
+    "submission_date": "Mar 29 2023",
+    "source_name": "primary breast cancer"
+  },
+  "GSE235787": {
+    "organism": "Homo sapiens",
+    "title": "Single-cell network pharmacology predicts total therapies targeting multiple developmental clones in B-cell acute lymphoblastic leukemia",
+    "pubmed_id": "38593781",
+    "submission_date": "Jun 26 2023",
+    "source_name": "Peripheral blood"
+  },
+  "GSE247719": {
+    "organism": "Mus musculus",
+    "title": "A Panoramic View of Cell Population Dynamics in Mammalian Aging",
+    "pubmed_id": "39607904",
+    "submission_date": "Nov 14 2023",
+    "source_name": "kidney"
+  },
+  "GSE253355": {
+    "organism": "Homo sapiens",
+    "title": "Mapping the Cellular Biogeography of Human Bone Marrow Niches Using Single-Cell Transcriptomics",
+    "pubmed_id": "38714197",
+    "submission_date": "Jan 16 2024",
+    "source_name": "Bone marrow"
+  },
+  "GSE255019": {
+    "organism": "Mus musculus",
+    "title": "An age specific platelet differentiation path from hematopoietic stem cells causes thrombocytosis and exacerbated thrombosis",
+    "pubmed_id": "38749423; 40987296",
+    "submission_date": "Feb 04 2024",
+    "source_name": "Bone Marrow"
+  },
+  "GSE262288": {
+    "organism": "Homo sapiens",
+    "title": "Single-Cell RNA Sequencing Identifies Molecular Biomarkers Predicting Response to CDK4/6 Inhibition in Metastatic HR+/HER2- Breast Cancer",
+    "pubmed_id": "39955556",
+    "submission_date": "Mar 22 2024",
+    "source_name": "Pleural effusion"
+  },
+  "GSE275119": {
+    "organism": "Mus musculus",
+    "title": "Decoding SFRP2hi Fibroblast Progenitors in Sustaining Tooth Growth in Humans and Mice at Single-Cell Resolution",
+    "pubmed_id": "39920788",
+    "submission_date": "Aug 18 2024",
+    "source_name": "Incisor Pulp"
+  },
+  "GSE283205": {
+    "organism": "Homo sapiens",
+    "title": "Multiomic analysis uncovers a continuous spectrum of differentiation and Wnt-MDK-driven immune evasion in hepatoblastoma [snRNA-seq]",
+    "pubmed_id": "39900120",
+    "submission_date": "Nov 29 2024",
+    "source_name": "Formalin-fixed paraffin-embedded hepatoblastoma"
+  },
+  "GSE98638": {
+    "organism": "Homo sapiens",
+    "title": "Landscape of infiltrating T cells in liver cancer revealed by single-cell sequencing",
+    "pubmed_id": "28622514",
+    "submission_date": "May 08 2017",
+    "source_name": "T cells"
+  },
+  "GSE120446": {
+    "organism": "Homo sapiens",
+    "title": "Human Bone Marrow Assessment by Single Cell RNA Sequencing, Mass Cytometry and Flow Cytometry",
+    "pubmed_id": "30518681",
+    "submission_date": "Sep 25 2018",
+    "source_name": "Bone marrow"
+  },
+  "GSE84133": {
+    "organism": "Homo sapiens",
+    "title": "A single-cell transcriptomic map of the human and mouse pancreas reveals inter- and intra-cell population structure",
+    "pubmed_id": "27667365",
+    "submission_date": "Jul 07 2016",
+    "source_name": "Male donor, age 17, BMI: 21.5"
+  },
+  "GSE144024": {
+    "organism": "Homo sapiens",
+    "title": "Decoding Human Megakaryocyte Development",
+    "pubmed_id": "33340451",
+    "submission_date": "Jan 21 2020",
+    "source_name": "human embryonic cells"
+  },
+  "GSE226824": {
+    "organism": "Mus musculus",
+    "title": "Time series single-cell RNA sequencing of murine hematopoetic stem and progenitors (HSPCs) following in vivo IFN\u03b1 treatment",
+    "pubmed_id": "38110222",
+    "submission_date": "Mar 07 2023",
+    "source_name": "Bone Marrow"
+  },
+  "GSE174367": {
+    "organism": "Homo sapiens",
+    "title": "Single-nucleus chromatin accessibility and transcriptomic characterization of Alzheimer\u2019s Disease",
+    "pubmed_id": "34239132",
+    "submission_date": "May 12 2021",
+    "source_name": "Control brain"
+  },
+  "GSE198730": {
+    "organism": "Mus musculus",
+    "title": "Transcriptomics, Regulatory Syntax, and Enhancer Identification in Heterogenous Populations of Mesoderm-Induced ESCs at Single-Cell Resolution",
+    "pubmed_id": "35977485",
+    "submission_date": "Mar 15 2022",
+    "source_name": "Na\u00efve ESC"
+  },
+  "GSE206767": {
+    "organism": "Homo sapiens",
+    "title": "Chemical-based external stimulation reprograms BJs into FiNs (scATAC-seq)",
+    "pubmed_id": "",
+    "submission_date": "Jun 23 2022",
+    "source_name": "BJ cells"
+  },
+  "GSM5124061": {
+    "organism": "Homo sapiens",
+    "title": "scATAC_vehicle",
+    "pubmed_id": "",
+    "submission_date": "Mar 02 2021",
+    "source_name": "breast cancer"
+  },
+  "GSM5342788": {
+    "organism": "Homo sapiens",
+    "title": "scB: Patient 2 scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "May 27 2021",
+    "source_name": "Coronary artery"
+  },
+  "GSM5402770": {
+    "organism": "Mus musculus",
+    "title": "P115Lats1mutparaspinal",
+    "pubmed_id": "",
+    "submission_date": "Jun 27 2021",
+    "source_name": "Peripheral nerve tumor"
+  },
+  "GSM5402771": {
+    "organism": "Homo sapiens",
+    "title": "NF_2-004",
+    "pubmed_id": "",
+    "submission_date": "Jun 27 2021",
+    "source_name": "Peripheral nerve tumor"
+  },
+  "GSM5766892": {
+    "organism": "Homo sapiens",
+    "title": "HS360-Day0-rep1 [scATAC-seq]",
+    "pubmed_id": "",
+    "submission_date": "Dec 31 2021",
+    "source_name": "HS360, day 0, hESCs undifferentiated"
+  },
+  "GSM5766893": {
+    "organism": "Homo sapiens",
+    "title": "HS360-Day20-rep1 [scATAC-seq]",
+    "pubmed_id": "",
+    "submission_date": "Dec 31 2021",
+    "source_name": "HS360, day 20, past stage III maturation"
+  },
+  "GSM5769453": {
+    "organism": "Danio rerio",
+    "title": "Untreated_WT_Saccule_scATACseq",
+    "pubmed_id": "",
+    "submission_date": "Jan 03 2022",
+    "source_name": "Untreated wild-type saccule"
+  },
+  "GSM5769456": {
+    "organism": "Danio rerio",
+    "title": "Untreated_DTR_Saccule_scATACseq",
+    "pubmed_id": "",
+    "submission_date": "Jan 03 2022",
+    "source_name": "Untreated DTR saccule"
+  },
+  "GSM5769460": {
+    "organism": "Danio rerio",
+    "title": "Day5_DTR_Saccule_scATACseq",
+    "pubmed_id": "",
+    "submission_date": "Jan 03 2022",
+    "source_name": "Regenerating adult zebrafish saccule"
+  },
+  "GSM5769461": {
+    "organism": "Danio rerio",
+    "title": "Day5_DTR_Utricle_scATACseq",
+    "pubmed_id": "",
+    "submission_date": "Jan 03 2022",
+    "source_name": "Regenerating adult zebrafish utricle"
+  },
+  "GSM5769462": {
+    "organism": "Danio rerio",
+    "title": "Day7_DTR_Saccule_scATACseq",
+    "pubmed_id": "",
+    "submission_date": "Jan 03 2022",
+    "source_name": "Regenerating adult zebrafish saccule"
+  },
+  "GSM5769463": {
+    "organism": "Danio rerio",
+    "title": "Day7_DTR_Utricle_scATACseq",
+    "pubmed_id": "",
+    "submission_date": "Jan 03 2022",
+    "source_name": "Regenerating adult zebrafish utricle"
+  },
+  "GSM5975165": {
+    "organism": "Mus musculus",
+    "title": "Arm_d60",
+    "pubmed_id": "",
+    "submission_date": "Mar 28 2022",
+    "source_name": "P14 CD8 T cells from LCMV Armstrong infection 60 days post infection"
+  },
+  "GSM5975166": {
+    "organism": "Mus musculus",
+    "title": "Arm_d200",
+    "pubmed_id": "",
+    "submission_date": "Mar 28 2022",
+    "source_name": "P14 CD8 T cells from LCMV Armstrong infection 200 days post infection"
+  },
+  "GSM6044072": {
+    "organism": "Homo sapiens",
+    "title": "CRC_primary_1",
+    "pubmed_id": "",
+    "submission_date": "Apr 14 2022",
+    "source_name": "colorectal cancer cells"
+  },
+  "GSM6044073": {
+    "organism": "Homo sapiens",
+    "title": "CRC_primary_2",
+    "pubmed_id": "",
+    "submission_date": "Apr 14 2022",
+    "source_name": "colorectal cancer cells"
+  },
+  "GSM6044075": {
+    "organism": "Homo sapiens",
+    "title": "CRC_liver_metastasis_1",
+    "pubmed_id": "",
+    "submission_date": "Apr 14 2022",
+    "source_name": "colorectal cancer cells"
+  },
+  "GSM6044076": {
+    "organism": "Homo sapiens",
+    "title": "CRC_liver_metastasis_2",
+    "pubmed_id": "",
+    "submission_date": "Apr 14 2022",
+    "source_name": "colorectal cancer cells"
+  },
+  "GSM6044077": {
+    "organism": "Homo sapiens",
+    "title": "CRC_liver_metastasis_3",
+    "pubmed_id": "",
+    "submission_date": "Apr 14 2022",
+    "source_name": "colorectal cancer cells"
+  },
+  "GSM6052781": {
+    "organism": "Mus musculus",
+    "title": "scATAC_seq_E13.5",
+    "pubmed_id": "",
+    "submission_date": "Apr 21 2022",
+    "source_name": "skin"
+  },
+  "GSM6052782": {
+    "organism": "Mus musculus",
+    "title": "scATAC_seq_E16.5",
+    "pubmed_id": "",
+    "submission_date": "Apr 21 2022",
+    "source_name": "skin"
+  },
+  "GSM6052783": {
+    "organism": "Mus musculus",
+    "title": "scATAC_seq_P0",
+    "pubmed_id": "",
+    "submission_date": "Apr 21 2022",
+    "source_name": "skin"
+  },
+  "GSM6214534": {
+    "organism": "Mus musculus",
+    "title": "CLPL P14 CD8+ T cells",
+    "pubmed_id": "",
+    "submission_date": "Jun 06 2022",
+    "source_name": "Small intestine LPL"
+  },
+  "GSM6214535": {
+    "organism": "Mus musculus",
+    "title": "SI_IEL P14 CD8+ T cells",
+    "pubmed_id": "",
+    "submission_date": "Jun 06 2022",
+    "source_name": "Colon IEL"
+  },
+  "GSM6449878": {
+    "organism": "Homo sapiens",
+    "title": "NSCLC 8, TIL, eTreg, scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Aug 11 2022",
+    "source_name": "TIL"
+  },
+  "GSM6449879": {
+    "organism": "Homo sapiens",
+    "title": "NSCLC 14, normal lung, Treg and CD8+ T, scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Aug 11 2022",
+    "source_name": "normal lung"
+  },
+  "GSM6449880": {
+    "organism": "Homo sapiens",
+    "title": "HD 4, PBMC, eTreg, scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Aug 11 2022",
+    "source_name": "PBMC"
+  },
+  "GSM6449881": {
+    "organism": "Homo sapiens",
+    "title": "HD 4, PBMC, CD4+ CD25+ T, scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Aug 11 2022",
+    "source_name": "PBMC"
+  },
+  "GSM6449882": {
+    "organism": "Homo sapiens",
+    "title": "HD 4, PBMC, nTreg, scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Aug 11 2022",
+    "source_name": "PBMC"
+  },
+  "GSM6638254": {
+    "organism": "Homo sapiens",
+    "title": "633, invitro",
+    "pubmed_id": "",
+    "submission_date": "Oct 14 2022",
+    "source_name": "MG63.3-GFP"
+  },
+  "GSM6783751": {
+    "organism": "Homo sapiens",
+    "title": "HS360-Day20-P100 [scATAC-seq]",
+    "pubmed_id": "",
+    "submission_date": "Dec 03 2022",
+    "source_name": "HS360, day 20, past stage III maturation, exposed to 100 \u03bcM paracetamol"
+  },
+  "GSM6783752": {
+    "organism": "Homo sapiens",
+    "title": "HS360-Day20-P200 [scATAC-seq]",
+    "pubmed_id": "",
+    "submission_date": "Dec 03 2022",
+    "source_name": "HS360, day 20, past stage III maturation, exposed to 200 \u03bcM paracetamol"
+  },
+  "GSM7056609": {
+    "organism": "Mus musculus",
+    "title": "C57Bl/6 Murine Synovial CD45+CD11b+Ly6g-SiglecF-Cd64-MHCII- cells, ATAC",
+    "pubmed_id": "",
+    "submission_date": "Feb 22 2023",
+    "source_name": "Ankle Joint Synovium"
+  },
+  "GSM7062446": {
+    "organism": "Mus musculus",
+    "title": "Na\u00efve CD8T scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Feb 24 2023",
+    "source_name": "Lymphocytes"
+  },
+  "GSM7062447": {
+    "organism": "Mus musculus",
+    "title": "D2 CD8T scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Feb 24 2023",
+    "source_name": "Lymphocytes"
+  },
+  "GSM7062448": {
+    "organism": "Mus musculus",
+    "title": "D8-1 CD8T scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Feb 24 2023",
+    "source_name": "Lymphocytes"
+  },
+  "GSM7062449": {
+    "organism": "Mus musculus",
+    "title": "D8-2 CD8T scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Feb 24 2023",
+    "source_name": "Lymphocytes"
+  },
+  "GSM7062450": {
+    "organism": "Mus musculus",
+    "title": "D180 CD8T scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Feb 24 2023",
+    "source_name": "Lymphocytes"
+  },
+  "GSM7064214": {
+    "organism": "Homo sapiens",
+    "title": "19_D003_atac_lib",
+    "pubmed_id": "",
+    "submission_date": "Feb 24 2023",
+    "source_name": "macula lutea"
+  },
+  "GSM7064215": {
+    "organism": "Homo sapiens",
+    "title": "19_D005_atac_lib",
+    "pubmed_id": "",
+    "submission_date": "Feb 24 2023",
+    "source_name": "macula lutea"
+  },
+  "GSM7064216": {
+    "organism": "Homo sapiens",
+    "title": "19_D006_atac_lib",
+    "pubmed_id": "",
+    "submission_date": "Feb 24 2023",
+    "source_name": "macula lutea"
+  },
+  "GSM7064217": {
+    "organism": "Homo sapiens",
+    "title": "19_D007_atac_lib",
+    "pubmed_id": "",
+    "submission_date": "Feb 24 2023",
+    "source_name": "macula lutea"
+  },
+  "GSM7308367": {
+    "organism": "Homo sapiens",
+    "title": "Healthy Donor, rep1",
+    "pubmed_id": "",
+    "submission_date": "May 08 2023",
+    "source_name": "PBMC"
+  },
+  "GSM7308369": {
+    "organism": "Homo sapiens",
+    "title": "Pre-transplant, no_future_aGVHD, rep1",
+    "pubmed_id": "",
+    "submission_date": "May 08 2023",
+    "source_name": "PBMC"
+  },
+  "GSM7734290": {
+    "organism": "Mus musculus",
+    "title": "Na\u00efve CD8T, scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Aug 24 2023",
+    "source_name": "Lymphocytes"
+  },
+  "GSM7734291": {
+    "organism": "Mus musculus",
+    "title": "D2 CD8T, scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Aug 24 2023",
+    "source_name": "Lymphocytes"
+  },
+  "GSM7734292": {
+    "organism": "Mus musculus",
+    "title": "D8 CD8T, scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Aug 24 2023",
+    "source_name": "Lymphocytes"
+  },
+  "GSM7734711": {
+    "organism": "Homo sapiens",
+    "title": "MGH227_scATAC",
+    "pubmed_id": "",
+    "submission_date": "Aug 27 2023",
+    "source_name": "primary tissue"
+  },
+  "GSM7734712": {
+    "organism": "Homo sapiens",
+    "title": "MGH230_scATAC",
+    "pubmed_id": "",
+    "submission_date": "Aug 27 2023",
+    "source_name": "primary tissue"
+  },
+  "GSM7734713": {
+    "organism": "Homo sapiens",
+    "title": "MGH231_scATAC",
+    "pubmed_id": "",
+    "submission_date": "Aug 27 2023",
+    "source_name": "primary tissue"
+  },
+  "GSM7734714": {
+    "organism": "Homo sapiens",
+    "title": "MGH232_scATAC",
+    "pubmed_id": "",
+    "submission_date": "Aug 27 2023",
+    "source_name": "primary tissue"
+  },
+  "GSM7734715": {
+    "organism": "Homo sapiens",
+    "title": "MGH234_scATAC",
+    "pubmed_id": "",
+    "submission_date": "Aug 27 2023",
+    "source_name": "primary tissue"
+  },
+  "GSM7734716": {
+    "organism": "Homo sapiens",
+    "title": "MGH236_scATAC",
+    "pubmed_id": "",
+    "submission_date": "Aug 27 2023",
+    "source_name": "primary tissue"
+  },
+  "GSM7734717": {
+    "organism": "Homo sapiens",
+    "title": "MGH239_scATAC",
+    "pubmed_id": "",
+    "submission_date": "Aug 27 2023",
+    "source_name": "primary tissue"
+  },
+  "GSM7777060": {
+    "organism": "Homo sapiens",
+    "title": "scATACseq_CD34+_Notreatment_24h_multipledonors",
+    "pubmed_id": "",
+    "submission_date": "Sep 12 2023",
+    "source_name": "umbilical cord blood"
+  },
+  "GSM7777061": {
+    "organism": "Homo sapiens",
+    "title": "scATACseq_CD34+_2DGtreatment_24h_multipledonors",
+    "pubmed_id": "",
+    "submission_date": "Sep 12 2023",
+    "source_name": "umbilical cord blood"
+  },
+  "GSM7777062": {
+    "organism": "Homo sapiens",
+    "title": "scATACseq_CD34+_DONtreatment_24h_multipledonors",
+    "pubmed_id": "",
+    "submission_date": "Sep 12 2023",
+    "source_name": "umbilical cord blood"
+  },
+  "GSM7777063": {
+    "organism": "Homo sapiens",
+    "title": "scATACseq_CD34+_AOAtreatment_24h_multipledonors",
+    "pubmed_id": "",
+    "submission_date": "Sep 12 2023",
+    "source_name": "umbilical cord blood"
+  },
+  "GSM7884540": {
+    "organism": "Homo sapiens",
+    "title": "10xATAC_D013_13_hu_Lobe_atac_lib",
+    "pubmed_id": "",
+    "submission_date": "Nov 07 2023",
+    "source_name": "peripheral region of retina"
+  },
+  "GSM7884541": {
+    "organism": "Homo sapiens",
+    "title": "10xATAC_D027_13_hu_Lobe_atac_lib",
+    "pubmed_id": "",
+    "submission_date": "Nov 07 2023",
+    "source_name": "peripheral region of retina"
+  },
+  "GSM7884543": {
+    "organism": "Homo sapiens",
+    "title": "10xATAC_D030_13_atac_lib",
+    "pubmed_id": "",
+    "submission_date": "Nov 07 2023",
+    "source_name": "macula lutea"
+  },
+  "GSM7884545": {
+    "organism": "Homo sapiens",
+    "title": "10xATAC_D021_13_hu_Lobe_atac_lib",
+    "pubmed_id": "",
+    "submission_date": "Nov 07 2023",
+    "source_name": "peripheral region of retina"
+  },
+  "GSM7884549": {
+    "organism": "Homo sapiens",
+    "title": "10xATAC_D9_13_hu_Lobe_atac_lib",
+    "pubmed_id": "",
+    "submission_date": "Nov 07 2023",
+    "source_name": "peripheral region of retina"
+  },
+  "GSM7884550": {
+    "organism": "Homo sapiens",
+    "title": "10xATAC_D5_13_hu_Lobe_atac_lib",
+    "pubmed_id": "",
+    "submission_date": "Nov 07 2023",
+    "source_name": "peripheral region of retina"
+  },
+  "GSM8248668": {
+    "organism": "",
+    "title": "",
+    "pubmed_id": "",
+    "submission_date": "",
+    "source_name": "",
+    "error": "No entries found. Check the if accession is correct!"
+  },
+  "GSM8248669": {
+    "organism": "",
+    "title": "",
+    "pubmed_id": "",
+    "submission_date": "",
+    "source_name": "",
+    "error": "No entries found. Check the if accession is correct!"
+  },
+  "GSM8248670": {
+    "organism": "",
+    "title": "",
+    "pubmed_id": "",
+    "submission_date": "",
+    "source_name": "",
+    "error": "No entries found. Check the if accession is correct!"
+  },
+  "GSM8248672": {
+    "organism": "",
+    "title": "",
+    "pubmed_id": "",
+    "submission_date": "",
+    "source_name": "",
+    "error": "No entries found. Check the if accession is correct!"
+  },
+  "GSM8248673": {
+    "organism": "",
+    "title": "",
+    "pubmed_id": "",
+    "submission_date": "",
+    "source_name": "",
+    "error": "No entries found. Check the if accession is correct!"
+  },
+  "GSM8248674": {
+    "organism": "",
+    "title": "",
+    "pubmed_id": "",
+    "submission_date": "",
+    "source_name": "",
+    "error": "No entries found. Check the if accession is correct!"
+  },
+  "GSM8248675": {
+    "organism": "",
+    "title": "",
+    "pubmed_id": "",
+    "submission_date": "",
+    "source_name": "",
+    "error": "No entries found. Check the if accession is correct!"
+  },
+  "GSM8248676": {
+    "organism": "",
+    "title": "",
+    "pubmed_id": "",
+    "submission_date": "",
+    "source_name": "",
+    "error": "No entries found. Check the if accession is correct!"
+  },
+  "GSM8397466": {
+    "organism": "Mus musculus",
+    "title": "Bone marrow, WT, female, biol rep 1, scATACseq",
+    "pubmed_id": "",
+    "submission_date": "Jul 15 2024",
+    "source_name": "Bone marrow"
+  },
+  "GSM8397467": {
+    "organism": "Mus musculus",
+    "title": "Bone marrow, WT, female, biol rep 2, scATACseq",
+    "pubmed_id": "",
+    "submission_date": "Jul 15 2024",
+    "source_name": "Bone marrow"
+  },
+  "GSM8462143": {
+    "organism": "Homo sapiens",
+    "title": "AL05, scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Aug 15 2024",
+    "source_name": "Lung"
+  },
+  "GSM8462144": {
+    "organism": "Homo sapiens",
+    "title": "AL08, scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Aug 15 2024",
+    "source_name": "Lung"
+  },
+  "GSM8462145": {
+    "organism": "Homo sapiens",
+    "title": "AL10, scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Aug 15 2024",
+    "source_name": "Lung"
+  },
+  "GSM8462146": {
+    "organism": "Homo sapiens",
+    "title": "AL11, scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Aug 15 2024",
+    "source_name": "Lung"
+  },
+  "GSM8462147": {
+    "organism": "Homo sapiens",
+    "title": "AL12, scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Aug 15 2024",
+    "source_name": "Lung"
+  },
+  "GSM8517035": {
+    "organism": "Mus musculus",
+    "title": "Replicate 1 for P28 cortex ALM interneuron",
+    "pubmed_id": "",
+    "submission_date": "Sep 15 2024",
+    "source_name": "Cortex - ALM"
+  },
+  "GSM8546124": {
+    "organism": "Mus musculus",
+    "title": "control, lung mesenchymal, adult, ATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Sep 30 2024",
+    "source_name": "Epcam-CD31-CD45-"
+  },
+  "GSM8546125": {
+    "organism": "Mus musculus",
+    "title": "bleomycin, lung mesenchymal, adult, ATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "Sep 30 2024",
+    "source_name": "Epcam-CD31-CD45-"
+  },
+  "GSM8685152": {
+    "organism": "Mus musculus",
+    "title": "E11.5 Wild Type scRNA-Seq",
+    "pubmed_id": "",
+    "submission_date": "Dec 17 2024",
+    "source_name": "Hypothalamus and Prethalamus"
+  },
+  "GSM8685155": {
+    "organism": "Mus musculus",
+    "title": "E13.5 Wild Type scRNA-Seq Replicate 1",
+    "pubmed_id": "",
+    "submission_date": "Dec 17 2024",
+    "source_name": "Hypothalamus and Prethalamus"
+  },
+  "GSM8685177": {
+    "organism": "Mus musculus",
+    "title": "P8 Foxd1-Cre/+ ; Dlx1/2-flox/flox scRNA-Seq Replicate 1",
+    "pubmed_id": "",
+    "submission_date": "Dec 17 2024",
+    "source_name": "Hypothalamus and Prethalamus"
+  },
+  "GSM8729707": {
+    "organism": "Homo sapiens",
+    "title": "Human aortic media",
+    "pubmed_id": "",
+    "submission_date": "Jan 13 2025",
+    "source_name": "aortic media"
+  },
+  "GSM8852347": {
+    "organism": "Homo sapiens",
+    "title": "scATAC-seq of MH_07-042-M2",
+    "pubmed_id": "",
+    "submission_date": "Mar 17 2025",
+    "source_name": "tumor tissue"
+  },
+  "GSM8852348": {
+    "organism": "Homo sapiens",
+    "title": "scATAC-seq of MH_13-084-D12",
+    "pubmed_id": "",
+    "submission_date": "Mar 17 2025",
+    "source_name": "tumor tissue"
+  },
+  "GSM8852349": {
+    "organism": "Homo sapiens",
+    "title": "scATAC-seq of MH_13-084-D13",
+    "pubmed_id": "",
+    "submission_date": "Mar 17 2025",
+    "source_name": "tumor tissue"
+  },
+  "GSM8900548": {
+    "organism": "Mus musculus",
+    "title": "Multiome, murine lung tissue, ATAC1",
+    "pubmed_id": "",
+    "submission_date": "Apr 10 2025",
+    "source_name": "lung"
+  },
+  "GSM8900549": {
+    "organism": "Mus musculus",
+    "title": "Multiome, murine lung tissue, ATAC2",
+    "pubmed_id": "",
+    "submission_date": "Apr 10 2025",
+    "source_name": "lung"
+  },
+  "GSM8900550": {
+    "organism": "Mus musculus",
+    "title": "Multiome, murine lung tissue, ATAC3",
+    "pubmed_id": "",
+    "submission_date": "Apr 10 2025",
+    "source_name": "lung"
+  },
+  "GSM8900551": {
+    "organism": "Mus musculus",
+    "title": "Multiome, murine lung tissue, ATAC4",
+    "pubmed_id": "",
+    "submission_date": "Apr 10 2025",
+    "source_name": "lung"
+  },
+  "GSM8900552": {
+    "organism": "Mus musculus",
+    "title": "Multiome, murine lung tissue, ATAC5",
+    "pubmed_id": "",
+    "submission_date": "Apr 10 2025",
+    "source_name": "lung"
+  },
+  "GSM8900553": {
+    "organism": "Mus musculus",
+    "title": "Multiome, murine lung tissue, ATAC6",
+    "pubmed_id": "",
+    "submission_date": "Apr 10 2025",
+    "source_name": "lung"
+  },
+  "GSM8997246": {
+    "organism": "Homo sapiens",
+    "title": "Donor 1 scATAC-seq",
+    "pubmed_id": "",
+    "submission_date": "May 20 2025",
+    "source_name": "Blood"
+  },
+  "GSE185538": {
+    "organism": "Rattus norvegicus",
+    "title": "Single-nucleus chromatin accessibility and RNA-seq reveal impaired brain development in prenatal e-cigarette exposed neonatal rats",
+    "pubmed_id": "35874099",
+    "submission_date": "Oct 07 2021",
+    "source_name": "P7 rat brain"
+  },
+  "GSE130430": {
+    "organism": "Homo sapiens",
+    "title": "The Developmental Heterogeneity of Human Natural Killer Cells Defined by Single-cell Transcriptome",
+    "pubmed_id": "31477722",
+    "submission_date": "Apr 29 2019",
+    "source_name": "Bone marrow"
+  },
+  "GSE155249": {
+    "organism": "Homo sapiens",
+    "title": "Circuits between infected macrophages and T cells in SARS-CoV-2 pneumonia",
+    "pubmed_id": "33429418",
+    "submission_date": "Jul 28 2020",
+    "source_name": "Sorted macrophages and T cells"
+  },
+  "GSE205506": {
+    "organism": "Homo sapiens",
+    "title": "Remodeling of the Immune and Stromal Cell Compartment by PD-1 Blockade in Mismatch Repair-Deficient Colorectal Cancer",
+    "pubmed_id": "37172580; 39055918",
+    "submission_date": "Jun 06 2022",
+    "source_name": "colon"
+  },
+  "GSE139324": {
+    "organism": "Homo sapiens",
+    "title": "Immune landscape of viral- and carcinogen-drived head and neck cancer",
+    "pubmed_id": "31924475; 34099645; 41661401",
+    "submission_date": "Oct 24 2019",
+    "source_name": "peripheral blood"
+  },
+  "GSE167118": {
+    "organism": "Homo sapiens",
+    "title": "Clonal expansion and activation of tissue-resident memory-like Th17 cells expressing GM-CSF in the lung of severe COVID-19 patients",
+    "pubmed_id": "33622974",
+    "submission_date": "Feb 19 2021",
+    "source_name": "blood"
+  },
+  "GSE162454": {
+    "organism": "Homo sapiens",
+    "title": "Single-cell RNA sequencing of human osteosarcoma",
+    "pubmed_id": "34367994; 36507075; 38755647; 41413734",
+    "submission_date": "Dec 01 2020",
+    "source_name": "Tumor tissue"
+  },
+  "GSE145926": {
+    "organism": "Homo sapiens",
+    "title": "Single-cell landscape of bronchoalveolar immune cells in COVID-19 patients",
+    "pubmed_id": "32398875; 39369126",
+    "submission_date": "Feb 25 2020",
+    "source_name": "BALF"
+  },
+  "GSE166635": {
+    "organism": "Homo sapiens",
+    "title": "TNFR2 HnRNPK-YAP Signaling Axis Promotes Primary Liver Cancer Development in Hepatic Progenitor Cells",
+    "pubmed_id": "33619115",
+    "submission_date": "Feb 11 2021",
+    "source_name": "liver cancer"
+  },
+  "GSE163558": {
+    "organism": "Homo sapiens",
+    "title": "Transcriptional heterogeneity in primary and metastatic gastric cancer revealed using single-cell RNA sequencing",
+    "pubmed_id": "35184420",
+    "submission_date": "Dec 20 2020",
+    "source_name": "primary gastric cancer"
+  },
+  "GSE164378": {
+    "organism": "Homo sapiens",
+    "title": "Integrated analysis of multimodal single-cell data",
+    "pubmed_id": "34062119",
+    "submission_date": "Jan 07 2021",
+    "source_name": "PBMC"
+  },
+  "GSE149689": {
+    "organism": "Homo sapiens",
+    "title": "Immunophenotyping of COVID-19 and Influenza Underscores the Association of Type I IFN Response in Severe COVID-19",
+    "pubmed_id": "32651212; 36229591",
+    "submission_date": "May 01 2020",
+    "source_name": "nCoV_PBMC"
+  },
+  "GSE151530": {
+    "organism": "Homo sapiens",
+    "title": "Understanding tumor evolution and its clonality by single-cell transcriptomic analysis in liver cancer",
+    "pubmed_id": "34216724; 31588021",
+    "submission_date": "Jun 01 2020",
+    "source_name": "Primary liver cancer single-cell"
+  },
+  "GSE158803": {
+    "organism": "Homo sapiens",
+    "title": "A Single-Cell Tumor Immune Atlas for Precision Oncology",
+    "pubmed_id": "34548323",
+    "submission_date": "Sep 30 2020",
+    "source_name": "brain metastasis"
+  },
+  "GSE163484": {
+    "organism": "Mus musculus",
+    "title": "Single cell RNA-seq of Sox10-Cre::GFP+ population",
+    "pubmed_id": "33846645",
+    "submission_date": "Dec 18 2020",
+    "source_name": "P21 Brain"
+  },
+  "GSE175814": {
+    "organism": "Homo sapiens",
+    "title": "Single cell RNA sequencing  analysis of human Alzheimer\u2019s disease brain samples  reveal neuronal and glial specific cells differential expression",
+    "pubmed_id": "36827281",
+    "submission_date": "May 30 2021",
+    "source_name": "Brain"
+  },
+  "GSE181061": {
+    "organism": "Homo sapiens",
+    "title": "A single-cell map of dynamic chromatin landscapes of\u00a0immune\u00a0cells in renal cell carcinoma (scRNA-Seq and TCR-Seq)",
+    "pubmed_id": "35668194",
+    "submission_date": "Jul 28 2021",
+    "source_name": "Donor"
+  },
+  "GSE186344": {
+    "organism": "Homo sapiens",
+    "title": "Cellular Architecture of Human Brain Metastases",
+    "pubmed_id": "35063085",
+    "submission_date": "Oct 21 2021",
+    "source_name": "Human Brain Metastasis"
+  },
+  "GSE197177": {
+    "organism": "Homo sapiens",
+    "title": "A single-cell atlas of the tumor, stromal and immune microenvironments in pancreatic cancer liver metastasis",
+    "pubmed_id": "37612267",
+    "submission_date": "Feb 22 2022",
+    "source_name": "primary pancreatic tumors"
+  },
+  "GSE213337": {
+    "organism": "Mus musculus",
+    "title": "Single cell analysis reveals the heterogeneity of fibroblasts in the diabetic heart",
+    "pubmed_id": "36706988",
+    "submission_date": "Sep 14 2022",
+    "source_name": "heart"
+  },
+  "GSE235063": {
+    "organism": "Homo sapiens",
+    "title": "A longitudinal single-cell atlas of treatment response in pediatric AML (scRNA-Seq)",
+    "pubmed_id": "37977148; 40991835",
+    "submission_date": "Jun 15 2023",
+    "source_name": "Marrow"
+  },
+  "GSE139555": {
+    "organism": "Homo sapiens",
+    "title": "Peripheral clonal expansion of T lymphocytes associates with tumour infiltration and response to cancer immunotherapy",
+    "pubmed_id": "32103181; 35263569",
+    "submission_date": "Oct 29 2019",
+    "source_name": "CD3+ immune cells"
+  },
+  "GSE154778": {
+    "organism": "Homo sapiens",
+    "title": "Single-cell transcriptomics analysis of pancreatic primary tumor and metastatic biopsy tissues",
+    "pubmed_id": "32988401",
+    "submission_date": "Jul 20 2020",
+    "source_name": "Pancreatic ductal adenocarcinoma"
+  },
+  "GSE181388": {
+    "organism": "Homo sapiens",
+    "title": "scRNA-seq of human PCLS",
+    "pubmed_id": "",
+    "submission_date": "Aug 03 2021",
+    "source_name": "lung"
+  },
+  "GSE188676": {
+    "organism": "Mus musculus",
+    "title": "Serine Palmitoyltransferase Controls Stemness of Intestinal Progenitors.",
+    "pubmed_id": "",
+    "submission_date": "Nov 12 2021",
+    "source_name": "Intestinal Organoids"
+  },
+  "GSE125449": {
+    "organism": "Homo sapiens",
+    "title": "Tumor cell biodiversity drives microenvironmental reprogramming in liver cancer",
+    "pubmed_id": "31588021",
+    "submission_date": "Jan 22 2019",
+    "source_name": "Primary liver cancer single-cell"
+  },
+  "GSE128033": {
+    "organism": "Homo sapiens",
+    "title": "Proliferating SPP1/MERTK-expressing macrophages in idiopathic pulmonary fibrosis",
+    "pubmed_id": "31221805; 37706427; 37566492",
+    "submission_date": "Mar 07 2019",
+    "source_name": "mix of upper + lower lobe lung_healthy donor"
+  },
+  "GSE138794": {
+    "organism": "Homo sapiens",
+    "title": "A single cell atlas of human glioma",
+    "pubmed_id": "31554641",
+    "submission_date": "Oct 11 2019",
+    "source_name": "Brain"
+  },
+  "GSE159519": {
+    "organism": "Homo sapiens",
+    "title": "Identification of required host factors for SARS-CoV-2 infection in human cells [ECCITE-seq]",
+    "pubmed_id": "33147445",
+    "submission_date": "Oct 19 2020",
+    "source_name": "ECCITE-seq cDNA: A549-ACE2"
+  },
+  "GSE161277": {
+    "organism": "Homo sapiens",
+    "title": "Dissecting the Epithelial and Immune Evolution during Colorectal Carcinogenesis by Single-Cell RNA Sequencing",
+    "pubmed_id": "35221332",
+    "submission_date": "Nov 11 2020",
+    "source_name": "Colorectal"
+  },
+  "GSE173193": {
+    "organism": "Homo sapiens",
+    "title": "Single cell RNA-sequencing reveals placenta cellular heterogeneity in adverse pregnancy",
+    "pubmed_id": "34025588; 36111571",
+    "submission_date": "Apr 23 2021",
+    "source_name": "placenta"
+  },
+  "GSE190604": {
+    "organism": "Homo sapiens",
+    "title": "CRISPR activation and interference screens decode stimulation responses in primary human T cells [CRISPRa Perturb-seq]",
+    "pubmed_id": "35113687",
+    "submission_date": "Dec 09 2021",
+    "source_name": "Primary bulk T cells"
+  },
+  "GSE120926": {
+    "organism": "Homo sapiens",
+    "title": "Single-cell RNA sequencing defines the interplay between tumor cells, virus and microenvironment in nasopharyngeal carcinoma",
+    "pubmed_id": "32901110",
+    "submission_date": "Oct 08 2018",
+    "source_name": "NPC cells"
+  },
+  "GSE208074": {
+    "organism": "Homo sapiens",
+    "title": "Low-Intensity Pulsed Ultrasound Effects on the Human Blood Brain Barrier",
+    "pubmed_id": "",
+    "submission_date": "Jul 12 2022",
+    "source_name": "peritumoral brain"
+  },
+  "GSE220297": {
+    "organism": "Sus scrofa",
+    "title": "Single-cell transcriptomic analysis reveals transcriptional and cell subpopulation differences between human and pig immune cells",
+    "pubmed_id": "",
+    "submission_date": "Dec 07 2022",
+    "source_name": "blood"
+  },
+  "GSE220840": {
+    "organism": "Homo sapiens",
+    "title": "Origin of extra-embryonic mesenchyme points to evolutionary novelty in primate early development [scRNA-seq]",
+    "pubmed_id": "40220298",
+    "submission_date": "Dec 13 2022",
+    "source_name": "Human induced pluripotent stem cell"
+  },
+  "GSE260778": {
+    "organism": "Homo sapiens",
+    "title": "Fate mapping of human P63+ progenitor in vivo by single cell transcriptomic analysis [scRNA_seq]",
+    "pubmed_id": "39900892",
+    "submission_date": "Mar 04 2024",
+    "source_name": "Lung"
+  },
+  "GSE264586": {
+    "organism": "Homo sapiens",
+    "title": "Sitravatinib in combination with nivolumab plus ipilimumab in patients with advanced clear cell renal cell carcinoma: a phase 1 trial",
+    "pubmed_id": "39794332",
+    "submission_date": "Apr 22 2024",
+    "source_name": "Lymph node"
+  },
+  "GSE270891": {
+    "organism": "Homo sapiens",
+    "title": "BRAFV600E induces key features of LCH in iPSCs with cell type\u2013specific phenotypes and drug responses",
+    "pubmed_id": "39630039",
+    "submission_date": "Jun 26 2024",
+    "source_name": "iPSC"
+  },
+  "GSE273423": {
+    "organism": "Homo sapiens",
+    "title": "NKG2C and NKG2A coexpression defines a highly functional antiviral NK population in spontaneous HIV control",
+    "pubmed_id": "39288262",
+    "submission_date": "Jul 30 2024",
+    "source_name": "Blood"
+  },
+  "GSE274905": {
+    "organism": "Homo sapiens",
+    "title": "A multiplex single-cell RNA-seq pharmacotranscriptomics pipeline for drug discovery",
+    "pubmed_id": "39482470",
+    "submission_date": "Aug 15 2024",
+    "source_name": "JHOS2 (CVCL_4647)"
+  },
+  "GSE279264": {
+    "organism": "Homo sapiens",
+    "title": "Generation of human induced pluripotent stem cell-derived 3D human cortical, striatal, mesencephalic and diencephalic organoids",
+    "pubmed_id": "",
+    "submission_date": "Oct 11 2024",
+    "source_name": "hiPS cell-deerived regionalized organoids"
+  },
+  "GSE280258": {
+    "organism": "Homo sapiens",
+    "title": "Distinct features of a peripheral T-helper subset that drives the B-cell response in dengue virus infection",
+    "pubmed_id": "40073863",
+    "submission_date": "Oct 24 2024",
+    "source_name": "PBMC"
+  },
+  "GSE280767": {
+    "organism": "Homo sapiens",
+    "title": "Adenine base editors induce off-target structure variations in mouse embryos and primary human T cells",
+    "pubmed_id": "39529170",
+    "submission_date": "Oct 31 2024",
+    "source_name": "PBMC"
+  },
+  "GSE283554": {
+    "organism": "Homo sapiens",
+    "title": "A CRISPR/Cas9-based enhancement of high-throughput single-cell transcriptomics",
+    "pubmed_id": "40389438",
+    "submission_date": "Dec 05 2024",
+    "source_name": "PBMC"
+  },
+  "GSE193807": {
+    "organism": "Homo sapiens",
+    "title": "Single cell RNA-Seq analysis of irradiated and non-irradiated skin cells in a nuclear accident patient.",
+    "pubmed_id": "39346541",
+    "submission_date": "Jan 17 2022",
+    "source_name": "skin"
+  },
+  "GSE216673": {
+    "organism": "Homo sapiens",
+    "title": "TREX1 is required for microglial cholesterol homeostasis and subsequent oligodendrocyte maturation during brain development [scRNA-seq]",
+    "pubmed_id": "38129659",
+    "submission_date": "Oct 27 2022",
+    "source_name": "embryonic stem cell"
+  },
+  "GSE232938": {
+    "organism": "Homo sapiens",
+    "title": "LINE1 and PRC2 control nucleolar organization and repression of the 8C-state in human ESCs [scRNA-seq]",
+    "pubmed_id": "39413784",
+    "submission_date": "May 19 2023",
+    "source_name": "H9"
+  },
+  "GSE253936": {
+    "organism": "Homo sapiens",
+    "title": "Expansion effect of romiplostim on hematopoietic stem and progenitor cells versus other thrombopoietin receptor agonists",
+    "pubmed_id": "39302624",
+    "submission_date": "Jan 22 2024",
+    "source_name": "cord blood-derived CD34+ cells"
+  },
+  "GSE272457": {
+    "organism": "Homo sapiens",
+    "title": "Characterization and bioinformatic filtering of ambient gRNAs in single-cell CRISPR screens using CLEANSER [scRNA-seq]",
+    "pubmed_id": "39282389; 39914388",
+    "submission_date": "Jul 17 2024",
+    "source_name": "HEK293T/17"
+  },
+  "GSE141259": {
+    "organism": "Mus musculus"
+  },
+  "lung": {
+    "organism": "Mus musculus",
+    "title": "Lung; Mouse; Bleomycin-induced lung injury (Simon & Schiller)",
+    "parent_gse": "GSE141259"
+  },
+  "GSE132188": {
+    "organism": "Mus musculus"
+  },
+  "endo": {
+    "organism": "Mus musculus",
+    "title": "Endoderm; Mouse; Pancreatic endocrinogenesis (Bastidas-Ponce et al.)",
+    "parent_gse": "GSE132188"
+  },
+  "GSE95753": {
+    "organism": "Mus musculus"
+  },
+  "dentate": {
+    "organism": "Mus musculus",
+    "title": "Brain; Mouse; Dentate gyrus development (Linnarsson)",
+    "parent_gse": "GSE95753"
+  },
+  "setty": {
+    "organism": "Homo sapiens",
+    "title": "CD34+ hematopoiesis profiling (Setty)",
+    "parent_gse": "PRJEB37166",
+    "pubmed_id": "31056619"
+  },
+  "GSM5342787": {
+    "organism": "Homo sapiens",
+    "title": "scA: Patient 1 scATAC-seq",
+    "source_name": "Coronary artery",
+    "submission_date": "May 27 2021"
+  },
+  "GSM5402772": {
+    "organism": "Homo sapiens",
+    "title": "MPNST_2-084",
+    "source_name": "Peripheral nerve tumor",
+    "submission_date": "Jun 27 2021"
+  },
+  "GSM5769454": {
+    "organism": "Danio rerio",
+    "title": "Untreated_WT_Utricle_scATACseq",
+    "source_name": "Untreated wild-type utricle",
+    "submission_date": "Jan 03 2022"
+  },
+  "GSM6044074": {
+    "organism": "Homo sapiens",
+    "title": "CRC_primary_3",
+    "source_name": "colorectal cancer cells",
+    "submission_date": "Apr 14 2022"
+  },
+  "GSM6214533": {
+    "organism": "Mus musculus",
+    "title": "CIEL P14 CD8+ T cells",
+    "source_name": "Small intestine intraepithelial lymphocytes",
+    "submission_date": "Jun 06 2022"
+  },
+  "GSM6214536": {
+    "organism": "Mus musculus",
+    "title": "SI_LPL P14 CD8+ T cells",
+    "source_name": "Colon LPL",
+    "submission_date": "Jun 06 2022"
+  },
+  "GSM6449883": {
+    "organism": "Homo sapiens",
+    "title": "HD 5, PBMC, nTreg, scATAC-seq",
+    "source_name": "PBMC",
+    "submission_date": "Aug 11 2022"
+  },
+  "GSM8008841": {
+    "organism": "Homo sapiens",
+    "title": "VCaP, DMSO",
+    "source_name": "Prostate"
+  }
+}

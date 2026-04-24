@@ -1,0 +1,34 @@
+---
+title: "GSE138709_LiverCancer"
+type: docs
+weight: 109
+geekdocHidden: false
+---
+
+# GSE138709_LiverCancer
+
+| Field | Value |
+|-------|-------|
+| **filename_key** | `GSE138709_LiverCancer` |
+| **GSE / GSM accession** | [GSE138709](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE138709) |
+| **Modality** | scRNA |
+| **Species** | human |
+| **Tissue** | liver |
+| **Cell count** | 33,991 |
+| **PubMed** | [PMID:nan](https://pubmed.ncbi.nlm.nih.gov/nan/) |
+| **Submission date** | Oct 10 2019 |
+| **Source name (GEO)** | adjacent |
+
+## GEO title
+
+> Dissecting the transcriptomic landscape of the human intrahepatic cholangiocarcinoma by single cell RNA-sequencing
+
+## Description (local manifest)
+
+GSE138709_LiverCancer
+
+---
+
+<small>Record auto-generated from `data/benchmark_manifest.csv` by
+`scripts/build_site_data.py`. All fields verified against GEO online
+metadata via GEOparse.</small>

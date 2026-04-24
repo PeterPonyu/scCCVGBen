@@ -1,0 +1,180 @@
+gse,description,priority,tissue,organism,estimated_cells
+GSE96583,Kang et al. 2018 PBMC multiplexed scRNA-seq,1,pbmc,human,25000
+GSE115189,Villani et al. dendritic cell subsets,1,dendritic,human,6000
+GSE132044,10x Genomics PBMC 3k cells,1,pbmc,human,3000
+GSE144136,COVID-19 PBMC immune profiling,2,pbmc,human,60000
+GSE158055,COVID-19 lung single-cell atlas,2,lung,human,80000
+GSE171524,Human brain cortex cell types,2,brain,human,76000
+GSE185538,Mouse embryo gastrulation,3,embryo,mouse,40000
+GSE198467,Human kidney cell atlas,3,kidney,human,25000
+GSE201333,Mouse liver zonation scRNA-seq,3,liver,mouse,13000
+GSE210347,Aging human blood scRNA-seq,3,blood,human,45000
+GSE145926,COVID-19 BALF immune cells,2,balf,human,66000
+GSE132257,Human pancreatic islet cells,1,pancreas,human,8000
+GSE107552,Embryonic stem cell differentiation,1,esc,human,15000
+GSE117212,Human lung immune cells,2,lung,human,44000
+GSE126030,Adult human heart cell atlas,2,heart,human,22000
+GSE149838,Multiple sclerosis brain scRNA-seq,2,brain,human,16000
+GSE156793,Human fetal lung,2,lung,human,71000
+GSE161382,SARS-CoV-2 nasopharyngeal,2,nasal,human,32000
+GSE166635,Mouse olfactory bulb,3,brain,mouse,18000
+GSE130430,Mouse bone marrow HSC,1,bone_marrow,mouse,14000
+GSE140228,Liver cancer immune atlas,2,liver,human,50000
+GSE148071,Glioma scRNA-seq,2,brain,human,23000
+GSE167191,Pancreatic ductal adenocarcinoma,2,pancreas,human,57000
+GSE134355,Mouse colon epithelium,3,colon,mouse,12000
+GSE136831,IPF lung fibrosis,2,lung,human,312000
+GSE139324,Head and neck squamous cell carcinoma,2,hnscc,human,15000
+GSE147405,Mouse brain development,2,brain,mouse,68000
+GSE152938,Glioblastoma plasticity,2,brain,human,18000
+GSE155249,Breast cancer scRNA,2,breast,human,25000
+GSE155698,Pancreatic cancer immune,2,pancreas,human,58000
+GSE156728,Human pan-cancer T cells,2,tcell,human,166000
+GSE159677,Atherosclerosis plaques,3,vascular,human,39000
+GSE160269,Esophageal squamous cell carcinoma,3,esophagus,human,208000
+GSE162454,Hepatocellular carcinoma metastasis,2,liver,human,50000
+GSE164378,Multimodal PBMC reference,1,pbmc,human,161000
+GSE166895,Adult human bone marrow reference,1,bone_marrow,human,76000
+GSE167118,Oligodendrocyte development,3,brain,mouse,18000
+GSE168522,Human fetal gut,2,gut,human,42000
+GSE169246,Triple negative breast cancer,2,breast,human,30000
+GSE174072,Melanoma treatment response,2,skin,human,41000
+GSE176078,Triple negative breast cancer atlas,2,breast,human,100000
+GSE178341,Colorectal cancer atlas,2,colon,human,370000
+GSE180286,Ovarian cancer tumor microenvironment,2,ovary,human,50000
+GSE181061,Renal cell carcinoma,2,kidney,human,167000
+GSE186344,Bladder cancer scRNA,3,bladder,human,60000
+GSE190887,Prostate cancer scRNA,3,prostate,human,30000
+GSE193106,Myeloid cell lung atlas,2,lung,human,45000
+GSE194122,NeurIPS multimodal benchmark,1,bone_marrow,human,90000
+GSE200996,HNSCC immune checkpoint,2,hnscc,human,20000
+GSE205506,Childhood neuroblastoma,2,neuro,human,40000
+GSE209912,B cell development,2,bcell,human,25000
+GSE215469,SARS-CoV-2 memory T cells,2,tcell,human,22000
+GSE222237,Aged brain immune cells,2,brain,human,35000
+GSE223768,Breast cancer spatial mapping,3,breast,human,15000
+GSE227038,Colorectal immune atlas,3,colon,human,42000
+GSE235063,Thymus developmental map,2,thymus,human,78000
+GSE241907,Adult mouse retina,3,retina,mouse,22000
+GSE242466,CAR-T cell dynamics,2,tcell,human,28000
+GSE252136,Human ALS motor neurons,2,neuro,human,15000
+GSE131907,Kim et al. advanced NSCLC,1,lung,human,208000
+GSE149614,Lu et al. HCC liver cancer,1,liver,human,71915
+GSE151530,Xue et al. HCC T-cell dynamics,1,liver,human,18000
+GSE158822,head & neck squamous cancer,2,hnscc,human,40000
+GSE161529,Pal breast cancer scRNA,2,breast,human,330000
+GSE171270,Combes glioma scRNA,2,brain,human,40000
+GSE175814,Salcher lung NSCLC,2,lung,human,50000
+GSE177870,prostate cancer,2,prostate,human,40000
+GSE184385,Krishna kidney cancer,2,kidney,human,50000
+GSE189357,Gao CRC colon,2,colon,human,40000
+GSE215011,Gueguen pancreatic cancer,2,pancreas,human,40000
+GSE149689,Wilk COVID-19 blood,1,blood,human,44721
+GSE168863,Yazar OneK1K blood atlas,2,blood,human,300000
+GSE194276,Chua nasopharyngeal COVID,2,nasal,human,20000
+GSE197177,You intestinal scRNA,2,gut,human,80000
+GSE200130,Vilas-Boas liver fibrosis,2,liver,human,35000
+GSE211304,Kim thyroid scRNA,2,thyroid,human,30000
+GSE213337,Shen endocrine pancreas,2,pancreas,human,50000
+GSE158803,human iPSC neural,2,neural,human,60000
+GSE175510,human fetal liver,2,liver,human,80000
+GSE181317,human heart dev,2,heart,human,35000
+GSE109888,aging mouse multi-tissue,2,mixed,mouse,60000
+GSE120402,mouse heart dev,2,heart,mouse,30000
+GSE133449,mouse lung,2,lung,mouse,40000
+GSE146264,mouse lung fibrosis,2,lung,mouse,30000
+GSE154006,mouse skin dev,2,skin,mouse,40000
+GSE156466,mouse kidney regeneration,2,kidney,mouse,30000
+GSE163484,mouse brain cortex,2,brain,mouse,50000
+GSE172797,mouse ovary dev,2,ovary,mouse,40000
+GSE176707,mouse thymus,2,thymus,mouse,30000
+GSE181388,mouse muscle,2,muscle,mouse,30000
+GSE188676,mouse retina,2,retina,mouse,40000
+GSE202695,human PBMC reference,2,pbmc,human,40000
+GSE221107,multi-donor PBMC,2,pbmc,human,80000
+GSE137537,Lukowski retina,2,retina,human,20000
+GSE168846,Park human adrenal,2,adrenal,human,40000
+GSE182171,human placenta,2,placenta,human,50000
+GSE132188,Bastidas-Ponce pancreas endocrine dev mouse,2,pancreas,mouse,26000
+GSE141259,Simon bleomycin lung mouse,2,lung,mouse,24000
+GSE95753,Linnarsson dentate gyrus mouse,2,brain,mouse,18000
+GSE113547,Feigin mouse lung,2,lung,mouse,20000
+GSE123813,Yost BCC scRNA skin,1,skin,human,53000
+GSE154826,Yao mouse cortex cells,2,brain,mouse,73000
+GSE128469,Chua IBD intestine,2,intestine,human,50000
+GSE122960,Reyfman lung,2,lung,human,80000
+GSE126074,Single-cell atlas,2,mixed,human,30000
+GSE139555,Zheng pan-cancer T-cells,2,tcell,human,150000
+GSE129788,aging mouse brain,2,brain,mouse,50000
+GSE130473,human retina,2,retina,human,30000
+GSE120575,melanoma T-cell response,2,melanoma,human,16000
+GSE143423,liver metastasis cancer,2,liver,human,20000
+GSE149655,COVID-19 airway,2,airway,human,45000
+GSE148219,human tonsil,2,tonsil,human,50000
+GSE153890,human bone marrow,2,bone_marrow,human,40000
+GSE154778,pancreatic ductal carcinoma,2,pancreas,human,40000
+GSE159519,COVID-19 lung,2,lung,human,30000
+GSE168299,endometrial cancer,2,endometrial,human,40000
+GSE161277,mouse kidney,2,kidney,mouse,40000
+GSE145235,human testis,2,testis,human,25000
+GSE139259,mouse ovary,2,ovary,mouse,20000
+GSE138794,human glioma,2,brain,human,30000
+GSE125449,liver cancer heterogeneity,2,liver,human,15000
+GSE127465,lung cancer myeloid,2,lung,human,60000
+GSE128033,pan-cancer immune,2,immune,human,50000
+GSE146515,spinal cord,2,spine,human,30000
+GSE150694,tuberculosis PBMC,2,pbmc,human,30000
+GSE165932,bladder cancer,2,bladder,human,40000
+GSE168243,salivary gland,2,salivary,human,30000
+GSE125970,Wang gastric cancer atlas,2,stomach,human,65000
+GSE132465,Lee colorectal cancer,2,colon,human,63000
+GSE152048,Zhou osteosarcoma,2,bone,human,100000
+GSE180665,head neck,2,hnscc,human,60000
+GSE190604,ovarian cancer,2,ovary,human,40000
+GSE108097,Han Microwell mouse cell atlas,2,mixed,mouse,400000
+GSE109774,Tabula Muris,2,mixed,mouse,100000
+GSE111976,Tabula Muris Senis,2,mixed,mouse,120000
+GSE113049,mouse intestine,2,intestine,mouse,30000
+GSE121862,mouse bone marrow,2,bone_marrow,mouse,40000
+GSE150798,mouse microglia,2,brain,mouse,30000
+GSE165727,mouse liver,2,liver,mouse,30000
+GSE128639,Stuart PBMC reference,2,pbmc,human,160000
+GSE173193,human adipose,2,adipose,human,30000
+GSE134143,embryo development,2,embryo,human,40000
+GSE132042,mouse brain cortex,2,brain,mouse,55000
+GSE116256,van Galen AML,2,aml,human,35000
+GSE139369,Granja multi-omic AML,2,blood,human,100000
+GSE154748,CLL chronic leukemia,2,cll,human,30000
+GSE162498,human ileum,2,ileum,human,35000
+GSE131559,human islet,2,pancreas,human,15000
+GSE167573,human pancreas ductal,2,pancreas,human,30000
+GSE283554,A CRISPR/Cas9-based enhancement of high-throughput single-cell transcriptomics,2,unknown,human,10000
+GSE260778,Fate mapping of human P63+ progenitor in vivo by single cell transcriptomic analysis [scRNA_seq],2,unknown,human,10000
+GSE270891,BRAFV600E induces key features of LCH in iPSCs with cell type–specific phenotypes and drug responses,2,unknown,human,10000
+GSE220840,Origin of extra-embryonic mesenchyme points to evolutionary novelty in primate early development [scRNA-seq],2,unknown,human,10000
+GSE208074,Low-Intensity Pulsed Ultrasound Effects on the Human Blood Brain Barrier,2,unknown,human,10000
+GSE220297,Single-cell transcriptomic analysis reveals transcriptional and cell subpopulation differences between human and pig imm,2,unknown,human,10000
+GSE279958,Single cell RNA seq of micropatterns derived from Human ESC Micropatterns,2,unknown,human,10000
+GSE273423,NKG2C and NKG2A coexpression defines a highly functional antiviral NK population in spontaneous HIV control,2,unknown,human,10000
+GSE264586,Sitravatinib in combination with nivolumab plus ipilimumab in patients with advanced clear cell renal cell carcinoma: a ,2,unknown,human,10000
+GSE120926,"Single-cell RNA sequencing defines the interplay between tumor cells, virus and microenvironment in nasopharyngeal carci",2,unknown,human,10000
+GSE280767,Adenine base editors induce off-target structure variations in mouse embryos and primary human T cells,2,unknown,human,10000
+GSE280258,Distinct features of a peripheral T-helper subset that drives the B-cell response in dengue virus infection,2,unknown,human,10000
+GSE274905,A multiplex single-cell RNA-seq pharmacotranscriptomics pipeline for drug discovery,2,unknown,human,10000
+GSE279264,"Generation of human induced pluripotent stem cell-derived 3D human cortical, striatal, mesencephalic and diencephalic or",2,unknown,human,10000
+GSE272457,Characterization and bioinformatic filtering of ambient gRNAs in single-cell CRISPR screens using CLEANSER [scRNA-seq],2,unknown,human,10000
+GSE216673,TREX1 is required for microglial cholesterol homeostasis and subsequent oligodendrocyte maturation during brain developm,2,unknown,human,10000
+GSE193807,Single cell RNA-Seq analysis of irradiated and non-irradiated skin cells in a nuclear accident patient.,2,unknown,human,10000
+GSE253936,Expansion effect of romiplostim on hematopoietic stem and progenitor cells versus other thrombopoietin receptor agonists,2,unknown,human,10000
+GSE232938,LINE1 and PRC2 control nucleolar organization and repression of the 8C-state in human ESCs [scRNA-seq],2,unknown,human,10000
+GSE263194,Comparative analysis between single-cell RNA-seq and single-molecule RNA FISH indicates that the pyrimidine nucleobase i,2,unknown,human,10000
+GSE250404,Gene expression profile at single cell level of OP patient and healthy control,2,unknown,human,10000
+GSE247598,Pancreatic Differentiation Clones and Pooled Single-cell RNA-seq,2,unknown,human,10000
+GSE262091,Multi-Omic analyses reveal aberrant differentiation trajectory with WNT1 Loss-of-Function in type XV osteogenesis imperf,2,unknown,human,10000
+GSE273397,Single-cell RNA-seq of the human tonsil and blood lymphocytes,2,unknown,human,10000
+GSE237425,Single-cell transcriptomics reveals distinct molecular alterations of human renal cell carcinoma-derived endothelial cel,2,unknown,human,10000
+GSE267814,Blockade of IL-1b and PD-1 with combination chemotherapy reduces systemic myeloid suppression in metastatic pancreatic c,2,unknown,human,10000
+GSE147393,Single cell RNA-Seq of patient derived kidney organoids as a model of Fanconi renotubular syndrome,2,unknown,human,10000
+GSE267209,Multiparametric atlas of the pre-metastatic liver for prediction of metastatic outcome in early-stage pancreatic cancer,2,unknown,human,10000
+GSE263995,"Gene expression at single cell level of tumor-infiltrating cells from the tumor foci, draining lymph node and peripheral",2,unknown,human,10000
+GSE176499,Single-Cell Transcriptome Analysis Reveals Differential Signatures of Human Left-Sided and Right-Sided Colon,2,unknown,human,10000

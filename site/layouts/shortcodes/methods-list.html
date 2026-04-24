@@ -1,0 +1,93 @@
+{{/*
+  methods-list.html — render methods grouped in 3 sections from data/methods.json.
+*/}}
+<div id="methods-root"></div>
+
+<script>
+(function() {
+  const GROUP_TITLES = {
+    "scCCVGBen_encoders": "scCCVGBen graph encoders (14)",
+    "graph_constructions": "Graph construction methods (5)",
+    "baselines": "Dimensionality-reduction baselines (13)"
+  };
+  const FAMILY_BADGE = {
+    "attention":    { cls: "mb-att",  label: "ATT"    },
+    "message-pass": { cls: "mb-mp",   label: "MP"     },
+    "graph":        { cls: "mb-gr",   label: "GRAPH"  },
+    "baseline":     { cls: "mb-bl",   label: "BASE"   }
+  };
+
+  fetch({{ "methods.json" | absURL }})
+    .then(r => r.json())
+    .then(data => {
+      const root = document.getElementById("methods-root");
+      Object.entries(GROUP_TITLES).forEach(([key, title]) => {
+        const items = data[key] || [];
+        const h2 = document.createElement("h2"); h2.textContent = title;
+        root.appendChild(h2);
+        const grid = document.createElement("div"); grid.className = "method-grid";
+        items.forEach(m => {
+          const card = document.createElement("div"); card.className = "method-card";
+          const hdr = document.createElement("div"); hdr.className = "method-hdr";
+          const nm = document.createElement("span"); nm.className = "method-name";
+          nm.textContent = m.name;
+          hdr.appendChild(nm);
+          const fam = FAMILY_BADGE[m.family] || { cls: "mb-default", label: m.family || "" };
+          const bd = document.createElement("span");
+          bd.className = "method-badge " + fam.cls;
+          bd.textContent = fam.label;
+          hdr.appendChild(bd);
+          card.appendChild(hdr);
+          const desc = document.createElement("p"); desc.className = "method-desc";
+          desc.textContent = m.description || "";
+          card.appendChild(desc);
+          grid.appendChild(card);
+        });
+        root.appendChild(grid);
+      });
+    });
+})();
+</script>
+
+<style>
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 0.65rem;
+  margin: 0.85rem 0 1.35rem;
+}
+.method-card {
+  background: var(--scc-surface-raised);
+  border: 1px solid var(--scc-border-soft);
+  border-radius: 6px;
+  padding: 0.62rem 0.78rem;
+  box-shadow: var(--scc-shadow);
+}
+.method-hdr {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+}
+.method-name {
+  color: var(--scc-text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.method-badge {
+  flex: 0 0 auto;
+  font-size: 0.64rem; font-weight: 700; padding: 0.16em 0.48em;
+  border-radius: 4px; letter-spacing: 0;
+}
+.mb-att { background: color-mix(in srgb, var(--scc-accent-amber) 20%, transparent); color: var(--scc-accent-amber); }
+.mb-mp  { background: color-mix(in srgb, var(--scc-accent-blue) 18%, transparent); color: var(--scc-accent-blue); }
+.mb-gr  { background: color-mix(in srgb, var(--scc-accent-teal) 18%, transparent); color: var(--scc-accent-teal); }
+.mb-bl  { background: color-mix(in srgb, var(--scc-muted) 18%, transparent); color: var(--scc-muted); }
+.method-desc {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  margin: 0;
+  color: var(--scc-muted);
+}
+</style>

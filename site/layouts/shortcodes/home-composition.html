@@ -1,0 +1,149 @@
+{{/*
+  home-composition.html — compact side-by-side Vega-Lite composition charts.
+*/}}
+<div class="home-composition-grid">
+  <section class="home-chart-block">
+    <h3>Tissue distribution</h3>
+    <div id="home-tissue-pie-vega" class="home-chart"></div>
+  </section>
+  <section class="home-chart-block">
+    <h3>Species x modality</h3>
+    <div id="home-species-modality-vega" class="home-chart"></div>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<script>
+(function() {
+  let cachedSummary = null;
+  function themeColors() {
+    const style = getComputedStyle(document.documentElement);
+    return {
+      text: style.getPropertyValue("--scc-text").trim() || "#111827",
+      grid: style.getPropertyValue("--scc-border-soft").trim() || "#e6ebf1"
+    };
+  }
+  function themedConfig() {
+    const c = themeColors();
+    return {
+      "background": "transparent",
+      "axis": {
+        "labelColor": c.text,
+        "titleColor": c.text,
+        "gridColor": c.grid,
+        "domainColor": c.grid,
+        "tickColor": c.grid
+      },
+      "legend": {
+        "labelColor": c.text,
+        "titleColor": c.text,
+        "symbolStrokeColor": c.grid
+      },
+      "view": { "stroke": c.grid }
+    };
+  }
+  function render(s) {
+    cachedSummary = s;
+    const config = themedConfig();
+    const chartOptions = { actions: false, theme: "none" };
+    const textColor = themeColors().text;
+    const axisCommon = { "labelColor": textColor, "titleColor": textColor };
+
+    const tissueRows = Object.entries(s.tissue_top10)
+      .map(([k, v]) => ({ tissue: k, count: v }));
+    const pieSpec = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "description": "Top-10 tissue groups in scCCVGBen benchmark",
+      "data": { "values": tissueRows },
+      "config": config,
+      "mark": { "type": "arc", "innerRadius": 46, "tooltip": true },
+      "encoding": {
+        "theta": { "field": "count", "type": "quantitative" },
+        "color": {
+          "field": "tissue",
+          "type": "nominal",
+          "scale": { "scheme": "tableau20" },
+          "legend": { "title": "Tissue", "orient": "right" }
+        },
+        "tooltip": [
+          { "field": "tissue", "type": "nominal" },
+          { "field": "count", "type": "quantitative" }
+        ]
+      },
+      "width": 270,
+      "height": 270
+    };
+    const barSpec = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "description": "scCCVGBen benchmark species by modality counts",
+      "data": { "values": s.species_modality },
+      "config": config,
+      "mark": { "type": "bar", "tooltip": true },
+      "encoding": {
+        "x": { "field": "species", "type": "nominal", "title": "Species", "sort": "-y", "axis": axisCommon },
+        "y": { "field": "count", "type": "quantitative", "title": "Dataset count", "axis": axisCommon },
+        "color": {
+          "field": "modality",
+          "type": "nominal",
+          "scale": { "range": ["#cc4444", "#3399aa"] },
+          "legend": { "title": "Modality", "orient": "right" }
+        },
+        "tooltip": [
+          { "field": "species", "type": "nominal" },
+          { "field": "modality", "type": "nominal" },
+          { "field": "count", "type": "quantitative" }
+        ]
+      },
+      "width": 360,
+      "height": 240
+    };
+    vegaEmbed("#home-tissue-pie-vega", pieSpec, chartOptions);
+    vegaEmbed("#home-species-modality-vega", barSpec, chartOptions);
+  }
+
+  fetch({{ "summary.json" | absURL }})
+    .then(r => r.json())
+    .then(render);
+
+  document.addEventListener("sccvgben:themechange", function() {
+    if (cachedSummary) {
+      render(cachedSummary);
+    }
+  });
+})();
+</script>
+
+<style>
+.home-composition-grid {
+  display: grid;
+  grid-template-columns: minmax(310px, 0.9fr) minmax(360px, 1fr);
+  gap: 1.35rem;
+  align-items: start;
+  margin: 0.7rem 0 1.15rem;
+}
+.home-chart-block h3 {
+  margin: 0 0 0.55rem;
+  color: var(--scc-text);
+  font-size: 1.05rem;
+  font-weight: 650;
+  line-height: 1.2;
+}
+.home-chart {
+  background: var(--scc-surface-raised);
+  border: 1px solid var(--scc-border-soft);
+  border-radius: 6px;
+  max-width: 100%;
+  padding: 0.55rem;
+}
+.home-chart details,
+.home-chart .vega-actions {
+  display: none;
+}
+@media (max-width: 900px) {
+  .home-composition-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

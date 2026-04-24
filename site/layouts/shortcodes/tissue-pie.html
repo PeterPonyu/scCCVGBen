@@ -1,0 +1,39 @@
+{{/*
+  tissue-pie.html — Vega-Lite pie chart of top-10 tissue groups from summary.json.
+*/}}
+<div id="tissue-pie-vega" style="width:100%;max-width:680px;"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<script>
+(function() {
+  fetch({{ "summary.json" | absURL }})
+    .then(r => r.json())
+    .then(s => {
+      const rows = Object.entries(s.tissue_top10).map(([k, v]) => ({tissue: k, count: v}));
+      const spec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "description": "Top-10 tissue groups in scCCVGBen benchmark",
+        "data": { "values": rows },
+        "mark": { "type": "arc", "innerRadius": 50, "tooltip": true },
+        "encoding": {
+          "theta": { "field": "count", "type": "quantitative" },
+          "color": {
+            "field": "tissue",
+            "type": "nominal",
+            "scale": { "scheme": "tableau20" },
+            "legend": { "title": "Tissue" }
+          },
+          "tooltip": [
+            { "field": "tissue", "type": "nominal" },
+            { "field": "count",  "type": "quantitative" }
+          ]
+        },
+        "width": 320,
+        "height": 320
+      };
+      vegaEmbed("#tissue-pie-vega", spec, { actions: false });
+    });
+})();
+</script>

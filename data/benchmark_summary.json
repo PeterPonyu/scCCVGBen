@@ -1,0 +1,71 @@
+{
+  "built_at": "2026-04-24T02:52:55.941868+00:00",
+  "total_datasets": 200,
+  "by_modality": {
+    "scrna": 100,
+    "scatac": 100
+  },
+  "by_species_geo_verified": {
+    "human": 137,
+    "mouse": 54,
+    "zebrafish": 7,
+    "rat": 1,
+    "pig": 1
+  },
+  "by_modality_species": {
+    "human": {
+      "scatac": 58,
+      "scrna": 79
+    },
+    "mouse": {
+      "scatac": 35,
+      "scrna": 19
+    },
+    "pig": {
+      "scatac": 0,
+      "scrna": 1
+    },
+    "rat": {
+      "scatac": 0,
+      "scrna": 1
+    },
+    "zebrafish": {
+      "scatac": 7,
+      "scrna": 0
+    }
+  },
+  "metadata_source": "GEO (GEOparse) + NCBI E-utilities \u2014 no local inference",
+  "metadata_artifacts": {
+    "raw_cache": "data/geo_metadata_cache.json",
+    "processed_manifest": "data/benchmark_manifest.csv",
+    "datasets_index": "scccvgben/data/datasets.csv",
+    "validation_report": "data/data_validation.csv",
+    "species_audit_v2": "data/species_audit_v2.csv"
+  },
+  "training_config": {
+    "hvg_count": 2000,
+    "cells_subsample": 3000,
+    "matches_CCVGAE_revised_benchmark": true,
+    "evidence": [
+      "CCVGAE_supplement/run_hyperparam_sensitivity.py:192 N_TOP_GENES=2000",
+      "CCVGAE_supplement/run_runtime_profiling.py:66 DEFAULT_HVG=2000",
+      "CCVGAE_supplement/CGVAE1_supplement.ipynb (n_top_genes=2000, subsample to 3000)"
+    ]
+  },
+  "strict_inclusion_rules": {
+    "cellranger_only": true,
+    "raw_count_matrix_only": true,
+    "date_coded_names_excluded": true,
+    "fu_et_al_excluded": true,
+    "duplicates_dedup_by_GSE": true,
+    "atlas_scale_limit": "<5M cells & <1000 obs/var ratio",
+    "species_from_online_GEO": true,
+    "orphan_GSM_excluded": "8 GSMs not findable on GEO were dropped"
+  },
+  "gap_resolution_history": [
+    "64 species labels corrected via GEOparse organism_ch1",
+    "8 unverifiable orphan GSMs dropped (GSM8248668-676, not in GEO)",
+    "8 smallest-but-verified scATAC reinstated to maintain 100/100",
+    "setty filename resolved to PRJEB37166 human (CD34+ hematopoiesis, Setty et al)"
+  ]
+}

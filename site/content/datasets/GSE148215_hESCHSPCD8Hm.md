@@ -1,0 +1,34 @@
+---
+title: "GSE148215_hESCHSPCD8Hm"
+type: docs
+weight: 113
+geekdocHidden: false
+---
+
+# GSE148215_hESCHSPCD8Hm
+
+| Field | Value |
+|-------|-------|
+| **filename_key** | `GSE148215_hESCHSPCD8Hm` |
+| **GSE / GSM accession** | [GSE148215](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE148215) |
+| **Modality** | scRNA |
+| **Species** | human |
+| **Tissue** | stem_cell |
+| **Cell count** | 10,110 |
+| **PubMed** | [PMID:33298886](https://pubmed.ncbi.nlm.nih.gov/33298886/) |
+| **Submission date** | Apr 07 2020 |
+| **Source name (GEO)** | human embryonic cells |
+
+## GEO title
+
+> Characterization and generation of human definitive multipotent hematopoietic stem/progenitor cells
+
+## Description (local manifest)
+
+GSE148215_hESCHSPCD8Hm
+
+---
+
+<small>Record auto-generated from `data/benchmark_manifest.csv` by
+`scripts/build_site_data.py`. All fields verified against GEO online
+metadata via GEOparse.</small>

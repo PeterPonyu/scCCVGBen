@@ -1,0 +1,63 @@
+{{/*
+  headline-stats.html — render Home page KPI tiles from site/data/summary.json.
+*/}}
+<div class="hs-grid">
+  <div class="hs-card">
+    <div class="hs-num">{{ index .Site.Data.summary "total_datasets" }}</div>
+    <div class="hs-lbl">Datasets</div>
+  </div>
+  <div class="hs-card">
+    <div class="hs-num">{{ index .Site.Data.summary "methods_total" }}</div>
+    <div class="hs-lbl">Methods</div>
+  </div>
+  <div class="hs-card">
+    <div class="hs-num">{{ index .Site.Data.summary "metrics_total" }}</div>
+    <div class="hs-lbl">Metrics</div>
+  </div>
+  <div class="hs-card">
+    <div class="hs-num">{{ (index .Site.Data.summary "cell_count_range").max | lang.FormatNumber 0 }}</div>
+    <div class="hs-lbl">Largest cell count</div>
+  </div>
+</div>
+
+<style>
+.hs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(132px, 1fr));
+  gap: 0.75rem;
+  margin: 0.9rem 0 1.25rem;
+}
+.hs-card {
+  background: var(--scc-surface-raised);
+  border: 1px solid var(--scc-border);
+  border-top: 4px solid var(--scc-accent-blue);
+  border-radius: 6px;
+  box-shadow: var(--scc-shadow);
+  padding: 0.85rem 1rem;
+  text-align: center;
+}
+.hs-card:nth-child(2) { border-top-color: var(--scc-accent-teal); }
+.hs-card:nth-child(3) { border-top-color: var(--scc-accent-amber); }
+.hs-card:nth-child(4) { border-top-color: var(--scc-accent-rose); }
+.hs-num {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--scc-accent-blue);
+  line-height: 1;
+}
+.hs-card:nth-child(2) .hs-num { color: var(--scc-accent-teal); }
+.hs-card:nth-child(3) .hs-num { color: var(--scc-accent-amber); }
+.hs-card:nth-child(4) .hs-num { color: var(--scc-accent-rose); }
+.hs-lbl {
+  font-size: 0.72rem;
+  color: var(--scc-muted);
+  margin-top: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+@media (max-width: 720px) {
+  .hs-grid {
+    grid-template-columns: repeat(2, minmax(132px, 1fr));
+  }
+}
+</style>

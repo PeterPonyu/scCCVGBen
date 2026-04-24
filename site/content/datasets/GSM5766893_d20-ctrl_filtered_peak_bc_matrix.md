@@ -1,0 +1,34 @@
+---
+title: "GSM5766893_d20-ctrl_filtered_peak_bc_matrix"
+type: docs
+weight: 159
+geekdocHidden: false
+---
+
+# GSM5766893_d20-ctrl_filtered_peak_bc_matrix
+
+| Field | Value |
+|-------|-------|
+| **filename_key** | `GSM5766893_d20-ctrl_filtered_peak_bc_matrix` |
+| **GSE / GSM accession** | [GSM5766893](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5766893) |
+| **Modality** | scATAC |
+| **Species** | human |
+| **Tissue** | other |
+| **Cell count** | 2,847 |
+| **PubMed** | [PMID:nan](https://pubmed.ncbi.nlm.nih.gov/nan/) |
+| **Submission date** | Dec 31 2021 |
+| **Source name (GEO)** | HS360, day 20, past stage III maturation |
+
+## GEO title
+
+> HS360-Day20-rep1 [scATAC-seq]
+
+## Description (local manifest)
+
+GSM5766893_d20-ctrl_filtered_peak_bc_matrix
+
+---
+
+<small>Record auto-generated from `data/benchmark_manifest.csv` by
+`scripts/build_site_data.py`. All fields verified against GEO online
+metadata via GEOparse.</small>

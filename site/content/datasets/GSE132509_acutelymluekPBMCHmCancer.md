@@ -1,0 +1,34 @@
+---
+title: "GSE132509_acutelymluekPBMCHmCancer"
+type: docs
+weight: 108
+geekdocHidden: false
+---
+
+# GSE132509_acutelymluekPBMCHmCancer
+
+| Field | Value |
+|-------|-------|
+| **filename_key** | `GSE132509_acutelymluekPBMCHmCancer` |
+| **GSE / GSM accession** | [GSE132509](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE132509) |
+| **Modality** | scRNA |
+| **Species** | human |
+| **Tissue** | pbmc |
+| **Cell count** | 39,375 |
+| **PubMed** | [PMID:32415257](https://pubmed.ncbi.nlm.nih.gov/32415257/) |
+| **Submission date** | Jun 10 2019 |
+| **Source name (GEO)** | ETV6-RUNX1 |
+
+## GEO title
+
+> Single-cell analysis of childhood leukemia reveals a link between developmental states and ribosomal protein expression as a source of intra-individual heterogeneity
+
+## Description (local manifest)
+
+GSE132509_acutelymluekPBMCHmCancer
+
+---
+
+<small>Record auto-generated from `data/benchmark_manifest.csv` by
+`scripts/build_site_data.py`. All fields verified against GEO online
+metadata via GEOparse.</small>

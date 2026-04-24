@@ -1,0 +1,34 @@
+---
+title: "GSE255019_hematoMmAged"
+type: docs
+weight: 135
+geekdocHidden: false
+---
+
+# GSE255019_hematoMmAged
+
+| Field | Value |
+|-------|-------|
+| **filename_key** | `GSE255019_hematoMmAged` |
+| **GSE / GSM accession** | [GSE255019](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE255019) |
+| **Modality** | scRNA |
+| **Species** | mouse |
+| **Tissue** | bone_marrow |
+| **Cell count** | 22,602 |
+| **PubMed** | [PMID:38749423; 40987296](https://pubmed.ncbi.nlm.nih.gov/38749423; 40987296/) |
+| **Submission date** | Feb 04 2024 |
+| **Source name (GEO)** | Bone Marrow |
+
+## GEO title
+
+> An age specific platelet differentiation path from hematopoietic stem cells causes thrombocytosis and exacerbated thrombosis
+
+## Description (local manifest)
+
+GSE255019_hematoMmAged
+
+---
+
+<small>Record auto-generated from `data/benchmark_manifest.csv` by
+`scripts/build_site_data.py`. All fields verified against GEO online
+metadata via GEOparse.</small>

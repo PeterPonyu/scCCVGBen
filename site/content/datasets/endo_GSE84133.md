@@ -1,0 +1,34 @@
+---
+title: "endo_GSE84133"
+type: docs
+weight: 143
+geekdocHidden: false
+---
+
+# endo_GSE84133
+
+| Field | Value |
+|-------|-------|
+| **filename_key** | `endo_GSE84133` |
+| **GSE / GSM accession** | [GSE84133](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE84133) |
+| **Modality** | scRNA |
+| **Species** | human |
+| **Tissue** | pancreas |
+| **Cell count** | 8,569 |
+| **PubMed** | [PMID:27667365](https://pubmed.ncbi.nlm.nih.gov/27667365/) |
+| **Submission date** | Jul 07 2016 |
+| **Source name (GEO)** | Male donor, age 17, BMI: 21.5 |
+
+## GEO title
+
+> A single-cell transcriptomic map of the human and mouse pancreas reveals inter- and intra-cell population structure
+
+## Description (local manifest)
+
+endo_GSE84133
+
+---
+
+<small>Record auto-generated from `data/benchmark_manifest.csv` by
+`scripts/build_site_data.py`. All fields verified against GEO online
+metadata via GEOparse.</small>

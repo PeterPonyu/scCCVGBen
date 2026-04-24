@@ -1,0 +1,25 @@
+{
+  "active": false,
+  "iteration": 4,
+  "current_phase": "spec-crystallized",
+  "task_description": "scCCVGBen v0.1.0 launch-prep session interview — PASSED (ambiguity 8.05%, threshold 20%)",
+  "plan_path": ".omc/specs/deep-interview-scccvgben-launch-prep.md",
+  "completed_at": "2026-04-23T09:15:00Z",
+  "type": "brownfield",
+  "threshold": "0.20",
+  "ambiguity": "0.0805",
+  "weakest_final": "context",
+  "rounds_completed": "4",
+  "ontology_stability": "1.0",
+  "entity_count": "14",
+  "goal": "0.95",
+  "constraints": "0.90",
+  "criteria": "0.92",
+  "context": "0.88",
+  "_meta": {
+    "mode": "deep-interview",
+    "sessionId": null,
+    "updatedAt": "2026-04-23T09:27:33.589Z",
+    "updatedBy": "state_write_tool"
+  }
+}

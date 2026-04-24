@@ -1,0 +1,41 @@
+{{/*
+  species-modality-bar.html — Vega-Lite grouped bar: species counts split by modality.
+*/}}
+<div id="species-modality-vega" style="width:100%;max-width:680px;"></div>
+
+<script>
+(function() {
+  function drawOnce() {
+    if (typeof vegaEmbed === "undefined") {
+      setTimeout(drawOnce, 120);
+      return;
+    }
+    fetch({{ "summary.json" | absURL }})
+      .then(r => r.json())
+      .then(s => {
+        const spec = {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "description": "scCCVGBen benchmark species × modality counts",
+          "data": { "values": s.species_modality },
+          "mark": { "type": "bar", "tooltip": true },
+          "encoding": {
+            "x": { "field": "species", "type": "nominal", "title": "Species",
+                   "sort": "-y" },
+            "y": { "field": "count", "type": "quantitative", "title": "Dataset count" },
+            "color": { "field": "modality", "type": "nominal",
+                       "scale": { "range": ["#c44", "#39a"] } },
+            "tooltip": [
+              { "field": "species",  "type": "nominal" },
+              { "field": "modality", "type": "nominal" },
+              { "field": "count",    "type": "quantitative" }
+            ]
+          },
+          "width": 320,
+          "height": 240
+        };
+        vegaEmbed("#species-modality-vega", spec, { actions: false });
+      });
+  }
+  drawOnce();
+})();
+</script>

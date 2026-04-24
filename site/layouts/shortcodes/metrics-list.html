@@ -1,0 +1,150 @@
+{{/*
+  metrics-list.html — render metrics grouped from data/metrics.json.
+*/}}
+<div id="metrics-root"></div>
+
+<script>
+(function() {
+  const GROUP_TITLES = {
+    "clustering": "Clustering quality (6)",
+    "dre":        "Dimensionality-reduction evaluation — UMAP + tSNE (10)",
+    "lse":        "Latent-space intrinsic geometry (10)"
+  };
+  const GROUP_SUMMARY = {
+    "clustering": "External labels, cluster separation, and original-space distance preservation.",
+    "dre":        "Neighbourhood preservation and global structure after UMAP/tSNE projection.",
+    "lse":        "Intrinsic latent geometry, robustness, trajectory signal, and interpretation."
+  };
+
+  fetch({{ "metrics.json" | absURL }})
+    .then(r => r.json())
+    .then(data => {
+      const root = document.getElementById("metrics-root");
+      const overview = document.createElement("div");
+      overview.className = "metric-overview-grid";
+      Object.entries(GROUP_TITLES).forEach(([key, title]) => {
+        const items = data[key] || [];
+        const card = document.createElement("section");
+        card.className = "metric-family-card metric-family-" + key;
+        const h2 = document.createElement("h2");
+        h2.textContent = title;
+        const p = document.createElement("p");
+        p.textContent = GROUP_SUMMARY[key];
+        const chips = document.createElement("div");
+        chips.className = "metric-chip-grid";
+        items.forEach(m => {
+          const chip = document.createElement("span");
+          chip.className = "metric-chip";
+          chip.textContent = m.name;
+          chips.appendChild(chip);
+        });
+        card.appendChild(h2);
+        card.appendChild(p);
+        card.appendChild(chips);
+        overview.appendChild(card);
+      });
+      root.appendChild(overview);
+      Object.entries(GROUP_TITLES).forEach(([key, title]) => {
+        const items = data[key] || [];
+        const h2 = document.createElement("h2"); h2.textContent = title;
+        root.appendChild(h2);
+        const tbl = document.createElement("table"); tbl.className = "metric-tbl";
+        const thead = document.createElement("thead");
+        thead.innerHTML = "<tr><th>Metric</th><th>Description</th><th>Source</th><th>Direction</th></tr>";
+        tbl.appendChild(thead);
+        const tbody = document.createElement("tbody");
+        items.forEach(m => {
+          const tr = document.createElement("tr");
+          const td1 = document.createElement("td");
+          const name = document.createElement("span"); name.className = "metric-name";
+          name.textContent = m.name;
+          td1.appendChild(name);
+          tr.appendChild(td1);
+          const td2 = document.createElement("td"); td2.textContent = m.description;
+          tr.appendChild(td2);
+          const td3 = document.createElement("td"); td3.textContent = m.source;
+          tr.appendChild(td3);
+          const td4 = document.createElement("td"); td4.textContent = m.note || "—";
+          tr.appendChild(td4);
+          tbody.appendChild(tr);
+        });
+        tbl.appendChild(tbody);
+        root.appendChild(tbl);
+      });
+    });
+})();
+</script>
+
+<style>
+.metric-overview-grid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0.9rem 0 1.35rem;
+}
+.metric-family-card {
+  background: var(--scc-surface-raised);
+  border: 1px solid var(--scc-border);
+  border-top: 4px solid var(--scc-accent-blue);
+  border-radius: 6px;
+  box-shadow: var(--scc-shadow);
+  padding: 0.9rem;
+}
+.metric-family-dre { border-top-color: var(--scc-accent-teal); }
+.metric-family-lse { border-top-color: var(--scc-accent-amber); }
+.metric-family-card h2 {
+  font-size: 1.03rem;
+  margin: 0 0 0.42rem;
+}
+.metric-family-card p {
+  color: var(--scc-muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  margin: 0 0 0.72rem;
+}
+.metric-chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.34rem;
+}
+.metric-chip {
+  background: color-mix(in srgb, var(--scc-panel) 74%, var(--scc-surface));
+  border: 1px solid var(--scc-border-soft);
+  border-radius: 5px;
+  color: var(--scc-text);
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.66rem;
+  font-weight: 650;
+  line-height: 1.2;
+  padding: 0.2rem 0.32rem;
+}
+table.metric-tbl {
+  width: 100%; border-collapse: collapse; margin: 0.45rem 0 1.35rem;
+  display: table;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+table.metric-tbl th, table.metric-tbl td {
+  padding: 0.36rem 0.52rem; border: 1px solid var(--scc-border-soft); text-align: left;
+  vertical-align: top;
+}
+table.metric-tbl th {
+  background: var(--scc-panel); font-weight: 650; color: var(--scc-text);
+}
+table.metric-tbl tr:nth-child(2n) { background: color-mix(in srgb, var(--scc-panel) 42%, transparent); }
+.metric-name {
+  display: inline-block;
+  padding: 0;
+  color: var(--scc-text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.8rem;
+  font-weight: 650;
+  line-height: 1.2;
+}
+@media(max-width: 980px) {
+  .metric-overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

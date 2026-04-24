@@ -1,0 +1,34 @@
+---
+title: "GSM8008841_vcap_d_filtered_peak_bc_matrix"
+type: docs
+weight: 223
+geekdocHidden: false
+---
+
+# GSM8008841_vcap_d_filtered_peak_bc_matrix
+
+| Field | Value |
+|-------|-------|
+| **filename_key** | `GSM8008841_vcap_d_filtered_peak_bc_matrix` |
+| **GSE / GSM accession** | [GSM8008841](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8008841) |
+| **Modality** | scATAC |
+| **Species** | human |
+| **Tissue** | other |
+| **Cell count** | 1,077 |
+| **PubMed** | [PMID:nan](https://pubmed.ncbi.nlm.nih.gov/nan/) |
+| **Submission date** | nan |
+| **Source name (GEO)** | Prostate |
+
+## GEO title
+
+> VCaP, DMSO
+
+## Description (local manifest)
+
+GSM8008841_vcap_d_filtered_peak_bc_matrix
+
+---
+
+<small>Record auto-generated from `data/benchmark_manifest.csv` by
+`scripts/build_site_data.py`. All fields verified against GEO online
+metadata via GEOparse.</small>
