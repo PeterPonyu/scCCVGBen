@@ -1,0 +1,167 @@
+{{/*
+  extended-stats.html — 4 richer Vega-Lite charts using benchmark metadata:
+    1. Cell-count histogram (log-like bins)
+    2. Submission-year timeline
+    3. Tissue × modality stacked bar (top-8 tissues)
+    4. Top-15 PubMed studies by cell_count
+*/}}
+<div class="xs-grid">
+  <section class="xs-block">
+    <h3>Cell-count distribution</h3>
+    <div id="xs-cellhist" class="xs-chart"></div>
+  </section>
+  <section class="xs-block">
+    <h3>Submission year timeline</h3>
+    <div id="xs-yearline" class="xs-chart"></div>
+  </section>
+  <section class="xs-block">
+    <h3>Tissue × modality</h3>
+    <div id="xs-tissuemod" class="xs-chart"></div>
+  </section>
+  <section class="xs-block">
+    <h3>Top 15 studies by cell count</h3>
+    <div id="xs-topstudies" class="xs-chart"></div>
+  </section>
+</div>
+
+<script>
+(function() {
+  function themeColors() {
+    const st = getComputedStyle(document.documentElement);
+    return {
+      text: st.getPropertyValue("--scc-text").trim() || "#1e293b",
+      grid: st.getPropertyValue("--scc-border-soft").trim() || "#e2e8f0",
+      blue:   st.getPropertyValue("--scc-accent-blue").trim()   || "#2563eb",
+      teal:   st.getPropertyValue("--scc-accent-teal").trim()   || "#0d9488",
+      amber:  st.getPropertyValue("--scc-accent-amber").trim()  || "#d97706",
+      rose:   st.getPropertyValue("--scc-accent-rose").trim()   || "#db2777",
+    };
+  }
+  function themedConfig() {
+    const c = themeColors();
+    return {
+      background: "transparent",
+      axis: { labelColor: c.text, titleColor: c.text, gridColor: c.grid,
+              domainColor: c.grid, tickColor: c.grid },
+      legend: { labelColor: c.text, titleColor: c.text },
+      view: { stroke: c.grid },
+    };
+  }
+  function waitVega(cb) {
+    if (typeof vegaEmbed === "undefined") { setTimeout(() => waitVega(cb), 120); return; }
+    cb();
+  }
+  function render(s) {
+    const c = themeColors();
+    const cfg = themedConfig();
+    const opt = { actions: false, theme: "none" };
+
+    // 1. cell-count histogram
+    vegaEmbed("#xs-cellhist", {
+      $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+      data: { values: s.cell_count_hist },
+      config: cfg,
+      mark: { type: "bar", tooltip: true, color: c.blue },
+      encoding: {
+        x: { field: "bin", type: "ordinal", title: "Cell count bin",
+             sort: ["<1k","1–3k","3–10k","10–30k","30–100k","100–300k","300k–1M",">1M"] },
+        y: { field: "count", type: "quantitative", title: "Datasets" },
+        tooltip: [{ field: "bin" }, { field: "count" }],
+      },
+      width: 310, height: 200,
+    }, opt);
+
+    // 2. year timeline
+    vegaEmbed("#xs-yearline", {
+      $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+      data: { values: s.submission_year_timeline },
+      config: cfg,
+      layer: [
+        { mark: { type: "area", opacity: 0.35, color: c.teal } },
+        { mark: { type: "line", color: c.teal, strokeWidth: 2 } },
+        { mark: { type: "point", color: c.teal, filled: true, size: 55, tooltip: true } },
+      ],
+      encoding: {
+        x: { field: "year", type: "ordinal", title: "GEO submission year" },
+        y: { field: "count", type: "quantitative", title: "Datasets" },
+        tooltip: [{ field: "year" }, { field: "count" }],
+      },
+      width: 310, height: 200,
+    }, opt);
+
+    // 3. tissue × modality stacked bar, top-10 tissues
+    const topTissues = Object.keys(s.tissue_top10 || {});
+    const tmFiltered = (s.tissue_modality || []).filter(r => topTissues.includes(r.tissue));
+    vegaEmbed("#xs-tissuemod", {
+      $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+      data: { values: tmFiltered },
+      config: cfg,
+      mark: { type: "bar", tooltip: true },
+      encoding: {
+        y: { field: "tissue", type: "nominal", title: "Tissue",
+             sort: topTissues },
+        x: { field: "count", type: "quantitative", title: "Datasets", stack: "zero" },
+        color: {
+          field: "modality", type: "nominal",
+          scale: { domain: ["scRNA","scATAC"], range: [c.rose, c.blue] },
+          legend: { orient: "top" },
+        },
+        tooltip: [{ field: "tissue" }, { field: "modality" }, { field: "count" }],
+      },
+      width: 310, height: 220,
+    }, opt);
+
+    // 4. Top 15 studies: horizontal bar of cell_count
+    vegaEmbed("#xs-topstudies", {
+      $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+      data: { values: s.pubmed_top15 },
+      config: cfg,
+      mark: { type: "bar", tooltip: true },
+      encoding: {
+        y: { field: "filename_key", type: "nominal", title: null, sort: "-x",
+             axis: { labelLimit: 220, labelFontSize: 10 } },
+        x: { field: "cell_count", type: "quantitative", title: "Cell count" },
+        color: {
+          field: "modality", type: "nominal",
+          scale: { domain: ["scRNA","scATAC"], range: [c.rose, c.blue] },
+          legend: { orient: "top" },
+        },
+        tooltip: [
+          { field: "filename_key" }, { field: "pubmed_id" },
+          { field: "species" }, { field: "cell_count" },
+        ],
+      },
+      width: 310, height: 350,
+    }, opt);
+  }
+  waitVega(() => {
+    fetch({{ "summary.json" | absURL }})
+      .then(r => r.json())
+      .then(render);
+  });
+})();
+</script>
+
+<style>
+.xs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin: 0.6rem 0 1rem;
+}
+.xs-block h3 {
+  margin: 0 0 0.55rem;
+  color: var(--scc-text);
+  font-size: 1.02rem;
+  font-weight: 650;
+}
+.xs-chart {
+  background: var(--scc-surface-raised);
+  border: 1px solid var(--scc-border-soft);
+  border-radius: 6px;
+  padding: 0.55rem;
+}
+@media (max-width: 900px) {
+  .xs-grid { grid-template-columns: 1fr; }
+}
+</style>

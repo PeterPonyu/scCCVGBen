@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"echo \\\"=== available headless browser tools ===\\\"\\nfor tool in chromium chromium-browser google-chrome chrome firefox wkhtmltoimage playwright node; do\\n    if command -v $tool >/dev/null ...",
+  "error": "Exit code 2\n=== available headless browser tools ===\n✓ google-chrome: /usr/bin/google-chrome\n✓ firefox: /usr/bin/firefox\n✓ node: /usr/bin/node\n\n=== python playwright/selenium installed? ===\nTraceback (most recent call last):\nTraceback (most recent call last):\n\n=== try chromium from common Snap path ===\nls: cannot access '/snap/bin/chromium': No such file or directory\nls: cannot access '/usr/bin/chromium*': No such file or directory",
+  "timestamp": "2026-04-24T08:42:03.690Z",
+  "retry_count": 1
+}

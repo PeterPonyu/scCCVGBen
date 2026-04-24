@@ -23,12 +23,13 @@ OUT_PDF = ROOT / "figures" / "fig1_scCCVGBen_site.pdf"
 
 DPI = 300
 CARD_WIDTH = 1600
-CARD_PAD = 24
-TITLE_HEIGHT = 58
-GAP_X = 48
-GAP_Y = 42
-CANVAS_PAD = 34
-COLUMN_ORDER = ((0, 2, 5), (1, 3, 4))
+CARD_PAD = 30
+TITLE_HEIGHT = 84          # bigger title band (was 58)
+TITLE_FONT_PX = 44         # larger title font (was 30)
+GAP_X = 54
+GAP_Y = 48
+CANVAS_PAD = 40
+COLUMN_ORDER = ((0, 2, 4, 6), (1, 3, 5, 7))  # 8 panels, 2 cols × 4 rows
 
 
 @dataclass(frozen=True)
@@ -40,12 +41,24 @@ class Panel:
 
 
 PANELS = [
-    Panel("home.png", "Benchmark overview", (0.175, 0.015, 0.985, 0.235), "#1f5f9f"),
-    Panel("home.png", "Tissue and species composition", (0.175, 0.235, 0.985, 0.445), "#24989f"),
-    Panel("datasets.png", "Dataset index", (0.175, 0.015, 0.985, 0.705), "#b7791f"),
-    Panel("methods.png", "Method catalog", (0.175, 0.015, 0.985, 0.775), "#7a5ab8"),
-    Panel("metrics.png", "Metric registry", (0.175, 0.015, 0.985, 0.275), "#b54848"),
-    Panel("dataset-detail.png", "Dataset detail page", (0.175, 0.015, 0.985, 0.425), "#24989f"),
+    # Home is 1600×3200 with sections: hero/KPI (0-0.15), composition (0.15-0.27),
+    # metadata distributions (0.27-0.48), explore (0.48+).
+    Panel("home.png", "Benchmark overview",
+          (0.165, 0.005, 0.995, 0.155), "#1f5f9f"),
+    Panel("home.png", "Tissue and species composition",
+          (0.165, 0.155, 0.995, 0.275), "#24989f"),
+    Panel("home.png", "Metadata distributions (4 charts)",
+          (0.165, 0.275, 0.995, 0.505), "#5a7d2f"),
+    Panel("datasets.png", "Dataset index with filters",
+          (0.165, 0.010, 0.995, 0.715), "#b7791f"),
+    Panel("methods.png", "Method catalog (32 clickable cards)",
+          (0.165, 0.010, 0.995, 0.780), "#7a5ab8"),
+    Panel("metrics.png", "Metric registry (26 with details)",
+          (0.165, 0.010, 0.995, 0.285), "#b54848"),
+    Panel("dataset-detail.png", "Per-dataset detail page",
+          (0.165, 0.010, 0.995, 0.480), "#24989f"),
+    Panel("method-detail.png", "Per-method detail page",
+          (0.165, 0.010, 0.995, 0.500), "#7a5ab8"),
 ]
 
 
@@ -119,9 +132,9 @@ def _panel_card(panel: Panel) -> Image.Image:
         width=1,
     )
     draw.text(
-        (CARD_PAD, 17),
+        (CARD_PAD, 24),
         panel.title,
-        font=_font(30, bold=True),
+        font=_font(TITLE_FONT_PX, bold=True),
         fill="#172033",
     )
     card.paste(img, (CARD_PAD, TITLE_HEIGHT))

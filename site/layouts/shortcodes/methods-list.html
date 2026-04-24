@@ -27,7 +27,9 @@
         root.appendChild(h2);
         const grid = document.createElement("div"); grid.className = "method-grid";
         items.forEach(m => {
-          const card = document.createElement("div"); card.className = "method-card";
+          const card = document.createElement("a");
+          card.className = "method-card scc-card";
+          card.href = {{ "methods/" | absURL }} + String(m.name).toLowerCase().replace(/[^a-z0-9]+/g, "-") + "/";
           const hdr = document.createElement("div"); hdr.className = "method-hdr";
           const nm = document.createElement("span"); nm.className = "method-name";
           nm.textContent = m.name;
@@ -41,6 +43,9 @@
           const desc = document.createElement("p"); desc.className = "method-desc";
           desc.textContent = m.description || "";
           card.appendChild(desc);
+          const cue = document.createElement("span"); cue.className = "method-arrow";
+          cue.textContent = "→";
+          card.appendChild(cue);
           grid.appendChild(card);
         });
         root.appendChild(grid);
@@ -62,6 +67,20 @@
   border-radius: 6px;
   padding: 0.62rem 0.78rem;
   box-shadow: var(--scc-shadow);
+  position: relative;
+}
+.method-arrow {
+  position: absolute;
+  right: 0.72rem;
+  bottom: 0.5rem;
+  color: var(--scc-accent-blue);
+  font-weight: 700;
+  opacity: 0.45;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.method-card:hover .method-arrow {
+  opacity: 1;
+  transform: translateX(2px);
 }
 .method-hdr {
   display: flex; justify-content: space-between; align-items: center;
