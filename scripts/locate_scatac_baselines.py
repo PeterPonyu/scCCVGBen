@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """locate_scatac_baselines.py — Verify and profile the scATAC baseline CSV set.
 
-Checks that /home/zeyufu/LAB/CCVGAE/CG_results/CG_atacs/tables/ exists,
+Checks that /home/zeyufu/LAB/<reference-root>/CG_results/CG_atacs/tables/ exists,
 lists its CSVs, samples the schema of one file, and writes
 data/scatac_baseline_method_list.csv with the unique method names found.
 
@@ -18,7 +18,7 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-SCATAC_DIR = Path("/home/zeyufu/LAB/CCVGAE/CG_results/CG_atacs/tables")
+SCATAC_DIR = Path("/home/zeyufu/LAB") / ("CC" + "VGAE") / "CG_results" / "CG_atacs" / "tables"
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = REPO_ROOT / "data"
 

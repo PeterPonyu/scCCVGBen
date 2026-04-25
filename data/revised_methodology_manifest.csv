@@ -35,7 +35,7 @@ bm_GSE120446,GSE120446,scRNA,supplement,../../Downloads/DevelopmentDatasets/bm_G
 hemato,GSE255019,scRNA,supplement,../../Downloads/DevelopmentDatasets/hemato.h5ad,1,Bone marrow; Mouse; Age-progressive platelet differentiation from HSC (Poscablo et al. 2024)
 ifnHSPC_GSE226824,GSE226824,scRNA,supplement,../../Downloads/DevelopmentDatasets/ifnHSPC_GSE226824.h5ad,1,Bone marrow; Mouse; IFNα-treated HSPCs time series (Demerdash et al.)
 setty,PRJEB37166,scRNA,supplement,../../Downloads/DevelopmentDatasets/setty.h5ad,1,Bone marrow; Human; CD34+ hematopoiesis profiling (Setty)
-irall,GSE277292,scRNA,CCVGAE3_IR,../scRL/IRALL.h5ad,1,Bone marrow; Mouse; LSK immunophenotype HSC in Dapp1 knockout mice (Fu et al.)
+irall,GSE277292,scRNA,scCCVGBen3_IR,../scRL/IRALL.h5ad,1,Bone marrow; Mouse; LSK immunophenotype HSC in Dapp1 knockout mice (Fu et al.)
 wtko,GSE278673,scRNA,supplement,scRL/wtko0312.h5ad,1,Bone marrow; Mouse; LSK immunophenotype HSC after irradiation day 2 (Fu et al.)
 GSE167597_spineMm,GSE167597,scRNA,supplement,../../Downloads/GSE167597_spineMm.h5ad,2,Spinal cord; Mouse; Cholinergic neuron diversity spinal cord (Alkaslasi et al.)
 dentate,GSE95753,scRNA,supplement,../../Downloads/dentate.h5ad,2,Brain; Mouse; Dentate gyrus development (Linnarsson)
@@ -54,8 +54,8 @@ GSE130148_LungHmDev,GSE130148,scRNA,supplement,../../Downloads/DevelopmentDatase
 GSE275119_TeethMmDev,GSE275119,scRNA,supplement,../../Downloads/DevelopmentDatasets/GSE275119_TeethMmDev.h5ad,2,Teeth; Mouse; Tooth growth SFRP2hi fibroblasts (Zhao et al.)
 GSE247719_PanSci_05_Muscle_adata,GSE247719,scRNA,supplement,../../Downloads/GSE247719_PanSci_05_Muscle_adata.h5ad,2,Muscle; Human; Panoramic cell dynamics mammalian aging - Muscle (Zhang et al.)
 GSE247719_PanSci_T_cell_adata,GSE247719,scRNA,supplement,../../Downloads/GSE247719_PanSci_T_cell_adata.h5ad,2,Blood; Human; Panoramic cell dynamics mammalian aging - T cell (Zhang et al.)
-CSD_1014,GSE255019,scRNA,CCVGAE1_SD,../../Desktop/CSD/1014.h5ad,1,Sleep deprivation case study; Mouse; not in 170-dataset benchmark
-UCB_timeseries,N/A_UCBfiles,scRNA,CCVGAE2_UCB,../../Desktop/UCBfiles/CT+D4+D7+D11+D14/,1,UCB differentiation timeseries (D0/D4/D7/D11/D14); Human; case study not in benchmark
+CSD_1014,GSE255019,scRNA,scCCVGBen1_SD,../../Desktop/CSD/1014.h5ad,1,Sleep deprivation case study; Mouse; not in 170-dataset benchmark
+UCB_timeseries,N/A_UCBfiles,scRNA,scCCVGBen2_UCB,../../Desktop/UCBfiles/CT+D4+D7+D11+D14/,1,UCB differentiation timeseries (D0/D4/D7/D11/D14); Human; case study not in benchmark
 GSM7884550_D005_13_lobe_atac_filtered_peak_bc_matrix,GSE247157,scATAC,supplement,/home/zeyufu/Desktop/scATAC-25100/GSE247157/GSM7884550_D005_13_lobe_atac_filtered_peak_bc_matrix.h5,1,Retina; Human; Human retina genetic variant regulation (Chen et al.)
 GSM7777061_2DG_filtered_peak_bc_matrix,GSE243004,scATAC,supplement,/home/zeyufu/Desktop/scATAC-25100/GSE243004/GSM7777061_2DG_filtered_peak_bc_matrix.h5,1,Blood; Human; Metabolic adaptation hematopoietic differentiation (Racine & Parmentier)
 GSM7734716_MGH236_filtered_peak_bc_matrix,GSE241745,scATAC,supplement,/home/zeyufu/Desktop/scATAC-25100/GSE241745/GSM7734716_MGH236_filtered_peak_bc_matrix.h5,2,Brain; Human; IDH mutant gliomas chromatin (Wu et al.)

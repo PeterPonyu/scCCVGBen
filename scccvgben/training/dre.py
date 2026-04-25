@@ -1,4 +1,4 @@
-# Ported from /home/zeyufu/LAB/CCVGAE/DRE.py (revised 2026-04-23)
+# Ported from the reference benchmark DRE module (revised 2026-04-23)
 """Dimensionality Reduction Evaluator — Q-metrics and distance correlation.
 
 Public entry point: ``evaluate_dimensionality_reduction(X_high, X_low, k=10)``.
@@ -165,7 +165,7 @@ def evaluate_dimensionality_reduction(
     X_high  : (n, d_high) high-dimensional data.
     X_low   : (n, d_low)  low-dimensional embedding.
     k       : neighbourhood size (not used directly in this implementation
-              but kept for API compatibility with CCVGAE).
+              but kept for API compatibility with scCCVGBen).
     verbose : if True, print a summary to stdout.
 
     Returns

@@ -3,6 +3,10 @@
 // @import "plugins/numbered";
 
 :root {
+  --scc-root-font-compact: 16px;
+  --scc-root-font-normal: 17px;
+  --scc-root-font-large: 19px;
+  --scc-root-font-xlarge: 20.5px;
   --body-background: #f6f8fb;
   --body-font-color: #172033;
   --gray-100: #f3f6fa;
@@ -46,15 +50,19 @@ html[data-theme="dark"] {
 }
 
 html[data-font-scale="compact"] {
-  font-size: 15px;
+  font-size: var(--scc-root-font-compact);
 }
 
 html[data-font-scale="normal"] {
-  font-size: 16px;
+  font-size: var(--scc-root-font-normal);
 }
 
 html[data-font-scale="large"] {
-  font-size: 18.25px;
+  font-size: var(--scc-root-font-large);
+}
+
+html[data-font-scale="xlarge"] {
+  font-size: var(--scc-root-font-xlarge);
 }
 
 body {
@@ -73,11 +81,11 @@ body {
 }
 
 .book-menu {
-  flex-basis: 14rem;
+  flex-basis: 15.25rem;
 }
 
 .book-menu .book-menu-content {
-  width: 14rem;
+  width: 15.25rem;
   border-right: 1px solid var(--scc-border-soft);
   background: color-mix(in srgb, var(--scc-surface) 92%, var(--scc-panel));
 }
@@ -91,7 +99,7 @@ body {
 
 .book-brand a {
   color: var(--scc-text);
-  font-size: 1.1rem;
+  font-size: 1.16rem;
   font-weight: 750;
 }
 
@@ -125,7 +133,8 @@ body {
 
 .markdown {
   color: var(--scc-text);
-  font-size: 0.96rem;
+  font-size: 1.04rem;
+  line-height: 1.68;
 }
 
 .markdown h1,
@@ -136,7 +145,7 @@ body {
 }
 
 .markdown h1 {
-  font-size: 2rem;
+  font-size: 2.24rem;
   font-weight: 760;
   line-height: 1.12;
 }
@@ -151,13 +160,14 @@ body {
 }
 
 .markdown h2 {
-  font-size: 1.35rem;
+  font-size: 1.54rem;
   font-weight: 680;
   line-height: 1.2;
   margin-top: 1.35rem;
 }
 
 .markdown h3 {
+  font-size: 1.2rem;
   font-weight: 680;
 }
 
@@ -207,7 +217,7 @@ body {
 
 .sccvg-controls-title {
   color: var(--scc-text);
-  font-size: 0.78rem;
+  font-size: 0.84rem;
   font-weight: 750;
   margin-bottom: 0.7rem;
   text-transform: uppercase;
@@ -219,7 +229,7 @@ body {
 
 .sccvg-control-label {
   color: var(--scc-muted);
-  font-size: 0.75rem;
+  font-size: 0.81rem;
   margin-bottom: 0.3rem;
 }
 
@@ -238,10 +248,14 @@ body {
   border-radius: 4px;
   color: var(--scc-muted);
   cursor: pointer;
-  font-size: 0.74rem;
+  font-size: 0.8rem;
   font-weight: 700;
   line-height: 1.4;
   padding: 0.24rem 0.22rem;
+}
+
+.sccvg-segment--scale {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .sccvg-segment button.is-active {

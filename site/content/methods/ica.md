@@ -19,7 +19,7 @@ Independent Component Analysis (FastICA) — sklearn.decomposition.FastICA
 ## Role in scCCVGBen
 
 Axis C (baseline comparison): this method produces a latent embedding
-evaluated with the same 26 metrics as CCVGAE. Benchmark naming: `ICA`
+evaluated with the same 26 metrics as scCCVGBen. Benchmark naming: `ICA`
 (row label is the method name itself, with no scCCVGBen prefix).
 
 

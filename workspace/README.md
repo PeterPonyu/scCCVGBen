@@ -27,13 +27,13 @@ workspace/
 │   └── scatac_geo/                 ▶ symmetric staging dir; unused in v0.1
 │                                     (scATAC downloader not implemented).
 │
-├── reused_results/                 — Symlinks into prior CCVGAE run tables
+├── reused_results/                 — Symlinks into external reference run tables
 │   │                                 (these are the 225 reused cells that
-│   │                                 avoid re-running Axis A/C on known cells)
+│   │                                 avoid re-running Axis A/C on reused cells)
 │   ├── scrna_baselines/            ▶ 55 CSVs — scRNA baseline reference;
-│   │                                 source = /home/zeyufu/LAB/CCVGAE/
+│   │                                 source = external reference tree
 │   │                                         CG_results/CG_dl_merged/
-│   ├── axisA_GAT_scrna/            ▶ 55 CSVs — Axis-A GAT row on old scRNA;
+│   ├── axisA_GAT_scrna/            ▶ 55 CSVs — Axis-A GAT row on reused scRNA;
 │   │                                 same source as above, GAT row extracted
 │   │                                 at consumption time by run_encoder_sweep.py
 │   └── scatac_baselines/           ▶ 115 CSVs — scATAC baseline reference;
@@ -73,9 +73,9 @@ workspace/
 |----------|---------------|--------|
 | `data/scrna/`              | 86 + N_geo   | on-host SCRNA_SOURCES (86) + fresh downloads (N_geo) |
 | `data/scatac/`             | 592          | on-host SCATAC_SOURCES |
-| `reused_results/scrna_baselines/`  | 55  | CCVGAE CG_dl_merged |
+| `reused_results/scrna_baselines/`  | 55  | external reference CG_dl_merged |
 | `reused_results/axisA_GAT_scrna/`  | 55  | same source, GAT row |
-| `reused_results/scatac_baselines/` | 115 | CCVGAE CG_atacs/tables |
+| `reused_results/scatac_baselines/` | 115 | external reference CG_atacs/tables |
 
 To reach the paper-grade 100-scRNA target, the GPU session should first run:
 

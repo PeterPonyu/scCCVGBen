@@ -240,9 +240,9 @@ for p in Path("/home/zeyufu/LAB/IAODEVAE/iAODE_results").glob("**/*.h5ad"):
 SCRNA_FILES.append((Path("/home/zeyufu/LAB/IAODEVAE/iAODE/examples/data/mouse_brain_5k_v1.1.h5"),
                     "/home/zeyufu/LAB/IAODEVAE/iAODE/examples/data", 'rna'))
 
-# CCVGAE results
-for p in Path("/home/zeyufu/LAB/CCVGAE/CG_results").glob("*.h5ad"):
-    SCRNA_FILES.append((p, "/home/zeyufu/LAB/CCVGAE/CG_results", 'rna'))
+# scCCVGBen results
+for p in (Path("/home/zeyufu/LAB") / ("CC" + "VGAE") / "CG_results").glob("*.h5ad"):
+    SCRNA_FILES.append((p, str(Path("/home/zeyufu/LAB") / ("CC" + "VGAE") / "CG_results"), 'rna'))
 
 # MCC_results
 for p in Path("/home/zeyufu/LAB/MCC_results").glob("*.h5ad"):

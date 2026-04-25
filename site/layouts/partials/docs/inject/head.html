@@ -3,19 +3,21 @@
   try {
     const root = document.documentElement;
     const params = new URLSearchParams(window.location.search);
+    const configuredDefaultScale = {{ default "large" .Site.Params.SccFontScaleDefault | jsonify | safeJS }};
     const themeParam = params.get("theme");
     const scaleParam = params.get("scale") || params.get("font");
     const themeValues = ["light", "dark", "system"];
-    const scaleValues = ["compact", "normal", "large"];
+    const scaleValues = ["compact", "normal", "large", "xlarge"];
+    const defaultScale = scaleValues.includes(configuredDefaultScale) ? configuredDefaultScale : "large";
     const savedTheme = themeValues.includes(themeParam) ? themeParam : (localStorage.getItem("sccvgben-theme") || "light");
-    const savedScale = scaleValues.includes(scaleParam) ? scaleParam : (localStorage.getItem("sccvgben-font-scale") || "normal");
+    const savedScale = scaleValues.includes(scaleParam) ? scaleParam : (localStorage.getItem("sccvgben-font-scale") || defaultScale);
     const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
     root.dataset.themeMode = savedTheme;
     root.dataset.theme = savedTheme === "system" ? (prefersDark ? "dark" : "light") : savedTheme;
     root.dataset.fontScale = savedScale;
   } catch (err) {
     document.documentElement.dataset.theme = "light";
-    document.documentElement.dataset.fontScale = "normal";
+    document.documentElement.dataset.fontScale = "large";
   }
 })();
 </script>

@@ -12,10 +12,11 @@
 
   <div class="sccvg-control-group">
     <div class="sccvg-control-label">Text scale</div>
-    <div class="sccvg-segment" role="group" aria-label="Text scale">
+    <div class="sccvg-segment sccvg-segment--scale" role="group" aria-label="Text scale">
       <button type="button" data-sccvg-scale="compact">S</button>
       <button type="button" data-sccvg-scale="normal">M</button>
       <button type="button" data-sccvg-scale="large">L</button>
+      <button type="button" data-sccvg-scale="xlarge">XL</button>
     </div>
   </div>
 </section>
@@ -24,6 +25,9 @@
 (function() {
   const root = document.documentElement;
   const media = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+  const configuredDefaultScale = {{ default "large" .Site.Params.SccFontScaleDefault | jsonify | safeJS }};
+  const allowedScales = ["compact", "normal", "large", "xlarge"];
+  const defaultScale = allowedScales.includes(configuredDefaultScale) ? configuredDefaultScale : "large";
 
   function resolvedTheme(mode) {
     if (mode === "system") {
@@ -54,7 +58,8 @@
   }
 
   function applyScale(scale, persist) {
-    const value = scale || localStorage.getItem("sccvgben-font-scale") || "normal";
+    const requested = scale || localStorage.getItem("sccvgben-font-scale") || defaultScale;
+    const value = allowedScales.includes(requested) ? requested : defaultScale;
     root.dataset.fontScale = value;
     setPressed("[data-sccvg-scale]", "data-sccvg-scale", value);
     if (persist) {
@@ -78,6 +83,6 @@
   }
 
   applyTheme(root.dataset.themeMode || localStorage.getItem("sccvgben-theme") || "light", false);
-  applyScale(root.dataset.fontScale || localStorage.getItem("sccvgben-font-scale") || "normal", false);
+  applyScale(root.dataset.fontScale || localStorage.getItem("sccvgben-font-scale") || defaultScale, false);
 })();
 </script>

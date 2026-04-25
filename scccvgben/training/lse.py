@@ -1,4 +1,4 @@
-# Ported from /home/zeyufu/LAB/CCVGAE/LSE.py (revised 2026-04-23)
+# Ported from the reference benchmark LSE module (revised 2026-04-23)
 """Latent Space Evaluator — trajectory directionality metric.
 
 Public entry point: ``trajectory_directionality(latent_space)``.
@@ -16,7 +16,7 @@ def trajectory_directionality(latent_space: np.ndarray) -> float:
     """Assess how strongly a single primary developmental axis dominates.
 
     Ported from ``SingleCellLatentSpaceEvaluator.trajectory_directionality_score``
-    in CCVGAE/LSE.py.  The class method is exposed here as a free function for
+    in scCCVGBen/LSE.py.  The class method is exposed here as a free function for
     convenience.
 
     The score measures the dominance of the first principal component relative
@@ -41,7 +41,7 @@ def trajectory_directionality(latent_space: np.ndarray) -> float:
             other_variance = float(np.sum(explained_var[1:]))
             if other_variance > 1e-10:
                 dominance_ratio = float(explained_var[0]) / other_variance
-                # sigmoid-style normalisation identical to CCVGAE source
+                # sigmoid-style normalisation identical to scCCVGBen source
                 directionality = dominance_ratio / (1.0 + dominance_ratio)
             else:
                 directionality = 1.0

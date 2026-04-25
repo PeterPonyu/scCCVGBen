@@ -1,236 +1,154 @@
 """Generate fig_axisA_encoder_ranking.{pdf,png} from results/encoder_sweep/*.csv.
 
-Two panels:
-  Panel 1: encoder mean-rank heatmap (12 encoders × 4 primary metrics),
-           attention-family rows highlighted with a coloured band.
-  Panel 2: bar chart of attention vs message-passing family mean rank
-           with Wilcoxon p-value overlay (loaded from results/stats/axisA_attention_vs_mp.csv).
+Box + strip overlay across 14 graph encoders, with Wilcoxon Holm-corrected
+significance brackets vs the scCCVGBen_GAT reference. Attention-family
+encoders are placed left of message-passing encoders for visual grouping.
+
+Output filename uses the .PRELIMINARY. infix when n_datasets < target.
 """
 
 from __future__ import annotations
 
 import argparse
 import logging
+import sys
 from pathlib import Path
 
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-import numpy as np
 import pandas as pd
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from scccvgben.figures import (  # noqa: E402
+    METRIC_LABELS,
+    NUMERIC_METRICS,
+    add_method_display,
+    apply_publication_rcparams,
+    available_numeric_metrics,
+    create_publication_figure,
+    filter_to_manifest,
+    preliminary_path,
+    short_method_name,
+)
+from scccvgben.figures._long_form import melt_sweep  # noqa: E402
 
 log = logging.getLogger(__name__)
 
-PRIMARY_METRICS = ["ARI", "NMI", "ASW", "distance_correlation_umap"]
-C_ATTENTION     = "#E8C4A4"   # warm sand for attention-family band
-C_MP            = "#C4D4E8"   # cool blue for MP-family band
-C_HEAT_LOW      = "#FFFFFF"
-C_HEAT_HIGH     = "#D35400"
-
-plt.rcParams.update({
-    "pdf.fonttype":    42,
-    "ps.fonttype":     42,
-    "font.family":     "Liberation Sans",
-    "savefig.bbox":    "tight",
-    "savefig.dpi":     300,
-    "axes.spines.top":   False,
-    "axes.spines.right": False,
-    "font.size":         9,
-    "axes.titlesize":    10,
-})
-
-ATTENTION_ENCODERS = {"GAT", "GATv2", "TransformerConv", "SuperGAT"}
+PRIMARY_METRICS = NUMERIC_METRICS
+ATTENTION_FAMILY = ("GAT", "GATv2", "Transformer", "SuperGAT")
+REFERENCE_METHOD = "scCCVGBen_GAT"
+DEFAULT_TARGET = 100
 
 
-def _load_encoder_results(sweep_dir: Path) -> pd.DataFrame:
-    """Load all encoder_sweep CSVs and return a long DataFrame."""
-    frames = []
-    for csv_f in sweep_dir.glob("*.csv"):
-        df = pd.read_csv(csv_f)
-        df["dataset_key"] = csv_f.stem
-        frames.append(df)
-    if not frames:
-        raise FileNotFoundError(f"No CSVs found in {sweep_dir}")
-    combined = pd.concat(frames, ignore_index=True)
-    # Normalise encoder column name
-    enc_col = next((c for c in combined.columns if c.lower() in ("encoder", "method")), None)
-    if enc_col and enc_col != "encoder":
-        combined = combined.rename(columns={enc_col: "encoder"})
-    return combined
+def _normalise_encoder(name: str) -> str:
+    return name.replace("scCCVGBen_", "")
 
 
-def _compute_mean_ranks(df: pd.DataFrame) -> pd.DataFrame:
-    """For each metric, rank encoders per dataset, then average across datasets."""
-    records = []
-    for dataset_key, grp in df.groupby("dataset_key"):
-        for metric in PRIMARY_METRICS:
-            if metric not in grp.columns:
-                continue
-            ranked = grp[["encoder", metric]].copy().dropna(subset=[metric])
-            ranked["rank"] = ranked[metric].rank(ascending=False, method="average")
-            for _, row in ranked.iterrows():
-                records.append({
-                    "encoder":     row["encoder"],
-                    "metric":      metric,
-                    "rank":        row["rank"],
-                    "dataset_key": dataset_key,
-                })
-    rank_df = pd.DataFrame(records)
-    mean_ranks = rank_df.groupby(["encoder", "metric"])["rank"].mean().reset_index()
-    mean_ranks.columns = ["encoder", "metric", "mean_rank"]
-    return mean_ranks
+def _attach_modality(long_df: pd.DataFrame, manifest: Path) -> pd.DataFrame:
+    if not manifest.exists():
+        return long_df
+    m = pd.read_csv(manifest, usecols=["filename_key", "modality"])
+    lookup = dict(zip(m["filename_key"], m["modality"]))
+    long_df = long_df.copy()
+    long_df["modality"] = long_df["dataset_id"].map(lookup).fillna(long_df["modality"])
+    return long_df
 
 
-def _panel_heatmap(ax: plt.Axes, mean_ranks: pd.DataFrame) -> None:
-    """Panel 1: encoder mean-rank heatmap with family colour bands."""
-    pivot = mean_ranks.pivot(index="encoder", columns="metric", values="mean_rank")
-    # Ensure consistent column order
-    cols = [m for m in PRIMARY_METRICS if m in pivot.columns]
-    pivot = pivot[cols]
-
-    # Sort encoders: attention first (sorted by mean rank), then MP
-    def _sort_key(enc: str) -> tuple:
-        family = 0 if enc in ATTENTION_ENCODERS else 1
-        return (family, pivot.loc[enc].mean() if enc in pivot.index else 999)
-
-    ordered = sorted(pivot.index.tolist(), key=_sort_key)
-    pivot = pivot.reindex(ordered)
-
-    data = pivot.values.astype(float)
-    im = ax.imshow(data, aspect="auto", cmap="YlOrRd", vmin=1,
-                   vmax=max(data.max(), len(ordered)))
-
-    # Column / row labels
-    ax.set_xticks(range(len(cols)))
-    ax.set_xticklabels(cols, rotation=30, ha="right", fontsize=8)
-    ax.set_yticks(range(len(ordered)))
-    ax.set_yticklabels(ordered, fontsize=8)
-
-    # Cell annotations
-    for i in range(len(ordered)):
-        for j in range(len(cols)):
-            v = data[i, j]
-            if not np.isnan(v):
-                ax.text(j, i, f"{v:.1f}", ha="center", va="center",
-                        fontsize=6.5, color="white" if v > data.max() * 0.65 else "black")
-
-    # Highlight attention-family rows with a left-side band
-    for i, enc in enumerate(ordered):
-        colour = C_ATTENTION if enc in ATTENTION_ENCODERS else C_MP
-        rect = mpatches.FancyBboxPatch(
-            (-0.45, i - 0.45), 0.3, 0.9,
-            boxstyle="square,pad=0",
-            facecolor=colour, edgecolor="none", transform=ax.transData, clip_on=False,
-        )
-        ax.add_patch(rect)
-
-    # Legend patches
-    attn_patch = mpatches.Patch(color=C_ATTENTION, label="Attention family")
-    mp_patch   = mpatches.Patch(color=C_MP,        label="Message-passing")
-    ax.legend(handles=[attn_patch, mp_patch], loc="upper right", frameon=False,
-              fontsize=7, bbox_to_anchor=(1.0, -0.15))
-
-    plt.colorbar(im, ax=ax, shrink=0.6, label="Mean rank (lower = better)")
-    ax.set_title("A  Encoder mean rank (12 encoders × 4 metrics)")
+def _method_order(present_methods: list[str]) -> list[str]:
+    short = {m: _normalise_encoder(m) for m in present_methods}
+    attention = [m for m, s in short.items() if s in ATTENTION_FAMILY]
+    other = [m for m in present_methods if m not in attention]
+    attention.sort(key=lambda m: ATTENTION_FAMILY.index(short[m]))
+    other.sort()
+    return attention + other
 
 
-def _panel_family_bars(ax: plt.Axes, df: pd.DataFrame, stats_path: Path | None) -> None:
-    """Panel 2: attention vs MP mean rank + Wilcoxon p overlay."""
-    # Compute family mean ranks across all metrics
-    for metric in PRIMARY_METRICS:
-        if metric not in df.columns:
-            continue
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--sweep-dir", type=Path,
+                        default=REPO_ROOT / "results" / "encoder_sweep")
+    parser.add_argument("--manifest", type=Path,
+                        default=REPO_ROOT / "data" / "benchmark_manifest.csv")
+    parser.add_argument("--out-dir", type=Path, default=REPO_ROOT / "figures")
+    parser.add_argument("--target-n", type=int, default=DEFAULT_TARGET)
+    parser.add_argument("--partial-ok", action="store_true",
+                        help="Render even when fewer than target-n datasets exist.")
+    parser.add_argument("--reference", default=REFERENCE_METHOD)
+    args = parser.parse_args(argv)
 
-    # Build a per-dataset per-family summary
-    has_family = "family" in df.columns
-    if not has_family:
-        df = df.copy()
-        df["family"] = df["encoder"].apply(
-            lambda e: "attention" if e in ATTENTION_ENCODERS else "message-passing"
-        )
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
+    apply_publication_rcparams()
 
-    # Mean rank per encoder across datasets, then average within family
-    rank_df = _compute_mean_ranks(df)
-    rank_df["family"] = rank_df["encoder"].apply(
-        lambda e: "attention" if e in ATTENTION_ENCODERS else "message-passing"
+    if not args.sweep_dir.is_dir():
+        log.error("sweep dir missing: %s", args.sweep_dir)
+        return 1
+
+    long_df = melt_sweep(args.sweep_dir, modality="scrna",
+                         metrics=PRIMARY_METRICS)
+    if long_df.empty:
+        log.error("no rows from %s", args.sweep_dir)
+        return 1
+    long_df = filter_to_manifest(long_df, args.manifest, modality="scrna")
+    long_df = _attach_modality(long_df, args.manifest)
+    long_df = add_method_display(long_df)
+
+    methods = sorted(long_df["method"].dropna().unique().tolist())
+    if not methods:
+        log.error("no methods in long_df")
+        return 1
+    methods = _method_order(methods)
+    n_datasets = long_df["dataset_id"].nunique()
+
+    log.info("encoders: %d, datasets: %d (target %d)",
+             len(methods), n_datasets, args.target_n)
+
+    if n_datasets < args.target_n and not args.partial_ok:
+        log.error("only %d/%d datasets — pass --partial-ok to render anyway",
+                  n_datasets, args.target_n)
+        return 1
+
+    metrics = available_numeric_metrics(long_df, PRIMARY_METRICS)
+    reference = short_method_name(args.reference) if args.reference in methods else None
+    method_order = [short_method_name(m) for m in methods]
+    fig, _ = create_publication_figure(
+        long_df,
+        metrics=metrics,
+        group_col="method_display",
+        reference_method=reference,
+        method_order=method_order,
+        ncols=4,
+        figsize=(18, 24),
+        strip_size=1.4,
+        strip_alpha=0.42,
+        metric_labels=METRIC_LABELS,
     )
-    family_metric = rank_df.groupby(["family", "metric"])["mean_rank"].mean().reset_index()
+    if n_datasets < args.target_n:
+        fig.suptitle(
+            f"Axis A — encoder ranking across {len(metrics)} numeric metrics "
+            f"(PRELIMINARY: {n_datasets}/{args.target_n} datasets)",
+            fontsize=14, y=1.0,
+        )
+    else:
+        fig.suptitle(
+            f"Axis A — encoder ranking across {len(metrics)} numeric metrics",
+            fontsize=14, y=1.0,
+        )
+    fig.subplots_adjust(top=0.965)
 
-    metrics_present = [m for m in PRIMARY_METRICS if m in family_metric["metric"].values]
-    x = np.arange(len(metrics_present))
-    width = 0.3
+    args.out_dir.mkdir(parents=True, exist_ok=True)
+    stem = "fig_axisA_encoder_ranking"
+    pdf_name = preliminary_path(stem, n_datasets, args.target_n, suffix=".pdf").name
+    png_name = preliminary_path(stem, n_datasets, args.target_n, suffix=".png").name
+    pdf_path = args.out_dir / pdf_name
+    png_path = args.out_dir / png_name
 
-    for i, fam in enumerate(["attention", "message-passing"]):
-        color = "#D35400" if fam == "attention" else "#2471A3"
-        vals = [family_metric.loc[
-                    (family_metric["family"] == fam) & (family_metric["metric"] == m),
-                    "mean_rank"].mean()
-                for m in metrics_present]
-        ax.bar(x + (i - 0.5) * width, vals, width, label=fam.capitalize(),
-               color=color, alpha=0.85)
-
-    # Overlay p-values if stats file exists
-    if stats_path and stats_path.exists():
-        stats = pd.read_csv(stats_path)
-        for j, metric in enumerate(metrics_present):
-            row = stats[stats["metric"] == metric] if "metric" in stats.columns else pd.DataFrame()
-            if row.empty:
-                continue
-            p = row.iloc[0].get("p_value", None) or row.iloc[0].get("p_holm", None)
-            if p is None:
-                continue
-            stars = "***" if p < 0.001 else ("**" if p < 0.01 else ("*" if p < 0.05 else "ns"))
-            y_top = max(
-                family_metric.loc[family_metric["metric"] == metric, "mean_rank"].max(), 0
-            ) + 0.3
-            ax.text(x[j], y_top, stars, ha="center", va="bottom", fontsize=9,
-                    color="#333")
-
-    ax.set_xticks(x)
-    ax.set_xticklabels(metrics_present, rotation=20, ha="right")
-    ax.set_ylabel("Mean rank (lower = better)")
-    ax.legend(frameon=False, fontsize=8)
-    ax.set_title("B  Attention vs message-passing family (mean rank)")
-    ax.invert_yaxis()
-
-
-def make_axisA_figure(sweep_dir: Path, stats_path: Path | None, out_dir: Path) -> None:
-    """Build and save the Axis A encoder-ranking figure."""
-    df = _load_encoder_results(sweep_dir)
-    log.info("Loaded %d rows from %s", len(df), sweep_dir)
-
-    mean_ranks = _compute_mean_ranks(df)
-
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 7))
-    fig.suptitle("scCCVGBen Axis A — Encoder Ranking", fontsize=12,
-                 fontweight="bold")
-
-    _panel_heatmap(ax1, mean_ranks)
-    _panel_family_bars(ax2, df, stats_path)
-
-    plt.tight_layout()
-    out_dir.mkdir(parents=True, exist_ok=True)
-    for ext in ("pdf", "png"):
-        out_path = out_dir / f"fig_axisA_encoder_ranking.{ext}"
-        fig.savefig(out_path, dpi=300, bbox_inches="tight")
-        log.info("Saved %s", out_path)
-    plt.close(fig)
-
-
-def _parse_args() -> argparse.Namespace:
-    repo = Path(__file__).parent.parent
-    p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--sweep-dir", type=Path,
-                   default=repo / "results" / "encoder_sweep")
-    p.add_argument("--stats-csv", type=Path,
-                   default=repo / "results" / "stats" / "axisA_attention_vs_mp.csv")
-    p.add_argument("--out-dir", type=Path, default=repo / "figures")
-    return p.parse_args()
+    fig.savefig(pdf_path)
+    fig.savefig(png_path)
+    log.info("wrote %s", pdf_path)
+    log.info("wrote %s", png_path)
+    return 0
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
-    args = _parse_args()
-    stats = args.stats_csv if args.stats_csv.exists() else None
-    make_axisA_figure(args.sweep_dir, stats, args.out_dir)
+    raise SystemExit(main())

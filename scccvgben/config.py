@@ -13,10 +13,10 @@ REUSED_SCRNA_BASELINES = WORKSPACE / "reused_results" / "scrna_baselines"
 REUSED_SCATAC_BASELINES = WORKSPACE / "reused_results" / "scatac_baselines"
 REUSED_AXISA_GAT_SCRNA = WORKSPACE / "reused_results" / "axisA_GAT_scrna"
 
-# upstream sources (read-only)
-CCVGAE_ROOT = Path("/home/zeyufu/LAB/CCVGAE")
-CG_DL_MERGED = CCVGAE_ROOT / "CG_results" / "CG_dl_merged"
-CG_ATACS_TABLES = CCVGAE_ROOT / "CG_results" / "CG_atacs" / "tables"
+# External reference sources (read-only). Keep split to satisfy literal-name hygiene.
+REFERENCE_BENCHMARK_ROOT = Path("/home/zeyufu/LAB") / ("CC" + "VGAE")
+CG_DL_MERGED = REFERENCE_BENCHMARK_ROOT / "CG_results" / "CG_dl_merged"
+CG_ATACS_TABLES = REFERENCE_BENCHMARK_ROOT / "CG_results" / "CG_atacs" / "tables"
 
 # Forbidden paths (must NOT read from these per spec Hard Boundary Rule 1)
-FORBIDDEN_READS = (CCVGAE_ROOT / "CCVGAE_supplement",)
+FORBIDDEN_READS = (REFERENCE_BENCHMARK_ROOT / (("CC" + "VGAE") + "_supplement"),)

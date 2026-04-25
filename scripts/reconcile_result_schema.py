@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""reconcile_result_schema.py — Produce CCVGAE-format per-dataset result CSVs.
+"""reconcile_result_schema.py — Produce scCCVGBen-format per-dataset result CSVs.
 
-The downstream integration target is the CCVGAE reused-results layout:
+The downstream integration target is the scCCVGBen reused-results layout:
 
   CG_dl_merged/{Category}_{GSE}_{desc}_df.csv      — 27 cols, methods as rows
                                                       header: method, ASW, ..., NMI, ARI
-                                                      rows:   PCA, KPCA, ..., CCVGAE
+                                                      rows:   PCA, KPCA, ..., scCCVGBen
 
   CG_atacs/tables/ATA_{GSE}_{desc}_df.csv          — 27 cols, methods as rows
                                                       header: "", NMI, ARI, ASW, ..., interpretation_intrin
-                                                      rows:   LSI, PeakVI, PoissonVI, CCVGAE
+                                                      rows:   LSI, PeakVI, PoissonVI, scCCVGBen
                                                       (method name is the pandas index, no 'method' column)
 
 This script aggregates all axis outputs + reused CSVs and emits one canonical
@@ -17,8 +17,8 @@ per-dataset file in this exact format. File per file, drop-in compatible with
 the reused CSVs for concat / figure generation.
 
 Inputs (default):
-    results/encoder_sweep/*.csv            (Axis A new rows; method = "CCVGAE_{encoder}")
-    results/graph_sweep/*.csv              (Axis B new rows; method = "CCVGAE_GAT_{graph}")
+    results/encoder_sweep/*.csv            (Axis A new rows; method = "scCCVGBen_{encoder}")
+    results/graph_sweep/*.csv              (Axis B new rows; method = "scCCVGBen_GAT_{graph}")
     results/baselines/{scrna,scatac}_*.csv (Axis C new rows; method = baseline name)
     workspace/reused_results/scrna_baselines/*.csv   (reused scRNA)
     workspace/reused_results/axisA_GAT_scrna/*.csv   (same, GAT row consumed here)
@@ -109,7 +109,7 @@ def _classify(path: Path) -> tuple[str, str]:
 
 
 def _strip_wrapper_prefixes(stem: str) -> str:
-    """Normalise filename stem to CCVGAE-style key.
+    """Normalise filename stem to scCCVGBen-style key.
 
     Removes wrappers that the new runners add:
       scrna_{key}     -> {key}
@@ -126,7 +126,7 @@ def _strip_wrapper_prefixes(stem: str) -> str:
 
 
 def _infer_category(key: str, description: str) -> str:
-    """Derive CCVGAE-style category prefix for new scRNA datasets.
+    """Derive scCCVGBen-style category prefix for new scRNA datasets.
 
     Matches the patterns already in CG_dl_merged filenames:
       Can_  — cancer; Dev_  — development; sup_  — supplement; etc.
@@ -141,7 +141,7 @@ def _infer_category(key: str, description: str) -> str:
     return "Gen"  # generic
 
 
-def _lookup_ccvgae_filename(
+def _lookup_scccvgben_filename(
     dataset_key: str,
     modality: str,
     manifest: pd.DataFrame | None,
@@ -268,7 +268,7 @@ def main() -> None:
                     continue
                 axis, modality = _classify(csv)
                 dataset_key = _strip_wrapper_prefixes(csv.stem)
-                canonical_name = _lookup_ccvgae_filename(
+                canonical_name = _lookup_scccvgben_filename(
                     dataset_key, modality, manifest,
                     reuse_scrna_names, reuse_scatac_names,
                 )

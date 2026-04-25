@@ -21,7 +21,7 @@ Fixes applied during deep verification:
 
 ## Revised methodology target (from T1 manifest)
 
-Per `/home/zeyufu/LAB/CCVGAE/` revised notebooks (2026-04-23) and `.omc/specs/`:
+Per `/home/zeyufu/LAB/scCCVGBen/` revised notebooks (2026-04-23) and `.omc/specs/`:
 
 | Modality | Target | Source of truth |
 |----------|--------|-----------------|

@@ -1,4 +1,4 @@
-"""Decoder modules for CCVGAE."""
+"""Decoder modules for scCCVGBen."""
 
 from __future__ import annotations
 

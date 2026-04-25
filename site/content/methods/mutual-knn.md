@@ -18,7 +18,7 @@ Mutual k-NN — only edges where both cells are in each other's k-NN list; stric
 
 ## Role in scCCVGBen
 
-Axis B (graph-construction sweep): CCVGAE encoder is fixed to GAT while
+Axis B (graph-construction sweep): scCCVGBen encoder is fixed to GAT while
 this graph builder constructs the cell-cell neighbourhood fed to the
 encoder. Benchmark naming: `scCCVGBen_GAT_mutual_knn`.
 

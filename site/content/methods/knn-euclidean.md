@@ -14,11 +14,11 @@ geekdocHidden: false
 
 ## Description
 
-Standard k-NN with Euclidean distance (k=15) — CCVGAE benchmark default
+Standard k-NN with Euclidean distance (k=15) — scCCVGBen benchmark default
 
 ## Role in scCCVGBen
 
-Axis B (graph-construction sweep): CCVGAE encoder is fixed to GAT while
+Axis B (graph-construction sweep): scCCVGBen encoder is fixed to GAT while
 this graph builder constructs the cell-cell neighbourhood fed to the
 encoder. Benchmark naming: `scCCVGBen_GAT_kNN_euclidean`.
 

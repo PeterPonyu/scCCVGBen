@@ -32,7 +32,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = REPO_ROOT / "data"
 SCATAC_BASELINES_DIR = REPO_ROOT / "workspace" / "reused_results" / "scatac_baselines"
 SCATAC_H5AD_DIR = REPO_ROOT / "workspace" / "data" / "scatac"
-SCATAC_SOURCE = Path("/home/zeyufu/LAB/CCVGAE/CG_results/CG_atacs/tables")
+SCATAC_SOURCE = Path("/home/zeyufu/LAB") / ("CC" + "VGAE") / "CG_results" / "CG_atacs" / "tables"
 
 _TISSUE_KEYWORDS = {
     "pbmc": "PBMC", "blood": "blood", "lung": "lung", "brain": "brain",

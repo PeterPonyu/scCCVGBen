@@ -1,6 +1,6 @@
-"""scCCVGBen Axis B: CCVGAE × 5 graph constructions.
+"""scCCVGBen Axis B: scCCVGBen × 5 graph constructions.
 
-scCCVGBen-original extension — NOT in upstream CCVGAE. Compares how graph
+Project-specific benchmark axis. Compares how graph
 construction (the backbone for encoder message passing) affects latent
 quality when encoder is held fixed to GAT.
 
@@ -31,16 +31,16 @@ import scipy.sparse as sp
 import anndata as ad
 import torch
 
-from scccvgben.external.ccvgae_core.cgvae import CGVAE_agent
+from scccvgben.external.reference_core.cgvae import CGVAE_agent
 from scccvgben.training.metrics import compute_metrics
-from scccvgben.training.ccvgae_runner import (
-    CCVGAE_DEFAULTS,
-    preprocess_scrna_ccvgae,
+from scccvgben.training.scccvgben_runner import (
+    SCCCVGBEN_DEFAULTS,
+    preprocess_scrna_scccvgben,
     _get_labels,
 )
 
 
-# Method naming for Axis B: CCVGAE_GAT_{graph} — so rows distinguish from Axis A
+# Method naming for Axis B: scCCVGBen_GAT_{graph} — so rows distinguish from Axis A
 GRAPH_METHODS = [
     "kNN_euclidean",         # shared with Axis A (optional skip)
     "kNN_cosine",
@@ -102,7 +102,7 @@ class _NoOpNeighbors:
         return False
 
 
-def run_ccvgae_graph_one(
+def run_scccvgben_graph_one(
     h5ad_path: str | Path,
     graph_method: str = "kNN_euclidean",
     method_name: str | None = None,
@@ -111,13 +111,13 @@ def run_ccvgae_graph_one(
     silent: bool = True,
     **overrides: Any,
 ) -> dict[str, Any]:
-    """Run CCVGAE with encoder=GAT fixed + custom graph construction."""
-    cfg = {**CCVGAE_DEFAULTS, **overrides}
+    """Run scCCVGBen with encoder=GAT fixed + custom graph construction."""
+    cfg = {**SCCCVGBEN_DEFAULTS, **overrides}
     cfg["graph_type"] = "GAT"  # fixed for Axis B
 
     adata = ad.read_h5ad(str(h5ad_path))
     labels = _get_labels(adata)
-    adata = preprocess_scrna_ccvgae(
+    adata = preprocess_scrna_scccvgben(
         adata,
         subsample_cells=cfg.pop("subsample_cells", 3000),
         n_top_genes=cfg.pop("n_top_genes", 2000),
@@ -131,7 +131,7 @@ def run_ccvgae_graph_one(
     cfg.pop("encoder_type", None)
 
     if graph_method == "kNN_euclidean":
-        # Use CCVGAE's default scanpy path (same as Axis A). No injection.
+        # Use scCCVGBen's default scanpy path (same as Axis A). No injection.
         agent = CGVAE_agent(
             adata=adata, layer="counts", **cfg, device=device,
         ).fit(epochs=epochs, silent=silent)

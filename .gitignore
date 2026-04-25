@@ -17,8 +17,18 @@ workspace/
 # Computational experiment outputs (kept local, not published)
 results/
 
-# Local figure inputs. Commit the final figures, not the source screenshots.
+# Local figure inputs and generated manuscript figure outputs.
+# Figures are rendered locally for review; publication binaries are not uploaded
+# by the code-only figure-pipeline PR.
 figures/site_shots/
+figures/_status.csv
+figures/manuscript_figures.*
+figures/fig*.png
+figures/fig*.pdf
+figures/fig*.jpg
+figures/fig_axis*.png
+figures/fig_axis*.pdf
+site/static/images/fig*.png
 
 # Site build artifacts
 site/public/

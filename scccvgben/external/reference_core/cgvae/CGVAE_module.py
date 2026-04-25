@@ -4,7 +4,7 @@ import torch.nn.functional as F
 from torch_geometric.nn import (
     GCNConv, ChebConv, SAGEConv, GraphConv, TAGConv, ARMAConv, GATConv,
     TransformerConv, SGConv, SSGConv,
-    # scCCVGBen extension (not in upstream CCVGAE revised):
+    # Project extension relative to the reference benchmark:
     GATv2Conv, SuperGATConv, GINConv, EdgeConv,
 )
 from torch.distributions import Normal
@@ -16,12 +16,12 @@ class BaseGraphNetwork(nn.Module):
     """
     Base class for graph neural networks with various convolution types.
 
-    scCCVGBen extension: 4 additional encoder variants appended (GATv2,
-    SuperGAT, GIN, EdgeConv) for the Axis A 12-encoder sweep. These are
-    NOT present in upstream CCVGAE revised; see benchmark design notes.
+    Project extension: 4 additional encoder variants appended (GATv2,
+    SuperGAT, GIN, EdgeConv) for the Axis A encoder sweep. These extend
+    the reference benchmark surface; see benchmark design notes.
     """
     CONV_LAYERS: Dict[str, Type[nn.Module]] = {
-        # Upstream CCVGAE revised (10 types)
+        # Reference benchmark core encoder set (10 types)
         'GCN': GCNConv,
         'Cheb': ChebConv,
         'SAGE': SAGEConv,
@@ -32,7 +32,7 @@ class BaseGraphNetwork(nn.Module):
         'Transformer': TransformerConv,
         'SG': SGConv,
         'SSG': SSGConv,
-        # scCCVGBen extension (4 additional attention/message-passing variants)
+        # Project extension (4 additional attention/message-passing variants)
         'GATv2': GATv2Conv,
         'SuperGAT': SuperGATConv,
         'GIN': GINConv,

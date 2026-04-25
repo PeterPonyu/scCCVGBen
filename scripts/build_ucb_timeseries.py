@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """build_ucb_timeseries.py — Concatenate UCB 10x_mtx timecourse into a single h5ad.
 
-The revised CCVGAE2_UCB notebook reads 5 separate 10x_mtx directories (CT / D4 /
-D7 / D11 / D14) and concatenates them into an AnnData for downstream CCVGAE
+The revised scCCVGBen2_UCB notebook reads 5 separate 10x_mtx directories (CT / D4 /
+D7 / D11 / D14) and concatenates them into an AnnData for downstream scCCVGBen
 training. This script reproduces that step so STAGE 2 can consume a single
 `ucb_timeseries.h5ad` file instead of re-running the combine logic per run.
 

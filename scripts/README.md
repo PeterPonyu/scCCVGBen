@@ -7,7 +7,7 @@ For the full execution sequence see `LAUNCH_BENCHMARK.md`.
 
 | Script | Purpose |
 |---|---|
-| `setup_symlinks.sh` | Idempotent: symlinks 55 scRNA baseline CSVs + 115 scATAC baseline CSVs from the CCVGAE CG_results tree into `workspace/reused_results/`. Run once after clone. |
+| `setup_symlinks.sh` | Idempotent: symlinks 55 scRNA baseline CSVs + 115 scATAC baseline CSVs from the external reference `CG_results` tree into `workspace/reused_results/`. Run once after clone. |
 | `locate_scatac_baselines.py` | Verifies `CG_atacs/tables/` exists, lists CSVs, samples schema, writes `data/scatac_baseline_method_list.csv`. |
 | `profile_existing_scrna.py` | Reads the 55 existing scRNA filenames, infers tissue/organism/category, writes `data/existing_scrna_diversity.csv` (used by `fetch_geo_scrna.py` to find gaps). |
 | `fetch_geo_scrna.py` | **Skeleton** — CLI for downloading 45 new scRNA h5ad files from GEO/ENA. Real download logic is a TODO; dry-run mode prints candidate list. |
@@ -33,6 +33,6 @@ For the full execution sequence see `LAUNCH_BENCHMARK.md`.
 
 | Script | Purpose |
 |---|---|
-| `run_encoder_sweep.py` | Axis A: 12 encoders × kNN-Euc(k=15) × 200 datasets. Skips GAT on 55 old scRNA (reused). `--smoke` for quick test. |
+| `run_encoder_sweep.py` | Axis A: 14 encoders × kNN-Euc(k=15) × 200 datasets. Skips GAT on 55 reused scRNA datasets. `--smoke` for quick test. |
 | `run_graph_sweep.py` | Axis B: GAT × 5 graph constructions × 200 datasets. Skips kNN-Euc (shared with Axis A). `--smoke` flag. |
-| `run_baseline_backfill.py` | Axis C: 13 baselines × 45 NEW scRNA only. Old scRNA baselines come from symlinks. `--smoke` flag. |
+| `run_baseline_backfill.py` | Axis C: 13 baselines × 45 new scRNA only. Reused scRNA baselines come from symlinks. `--smoke` flag. |

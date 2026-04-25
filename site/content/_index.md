@@ -3,10 +3,10 @@ title: "scCCVGBen"
 type: docs
 ---
 
-# scCCVGBen — Single-cell CCVGAE Benchmark
+# scCCVGBen — Single-cell scCCVGBen Benchmark
 
 **scCCVGBen** is a curated benchmark suite of **200 single-cell omics datasets**
-(100 scRNA-seq + 100 scATAC-seq) designed to evaluate the CCVGAE family of
+(100 scRNA-seq + 100 scATAC-seq) designed to evaluate the scCCVGBen family of
 methods along three axes: **14 graph encoder variants**, **5 graph construction
 choices**, and **13 dimensionality-reduction baselines**.
 
@@ -25,6 +25,17 @@ statistical analysis, please refer to the accompanying paper.
 ## Benchmark composition
 
 {{< home-composition >}}
+
+---
+
+## Model architecture
+
+Figure 2 summarizes the model-first path through scCCVGBen: input preprocessing,
+five graph-construction choices, the 14-encoder registry, variational latent
+flow, dual reconstruction outputs, and the grouped 26-metric evaluation table.
+The publication image is rendered locally by
+`scripts/make_figure2_model_architecture.py`; generated figure binaries are not
+checked into the code-only figure-pipeline branch.
 
 ---
 

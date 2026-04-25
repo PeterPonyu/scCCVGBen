@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """run_graph_sweep.py — Axis B: GAT × 5 graph constructions × all datasets.
 
-scCCVGBen-original extension — explores how graph construction (backbone of
-message-passing) affects latent quality when encoder is fixed to GAT. Extends
-CCVGAE revised benchmark's single-graph setup (kNN_euclidean) to 5 methods.
+Project-specific graph-axis sweep: explores how graph construction (backbone of
+message-passing) affects latent quality when encoder is fixed to GAT. The
+default kNN-euclidean graph is expanded to 5 graph-construction choices.
 
 Graph methods (all use scccvgben.graphs.construction, k=15):
   1. kNN_euclidean       (shared with Axis A GAT cell — SKIPPED by default)
@@ -14,7 +14,7 @@ Graph methods (all use scccvgben.graphs.construction, k=15):
 
 Outputs:
   One CSV per dataset at results/graph_sweep/{dataset_key}.csv, 27-col schema,
-  rows = 4 graph methods with method = CCVGAE_GAT_{graph}.
+  rows = 4 graph methods with method = scCCVGBen_GAT_{graph}.
 
 Usage:
   python scripts/run_graph_sweep.py                      # 4 graphs × N datasets
@@ -43,8 +43,8 @@ from scccvgben.training.metrics import METRIC_COLS
 
 
 def _run_one(h5ad_path: Path, graph_method: str, epochs: int, k: int) -> dict:
-    from scccvgben.training.ccvgae_graph_sweep import run_ccvgae_graph_one
-    return run_ccvgae_graph_one(
+    from scccvgben.training.graph_sweep import run_scccvgben_graph_one
+    return run_scccvgben_graph_one(
         h5ad_path=h5ad_path,
         graph_method=graph_method,
         method_name=f"scCCVGBen_GAT_{graph_method}",
@@ -62,7 +62,7 @@ def main() -> None:
                         help="'all' (4 non-shared graphs) or comma-separated names.")
     parser.add_argument("--out", default="results/graph_sweep/")
     parser.add_argument("--epochs", type=int, default=100,
-                        help="Training epochs (CCVGAE supplement default=100).")
+                        help="Training epochs (reference benchmark default=100).")
     parser.add_argument("--k", type=int, default=15, help="k for kNN-based graphs.")
     parser.add_argument("--smoke", action="store_true")
     parser.add_argument("--shard", default="0/1",

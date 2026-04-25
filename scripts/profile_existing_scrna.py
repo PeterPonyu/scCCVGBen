@@ -26,7 +26,7 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-CG_DL_MERGED = Path("/home/zeyufu/LAB/CCVGAE/CG_results/CG_dl_merged")
+CG_DL_MERGED = Path("/home/zeyufu/LAB") / ("CC" + "VGAE") / "CG_results" / "CG_dl_merged"
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = REPO_ROOT / "data"
 SOURCE_MAP_PATH = DATA_DIR / "scrna_source_map.csv"

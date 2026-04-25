@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """run_baseline_backfill.py — Axis C: baseline backfill for the 45 NEW scRNA datasets.
 
-Only runs on NEW scRNA (not the 55 old scRNA whose baselines are already in
+Only runs on new scRNA (not the 55 reused scRNA datasets whose baselines are already in
 workspace/reused_results/scrna_baselines/). For each new dataset and each
 baseline method, calls scccvgben.baselines.run_baseline() and writes a CSV.
 
@@ -48,12 +48,12 @@ METRIC_COLUMNS = [
 
 ALL_BASELINES = [
     "PCA", "KPCA", "ICA", "FA", "NMF", "TSVD", "DICL",
-    "scVI", "DIP", "INFO", "TC", "highBeta", "CCVGAE",
+    "scVI", "DIP", "INFO", "TC", "highBeta", "scCCVGBen",
 ]
 
 
 def _old_scrna_keys() -> set[str]:
-    """Return the stems of old scRNA datasets (have reused baseline CSVs)."""
+    """Return the stems of reused scRNA datasets (have baseline CSVs)."""
     if not REUSED_SCRNA_DIR.exists():
         return set()
     return {p.stem for p in REUSED_SCRNA_DIR.glob("*.csv")}

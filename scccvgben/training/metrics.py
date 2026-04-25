@@ -1,11 +1,8 @@
 """Compute the 27-column benchmark metrics matching CG_dl_merged/ schema.
 
-This module is a THIN WRAPPER over CCVGAE's vendored compute_metrics logic.
-Source-of-truth reference:
-  /home/zeyufu/LAB/CCVGAE/CCVGAE_supplement/run_hyperparam_sensitivity.py:236
-
-Any change here must be backported to CCVGAE to keep benchmark rows
-bit-compatible with the reused CG_dl_merged CSVs.
+This module is a thin wrapper over the vendored reference benchmark
+``compute_metrics`` logic. Keep benchmark rows bit-compatible with the reused
+CG_dl_merged CSVs.
 """
 from __future__ import annotations
 
@@ -22,9 +19,9 @@ from sklearn.metrics import (
 )
 from sklearn.cluster import KMeans
 
-# Vendored CCVGAE core evaluators (bit-for-bit copy of upstream)
-from scccvgben.external.ccvgae_core.dre import evaluate_dimensionality_reduction
-from scccvgben.external.ccvgae_core.lse import evaluate_single_cell_latent_space
+# Vendored reference core evaluators (bit-for-bit copy)
+from scccvgben.external.reference_core.dre import evaluate_dimensionality_reduction
+from scccvgben.external.reference_core.lse import evaluate_single_cell_latent_space
 
 # Canonical 27-column schema (method + 26 metrics). Matches CG_dl_merged
 # exactly so a new row can be pd.concat'ed onto a reused CSV.
@@ -46,10 +43,10 @@ METRIC_COLS = [
 METRIC_COLUMNS = METRIC_COLS
 
 
-def _ccvgae_compute_metrics(latent: np.ndarray,
+def _reference_compute_metrics(latent: np.ndarray,
                             labels: np.ndarray | None,
                             data_type: str = "trajectory") -> dict:
-    """Verbatim port of CCVGAE_supplement.run_hyperparam_sensitivity.compute_metrics.
+    """Verbatim port of the reference benchmark compute_metrics routine.
 
     Returns a flat dict keyed by the exact column names used in CG_dl_merged
     (method column is injected by the wrapper).
@@ -87,7 +84,7 @@ def _ccvgae_compute_metrics(latent: np.ndarray,
         except Exception:
             results["CAL"] = np.nan
 
-    # DRE UMAP + tSNE via scanpy (same path as CCVGAE supplement) --------------
+    # DRE UMAP + tSNE via scanpy (same path as the reference routine) --------
     try:
         import anndata as ad
         adata_tmp = ad.AnnData(X=latent.astype(np.float32))
@@ -122,7 +119,7 @@ def _ccvgae_compute_metrics(latent: np.ndarray,
                   "core_quality", "overall_quality", "data_type", "interpretation"):
             results[f"{k}_intrin"] = np.nan
 
-    # COR (Spearman on pairwise distances Z vs X_orig) — CCVGAE doesn't include
+    # COR (Spearman on pairwise distances Z vs X_orig) — scCCVGBen doesn't include
     # this in hyperparam_sensitivity but CG_dl_merged has a 'COR' column. Leave
     # as NaN here; callers that need it should populate externally before write.
     results.setdefault("COR", np.nan)
@@ -132,7 +129,7 @@ def _ccvgae_compute_metrics(latent: np.ndarray,
 def compute_metrics(Z: np.ndarray,
                     X_orig: np.ndarray | None = None,
                     labels: np.ndarray | None = None,
-                    method_name: str = "CCVGAE",
+                    method_name: str = "scCCVGBen",
                     data_type: str = "trajectory") -> pd.DataFrame:
     """Wrapper: return a 1-row DataFrame with METRIC_COLS column order.
 
@@ -147,7 +144,7 @@ def compute_metrics(Z: np.ndarray,
     data_type  : 'trajectory' (default) or 'steady_state' for LSE scoring
     """
     Z = np.asarray(Z, dtype=np.float32)
-    results = _ccvgae_compute_metrics(Z, labels, data_type=data_type)
+    results = _reference_compute_metrics(Z, labels, data_type=data_type)
     results["method"] = method_name
 
     # Optional COR via spearman on pairwise distances

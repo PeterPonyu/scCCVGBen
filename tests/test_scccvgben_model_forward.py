@@ -1,11 +1,11 @@
-"""Test CCVGAE forward pass: shapes, no NaN, backward pass."""
+"""Test scCCVGBen forward pass: shapes, no NaN, backward pass."""
 
 from __future__ import annotations
 
 import numpy as np
 import torch
 
-from scccvgben.models import CCVGAE
+from scccvgben.models import ScCCVGBenModel
 from scccvgben.graphs import build_knn_euclidean
 
 N_CELLS = 100
@@ -23,9 +23,9 @@ def _build_synthetic_graph():
     return x, edge_index, edge_weight
 
 
-def test_ccvgae_forward_shapes():
+def test_scccvgben_model_forward_shapes():
     """Forward returns a 7-tuple with correct shapes."""
-    model = CCVGAE(
+    model = ScCCVGBenModel(
         in_dim=N_FEATS,
         hidden=HIDDEN,
         latent_dim=LATENT_DIM,
@@ -55,9 +55,9 @@ def test_ccvgae_forward_shapes():
         assert not torch.isnan(t).any(), f"{name} contains NaN"
 
 
-def test_ccvgae_backward():
+def test_scccvgben_backward():
     """Loss computation and backward pass should not raise."""
-    model = CCVGAE(
+    model = ScCCVGBenModel(
         in_dim=N_FEATS,
         hidden=HIDDEN,
         latent_dim=LATENT_DIM,

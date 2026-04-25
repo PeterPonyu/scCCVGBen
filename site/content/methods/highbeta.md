@@ -19,7 +19,7 @@ Hyper-parameterised VAE with high β (β=100)
 ## Role in scCCVGBen
 
 Axis C (baseline comparison): this method produces a latent embedding
-evaluated with the same 26 metrics as CCVGAE. Benchmark naming: `highBeta`
+evaluated with the same 26 metrics as scCCVGBen. Benchmark naming: `highBeta`
 (row label is the method name itself, with no scCCVGBen prefix).
 
 
