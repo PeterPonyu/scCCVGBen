@@ -26,6 +26,7 @@ from scccvgben.data.result_csv_normalizer import load_reused_csv  # noqa: E402
 from scccvgben.figures import apply_publication_rcparams, dataset_key_from_result_stem  # noqa: E402
 from scccvgben.figures.metrics import (  # noqa: E402
     LOWER_IS_BETTER,
+    METRIC_FAMILY_ROWS,
     METRIC_LABELS,
     NUMERIC_METRICS,
     short_method_name,
@@ -101,18 +102,54 @@ def _render_case(row: pd.Series, fig_id: str, out_dir: Path) -> Path:
 
     vmax = float(np.nanpercentile(np.abs(delta.to_numpy(dtype=float)), 95))
     vmax = max(vmax, 1e-6)
-    fig, ax = plt.subplots(figsize=(15.5, 5.8), dpi=300)
-    im = ax.imshow(delta.to_numpy(dtype=float), cmap="coolwarm", vmin=-vmax, vmax=vmax, aspect="auto")
+    fig, ax = plt.subplots(figsize=(17.5, 6.2), dpi=300)
+    cmap = plt.get_cmap("coolwarm").copy()
+    cmap.set_bad("#F8FAFC")
+    values = np.ma.masked_invalid(delta.to_numpy(dtype=float))
+    im = ax.imshow(values, cmap=cmap, vmin=-vmax, vmax=vmax, aspect="auto")
     ax.set_yticks(np.arange(len(display_index)))
-    ax.set_yticklabels(display_index, fontsize=9)
+    ax.set_yticklabels(display_index, fontsize=10)
     ax.set_xticks(np.arange(len(labels)))
-    ax.set_xticklabels(labels, rotation=45, ha="right", fontsize=8)
+    ax.set_xticklabels(labels, rotation=45, ha="right", fontsize=9)
+    ax.set_xticks(np.arange(-0.5, len(labels), 1), minor=True)
+    ax.set_yticks(np.arange(-0.5, len(display_index), 1), minor=True)
+    ax.grid(which="minor", color="white", linewidth=0.7)
+    ax.tick_params(which="minor", bottom=False, left=False)
+
+    metric_to_family = {
+        metric: family for family, family_metrics in METRIC_FAMILY_ROWS for metric in family_metrics
+    }
+    family_runs: list[tuple[str, int, int]] = []
+    start = 0
+    current = metric_to_family.get(str(delta.columns[0]), "metrics")
+    for idx, metric in enumerate(delta.columns[1:], start=1):
+        family = metric_to_family.get(str(metric), "metrics")
+        if family == current:
+            continue
+        family_runs.append((current, start, idx - 1))
+        ax.axvline(idx - 0.5, color="#334155", linewidth=0.9, alpha=0.55)
+        start = idx
+        current = family
+    family_runs.append((current, start, len(delta.columns) - 1))
+    for family, first, last in family_runs:
+        ax.text(
+            (first + last) / 2,
+            1.035,
+            family,
+            transform=ax.get_xaxis_transform(),
+            ha="center",
+            va="bottom",
+            fontsize=10.5,
+            fontweight="bold",
+            color="#334155",
+        )
+
     ax.set_title(
-        f"{fig_id} — {row['modality']} case metric deltas vs scCCVGBen reference\n"
+        f"{fig_id} — {row['modality']} case-study deltas across BEN / DRE / LSE metrics\n"
         f"{row['dataset_id']} · tissue={row['tissue']} · cells={int(row['cell_count']):,}",
         loc="left",
-        fontsize=13,
-        pad=10,
+        fontsize=14,
+        pad=22,
     )
     ax.set_xlabel("Numeric benchmark metrics")
     ax.set_ylabel("Method")

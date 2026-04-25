@@ -17,13 +17,15 @@ from pathlib import Path
 import matplotlib
 import numpy as np
 import pandas as pd
-import pytest
 
 from scccvgben.figures import (
+    METRIC_FAMILY_ROWS,
+    METRIC_FAMILY_TITLES,
     NUMERIC_METRICS,
     apply_publication_rcparams,
-    dataset_key_from_result_stem,
+    create_metric_family_figure,
     create_publication_figure,
+    dataset_key_from_result_stem,
     preliminary_path,
     select_significance_pairs,
 )
@@ -91,6 +93,28 @@ def test_create_publication_figure_with_significance_brackets():
             and len(ln.get_xdata()) == 4
         ]
         assert len(bracket_lines) <= 3
+
+
+def test_create_metric_family_figure_renders_group_rails():
+    df = _synthetic_long_df()
+    metric_rows = tuple(
+        (family, tuple(metric for metric in metrics if metric in {"ARI", "NMI"}))
+        for family, metrics in METRIC_FAMILY_ROWS
+        if any(metric in {"ARI", "NMI"} for metric in metrics)
+    )
+    fig, axes = create_metric_family_figure(
+        df,
+        metric_families=metric_rows,
+        reference_method="scCCVGBen_GAT",
+        family_titles=METRIC_FAMILY_TITLES,
+        title="Grouped metric smoke",
+        subtitle="synthetic",
+    )
+    assert len(axes) == 2
+    all_text = list(fig.texts)
+    for ax in fig.axes:
+        all_text.extend(ax.texts)
+    assert any(text.get_text() == "BEN" for text in all_text)
 
 
 def test_no_REA_imports_in_figures_package():

@@ -2,6 +2,7 @@
 
 Public surface:
 - create_publication_figure: DataFrame-native multi-panel renderer.
+- create_metric_family_figure: BEN/DRE/LSE grouped metric-family renderer.
 - apply_publication_rcparams: idempotent rcParams + seaborn palette reset.
 - melt_reconciled: reconciled per-dataset CSV directory -> long DataFrame.
 - preliminary_path: filename grammar (figXX_<scope>.PRELIMINARY.pdf).
@@ -15,6 +16,8 @@ from ._naming import preliminary_path
 from ._significance import select_significance_pairs
 from .metrics import (
     METRIC_LABELS,
+    METRIC_FAMILY_ROWS,
+    METRIC_FAMILY_TITLES,
     NON_NUMERIC_METRICS,
     NUMERIC_METRIC_FAMILIES,
     NUMERIC_METRICS,
@@ -22,16 +25,19 @@ from .metrics import (
     available_numeric_metrics,
     short_method_name,
 )
-from .style import apply_publication_rcparams, create_publication_figure
+from .style import apply_publication_rcparams, create_metric_family_figure, create_publication_figure
 
 __all__ = [
     "METRIC_LABELS",
+    "METRIC_FAMILY_ROWS",
+    "METRIC_FAMILY_TITLES",
     "NON_NUMERIC_METRICS",
     "NUMERIC_METRIC_FAMILIES",
     "NUMERIC_METRICS",
     "add_method_display",
     "apply_publication_rcparams",
     "available_numeric_metrics",
+    "create_metric_family_figure",
     "create_publication_figure",
     "dataset_key_from_result_stem",
     "filter_to_manifest",

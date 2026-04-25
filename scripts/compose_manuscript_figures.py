@@ -41,11 +41,12 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     logging.basicConfig(level=logging.INFO, format="%(message)s")
-    out_dir = args.out_dir
+    out_dir = args.out_dir.resolve()
     if not out_dir.is_dir():
         log.error("out-dir missing: %s", out_dir)
         return 1
-    manuscript = args.manuscript or (out_dir / "manuscript_figures.pdf")
+    manuscript = (args.manuscript.resolve() if args.manuscript else
+                  (out_dir / "manuscript_figures.pdf"))
     manifest_path = out_dir / "manuscript_figures.manifest.json"
 
     pages: list[Image.Image] = []

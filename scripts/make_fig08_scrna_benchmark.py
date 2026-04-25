@@ -17,12 +17,14 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from scccvgben.figures import (  # noqa: E402
+    METRIC_FAMILY_ROWS,
+    METRIC_FAMILY_TITLES,
     METRIC_LABELS,
     NUMERIC_METRICS,
     add_method_display,
     apply_publication_rcparams,
     available_numeric_metrics,
-    create_publication_figure,
+    create_metric_family_figure,
     filter_to_manifest,
     melt_reconciled,
     preliminary_path,
@@ -89,30 +91,26 @@ def main(argv: list[str] | None = None) -> int:
         reference_raw = next((m for m in REFERENCE_METHODS if m in methods_present), None)
     reference = short_method_name(reference_raw) if reference_raw else None
     method_order = [short_method_name(m) for m in methods_present]
-    fig, _ = create_publication_figure(
+    title = "scRNA benchmark — BEN / DRE / LSE family-level comparison"
+    subtitle = (
+        f"{len(methods_present)} methods · {len(metrics)}/{len(PRIMARY_METRICS)} "
+        f"numeric metrics · {n_datasets}/{args.target_n} scRNA datasets"
+    )
+    if n_datasets < args.target_n:
+        subtitle += " · PRELIMINARY"
+    fig, _ = create_metric_family_figure(
         long_df,
-        metrics=metrics,
+        metric_families=METRIC_FAMILY_ROWS,
         group_col="method_display",
         reference_method=reference,
         method_order=method_order,
-        ncols=4,
-        figsize=(19, 24),
-        strip_size=1.4,
-        strip_alpha=0.42,
+        family_titles=METRIC_FAMILY_TITLES,
+        title=title,
+        subtitle=subtitle,
         metric_labels=METRIC_LABELS,
+        per_col_width=2.95,
+        per_row_height=3.35,
     )
-    if n_datasets < args.target_n:
-        fig.suptitle(
-            f"Fig 08 — scRNA benchmark across {len(metrics)} numeric metrics "
-            f"(PRELIMINARY: {n_datasets}/{args.target_n} datasets)",
-            fontsize=14, y=1.0,
-        )
-    else:
-        fig.suptitle(
-            f"Fig 08 — scRNA benchmark across {len(metrics)} numeric metrics",
-            fontsize=14, y=1.0,
-        )
-    fig.subplots_adjust(top=0.965)
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
     stem = "fig08_scrna_benchmark"

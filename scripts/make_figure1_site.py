@@ -349,7 +349,7 @@ def _build_canvas(shots_dir: Path) -> Image.Image:
     return canvas
 
 
-def _parse_args() -> argparse.Namespace:
+def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--shots-dir",
@@ -363,11 +363,22 @@ def _parse_args() -> argparse.Namespace:
         default=DEFAULT_OUT_DIR,
         help="Directory for rendered PNG/PDF outputs (default: figures).",
     )
-    return parser.parse_args()
+    parser.add_argument(
+        "--partial-ok",
+        action="store_true",
+        help="Accepted for orchestrator parity; this static composition is all-or-fail.",
+    )
+    parser.add_argument(
+        "--target-n",
+        type=int,
+        default=0,
+        help="Accepted for orchestrator parity; not used by this static composition.",
+    )
+    return parser.parse_args(argv)
 
 
-def main() -> None:
-    args = _parse_args()
+def main(argv: list[str] | None = None) -> int:
+    args = _parse_args(argv)
     out_dir = args.out_dir
     out_dir.mkdir(parents=True, exist_ok=True)
     out_png = out_dir / "fig1_scCCVGBen_site.png"
@@ -379,7 +390,8 @@ def main() -> None:
     canvas.save(out_pdf, "PDF", resolution=DPI)
     print(f"wrote {out_png}  ({width} × {height}, W/H={width/height:.3f}, target > {MIN_ASPECT_W_OVER_H:.3f})")
     print(f"wrote {out_pdf}")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

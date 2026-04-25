@@ -7,6 +7,8 @@ All functions return:
 
 from __future__ import annotations
 
+from collections.abc import Callable
+
 import numpy as np
 import torch
 from sklearn.neighbors import kneighbors_graph
@@ -173,7 +175,9 @@ def build_gaussian_threshold(
 
 # ── dispatcher ────────────────────────────────────────────────────────────────
 
-_BUILDERS = {
+GraphBuilder = Callable[..., tuple[torch.Tensor, torch.Tensor]]
+
+_BUILDERS: dict[str, GraphBuilder] = {
     "kNN_euclidean": build_knn_euclidean,
     "knn_euclidean": build_knn_euclidean,
     "kNN_cosine": build_knn_cosine,
