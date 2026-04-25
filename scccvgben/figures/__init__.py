@@ -3,6 +3,7 @@
 Public surface:
 - create_publication_figure: DataFrame-native multi-panel renderer.
 - create_metric_family_figure: BEN/DRE/LSE grouped metric-family renderer.
+- create_metric_grid_figure: fixed 4×6, 24-metric publication renderer.
 - apply_publication_rcparams: idempotent rcParams + seaborn palette reset.
 - melt_reconciled: reconciled per-dataset CSV directory -> long DataFrame.
 - preliminary_path: filename grammar (figXX_<scope>.PRELIMINARY.pdf).
@@ -18,19 +19,30 @@ from .metrics import (
     METRIC_LABELS,
     METRIC_FAMILY_ROWS,
     METRIC_FAMILY_TITLES,
+    METRIC_PANEL_GRID,
+    METRIC_TO_FAMILY,
     NON_NUMERIC_METRICS,
     NUMERIC_METRIC_FAMILIES,
     NUMERIC_METRICS,
     add_method_display,
     available_numeric_metrics,
+    metric_coverage_audit,
     short_method_name,
+    write_metric_audit,
 )
-from .style import apply_publication_rcparams, create_metric_family_figure, create_publication_figure
+from .style import (
+    apply_publication_rcparams,
+    create_metric_family_figure,
+    create_metric_grid_figure,
+    create_publication_figure,
+)
 
 __all__ = [
     "METRIC_LABELS",
     "METRIC_FAMILY_ROWS",
     "METRIC_FAMILY_TITLES",
+    "METRIC_PANEL_GRID",
+    "METRIC_TO_FAMILY",
     "NON_NUMERIC_METRICS",
     "NUMERIC_METRIC_FAMILIES",
     "NUMERIC_METRICS",
@@ -38,6 +50,7 @@ __all__ = [
     "apply_publication_rcparams",
     "available_numeric_metrics",
     "create_metric_family_figure",
+    "create_metric_grid_figure",
     "create_publication_figure",
     "dataset_key_from_result_stem",
     "filter_to_manifest",
@@ -45,4 +58,6 @@ __all__ = [
     "preliminary_path",
     "select_significance_pairs",
     "short_method_name",
+    "metric_coverage_audit",
+    "write_metric_audit",
 ]

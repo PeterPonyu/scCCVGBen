@@ -21,17 +21,19 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from scccvgben.figures import (  # noqa: E402
-    METRIC_FAMILY_ROWS,
     METRIC_FAMILY_TITLES,
     METRIC_LABELS,
+    METRIC_PANEL_GRID,
     NUMERIC_METRICS,
     add_method_display,
     apply_publication_rcparams,
     available_numeric_metrics,
-    create_metric_family_figure,
+    create_metric_grid_figure,
     filter_to_manifest,
+    metric_coverage_audit,
     preliminary_path,
     short_method_name,
+    write_metric_audit,
 )
 from scccvgben.figures._long_form import melt_sweep  # noqa: E402
 
@@ -123,16 +125,26 @@ def main(argv: list[str] | None = None) -> int:
     metrics = available_numeric_metrics(long_df, PRIMARY_METRICS)
     reference = short_method_name(args.reference) if args.reference in methods_present else None
     method_order = [short_method_name(m) for m in methods_present]
-    title = "Axis B — graph-construction robustness across BEN / DRE / LSE"
+    audit = metric_coverage_audit(
+        long_df,
+        PRIMARY_METRICS,
+        figure_id="axisB",
+        group_col="method_display",
+        expected_datasets=args.target_n,
+        expected_methods=len(method_order),
+    )
+    write_metric_audit(args.out_dir / "_metric_audit.csv", audit, figure_id="axisB")
+
+    title = "Axis B — graph-construction robustness across the complete 24-metric grid"
     subtitle = (
         f"{len(methods_present)} graph rules · {len(metrics)}/{len(PRIMARY_METRICS)} "
-        f"numeric metrics · {n_datasets}/{args.target_n} scRNA datasets"
+        f"metrics with data · {n_datasets}/{args.target_n} scRNA datasets"
     )
     if n_datasets < args.target_n:
         subtitle += " · PRELIMINARY"
-    fig, _ = create_metric_family_figure(
+    fig, _ = create_metric_grid_figure(
         long_df,
-        metric_families=METRIC_FAMILY_ROWS,
+        metric_grid=METRIC_PANEL_GRID,
         group_col="method_display",
         reference_method=reference,
         method_order=method_order,

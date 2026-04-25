@@ -33,9 +33,10 @@ import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 import seaborn as sns  # noqa: E402
-from matplotlib.patches import FancyBboxPatch  # noqa: E402
+from matplotlib.patches import FancyBboxPatch, Patch, Rectangle  # noqa: E402
 
 from ._significance import select_significance_pairs
+from .metrics import METRIC_PANEL_GRID, METRIC_TO_FAMILY
 
 PUBLICATION_RCPARAMS: dict = {
     "pdf.fonttype": 42,
@@ -450,6 +451,301 @@ def create_metric_family_figure(
                 va="top",
                 fontsize=11.5,
                 color="#475569",
+            )
+
+    return fig, axes
+
+
+def _family_header(ax: plt.Axes, family: str, color: str) -> None:
+    ax.add_patch(
+        Rectangle(
+            (0.0, 1.015),
+            1.0,
+            0.070,
+            transform=ax.transAxes,
+            facecolor=color,
+            edgecolor="none",
+            clip_on=False,
+            zorder=8,
+        )
+    )
+    ax.text(
+        0.018,
+        1.050,
+        family,
+        transform=ax.transAxes,
+        ha="left",
+        va="center",
+        fontsize=7.8,
+        fontweight="bold",
+        color="white",
+        zorder=9,
+    )
+
+
+def _draw_missing_metric_panel(
+    ax: plt.Axes,
+    *,
+    label: str,
+    family: str,
+    color: str,
+) -> None:
+    ax.set_facecolor("#F8FAFC")
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_xlabel("")
+    ax.set_ylabel("")
+    ax.set_title(label, fontsize=10.6, fontweight="bold", pad=18)
+    for spine in ax.spines.values():
+        spine.set_visible(True)
+        spine.set_color("#CBD5E1")
+        spine.set_linewidth(0.85)
+    _family_header(ax, family, color)
+    ax.text(
+        0.50,
+        0.55,
+        "missing",
+        transform=ax.transAxes,
+        ha="center",
+        va="center",
+        fontsize=13.0,
+        fontweight="bold",
+        color=color,
+    )
+    ax.text(
+        0.50,
+        0.36,
+        "not yet available\nin current result table",
+        transform=ax.transAxes,
+        ha="center",
+        va="center",
+        fontsize=8.9,
+        color="#64748B",
+        linespacing=1.15,
+    )
+
+
+def create_metric_grid_figure(
+    long_df: pd.DataFrame,
+    *,
+    metric_grid: Sequence[Sequence[str]] = METRIC_PANEL_GRID,
+    group_col: str = "method",
+    reference_method: str | None = None,
+    method_order: Sequence[str] | None = None,
+    metric_to_family: Mapping[str, str] | None = None,
+    family_titles: Mapping[str, str] | None = None,
+    family_colors: Mapping[str, str] | None = None,
+    title: str | None = None,
+    subtitle: str | None = None,
+    dpi: int = 300,
+    palette: str = "Spectral",
+    pair_col: str = "dataset_id",
+    show_significance: bool = True,
+    metric_labels: Mapping[str, str] | None = None,
+    per_col_width: float = 2.74,
+    per_row_height: float = 3.10,
+) -> tuple[plt.Figure, list[plt.Axes]]:
+    """Render the 24 numeric metrics as a fixed 4×6 publication grid.
+
+    The metric families remain visible via coloured panel headers and a compact
+    legend, but row/column geometry is governed by the publication layout
+    contract.  Metrics with no numeric rows are still rendered as explicit
+    missing panels so incomplete runs cannot silently drop expected outputs.
+    """
+    rows = tuple(tuple(row) for row in metric_grid)
+    if not rows or any(not row for row in rows):
+        raise ValueError("metric_grid must contain non-empty rows")
+    nrows = len(rows)
+    ncols = max(len(row) for row in rows)
+    if any(len(row) != ncols for row in rows):
+        raise ValueError("metric_grid rows must be rectangular")
+
+    if method_order is None:
+        method_order = long_df[group_col].dropna().unique().tolist()
+    method_order = list(method_order)
+    if not method_order:
+        raise ValueError("method_order must be non-empty")
+
+    metric_to_family = metric_to_family or METRIC_TO_FAMILY
+    family_titles = family_titles or {}
+    default_colors = {
+        "BEN": "#1f5f9f",
+        "DRE-UMAP": "#6C3483",
+        "DRE-tSNE": "#7A4EAB",
+        "LSE": "#138D75",
+    }
+    family_colors = {**default_colors, **(family_colors or {})}
+
+    fig_w = 1.05 + ncols * per_col_width
+    fig_h = 1.18 + nrows * per_row_height
+    rcparams = {**PUBLICATION_RCPARAMS, "savefig.dpi": dpi, "figure.dpi": dpi}
+
+    with plt.rc_context(rcparams):
+        sns.set_palette(palette)
+        fig, axes_grid = plt.subplots(
+            nrows,
+            ncols,
+            figsize=(fig_w, fig_h),
+            dpi=dpi,
+            squeeze=False,
+        )
+        fig.subplots_adjust(
+            left=0.040,
+            right=0.992,
+            bottom=0.064,
+            top=0.865 if title else 0.940,
+            hspace=0.66,
+            wspace=0.32,
+        )
+
+        axes: list[plt.Axes] = []
+        panel_idx = 0
+        used_families: list[str] = []
+        for row_idx, row in enumerate(rows):
+            for col_idx, metric in enumerate(row):
+                ax = axes_grid[row_idx, col_idx]
+                family = metric_to_family.get(metric, "metrics")
+                if family not in used_families:
+                    used_families.append(family)
+                color = family_colors.get(family, "#475569")
+                label = metric_labels.get(metric, metric) if metric_labels else metric
+                sub = _metric_values(long_df, metric, group_col, method_order)
+
+                if sub.empty:
+                    _draw_missing_metric_panel(
+                        ax,
+                        label=label,
+                        family=family,
+                        color=color,
+                    )
+                    ax.text(
+                        -0.085,
+                        1.105,
+                        chr(ord("A") + panel_idx),
+                        transform=ax.transAxes,
+                        fontsize=14.0,
+                        fontweight="bold",
+                        color=color,
+                        va="bottom",
+                        ha="right",
+                    )
+                    axes.append(ax)
+                    panel_idx += 1
+                    continue
+
+                sns.boxplot(
+                    data=sub,
+                    x=group_col,
+                    y="value",
+                    order=method_order,
+                    hue=group_col,
+                    hue_order=method_order,
+                    legend=False,
+                    ax=ax,
+                    showfliers=False,
+                    width=0.58,
+                    linewidth=0.9,
+                    boxprops={"alpha": 0.68},
+                    palette=palette,
+                )
+                sns.stripplot(
+                    data=sub,
+                    x=group_col,
+                    y="value",
+                    order=method_order,
+                    ax=ax,
+                    size=1.6,
+                    alpha=0.44,
+                    color="black",
+                    jitter=0.18,
+                )
+
+                _family_header(ax, family, color)
+                ax.set_title(label, fontsize=10.6, fontweight="bold", pad=18)
+                ax.set_xlabel("")
+                ax.set_ylabel("")
+                ax.tick_params(axis="x", rotation=52, labelsize=7.5, pad=0.8)
+                ax.tick_params(axis="y", labelsize=8.1)
+                for tick in ax.get_xticklabels():
+                    tick.set_horizontalalignment("right")
+                    tick.set_rotation_mode("anchor")
+                ax.grid(axis="y", color="#E2E8F0", linewidth=0.55, alpha=0.82)
+                ax.text(
+                    -0.085,
+                    1.105,
+                    chr(ord("A") + panel_idx),
+                    transform=ax.transAxes,
+                    fontsize=14.0,
+                    fontweight="bold",
+                    color=color,
+                    va="bottom",
+                    ha="right",
+                )
+
+                if show_significance and reference_method is not None:
+                    pairs = select_significance_pairs(
+                        long_df,
+                        metric=metric,
+                        reference_method=reference_method,
+                        group_col=group_col,
+                        pair_col=pair_col,
+                        top_k=2,
+                    )
+                    if pairs:
+                        _draw_significance_brackets(
+                            ax,
+                            pairs,
+                            method_order,
+                            float(sub["value"].max()),
+                        )
+
+                axes.append(ax)
+                panel_idx += 1
+
+        if title:
+            fig.text(
+                0.040,
+                0.972,
+                title,
+                ha="left",
+                va="top",
+                fontsize=19,
+                fontweight="bold",
+                color="#172033",
+            )
+        if subtitle:
+            fig.text(
+                0.040,
+                0.936,
+                subtitle,
+                ha="left",
+                va="top",
+                fontsize=11.3,
+                color="#475569",
+            )
+
+        legend_handles = [
+            Patch(
+                facecolor=family_colors.get(family, "#475569"),
+                edgecolor="none",
+                label=(
+                    f"{family}: {family_titles[family].replace(chr(10), ' ')}"
+                    if family in family_titles
+                    else family
+                ),
+            )
+            for family in used_families
+        ]
+        if legend_handles:
+            fig.legend(
+                handles=legend_handles,
+                loc="upper right",
+                bbox_to_anchor=(0.992, 0.957),
+                ncol=min(4, len(legend_handles)),
+                frameon=False,
+                fontsize=8.8,
+                handlelength=1.15,
+                columnspacing=1.05,
             )
 
     return fig, axes

@@ -21,11 +21,14 @@ import pandas as pd
 from scccvgben.figures import (
     METRIC_FAMILY_ROWS,
     METRIC_FAMILY_TITLES,
+    METRIC_PANEL_GRID,
     NUMERIC_METRICS,
     apply_publication_rcparams,
     create_metric_family_figure,
+    create_metric_grid_figure,
     create_publication_figure,
     dataset_key_from_result_stem,
+    metric_coverage_audit,
     preliminary_path,
     select_significance_pairs,
 )
@@ -115,6 +118,41 @@ def test_create_metric_family_figure_renders_group_rails():
     for ax in fig.axes:
         all_text.extend(ax.texts)
     assert any(text.get_text() == "BEN" for text in all_text)
+
+
+def test_create_metric_grid_figure_keeps_24_panels_with_missing_badge():
+    df = _synthetic_long_df()
+    fig, axes = create_metric_grid_figure(
+        df,
+        metric_grid=METRIC_PANEL_GRID,
+        reference_method=None,
+        method_order=["scCCVGBen_GAT", "GCN", "PCA", "scVI"],
+        family_titles=METRIC_FAMILY_TITLES,
+        title="4x6 metric smoke",
+        subtitle="synthetic",
+    )
+    assert len(axes) == 24
+    assert len(fig.axes) == 24
+    all_text = [text.get_text() for ax in fig.axes for text in ax.texts]
+    assert "missing" in all_text
+    assert any(text == "BEN" for text in all_text)
+    assert any(text == "DRE-UMAP" for text in all_text)
+    assert any(text == "LSE" for text in all_text)
+
+
+def test_metric_coverage_audit_reports_missing_expected_metric():
+    df = _synthetic_long_df()
+    audit = metric_coverage_audit(
+        df,
+        ["ARI", "NMI", "COR"],
+        figure_id="smoke",
+        expected_datasets=12,
+        expected_methods=4,
+    )
+    status = dict(zip(audit["metric"], audit["status"]))
+    assert status["ARI"] == "complete"
+    assert status["NMI"] == "complete"
+    assert status["COR"] == "missing"
 
 
 def test_no_REA_imports_in_figures_package():

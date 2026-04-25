@@ -17,18 +17,20 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from scccvgben.figures import (  # noqa: E402
-    METRIC_FAMILY_ROWS,
     METRIC_FAMILY_TITLES,
     METRIC_LABELS,
+    METRIC_PANEL_GRID,
     NUMERIC_METRICS,
     add_method_display,
     apply_publication_rcparams,
     available_numeric_metrics,
-    create_metric_family_figure,
+    create_metric_grid_figure,
     filter_to_manifest,
+    metric_coverage_audit,
     melt_reconciled,
     preliminary_path,
     short_method_name,
+    write_metric_audit,
 )
 
 log = logging.getLogger(__name__)
@@ -91,16 +93,26 @@ def main(argv: list[str] | None = None) -> int:
         reference_raw = next((m for m in REFERENCE_METHODS if m in methods_present), None)
     reference = short_method_name(reference_raw) if reference_raw else None
     method_order = [short_method_name(m) for m in methods_present]
-    title = "scRNA benchmark — BEN / DRE / LSE family-level comparison"
+    audit = metric_coverage_audit(
+        long_df,
+        PRIMARY_METRICS,
+        figure_id="fig08",
+        group_col="method_display",
+        expected_datasets=args.target_n,
+        expected_methods=len(method_order),
+    )
+    write_metric_audit(args.out_dir / "_metric_audit.csv", audit, figure_id="fig08")
+
+    title = "scRNA benchmark — complete 24-metric publication grid"
     subtitle = (
         f"{len(methods_present)} methods · {len(metrics)}/{len(PRIMARY_METRICS)} "
-        f"numeric metrics · {n_datasets}/{args.target_n} scRNA datasets"
+        f"metrics with data · {n_datasets}/{args.target_n} scRNA datasets"
     )
     if n_datasets < args.target_n:
         subtitle += " · PRELIMINARY"
-    fig, _ = create_metric_family_figure(
+    fig, _ = create_metric_grid_figure(
         long_df,
-        metric_families=METRIC_FAMILY_ROWS,
+        metric_grid=METRIC_PANEL_GRID,
         group_col="method_display",
         reference_method=reference,
         method_order=method_order,
