@@ -44,12 +44,9 @@ ENCODERS = [
     "GIN", "EdgeConv",
 ]
 GRAPH_METHODS = ["kNN_euclidean", "kNN_cosine", "snn", "mutual_knn", "gaussian_threshold"]
-CLUSTERING = ["ASW", "DAV", "CAL", "COR", "NMI", "ARI"]
-DRE = ["UMAP: corr, Q_local, Q_global, Kmax, overall", "t-SNE: corr, Q_local, Q_global, Kmax, overall"]
-INTRINSIC = [
-    "dimensionality", "spectral decay", "participation ratio", "anisotropy",
-    "trajectory", "noise resilience", "core quality", "overall", "data type", "interpretation",
-]
+BEN_METRICS = ["NMI", "ARI", "ASW", "CAL", "DAV", "COR"]
+DRE_METRICS = ["DC", "QL", "QG", "OV", "overall"]
+LSE_METRICS = ["MD", "SDR", "PR", "AS", "TD", "NR", "CQ", "overall"]
 
 plt.rcParams.update({
     "pdf.fonttype": 42,
@@ -81,8 +78,9 @@ def _box(ax: plt.Axes, x: float, y: float, w: float, h: float, label: str,
         zorder=2,
     )
     ax.add_patch(patch)
+    text_x = {"left": x + 0.16, "right": x + w - 0.16}.get(ha, x + w / 2)
     ax.text(
-        x + w / 2,
+        text_x,
         y + h / 2,
         label,
         ha=ha,
@@ -137,6 +135,55 @@ def _wrapped(text: str, width: int = 42) -> str:
     return "\n".join(textwrap.wrap(text, width=width))
 
 
+def _metric_family_card(
+    ax: plt.Axes,
+    x: float,
+    y: float,
+    w: float,
+    h: float,
+    family: str,
+    title: str,
+    body: str,
+    *,
+    size: float = 8.4,
+) -> None:
+    """Draw one grouped evaluation-family card without expanding it into a catalogue."""
+    _box(ax, x, y, w, h, "", fc="white", ec=C_PURPLE, lw=1.1, radius=0.10)
+    ax.text(
+        x + 0.16,
+        y + h - 0.22,
+        family,
+        ha="left",
+        va="top",
+        fontsize=9.2,
+        fontweight="bold",
+        color=C_PURPLE,
+        zorder=4,
+    )
+    ax.text(
+        x + 0.72,
+        y + h - 0.22,
+        title,
+        ha="left",
+        va="top",
+        fontsize=size,
+        fontweight="bold",
+        color=C_DARK,
+        zorder=4,
+    )
+    ax.text(
+        x + 0.16,
+        y + h - 0.58,
+        body,
+        ha="left",
+        va="top",
+        fontsize=size,
+        color=C_DARK,
+        linespacing=1.12,
+        zorder=4,
+    )
+
+
 def make_figure(out_dir: Path, site_static: Path | None = None) -> list[Path]:
     fig, ax = plt.subplots(figsize=(FIG_W, FIG_H))
     ax.set_xlim(0, AX_XMAX)
@@ -149,14 +196,14 @@ def make_figure(out_dir: Path, site_static: Path | None = None) -> list[Path]:
     _box(ax, 0.15, 0.28, 19.7, 7.20, "", fc=C_BG, ec="#E2E8F0", lw=1.0, radius=0.22)
     ax.text(0.30, 7.88, "scCCVGBen model architecture",
             fontsize=21.5, fontweight="bold", color=C_DARK, ha="left", va="center")
-    ax.text(19.70, 7.88, "graph construction • encoder axis • dual reconstruction • metrics",
+    ax.text(19.70, 7.88, "graph construction • encoder axis • dual reconstruction • BEN/DRE/LSE",
             fontsize=12.0, color=C_MUTED, ha="right", va="center")
 
     # Column headings.
     _label(ax, 0.55, 7.05, "A  Input + graph construction", color=C_BLUE, size=13.2)
     _label(ax, 4.45, 7.05, "B  Encoder plugin axis", color=C_ORANGE, size=13.2)
     _label(ax, 10.00, 7.05, "C  Variational core + dual reconstruction", color=C_TEAL, size=13.0)
-    _label(ax, 16.88, 7.05, "D  26-metric output", color=C_PURPLE, size=13.2)
+    _label(ax, 16.78, 7.05, "D  BEN / DRE / LSE output", color=C_PURPLE, size=13.2)
 
     # A: data and graph construction.
     _box(ax, 0.55, 6.00, 3.05, 0.66, "AnnData input\nX + optional labels", fc="#EFF6FF", ec=C_BLUE,
@@ -228,17 +275,37 @@ def make_figure(out_dir: Path, site_static: Path | None = None) -> list[Path]:
     ax.text(12.20, 5.12, "latent sampling", fontsize=9.6, color=C_MUTED, ha="left")
     ax.text(15.12, 4.82, "inner bottleneck", fontsize=9.6, color="#92400E", ha="left")
 
-    # D: output metrics.
-    _box(ax, 17.15, 5.65, 2.45, 0.86, "metrics table\n26 scores", fc="#F5F3FF", ec=C_PURPLE,
-         color=C_PURPLE, size=10.7, weight="bold")
-    _box(ax, 17.00, 4.56, 2.85, 0.84, _wrapped("6 clustering: " + ", ".join(CLUSTERING), 34),
-         fc="white", ec=C_PURPLE, color=C_DARK, size=8.9)
-    dre_text = "10 DRE / coranking\nUMAP: corr, Q_local,\nQ_global, Kmax, overall\nt-SNE: corr, Q_local,\nQ_global, Kmax, overall"
-    _box(ax, 17.00, 3.12, 2.85, 1.22, dre_text,
-         fc="white", ec=C_PURPLE, color=C_DARK, size=8.3)
-    intrinsic_text = "10 intrinsic geometry\n" + _wrapped(", ".join(INTRINSIC), 34)
-    _box(ax, 17.00, 1.44, 2.85, 1.38, intrinsic_text,
-         fc="white", ec=C_PURPLE, color=C_DARK, size=8.1)
+    # D: grouped output metrics.  Keep this concise so it reads as an
+    # evaluation-family summary rather than a field catalogue.
+    _box(ax, 17.10, 5.62, 2.55, 0.88, "grouped metric table\n26 reported scores",
+         fc="#F5F3FF", ec=C_PURPLE, color=C_PURPLE, size=10.0, weight="bold")
+    ben_text = ", ".join(BEN_METRICS)
+    _metric_family_card(
+        ax, 17.00, 4.62, 2.85, 0.72,
+        "BEN", "clustering (6)",
+        ben_text,
+        size=8.4,
+    )
+    dre_text = (
+        f"UMAP: {', '.join(DRE_METRICS)}\n"
+        f"t-SNE: {', '.join(DRE_METRICS)}"
+    )
+    _metric_family_card(
+        ax, 17.00, 3.28, 2.85, 1.08,
+        "DRE", "embedding/coranking (10)",
+        dre_text,
+        size=8.0,
+    )
+    lse_text = (
+        f"{', '.join(LSE_METRICS)}\n"
+        "+ data-type and interpretation annotations"
+    )
+    _metric_family_card(
+        ax, 17.00, 1.58, 2.85, 1.42,
+        "LSE", "intrinsic geometry (10)",
+        lse_text,
+        size=7.9,
+    )
     _arrow(ax, (16.82, 6.07), (17.13, 6.00), color=C_PURPLE)
     _arrow(ax, (16.82, 3.27), (17.00, 3.72), color=C_PURPLE, rad=0.12)
 
