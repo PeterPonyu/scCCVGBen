@@ -1,27 +1,27 @@
-"""Training loop for CCVGAE."""
+"""Training loop for scCCVGBen."""
 
 from __future__ import annotations
 
 import torch
 from torch_geometric.data import Data
 
-from ..models.ccvgae import CCVGAE
+from ..models.scccvgben_model import ScCCVGBenModel
 from ..models.losses import mse_loss, kl_loss, adj_loss
 from .configs import LOCKED_CONFIG
 from .metrics import compute_metrics
 
 
 def fit_one(
-    model: CCVGAE,
+    model: ScCCVGBenModel,
     data: Data,
     modality: str,
     **cfg,
 ) -> dict[str, float]:
-    """Train CCVGAE for one dataset and return a metrics dict.
+    """Train scCCVGBen for one dataset and return a metrics dict.
 
     Parameters
     ----------
-    model    : CCVGAE instance (freshly initialised)
+    model    : ScCCVGBenModel instance (freshly initialised)
     data     : torch_geometric Data with .x, .edge_index, .edge_attr (optional), .y (optional)
     modality : 'scrna' or 'scatac'
     **cfg    : override any key from LOCKED_CONFIG[modality]
@@ -87,5 +87,5 @@ def fit_one(
 
     Z = q_m_final.cpu().numpy()
     X_orig = x.cpu().numpy()
-    metrics_df = compute_metrics(Z, X_orig, labels=labels, method_name="CCVGAE")
+    metrics_df = compute_metrics(Z, X_orig, labels=labels, method_name="scCCVGBen")
     return metrics_df.iloc[0].to_dict()

@@ -122,9 +122,9 @@ aml,unknown,/home/zeyufu/LAB/IVAE/aml.h5ad,unknown,unknown,42398,33538,scRNA,/ho
 MouseBrain,unknown,/home/zeyufu/LAB/IAODEVAE/iAODE_results/MB/MouseBrain.h5ad,brain_neural,mouse,4008,5000,scRNA,/home/zeyufu/LAB/IAODEVAE/iAODE_results,h5ad,1
 PBMC,unknown,/home/zeyufu/LAB/IAODEVAE/iAODE_results/PBMC/PBMC.h5ad,bone_marrow_blood,human,10273,5000,scRNA,/home/zeyufu/LAB/IAODEVAE/iAODE_results,h5ad,1
 mouse_brain_5k_v1.1,unknown,/home/zeyufu/LAB/IAODEVAE/iAODE/examples/data/mouse_brain_5k_v1.1.h5,brain_neural,mouse,5337,157797,scRNA,/home/zeyufu/LAB/IAODEVAE/iAODE/examples/data,h5_10x,1
-SubSampledIRALL,unknown,/home/zeyufu/LAB/CCVGAE/CG_results/SubSampledIRALL.h5ad,bone_marrow_blood,unknown,3000,1527,scRNA,/home/zeyufu/LAB/CCVGAE/CG_results,h5ad,2
-SubSampledSD,unknown,/home/zeyufu/LAB/CCVGAE/CG_results/SubSampledSD.h5ad,unknown,unknown,3000,5000,scRNA,/home/zeyufu/LAB/CCVGAE/CG_results,h5ad,2
-SubSampledUCB,unknown,/home/zeyufu/LAB/CCVGAE/CG_results/SubSampledUCB.h5ad,unknown,unknown,3000,3144,scRNA,/home/zeyufu/LAB/CCVGAE/CG_results,h5ad,2
+SubSampledIRALL,unknown,/home/zeyufu/LAB/scCCVGBen/CG_results/SubSampledIRALL.h5ad,bone_marrow_blood,unknown,3000,1527,scRNA,/home/zeyufu/LAB/scCCVGBen/CG_results,h5ad,2
+SubSampledSD,unknown,/home/zeyufu/LAB/scCCVGBen/CG_results/SubSampledSD.h5ad,unknown,unknown,3000,5000,scRNA,/home/zeyufu/LAB/scCCVGBen/CG_results,h5ad,2
+SubSampledUCB,unknown,/home/zeyufu/LAB/scCCVGBen/CG_results/SubSampledUCB.h5ad,unknown,unknown,3000,3144,scRNA,/home/zeyufu/LAB/scCCVGBen/CG_results,h5ad,2
 SubSampledIR,unknown,/home/zeyufu/LAB/MCC_results/SubSampledIR.h5ad,unknown,unknown,3000,1527,scRNA,/home/zeyufu/LAB/MCC_results,h5ad,2
 SubSampledUCB,unknown,/home/zeyufu/LAB/MCC_results/SubSampledUCB.h5ad,unknown,unknown,3000,3144,scRNA,/home/zeyufu/LAB/MCC_results,h5ad,2
 AML_code,unknown,/home/zeyufu/LAB/CODEVAE/AML_code.h5ad,unknown,unknown,10224,15711,scRNA,/home/zeyufu/LAB/CODEVAE,h5ad,1

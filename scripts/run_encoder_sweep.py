@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""run_encoder_sweep.py — Axis A: 12 encoders × all datasets.
+"""run_encoder_sweep.py — Axis A: 14 encoders × all datasets.
 
 Reads workspace/data/scrna/*.h5ad (unified view: on-host + GEO).
 Writes one CSV per dataset to results/encoder_sweep/{dataset_key}.csv.
 
-Each row is a (method=CCVGAE_{encoder}, ...) record in the CCVGAE
-CG_dl_merged 27-column schema, computed via the vendored CCVGAE core
-(scccvgben.external.ccvgae_core.cgvae.CGVAE_agent) — bit-compatible with
+Each row is a (method=scCCVGBen_{encoder}, ...) record in the scCCVGBen
+CG_dl_merged 27-column schema, computed via the vendored reference core
+(scccvgben.external.reference_core.cgvae.CGVAE_agent) — bit-compatible with
 reused results.
 
 Reuse:
-  GAT × old-scRNA cells are symlinked from CG_dl_merged via
+  GAT × reused scRNA cells are symlinked from CG_dl_merged via
   workspace/reused_results/axisA_GAT_scrna/ and skipped here to avoid
   re-running. See results/encoder_sweep/README.md for GAT-row provenance.
 
@@ -35,19 +35,19 @@ log = logging.getLogger(__name__)
 REPO_ROOT = Path(__file__).resolve().parent.parent
 REUSED_GAT_DIR = REPO_ROOT / "workspace" / "reused_results" / "axisA_GAT_scrna"
 
-# Axis A encoder set — scCCVGBen extends CCVGAE revised with 4 variants
-# (GATv2, SuperGAT, GIN, EdgeConv) for broader architecture comparison.
+# Axis A encoder set — 10 reference encoder families plus 4 project-specific
+# variants (GATv2, SuperGAT, GIN, EdgeConv) for broader architecture comparison.
 # Names match the extended CGVAE_module.CONV_LAYERS keys.
 ENCODERS = [
     # Attention family (4)
-    "GAT",           # CCVGAE baseline
-    "GATv2",         # scCCVGBen extension — dynamic attention (Brody 2022)
-    "Transformer",   # CCVGAE
-    "SuperGAT",      # scCCVGBen extension — self-supervised edge prediction
+    "GAT",           # default attention encoder
+    "GATv2",         # project extension — dynamic attention (Brody 2022)
+    "Transformer",   # attention transformer convolution
+    "SuperGAT",      # project extension — self-supervised edge prediction
     # Message-passing family (8)
     "GCN", "SAGE", "Graph", "Cheb",
-    "TAG", "ARMA", "SG", "SSG",          # CCVGAE baseline set
-    "GIN", "EdgeConv",                   # scCCVGBen extensions
+    "TAG", "ARMA", "SG", "SSG",          # reference encoder set
+    "GIN", "EdgeConv",                   # project extensions
 ]
 
 from scccvgben.training.metrics import METRIC_COLS
@@ -61,9 +61,9 @@ def _old_scrna_keys() -> set[str]:
 
 
 def _run_one(h5ad_path: Path, encoder_name: str, epochs: int) -> dict:
-    """Run CCVGAE on one dataset with one encoder. Returns 27-col dict."""
-    from scccvgben.training.ccvgae_runner import run_ccvgae_one
-    return run_ccvgae_one(
+    """Run scCCVGBen on one dataset with one encoder. Returns 27-col dict."""
+    from scccvgben.training.scccvgben_runner import run_scccvgben_one
+    return run_scccvgben_one(
         h5ad_path=h5ad_path,
         graph_type=encoder_name,
         method_name=f"scCCVGBen_{encoder_name}",
@@ -80,7 +80,7 @@ def main() -> None:
                         help="'all' or comma-separated encoder names.")
     parser.add_argument("--out", default="results/encoder_sweep/")
     parser.add_argument("--epochs", type=int, default=100,
-                        help="Training epochs (CCVGAE supplement default=100).")
+                        help="Training epochs (reference benchmark default=100).")
     parser.add_argument("--smoke", action="store_true",
                         help="Run only first 2 datasets x first 2 encoders for 5 epochs.")
     parser.add_argument("--shard", default="0/1",
@@ -130,7 +130,7 @@ def main() -> None:
                 pass
 
         for encoder in encoders:
-            # Axis A reuse: skip GAT × known-old-scRNA (reuse from CG_dl_merged)
+            # Axis A reuse: skip GAT × known reused scRNA (reuse from CG_dl_merged)
             if encoder == "GAT" and dataset_key in reused_gat_keys:
                 continue
             method = f"scCCVGBen_{encoder}"

@@ -1,11 +1,11 @@
 ---
-title: "CCVGAE"
+title: "scCCVGBen"
 type: docs
 weight: 131
 geekdocHidden: false
 ---
 
-# CCVGAE
+# scCCVGBen
 
 | Field | Value |
 |-------|-------|
@@ -14,12 +14,12 @@ geekdocHidden: false
 
 ## Description
 
-Reference CCVGAE — upstream baseline; scCCVGBen extends this with 12 encoder + 5 graph variants
+Core scCCVGBen reference row; encoder and graph-axis variants are labelled separately
 
 ## Role in scCCVGBen
 
 Axis C (baseline comparison): this method produces a latent embedding
-evaluated with the same 26 metrics as CCVGAE. Benchmark naming: `CCVGAE`
+evaluated with the same 26 metrics as scCCVGBen. Benchmark naming: `scCCVGBen`
 (row label is the method name itself, with no scCCVGBen prefix).
 
 

@@ -1,4 +1,4 @@
-"""Canonical CCVGAE model."""
+"""Canonical scCCVGBen model."""
 
 from __future__ import annotations
 
@@ -87,7 +87,7 @@ class _GraphEncoderStack(nn.Module):
         return q_z, q_m, q_s
 
 
-class CCVGAE(nn.Module):
+class ScCCVGBenModel(nn.Module):
     """Coupled-Centroid Variational Graph Autoencoder.
 
     Attributes (shapes given for N cells, F features, L latent_dim, I i_dim):

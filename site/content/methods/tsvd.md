@@ -19,7 +19,7 @@ Truncated SVD — sklearn.decomposition.TruncatedSVD
 ## Role in scCCVGBen
 
 Axis C (baseline comparison): this method produces a latent embedding
-evaluated with the same 26 metrics as CCVGAE. Benchmark naming: `TSVD`
+evaluated with the same 26 metrics as scCCVGBen. Benchmark naming: `TSVD`
 (row label is the method name itself, with no scCCVGBen prefix).
 
 

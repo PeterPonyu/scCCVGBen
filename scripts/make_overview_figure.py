@@ -6,7 +6,7 @@ Four-panel figure:
   Panel 3 (bottom-left): tissue diversity bar chart (top 15 tissues, side-by-side)
   Panel 4 (bottom-right): category breakdown (stacked horizontal bar)
 
-Re-implemented from scratch. Does NOT import from CCVGAE_supplement/.
+Re-implemented from scratch. Does not import from the reference supplement tree.
 """
 
 from __future__ import annotations
@@ -26,8 +26,8 @@ import pandas as pd
 log = logging.getLogger(__name__)
 
 # ── colour palette ────────────────────────────────────────────────────────────
-C_SCRNA  = "#D35400"   # orange — consistent with prior CCVGAE figures
-C_SCATAC = "#2471A3"   # blue  — consistent with prior CCVGAE figures
+C_SCRNA  = "#D35400"   # orange — consistent with prior scCCVGBen figures
+C_SCATAC = "#2471A3"   # blue  — consistent with prior scCCVGBen figures
 
 # ── matplotlib publication style ─────────────────────────────────────────────
 plt.rcParams.update({

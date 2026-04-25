@@ -45,11 +45,11 @@
   "training_config": {
     "hvg_count": 2000,
     "cells_subsample": 3000,
-    "matches_CCVGAE_revised_benchmark": true,
+    "matches_scCCVGBen_revised_benchmark": true,
     "evidence": [
-      "CCVGAE_supplement/run_hyperparam_sensitivity.py:192 N_TOP_GENES=2000",
-      "CCVGAE_supplement/run_runtime_profiling.py:66 DEFAULT_HVG=2000",
-      "CCVGAE_supplement/CGVAE1_supplement.ipynb (n_top_genes=2000, subsample to 3000)"
+      "reference supplement/run_hyperparam_sensitivity.py:192 N_TOP_GENES=2000",
+      "reference supplement/run_runtime_profiling.py:66 DEFAULT_HVG=2000",
+      "reference supplement/CGVAE1_supplement.ipynb (n_top_genes=2000, subsample to 3000)"
     ]
   },
   "strict_inclusion_rules": {

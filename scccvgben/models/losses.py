@@ -1,4 +1,4 @@
-"""Loss functions for CCVGAE training."""
+"""Loss functions for scCCVGBen training."""
 
 from __future__ import annotations
 

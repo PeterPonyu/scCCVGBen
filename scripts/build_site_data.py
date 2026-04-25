@@ -165,7 +165,7 @@ METHODS_SCCCVGBEN_ENCODERS = [
 ]
 
 METHODS_GRAPHS = [
-    ("kNN_euclidean",     "Standard k-NN with Euclidean distance (k=15) — CCVGAE benchmark default"),
+    ("kNN_euclidean",     "Standard k-NN with Euclidean distance (k=15) — scCCVGBen benchmark default"),
     ("kNN_cosine",        "k-NN with cosine similarity — rewards direction, invariant to magnitude"),
     ("snn",               "Shared Nearest Neighbour — 2 cells connected if they share a fraction of neighbours"),
     ("mutual_knn",        "Mutual k-NN — only edges where both cells are in each other's k-NN list; stricter connectivity"),
@@ -185,7 +185,7 @@ METHODS_BASELINES = [
     ("INFO",     "InfoVAE — Zhao 2017"),
     ("TC",       "β-TCVAE — Chen 2018"),
     ("highBeta", "Hyper-parameterised VAE with high β (β=100)"),
-    ("CCVGAE",   "Reference CCVGAE — upstream baseline; scCCVGBen extends this with 12 encoder + 5 graph variants"),
+    ("scCCVGBen",   "Core scCCVGBen reference row; encoder and graph-axis variants are labelled separately"),
 ]
 
 
@@ -430,20 +430,20 @@ tests each method against the same 200 datasets and 26 metrics; see the
 METHOD_EXTRA = {
     "scCCVGBen_encoders": (
         "## Role in scCCVGBen\n\n"
-        "Axis A (encoder-variation) sweep: CCVGAE trains a latent representation\n"
+        "Axis A (encoder-variation) sweep: scCCVGBen trains a latent representation\n"
         "with this message-passing / attention module while holding the graph fixed\n"
         "to k-NN Euclidean. Benchmark naming for sweep rows: `scCCVGBen_{name}`.\n"
     ),
     "graph_constructions": (
         "## Role in scCCVGBen\n\n"
-        "Axis B (graph-construction sweep): CCVGAE encoder is fixed to GAT while\n"
+        "Axis B (graph-construction sweep): scCCVGBen encoder is fixed to GAT while\n"
         "this graph builder constructs the cell-cell neighbourhood fed to the\n"
         "encoder. Benchmark naming: `scCCVGBen_GAT_{name}`.\n"
     ),
     "baselines": (
         "## Role in scCCVGBen\n\n"
         "Axis C (baseline comparison): this method produces a latent embedding\n"
-        "evaluated with the same 26 metrics as CCVGAE. Benchmark naming: `{name}`\n"
+        "evaluated with the same 26 metrics as scCCVGBen. Benchmark naming: `{name}`\n"
         "(row label is the method name itself, with no scCCVGBen prefix).\n"
     ),
 }

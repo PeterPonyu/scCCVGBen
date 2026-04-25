@@ -30,6 +30,12 @@ per `(dataset, method)` row.
 - `site/` — Hugo source
 - `tests/` — smoke tests
 
+
+## Figures
+
+- **Figure 1 — site and benchmark overview.** Render locally with `scripts/make_figure1_site.py`.
+- **Figure 2 — model architecture and benchmark axes.** Render locally with `scripts/make_figure2_model_architecture.py`; generated figure binaries are intentionally not committed by the code-only figure-pipeline PR.
+
 ## Site
 
 Published at <https://peterponyu.github.io/scCCVGBen/>.

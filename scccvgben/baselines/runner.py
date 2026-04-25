@@ -4,7 +4,7 @@ Public API:
     run_baseline(name, h5ad_path, modality) -> dict[str, float]
 
 Supported names: PCA, KPCA, ICA, FA, NMF, TSVD, DICL,
-                 scVI, DIP, INFO, TC, highBeta, CCVGAE.
+                 scVI, DIP, INFO, TC, highBeta, scCCVGBen.
 """
 
 from __future__ import annotations
@@ -26,7 +26,7 @@ _SUBSAMPLE = 3000
 _LATENT_DIM = 10
 _RANDOM_STATE = 42
 
-SUPPORTED_BASELINES = list(SKLEARN_REGISTRY) + list(DEEP_REGISTRY) + ["CCVGAE"]
+SUPPORTED_BASELINES = list(SKLEARN_REGISTRY) + list(DEEP_REGISTRY) + ["scCCVGBen"]
 
 # ── metric column schema (matches CG_dl_merged CSVs) ─────────────────────────
 METRIC_COLUMNS = [
@@ -112,13 +112,13 @@ def _compute_metrics(
     return metrics
 
 
-# ── CCVGAE baseline path ─────────────────────────────────────────────────────
+# ── scCCVGBen baseline path ─────────────────────────────────────────────────────
 
-def _run_ccvgae(X: np.ndarray, labels: np.ndarray | None, adata: ad.AnnData) -> np.ndarray:
-    """Run the canonical CCVGAE model (GAT + kNN-Euc) to get latent z."""
+def _run_scccvgben(X: np.ndarray, labels: np.ndarray | None, adata: ad.AnnData) -> np.ndarray:
+    """Run the canonical scCCVGBen model (GAT + kNN-Euc) to get latent z."""
     try:
         import torch
-        from scccvgben.models.ccvgae import CCVGAE
+        from scccvgben.models.scccvgben_model import ScCCVGBenModel
         from scccvgben.graphs.construction import build_knn_euclidean
         from torch_geometric.data import Data
 
@@ -126,7 +126,7 @@ def _run_ccvgae(X: np.ndarray, labels: np.ndarray | None, adata: ad.AnnData) -> 
         edge_index, edge_weight = build_knn_euclidean(Xt, k=15)
         data = Data(x=Xt, edge_index=edge_index, edge_attr=edge_weight)
 
-        model = CCVGAE(
+        model = ScCCVGBenModel(
             in_dim=X.shape[1],
             hidden=128,
             latent_dim=_LATENT_DIM,
@@ -145,11 +145,11 @@ def _run_ccvgae(X: np.ndarray, labels: np.ndarray | None, adata: ad.AnnData) -> 
             _, q_m, *_ = model(Xt.to(device), edge_index.to(device))
         return q_m.cpu().numpy()
     except ImportError as exc:
-        log.warning("CCVGAE import failed (%s); falling back to PCA latent.", exc)
+        log.warning("scCCVGBen import failed (%s); falling back to PCA latent.", exc)
         from scccvgben.baselines.sklearn_methods import run_PCA
         return run_PCA(X, n_components=_LATENT_DIM)
     except Exception as exc:
-        log.warning("CCVGAE run failed (%s); falling back to PCA latent.", exc)
+        log.warning("scCCVGBen run failed (%s); falling back to PCA latent.", exc)
         from scccvgben.baselines.sklearn_methods import run_PCA
         return run_PCA(X, n_components=_LATENT_DIM)
 
@@ -188,8 +188,8 @@ def run_baseline(
         z = SKLEARN_REGISTRY[name](X, n_components=_LATENT_DIM)
     elif name in DEEP_REGISTRY:
         z = DEEP_REGISTRY[name](X, n_components=_LATENT_DIM)
-    elif name == "CCVGAE":
-        z = _run_ccvgae(X, labels, adata)
+    elif name == "scCCVGBen":
+        z = _run_scccvgben(X, labels, adata)
     else:
         raise ValueError(f"Dispatch error for '{name}'.")
 

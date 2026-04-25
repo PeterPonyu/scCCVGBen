@@ -6,7 +6,9 @@ Output : figures/fig1_scCCVGBen_site.{png,pdf}
 
 The compositor intentionally avoids panel letters. It crops each screenshot to
 the article content, trims excess white margins, and preserves screenshot aspect
-ratios so typography is not stretched in the final paper figure.
+ratios so typography is not stretched in the final paper figure. Capture the
+source pages with a desktop viewport (for example 1800×3200, device scale 1)
+and the site's xlarge text-scale option when regenerating the composed figure.
 """
 from __future__ import annotations
 
@@ -22,14 +24,17 @@ OUT_PNG = ROOT / "figures" / "fig1_scCCVGBen_site.png"
 OUT_PDF = ROOT / "figures" / "fig1_scCCVGBen_site.pdf"
 
 DPI = 300
-CARD_WIDTH = 1600
-CARD_PAD = 30
-TITLE_HEIGHT = 84
-TITLE_FONT_PX = 44
-GAP_X = 54
-GAP_Y = 48
-CANVAS_PAD = 40
-# Three columns keep the cards aligned without large bottom gaps.
+CARD_WIDTH = 1720
+CARD_PAD = 32
+TITLE_HEIGHT = 128
+TITLE_FONT_PX = 72
+GAP_X = 36
+GAP_Y = 32
+CANVAS_PAD = 28
+MIN_DESKTOP_SHOT_WIDTH = 1400
+MIN_RIGHT_SIDE_CONTENT_PIXELS = 500
+# Three columns keep the cards aligned while fixed gaps prevent large mid-column
+# blanks between cards.
 COLUMN_ORDER = ((0, 1, 6, 7), (4, 5), (2, 3))
 
 
@@ -42,24 +47,24 @@ class Panel:
 
 
 PANELS = [
-    # Home is 1600×3200 with sections: hero/KPI (0-0.15), composition (0.15-0.27),
-    # metadata distributions (0.27-0.48), explore (0.48+).
+    # Home is 1600×3200 with sections: hero/KPI (0-0.15), composition (0.15-0.39),
+    # model architecture (0.39-0.60), metadata distributions (0.60-0.94), explore (0.94+).
     Panel("home.png", "Benchmark overview",
-          (0.165, 0.005, 0.995, 0.122), "#1f5f9f"),
+            (0.190, 0.005, 1.000, 0.180), "#1f5f9f"),
     Panel("home.png", "Tissue and species composition",
-          (0.165, 0.145, 0.995, 0.245), "#24989f"),
+            (0.190, 0.185, 1.000, 0.340), "#24989f"),
     Panel("home.png", "Metadata distributions (4 charts)",
-          (0.165, 0.275, 0.995, 0.505), "#5a7d2f"),
+            (0.190, 0.575, 1.000, 0.875), "#5a7d2f"),
     Panel("datasets.png", "Dataset index with filters",
-          (0.165, 0.010, 0.995, 0.715), "#b7791f"),
+            (0.190, 0.010, 1.000, 0.715), "#b7791f"),
     Panel("methods.png", "Method catalog (32 clickable cards)",
-          (0.165, 0.010, 0.995, 0.780), "#7a5ab8"),
+            (0.190, 0.010, 1.000, 0.780), "#7a5ab8"),
     Panel("metrics.png", "Metric registry (26 with details)",
-          (0.165, 0.010, 0.995, 0.380), "#b54848"),
+            (0.190, 0.010, 1.000, 0.380), "#b54848"),
     Panel("dataset-detail.png", "Per-dataset detail page",
-          (0.165, 0.010, 0.995, 0.520), "#24989f"),
+            (0.190, 0.010, 1.000, 0.520), "#24989f"),
     Panel("method-detail.png", "Per-method detail page",
-          (0.165, 0.010, 0.995, 0.500), "#7a5ab8"),
+            (0.190, 0.010, 1.000, 0.500), "#7a5ab8"),
 ]
 
 
@@ -81,7 +86,29 @@ def _load(name: str) -> Image.Image:
     path = SHOTS / name
     if not path.exists():
         raise FileNotFoundError(f"missing screenshot: {path}")
-    return Image.open(path).convert("RGB")
+    img = Image.open(path).convert("RGB")
+    _assert_desktop_capture(img, path)
+    return img
+
+
+def _assert_desktop_capture(img: Image.Image, path: Path) -> None:
+    """Reject mobile/narrow captures before they make blank or truncated cards."""
+    if img.width < MIN_DESKTOP_SHOT_WIDTH:
+        raise ValueError(
+            f"{path} is only {img.width}px wide; recapture with a desktop viewport "
+            "(for example Chrome --window-size=1800,3200 --force-device-scale-factor=1)."
+        )
+    arr = np.asarray(img)
+    # A mobile capture in a large screenshot leaves nearly all right-side pixels
+    # as plain page background. Desktop captures have real article/card/chart
+    # content beyond the side menu.
+    right_region = arr[: int(img.height * 0.9), int(img.width * 0.35):, :]
+    content_mask = np.any(right_region < 238, axis=2)
+    if int(content_mask.sum()) < MIN_RIGHT_SIDE_CONTENT_PIXELS:
+        raise ValueError(
+            f"{path} looks like a mobile or horizontally clipped capture; "
+            "recapture the page at desktop width with ?scale=xlarge."
+        )
 
 
 def _crop_fraction(img: Image.Image, crop: tuple[float, float, float, float]) -> Image.Image:
@@ -159,17 +186,6 @@ def _column_height(column: list[Image.Image]) -> int:
     return sum(card.height for card in column) + GAP_Y * (len(column) - 1)
 
 
-def _column_gaps(column_height: int, target_height: int, gap_count: int) -> list[int]:
-    if gap_count <= 0:
-        return []
-    extra = max(0, target_height - column_height)
-    extra_each, remainder = divmod(extra, gap_count)
-    return [
-        GAP_Y + extra_each + (1 if idx < remainder else 0)
-        for idx in range(gap_count)
-    ]
-
-
 def main() -> None:
     cards = [_panel_card(panel) for panel in PANELS]
     columns = [[cards[i] for i in order] for order in COLUMN_ORDER]
@@ -192,12 +208,11 @@ def main() -> None:
     for col_idx, column in enumerate(columns):
         x = x_start + col_idx * (CARD_WIDTH + GAP_X)
         y = CANVAS_PAD
-        gaps = _column_gaps(col_heights[col_idx], target_col_height, len(column) - 1)
         for card_idx, card in enumerate(column):
             canvas.paste(card, (x, y))
             y += card.height
-            if card_idx < len(gaps):
-                y += gaps[card_idx]
+            if card_idx < len(column) - 1:
+                y += GAP_Y
 
     canvas.save(OUT_PNG, dpi=(DPI, DPI))
     canvas.save(OUT_PDF, "PDF", resolution=DPI)

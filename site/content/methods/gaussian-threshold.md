@@ -18,7 +18,7 @@ Gaussian heat-kernel weights w=exp(-d²/(2σ²)); edges pruned at threshold 0.9
 
 ## Role in scCCVGBen
 
-Axis B (graph-construction sweep): CCVGAE encoder is fixed to GAT while
+Axis B (graph-construction sweep): scCCVGBen encoder is fixed to GAT while
 this graph builder constructs the cell-cell neighbourhood fed to the
 encoder. Benchmark naming: `scCCVGBen_GAT_gaussian_threshold`.
 

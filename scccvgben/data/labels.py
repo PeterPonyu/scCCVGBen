@@ -1,6 +1,6 @@
 """Unified label extraction for scCCVGBen.
 
-Ported from /home/zeyufu/LAB/CCVGAE/CCVGAE_supplement/run_hyperparam_sensitivity.py
+Ported from the reference benchmark hyperparameter routine
 (revised 2026-04-23). Centralises the fallback chain that ``loader.py`` and
 ``baselines/runner.py`` previously implemented independently, preventing
 drift between the two code paths.
@@ -30,7 +30,7 @@ _PRIMARY_COLS = (
 def get_labels(adata: ad.AnnData) -> np.ndarray | None:
     """Return cell labels as a string array, or ``None`` if no suitable column exists.
 
-    Resolution order (mirrors CCVGAE revised methodology):
+    Resolution order (mirrors the reference benchmark methodology):
     1. Primary annotation columns: ``cell_type``, ``celltype``, ``label``,
        ``labels``, ``cluster``, ``clusters``, ``annotation``, ``CellType``.
     2. Last-resort: the first ``obs`` column with pandas category dtype

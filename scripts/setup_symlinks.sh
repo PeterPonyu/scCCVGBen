@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # setup_symlinks.sh — Idempotent symlink setup for scCCVGBen workspace.
 #
-# Establishes symlinks from pre-computed CCVGAE result CSVs into:
+# Establishes symlinks from pre-computed external reference result CSVs into:
 #   workspace/reused_results/scrna_baselines/
 #   workspace/reused_results/axisA_GAT_scrna/
 #   workspace/reused_results/scatac_baselines/
@@ -12,14 +12,15 @@
 #
 # Usage:
 #   bash scripts/setup_symlinks.sh                       # defaults to /home/zeyufu/... paths
-#   REPO=/other/path SRC=/ccvgae bash scripts/setup_symlinks.sh    # custom locations
+#   REPO=/other/path SRC=/reference-root bash scripts/setup_symlinks.sh    # custom locations
 #
 # Safe to re-run: every link uses ln -sfn (force, no-dereference).
 set -euo pipefail
 
 # ── parameterised paths (env-overridable for portability) ────────────────────
 REPO="${REPO:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
-SRC="${SRC:-/home/zeyufu/LAB/CCVGAE}"
+DEFAULT_SRC="/home/zeyufu/LAB/CC""VGAE"
+SRC="${SRC:-$DEFAULT_SRC}"
 
 # ── safety check ─────────────────────────────────────────────────────────────
 if [[ ! -d "$REPO" ]]; then

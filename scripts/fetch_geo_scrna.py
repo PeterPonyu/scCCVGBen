@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """fetch_geo_scrna.py — Proxy-API GEO downloader for the 45 new scRNA datasets.
 
-Ported from CCVGAE's data curation patterns; proxy-API download only.
+Ported from scCCVGBen's data curation patterns; proxy-API download only.
 
 Downloads filtered_feature_bc_matrix.h5 or .h5ad files from GEO via
 GEOparse (primary) or NCBI E-utilities HTTPS API (fallback). No FTP paths.

@@ -18,7 +18,7 @@ GraphConv — general message-passing variant
 
 ## Role in scCCVGBen
 
-Axis A (encoder-variation) sweep: CCVGAE trains a latent representation
+Axis A (encoder-variation) sweep: scCCVGBen trains a latent representation
 with this message-passing / attention module while holding the graph fixed
 to k-NN Euclidean. Benchmark naming for sweep rows: `scCCVGBen_Graph`.
 

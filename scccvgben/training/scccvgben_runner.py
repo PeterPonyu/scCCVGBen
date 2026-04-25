@@ -1,13 +1,13 @@
-"""CCVGAE one-dataset runner aligned with CCVGAE_supplement/run_hyperparam_sensitivity.
+"""scCCVGBen one-dataset runner aligned with the reference benchmark routine.
 
-Flow per dataset (mirrors CCVGAE_supplement.run_single exactly):
+Flow per dataset (mirrors the reference run_single path exactly):
   1. Load h5ad.
   2. Preprocess: subsample(3000) -> normalize_total(1e4) -> log1p -> HVG(2000) -> subset.
      Raw counts preserved in adata.layers['counts'] for CGVAE_agent.
   3. Instantiate CGVAE_agent(adata, **cfg) -> .fit(epochs) -> .get_latent()
   4. compute_metrics(latent, labels, data_type).
 
-All configs default to CCVGAE revised benchmark values (lr=1e-4, epochs=100,
+All configs default to reference benchmark values (lr=1e-4, epochs=100,
 hidden_dim=128, hidden_layers=2, latent_dim=10, i_dim=5, w_*=1.0,
 subgraph_size=300). graph_type defaults to 'GAT' for Axis A/B primary cell.
 """
@@ -20,15 +20,15 @@ import numpy as np
 import scanpy as sc
 import anndata as ad
 
-from scccvgben.external.ccvgae_core.cgvae import CGVAE_agent
+from scccvgben.external.reference_core.cgvae import CGVAE_agent
 from scccvgben.training.metrics import compute_metrics
 
 
-CCVGAE_DEFAULTS: dict[str, Any] = {
+SCCCVGBEN_DEFAULTS: dict[str, Any] = {
     # Preprocess
     "subsample_cells": 3000,
     "n_top_genes": 2000,
-    # CGVAE_agent config (matching CCVGAE_supplement DEFAULTS)
+    # CGVAE_agent config (matching reference benchmark defaults)
     "hidden_dim": 128,
     "hidden_layers": 2,
     "latent_dim": 10,
@@ -59,11 +59,11 @@ def _get_labels(adata: ad.AnnData) -> np.ndarray | None:
     return np.asarray(pd.Categorical(lbl).codes, dtype=np.int64)
 
 
-def preprocess_scrna_ccvgae(adata: ad.AnnData,
+def preprocess_scrna_scccvgben(adata: ad.AnnData,
                             subsample_cells: int = 3000,
                             n_top_genes: int = 2000,
                             random_state: int = 42) -> ad.AnnData:
-    """Preprocess matching CCVGAE_supplement/run_hyperparam_sensitivity:198.
+    """Preprocess matching the reference benchmark hyperparameter routine.
 
     Subsample -> normalize_total(1e4) -> log1p -> HVG -> subset.
     Raw counts stashed in adata.layers['counts'] for CGVAE_agent's
@@ -89,7 +89,7 @@ def preprocess_scrna_ccvgae(adata: ad.AnnData,
     return adata
 
 
-def run_ccvgae_one(
+def run_scccvgben_one(
     h5ad_path: str | Path,
     graph_type: str = "GAT",
     method_name: str | None = None,
@@ -97,26 +97,26 @@ def run_ccvgae_one(
     silent: bool = True,
     **overrides: Any,
 ) -> dict[str, Any]:
-    """Run CCVGAE on one h5ad and return a metrics dict (27 cols).
+    """Run scCCVGBen on one h5ad and return a metrics dict (27 cols).
 
     Parameters
     ----------
     h5ad_path   : path to input h5ad (raw or log+HVG preprocessed)
     graph_type  : encoder family ('GAT', 'GATv2', 'GCN', 'GraphSAGE', ...)
-    method_name : value for the 'method' column (defaults to f'CCVGAE_{graph_type}')
+    method_name : value for the 'method' column (defaults to f'scCCVGBen_{graph_type}')
     data_type   : 'trajectory' or 'steady_state' for LSE scoring
     silent      : quiet tqdm during .fit()
-    **overrides : override any CCVGAE_DEFAULTS key
+    **overrides : override any SCCCVGBEN_DEFAULTS key
     """
     import torch
 
-    cfg = {**CCVGAE_DEFAULTS, **overrides}
+    cfg = {**SCCCVGBEN_DEFAULTS, **overrides}
     cfg["graph_type"] = graph_type
 
     adata = ad.read_h5ad(str(h5ad_path))
     labels = _get_labels(adata)
 
-    adata = preprocess_scrna_ccvgae(
+    adata = preprocess_scrna_scccvgben(
         adata,
         subsample_cells=cfg.pop("subsample_cells", 3000),
         n_top_genes=cfg.pop("n_top_genes", 2000),

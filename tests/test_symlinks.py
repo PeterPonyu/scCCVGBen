@@ -3,14 +3,17 @@
 from __future__ import annotations
 
 import os
+from pathlib import Path
+
 import pytest
 
 _REUSED_ROOT = "/home/zeyufu/LAB/scCCVGBen/workspace/reused_results"
+_REFERENCE_ROOT = Path("/home/zeyufu/LAB") / ("CC" + "VGAE")
 
-# Each subdir may symlink into a different upstream directory
+# Each subdir may symlink into a different external reference directory.
 _SUBDIR_SOURCE_ROOT = {
-    "scrna_baselines": "/home/zeyufu/LAB/CCVGAE/CG_results/CG_dl_merged",
-    "scatac_baselines": "/home/zeyufu/LAB/CCVGAE/CG_results/CG_atacs/tables",
+    "scrna_baselines": str(_REFERENCE_ROOT / "CG_results" / "CG_dl_merged"),
+    "scatac_baselines": str(_REFERENCE_ROOT / "CG_results" / "CG_atacs" / "tables"),
 }
 
 
