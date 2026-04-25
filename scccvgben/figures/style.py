@@ -21,6 +21,7 @@ State isolation (binding, per Architect refinement #1):
 
 from __future__ import annotations
 
+import logging
 from collections.abc import Mapping, Sequence
 
 import matplotlib
@@ -32,6 +33,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 import seaborn as sns  # noqa: E402
+from matplotlib.patches import FancyBboxPatch  # noqa: E402
 
 from ._significance import select_significance_pairs
 
@@ -63,6 +65,7 @@ def apply_publication_rcparams() -> None:
     mpl.rcdefaults()
     mpl.rcParams.update(PUBLICATION_RCPARAMS)
     sns.set_palette("Spectral")
+    logging.getLogger("fontTools").setLevel(logging.WARNING)
 
 
 def _draw_significance_brackets(
@@ -196,3 +199,257 @@ def create_publication_figure(
         fig.tight_layout()
 
     return fig, flat_axes[:n]
+
+
+def _metric_values(
+    long_df: pd.DataFrame,
+    metric: str,
+    group_col: str,
+    method_order: Sequence[str],
+) -> pd.DataFrame:
+    sub = long_df.loc[long_df["metric"] == metric].copy()
+    if sub.empty:
+        return sub
+    sub[group_col] = pd.Categorical(sub[group_col], categories=list(method_order), ordered=True)
+    return sub.dropna(subset=[group_col, "value"])
+
+
+def _label_axis(
+    ax: plt.Axes,
+    family: str,
+    title: str,
+    color: str,
+) -> None:
+    ax.set_axis_off()
+    ax.add_patch(
+        FancyBboxPatch(
+            (0.08, 0.04),
+            0.84,
+            0.92,
+            boxstyle="round,pad=0.025,rounding_size=0.04",
+            transform=ax.transAxes,
+            facecolor=color,
+            edgecolor=color,
+            linewidth=0,
+            alpha=0.95,
+        )
+    )
+    family_label = family.replace("-", "\n")
+    family_fontsize = 18 if "\n" in family_label else 22
+    ax.text(
+        0.50,
+        0.62,
+        family_label,
+        transform=ax.transAxes,
+        ha="center",
+        va="center",
+        fontsize=family_fontsize,
+        fontweight="bold",
+        color="white",
+        linespacing=0.92,
+    )
+    ax.text(
+        0.50,
+        0.36,
+        title,
+        transform=ax.transAxes,
+        ha="center",
+        va="center",
+        fontsize=10,
+        fontweight="bold",
+        color="white",
+        linespacing=1.08,
+    )
+
+
+def create_metric_family_figure(
+    long_df: pd.DataFrame,
+    metric_families: Sequence[tuple[str, Sequence[str]]],
+    group_col: str = "method",
+    *,
+    reference_method: str | None = None,
+    method_order: Sequence[str] | None = None,
+    family_titles: Mapping[str, str] | None = None,
+    family_colors: Mapping[str, str] | None = None,
+    title: str | None = None,
+    subtitle: str | None = None,
+    dpi: int = 300,
+    palette: str = "Spectral",
+    pair_col: str = "dataset_id",
+    show_significance: bool = True,
+    metric_labels: Mapping[str, str] | None = None,
+    max_cols: int | None = None,
+    per_col_width: float = 2.72,
+    per_row_height: float = 3.18,
+) -> tuple[plt.Figure, list[plt.Axes]]:
+    """Render BEN/DRE/LSE metric families as labelled publication rows.
+
+    The legacy helper above is intentionally compact and flat.  This renderer
+    keeps every numeric metric visible while making the metric family structure
+    explicit: one row per family, one panel per metric, and a large colour-coded
+    family rail.  It remains DataFrame-native and does not recompute results.
+    """
+    if not metric_families:
+        raise ValueError("metric_families must be non-empty")
+
+    if method_order is None:
+        method_order = long_df[group_col].dropna().unique().tolist()
+    method_order = list(method_order)
+    if not method_order:
+        raise ValueError("method_order must be non-empty")
+
+    family_titles = family_titles or {}
+    default_colors = {
+        "BEN": "#1f5f9f",
+        "DRE-UMAP": "#6C3483",
+        "DRE-tSNE": "#7A4EAB",
+        "LSE": "#138D75",
+    }
+    family_colors = {**default_colors, **(family_colors or {})}
+    max_metrics = max(len(metrics) for _, metrics in metric_families)
+    ncols = max_cols or max_metrics
+    nrows = len(metric_families)
+
+    fig_w = 1.25 + ncols * per_col_width
+    fig_h = 1.25 + nrows * per_row_height
+    rcparams = {**PUBLICATION_RCPARAMS, "savefig.dpi": dpi, "figure.dpi": dpi}
+
+    with plt.rc_context(rcparams):
+        sns.set_palette(palette)
+        fig = plt.figure(figsize=(fig_w, fig_h), dpi=dpi)
+        outer_grid = fig.add_gridspec(
+            nrows,
+            1,
+            left=0.025,
+            right=0.992,
+            bottom=0.055,
+            top=0.90 if title else 0.96,
+            hspace=0.52,
+        )
+
+        axes: list[plt.Axes] = []
+        panel_idx = 0
+        for row_idx, (family, metrics) in enumerate(metric_families):
+            row_grid = outer_grid[row_idx, 0].subgridspec(
+                1,
+                len(metrics) + 1,
+                width_ratios=[0.62, *([1.0] * len(metrics))],
+                wspace=0.24,
+            )
+            color = family_colors.get(family, "#475569")
+            _label_axis(
+                fig.add_subplot(row_grid[0, 0]),
+                family,
+                family_titles.get(family, ""),
+                color,
+            )
+            for col_idx, metric in enumerate(metrics):
+                ax = fig.add_subplot(row_grid[0, col_idx + 1])
+                sub = _metric_values(long_df, metric, group_col, method_order)
+                if sub.empty:
+                    ax.set_axis_off()
+                    ax.text(
+                        0.50,
+                        0.50,
+                        "not available",
+                        transform=ax.transAxes,
+                        ha="center",
+                        va="center",
+                        fontsize=9.5,
+                        color="#64748B",
+                    )
+                    continue
+
+                sns.boxplot(
+                    data=sub,
+                    x=group_col,
+                    y="value",
+                    order=method_order,
+                    hue=group_col,
+                    hue_order=method_order,
+                    legend=False,
+                    ax=ax,
+                    showfliers=False,
+                    width=0.58,
+                    linewidth=0.9,
+                    boxprops={"alpha": 0.68},
+                    palette=palette,
+                )
+                sns.stripplot(
+                    data=sub,
+                    x=group_col,
+                    y="value",
+                    order=method_order,
+                    ax=ax,
+                    size=1.7,
+                    alpha=0.46,
+                    color="black",
+                    jitter=0.18,
+                )
+
+                panel_letter = chr(ord("A") + panel_idx)
+                label = metric_labels.get(metric, metric) if metric_labels else metric
+                ax.set_title(label, fontsize=10.8, fontweight="bold", pad=5)
+                ax.set_xlabel("")
+                ax.set_ylabel("")
+                ax.tick_params(axis="x", rotation=52, labelsize=7.8, pad=1.0)
+                ax.tick_params(axis="y", labelsize=8.2)
+                for tick in ax.get_xticklabels():
+                    tick.set_horizontalalignment("right")
+                    tick.set_rotation_mode("anchor")
+                ax.grid(axis="y", color="#E2E8F0", linewidth=0.55, alpha=0.8)
+                ax.text(
+                    -0.08,
+                    1.05,
+                    panel_letter,
+                    transform=ax.transAxes,
+                    fontsize=14.5,
+                    fontweight="bold",
+                    color=color,
+                    va="bottom",
+                    ha="right",
+                )
+
+                if show_significance and reference_method is not None:
+                    pairs = select_significance_pairs(
+                        long_df,
+                        metric=metric,
+                        reference_method=reference_method,
+                        group_col=group_col,
+                        pair_col=pair_col,
+                        top_k=2,
+                    )
+                    if pairs:
+                        _draw_significance_brackets(
+                            ax,
+                            pairs,
+                            method_order,
+                            float(sub["value"].max()),
+                        )
+
+                axes.append(ax)
+                panel_idx += 1
+
+        if title:
+            fig.text(
+                0.025,
+                0.965,
+                title,
+                ha="left",
+                va="top",
+                fontsize=19,
+                fontweight="bold",
+                color="#172033",
+            )
+        if subtitle:
+            fig.text(
+                0.025,
+                0.932,
+                subtitle,
+                ha="left",
+                va="top",
+                fontsize=11.5,
+                color="#475569",
+            )
+
+    return fig, axes

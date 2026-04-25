@@ -50,10 +50,10 @@ class FigureSpec:
 
 
 REGISTRY: tuple[FigureSpec, ...] = (
-    FigureSpec("fig01", "scripts.make_fig01_dataset_metadata",
-               "fig01_dataset_metadata*.pdf", 200, "manifest_all"),
-    FigureSpec("fig02", "scripts.make_fig02_architecture",
-               "fig02_architecture*.pdf", 0, "static"),
+    FigureSpec("fig01", "scripts.make_figure1_site",
+               "fig1_scCCVGBen_site*.pdf", 0, "static"),
+    FigureSpec("fig02", "scripts.make_figure2_model_architecture",
+               "fig2_scCCVGBen_model_architecture*.pdf", 0, "static"),
     FigureSpec("axisA", "scripts.make_axisA_figure",
                "fig_axisA_encoder_ranking*.pdf", 100, "encoder_sweep"),
     FigureSpec("axisB", "scripts.make_axisB_figure",

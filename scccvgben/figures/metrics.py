@@ -60,6 +60,20 @@ NUMERIC_METRIC_FAMILIES: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("Intrinsic latent geometry", INTRINSIC_NUMERIC_METRICS),
 )
 
+METRIC_FAMILY_ROWS: tuple[tuple[str, tuple[str, ...]], ...] = (
+    ("BEN", CLUSTERING_METRICS),
+    ("DRE-UMAP", DRE_UMAP_METRICS),
+    ("DRE-tSNE", DRE_TSNE_METRICS),
+    ("LSE", INTRINSIC_NUMERIC_METRICS),
+)
+
+METRIC_FAMILY_TITLES: dict[str, str] = {
+    "BEN": "clustering\nlabels + distance",
+    "DRE-UMAP": "UMAP\nneighbourhoods",
+    "DRE-tSNE": "t-SNE\nneighbourhoods",
+    "LSE": "intrinsic\nlatent geometry",
+}
+
 NUMERIC_METRICS: tuple[str, ...] = tuple(
     metric for _, metrics in NUMERIC_METRIC_FAMILIES for metric in metrics
 )
@@ -73,22 +87,22 @@ METRIC_LABELS: dict[str, str] = {
     "NMI": "NMI ↑",
     "ARI": "ARI ↑",
     "COR": "COR ↑",
-    "distance_correlation_umap": "UMAP distance corr ↑",
-    "Q_local_umap": "UMAP Q local ↑",
-    "Q_global_umap": "UMAP Q global ↑",
-    "K_max_umap": "UMAP K max",
-    "overall_quality_umap": "UMAP overall ↑",
-    "distance_correlation_tsne": "t-SNE distance corr ↑",
-    "Q_local_tsne": "t-SNE Q local ↑",
-    "Q_global_tsne": "t-SNE Q global ↑",
-    "K_max_tsne": "t-SNE K max",
-    "overall_quality_tsne": "t-SNE overall ↑",
+    "distance_correlation_umap": "DC UMAP ↑",
+    "Q_local_umap": "QL UMAP ↑",
+    "Q_global_umap": "QG UMAP ↑",
+    "K_max_umap": "Kmax UMAP",
+    "overall_quality_umap": "Overall UMAP ↑",
+    "distance_correlation_tsne": "DC t-SNE ↑",
+    "Q_local_tsne": "QL t-SNE ↑",
+    "Q_global_tsne": "QG t-SNE ↑",
+    "K_max_tsne": "Kmax t-SNE",
+    "overall_quality_tsne": "Overall t-SNE ↑",
     "manifold_dimensionality_intrin": "Manifold dim. ↑",
     "spectral_decay_rate_intrin": "Spectral decay ↑",
-    "participation_ratio_intrin": "Participation ratio ↑",
+    "participation_ratio_intrin": "Part. ratio ↑",
     "anisotropy_score_intrin": "Anisotropy ↑",
-    "trajectory_directionality_intrin": "Trajectory direction ↑",
-    "noise_resilience_intrin": "Noise resilience ↑",
+    "trajectory_directionality_intrin": "Trajectory dir. ↑",
+    "noise_resilience_intrin": "Noise resil. ↑",
     "core_quality_intrin": "Core quality ↑",
     "overall_quality_intrin": "Intrinsic overall ↑",
 }

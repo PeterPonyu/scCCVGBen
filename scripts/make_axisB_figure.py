@@ -21,12 +21,14 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from scccvgben.figures import (  # noqa: E402
+    METRIC_FAMILY_ROWS,
+    METRIC_FAMILY_TITLES,
     METRIC_LABELS,
     NUMERIC_METRICS,
     add_method_display,
     apply_publication_rcparams,
     available_numeric_metrics,
-    create_publication_figure,
+    create_metric_family_figure,
     filter_to_manifest,
     preliminary_path,
     short_method_name,
@@ -121,30 +123,26 @@ def main(argv: list[str] | None = None) -> int:
     metrics = available_numeric_metrics(long_df, PRIMARY_METRICS)
     reference = short_method_name(args.reference) if args.reference in methods_present else None
     method_order = [short_method_name(m) for m in methods_present]
-    fig, _ = create_publication_figure(
+    title = "Axis B — graph-construction robustness across BEN / DRE / LSE"
+    subtitle = (
+        f"{len(methods_present)} graph rules · {len(metrics)}/{len(PRIMARY_METRICS)} "
+        f"numeric metrics · {n_datasets}/{args.target_n} scRNA datasets"
+    )
+    if n_datasets < args.target_n:
+        subtitle += " · PRELIMINARY"
+    fig, _ = create_metric_family_figure(
         long_df,
-        metrics=metrics,
+        metric_families=METRIC_FAMILY_ROWS,
         group_col="method_display",
         reference_method=reference,
         method_order=method_order,
-        ncols=4,
-        figsize=(17, 24),
-        strip_size=1.5,
-        strip_alpha=0.45,
+        family_titles=METRIC_FAMILY_TITLES,
+        title=title,
+        subtitle=subtitle,
         metric_labels=METRIC_LABELS,
+        per_col_width=2.55,
+        per_row_height=3.04,
     )
-    if n_datasets < args.target_n:
-        fig.suptitle(
-            f"Axis B — graph construction robustness across {len(metrics)} numeric metrics "
-            f"(PRELIMINARY: {n_datasets}/{args.target_n} datasets)",
-            fontsize=14, y=1.0,
-        )
-    else:
-        fig.suptitle(
-            f"Axis B — graph construction robustness across {len(metrics)} numeric metrics",
-            fontsize=14, y=1.0,
-        )
-    fig.subplots_adjust(top=0.965)
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
     stem = "fig_axisB_graph_robustness"

@@ -184,7 +184,12 @@ def _metric_family_card(
     )
 
 
-def make_figure(out_dir: Path, site_static: Path | None = None) -> list[Path]:
+def make_figure(
+    out_dir: Path,
+    site_static: Path | None = None,
+    *,
+    stem: str = "fig2_scCCVGBen_model_architecture",
+) -> list[Path]:
     fig, ax = plt.subplots(figsize=(FIG_W, FIG_H))
     ax.set_xlim(0, AX_XMAX)
     ax.set_ylim(0, AX_YMAX)
@@ -319,8 +324,8 @@ def make_figure(out_dir: Path, site_static: Path | None = None) -> list[Path]:
           ax.text(x + 0.34, 0.67, txt, fontsize=9.7, color=C_MUTED, ha="left", va="center")
 
     out_dir.mkdir(parents=True, exist_ok=True)
-    png = out_dir / "fig2_scCCVGBen_model_architecture.png"
-    pdf = out_dir / "fig2_scCCVGBen_model_architecture.pdf"
+    png = out_dir / f"{stem}.png"
+    pdf = out_dir / f"{stem}.pdf"
     fig.savefig(png, dpi=300, bbox_inches="tight", pad_inches=0.14)
     fig.savefig(pdf, dpi=300, bbox_inches="tight", pad_inches=0.14)
     plt.close(fig)
@@ -335,24 +340,37 @@ def make_figure(out_dir: Path, site_static: Path | None = None) -> list[Path]:
     return outputs
 
 
-def _parse_args() -> argparse.Namespace:
+def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     root = Path(__file__).resolve().parent.parent
     parser.add_argument("--out-dir", type=Path, default=root / "figures")
     parser.add_argument("--site-static", type=Path, default=root / "site" / "static" / "images")
     parser.add_argument("--no-site-copy", action="store_true")
-    return parser.parse_args()
+    parser.add_argument("--stem", default="fig2_scCCVGBen_model_architecture")
+    parser.add_argument(
+        "--partial-ok",
+        action="store_true",
+        help="Accepted for orchestrator parity; this static diagram is all-or-fail.",
+    )
+    parser.add_argument(
+        "--target-n",
+        type=int,
+        default=0,
+        help="Accepted for orchestrator parity; not used by this static diagram.",
+    )
+    return parser.parse_args(argv)
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> int:
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     logging.getLogger("fontTools").setLevel(logging.WARNING)
-    args = _parse_args()
+    args = _parse_args(argv)
     site_static = None if args.no_site_copy else args.site_static
-    outputs = make_figure(args.out_dir, site_static)
+    outputs = make_figure(args.out_dir, site_static, stem=args.stem)
     for path in outputs:
         log.info("Saved %s", path)
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
