@@ -22,6 +22,7 @@ results/
 # by the code-only figure-pipeline PR.
 figures/site_shots/
 figures/_status.csv
+figures/_metric_audit.csv
 figures/manuscript_figures.*
 figures/fig*.png
 figures/fig*.pdf
