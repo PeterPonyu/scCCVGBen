@@ -12,36 +12,44 @@ and the site's xlarge text-scale option when regenerating the composed figure.
 """
 from __future__ import annotations
 
+import argparse
 from dataclasses import dataclass
 from pathlib import Path
+from textwrap import wrap
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
-SHOTS = ROOT / "figures" / "site_shots"
-OUT_PNG = ROOT / "figures" / "fig1_scCCVGBen_site.png"
-OUT_PDF = ROOT / "figures" / "fig1_scCCVGBen_site.pdf"
+DEFAULT_SHOTS = ROOT / "figures" / "site_shots"
+DEFAULT_OUT_DIR = ROOT / "figures"
 
 DPI = 300
-CARD_WIDTH = 1720
-CARD_PAD = 32
-TITLE_HEIGHT = 128
-TITLE_FONT_PX = 72
-GAP_X = 36
-GAP_Y = 32
-CANVAS_PAD = 28
+CARD_WIDTH = 1740
+CARD_PAD = 38
+TITLE_HEIGHT = 216
+TITLE_FONT_PX = 78
+CALLOUT_FONT_PX = 39
+HEADER_HEIGHT = 250
+HEADER_TITLE_FONT_PX = 82
+HEADER_BODY_FONT_PX = 42
+BADGE_FONT_PX = 38
+GAP_X = 38
+GAP_Y = 34
+CANVAS_PAD = 30
 MIN_DESKTOP_SHOT_WIDTH = 1400
 MIN_RIGHT_SIDE_CONTENT_PIXELS = 500
-# Three columns keep the cards aligned while fixed gaps prevent large mid-column
-# blanks between cards.
-COLUMN_ORDER = ((0, 1, 6, 7), (4, 5), (2, 3))
+# Three columns keep the cards aligned while balancing tall registry/detail
+# screenshots so the final mosaic stays dense rather than leaving a sparse
+# lower-right quadrant.
+COLUMN_ORDER = ((0, 4, 7), (3, 2), (5, 6, 1))
 
 
 @dataclass(frozen=True)
 class Panel:
     image: str
     title: str
+    callout: str
     crop: tuple[float, float, float, float]
     accent: str
 
@@ -50,20 +58,28 @@ PANELS = [
     # Home is 1600×3200 with sections: hero/KPI (0-0.15), composition (0.15-0.39),
     # model architecture (0.39-0.60), metadata distributions (0.60-0.94), explore (0.94+).
     Panel("home.png", "Benchmark overview",
+            "Landing-page KPIs frame the 200-dataset benchmark before readers enter registries.",
             (0.190, 0.005, 1.000, 0.180), "#1f5f9f"),
     Panel("home.png", "Tissue and species composition",
+            "Coverage summaries expose tissue, species, modality, and study-balance structure.",
             (0.190, 0.185, 1.000, 0.340), "#24989f"),
     Panel("home.png", "Metadata distributions (4 charts)",
+            "Distribution panels make scale and metadata skew visible without leaving the overview.",
             (0.190, 0.575, 1.000, 0.875), "#5a7d2f"),
     Panel("datasets.png", "Dataset index with filters",
+            "Searchable dataset cards connect GEO provenance, modality, organism, tissue, and task tags.",
             (0.190, 0.010, 1.000, 0.715), "#b7791f"),
     Panel("methods.png", "Method catalog (32 clickable cards)",
+            "Method registry contrasts baseline families and scCCVGBen encoder/graph variants.",
             (0.190, 0.010, 1.000, 0.780), "#7a5ab8"),
     Panel("metrics.png", "Metric registry (26 with details)",
+            "BEN, DRE, and LSE metric families are documented with definitions and interpretation notes.",
             (0.190, 0.010, 1.000, 0.380), "#b54848"),
     Panel("dataset-detail.png", "Per-dataset detail page",
+            "Detail pages preserve dataset-level audit trails for capture, labels, and benchmark context.",
             (0.190, 0.010, 1.000, 0.520), "#24989f"),
     Panel("method-detail.png", "Per-method detail page",
+            "Method pages summarize implementation choices so benchmark comparisons remain traceable.",
             (0.190, 0.010, 1.000, 0.500), "#7a5ab8"),
 ]
 
@@ -82,8 +98,8 @@ def _font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont | ImageFont.I
     return ImageFont.load_default()
 
 
-def _load(name: str) -> Image.Image:
-    path = SHOTS / name
+def _load(shots_dir: Path, name: str) -> Image.Image:
+    path = shots_dir / name
     if not path.exists():
         raise FileNotFoundError(f"missing screenshot: {path}")
     img = Image.open(path).convert("RGB")
@@ -146,8 +162,50 @@ def _trim_white(
     return img.crop((left, top, right, bottom))
 
 
-def _panel_card(panel: Panel) -> Image.Image:
-    img = _trim_white(_crop_fraction(_load(panel.image), panel.crop))
+def _wrapped_lines(
+    draw: ImageDraw.ImageDraw,
+    text: str,
+    font: ImageFont.FreeTypeFont | ImageFont.ImageFont,
+    max_width: int,
+) -> list[str]:
+    """Wrap text by rendered width so callouts remain readable on export."""
+    words = text.split()
+    lines: list[str] = []
+    current: list[str] = []
+    for word in words:
+        candidate = " ".join([*current, word])
+        if draw.textbbox((0, 0), candidate, font=font)[2] <= max_width:
+            current.append(word)
+            continue
+        if current:
+            lines.append(" ".join(current))
+        current = [word]
+    if current:
+        lines.append(" ".join(current))
+    return lines
+
+
+def _draw_callout(
+    draw: ImageDraw.ImageDraw,
+    xy: tuple[int, int],
+    text: str,
+    *,
+    font: ImageFont.FreeTypeFont | ImageFont.ImageFont,
+    max_width: int,
+    fill: str = "#3b465c",
+    line_gap: int = 8,
+) -> int:
+    x, y = xy
+    height = 0
+    for line in _wrapped_lines(draw, text, font, max_width):
+        draw.text((x, y + height), line, font=font, fill=fill)
+        bbox = draw.textbbox((x, y + height), line, font=font)
+        height += int(bbox[3] - bbox[1]) + line_gap
+    return max(0, height - line_gap)
+
+
+def _panel_card(panel: Panel, shots_dir: Path) -> Image.Image:
+    img = _trim_white(_crop_fraction(_load(shots_dir, panel.image), panel.crop))
     content_w = CARD_WIDTH - CARD_PAD * 2
     content_h = max(1, round(img.height * content_w / img.width))
     img = img.resize((content_w, content_h), Image.Resampling.LANCZOS)
@@ -175,6 +233,13 @@ def _panel_card(panel: Panel) -> Image.Image:
         font=_font(TITLE_FONT_PX, bold=True),
         fill="#172033",
     )
+    _draw_callout(
+        draw,
+        (CARD_PAD, 112),
+        panel.callout,
+        font=_font(CALLOUT_FONT_PX),
+        max_width=content_w,
+    )
     card.paste(img, (CARD_PAD, TITLE_HEIGHT))
     return card
 
@@ -186,38 +251,134 @@ def _column_height(column: list[Image.Image]) -> int:
     return sum(card.height for card in column) + GAP_Y * (len(column) - 1)
 
 
-def main() -> None:
-    cards = [_panel_card(panel) for panel in PANELS]
+def _draw_header(draw: ImageDraw.ImageDraw, x: int, y: int, width: int) -> None:
+    draw.rounded_rectangle(
+        (x, y, x + width - 1, y + HEADER_HEIGHT - 1),
+        radius=20,
+        fill="#f3f7fb",
+        outline="#d7e2ee",
+        width=2,
+    )
+    draw.rounded_rectangle(
+        (x, y, x + width - 1, y + 14),
+        radius=20,
+        fill="#1f5f9f",
+        outline="#1f5f9f",
+        width=1,
+    )
+    text_x = x + 42
+    draw.text(
+        (text_x, y + 36),
+        "Interactive scCCVGBen benchmark atlas",
+        font=_font(HEADER_TITLE_FONT_PX, bold=True),
+        fill="#13213a",
+    )
+    body = (
+        "A multi-page website mosaic links dataset provenance, method registry, "
+        "metric families, and drill-down audit trails used by the benchmark."
+    )
+    for line_idx, line in enumerate(wrap(body, width=105)):
+        draw.text(
+            (text_x, y + 132 + line_idx * 50),
+            line,
+            font=_font(HEADER_BODY_FONT_PX),
+            fill="#3b465c",
+        )
+
+    badges = [
+        ("200 datasets", "#1f5f9f"),
+        ("32 methods", "#7a5ab8"),
+        ("26 metrics", "#b54848"),
+        ("detail pages", "#24989f"),
+    ]
+    badge_widths = [
+        draw.textbbox((0, 0), label, font=_font(BADGE_FONT_PX, bold=True))[2] + 42
+        for label, _ in badges
+    ]
+    badge_x = x + width - sum(badge_widths) - 20 * (len(badges) - 1) - 42
+    badge_y = y + HEADER_HEIGHT - 72
+    for (label, color), badge_w in zip(badges, badge_widths, strict=True):
+        draw.rounded_rectangle(
+            (badge_x, badge_y, badge_x + badge_w, badge_y + 48),
+            radius=24,
+            fill=color,
+            outline=color,
+            width=1,
+        )
+        draw.text(
+            (badge_x + 21, badge_y + 3),
+            label,
+            font=_font(BADGE_FONT_PX, bold=True),
+            fill="white",
+        )
+        badge_x += badge_w + 20
+
+
+def _build_canvas(shots_dir: Path) -> Image.Image:
+    cards = [_panel_card(panel, shots_dir) for panel in PANELS]
     columns = [[cards[i] for i in order] for order in COLUMN_ORDER]
     col_heights = [_column_height(column) for column in columns]
     target_col_height = max(col_heights)
 
     n_cols = len(columns)
-    content_width = CANVAS_PAD * 2 + CARD_WIDTH * n_cols + GAP_X * (n_cols - 1)
-    content_height = CANVAS_PAD * 2 + target_col_height
+    mosaic_width = CARD_WIDTH * n_cols + GAP_X * (n_cols - 1)
+    content_width = CANVAS_PAD * 2 + mosaic_width
+    content_height = CANVAS_PAD * 2 + HEADER_HEIGHT + GAP_Y + target_col_height
     required_w = int(content_height * MIN_ASPECT_W_OVER_H) + 1
     width = max(content_width, required_w)
     height = content_height
     canvas = Image.new("RGB", (width, height), "white")
+    draw = ImageDraw.Draw(canvas)
 
     x_start = CANVAS_PAD
     extra = width - content_width
     if extra > 0:
         x_start = CANVAS_PAD + extra // 2
 
+    _draw_header(draw, x_start, CANVAS_PAD, mosaic_width)
+
     for col_idx, column in enumerate(columns):
         x = x_start + col_idx * (CARD_WIDTH + GAP_X)
-        y = CANVAS_PAD
+        y = CANVAS_PAD + HEADER_HEIGHT + GAP_Y
         for card_idx, card in enumerate(column):
             canvas.paste(card, (x, y))
             y += card.height
             if card_idx < len(column) - 1:
                 y += GAP_Y
 
-    canvas.save(OUT_PNG, dpi=(DPI, DPI))
-    canvas.save(OUT_PDF, "PDF", resolution=DPI)
-    print(f"wrote {OUT_PNG}  ({width} × {height}, W/H={width/height:.3f}, target > {MIN_ASPECT_W_OVER_H:.3f})")
-    print(f"wrote {OUT_PDF}")
+    return canvas
+
+
+def _parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--shots-dir",
+        type=Path,
+        default=DEFAULT_SHOTS,
+        help="Directory containing browser screenshots (default: figures/site_shots).",
+    )
+    parser.add_argument(
+        "--out-dir",
+        type=Path,
+        default=DEFAULT_OUT_DIR,
+        help="Directory for rendered PNG/PDF outputs (default: figures).",
+    )
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = _parse_args()
+    out_dir = args.out_dir
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_png = out_dir / "fig1_scCCVGBen_site.png"
+    out_pdf = out_dir / "fig1_scCCVGBen_site.pdf"
+
+    canvas = _build_canvas(args.shots_dir)
+    width, height = canvas.size
+    canvas.save(out_png, dpi=(DPI, DPI))
+    canvas.save(out_pdf, "PDF", resolution=DPI)
+    print(f"wrote {out_png}  ({width} × {height}, W/H={width/height:.3f}, target > {MIN_ASPECT_W_OVER_H:.3f})")
+    print(f"wrote {out_pdf}")
 
 
 if __name__ == "__main__":
