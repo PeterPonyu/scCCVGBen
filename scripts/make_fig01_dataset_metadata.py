@@ -144,10 +144,20 @@ def _panel_coverage(ax: plt.Axes, df: pd.DataFrame, results_root: Path) -> None:
 
 
 def _panel_tissue(ax: plt.Axes, df: pd.DataFrame, top_k: int = 12) -> None:
-    tissue_counts = (
-        df.assign(tissue=df["tissue"].fillna("other").str.lower())
-        .groupby(["tissue", "modality"]).size().unstack(fill_value=0)
-    )
+    """Tissue distribution panel.
+
+    The scATAC half of the manifest still has ~73/100 entries lacking a
+    canonical tissue label (CCVGAE never annotated those samples). We
+    exclude the catch-all ``other`` / ``unknown`` buckets from the top-K
+    ranking and stamp the un-annotated count as a footnote so the panel
+    is not silently skewed by the annotation gap.
+    """
+    BLOCKLIST = {"other", "unknown", "mixed", ""}
+    raw = df.assign(tissue=df["tissue"].fillna("other").str.lower())
+    n_unannotated = int(raw["tissue"].isin(BLOCKLIST).sum())
+    raw = raw[~raw["tissue"].isin(BLOCKLIST)]
+
+    tissue_counts = raw.groupby(["tissue", "modality"]).size().unstack(fill_value=0)
     tissue_counts["total"] = tissue_counts.sum(axis=1)
     tissue_counts = tissue_counts.sort_values("total", ascending=True).tail(top_k)
     y = np.arange(len(tissue_counts))
@@ -160,8 +170,16 @@ def _panel_tissue(ax: plt.Axes, df: pd.DataFrame, top_k: int = 12) -> None:
     ax.set_yticklabels(tissue_counts.index)
     ax.set_xlabel("Datasets")
     ax.set_ylabel("")
-    ax.set_title(f"Top-{top_k} tissue sources", loc="left", fontsize=13, pad=8)
+    ax.set_title(f"Top-{top_k} annotated tissue sources",
+                 loc="left", fontsize=13, pad=8)
     ax.legend(frameon=False, fontsize=8, loc="lower right")
+    if n_unannotated:
+        ax.text(
+            0.99, 0.02,
+            f"{n_unannotated} datasets without canonical tissue label",
+            transform=ax.transAxes, ha="right", va="bottom",
+            fontsize=7, color="#475569", style="italic",
+        )
     _panel_label(ax, "D")
 
 
