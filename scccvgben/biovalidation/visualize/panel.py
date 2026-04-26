@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 
 
 PANEL_W_INCH: float = 16.0      # full case figure width
-PANEL_H_INCH: float = 12.0      # full case figure height
+PANEL_H_INCH: float = 16.0      # full case figure height — accommodates 5 rows
 PANEL_DPI:    int   = 200       # publication 2x density (still ~ 5 MB / fig)
 
 

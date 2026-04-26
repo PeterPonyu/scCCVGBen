@@ -19,11 +19,23 @@ from scccvgben.figures.metrics import NUMERIC_METRICS
 
 DEFAULT_METRICS: tuple[str, ...] = NUMERIC_METRICS
 
-_RESULT_PREFIXES = ("Can_", "Dev_", "Imm_", "Neu_", "Oth_", "ATA_", "sup_")
+_RESULT_PREFIXES = ("Can_", "Dev_", "Imm_", "Neu_", "Oth_", "ATA_", "sup_", "Gen_")
 
 
 def dataset_key_from_result_stem(stem: str) -> str:
-    """Map local result filenames back to benchmark_manifest filename_key values."""
+    """Map local result filenames back to benchmark_manifest filename_key values.
+
+    Strategy: drop the trailing ``_df`` and the leading category prefix
+    (``Can_`` / ``Dev_`` / ``Gen_`` / etc.). Anything between the category
+    prefix and the GSE accession is kept verbatim so manifest entries with
+    descriptive aliases (e.g. ``endo_GSE84133`` / ``hESC_GSE144024`` /
+    ``ifnHSPC_GSE226824``) still match the corresponding reconciled file.
+    Earlier versions auto-stripped everything up to the ``GSE``/``GSM``
+    token whenever the token was not at index 0; that silently broke the
+    three descriptive aliases above, dropping their data from
+    ``filter_to_manifest`` and forcing the figures into ``PRELIMINARY``
+    output (97/100 instead of 100/100).
+    """
     key = stem
     if key.endswith("_df"):
         key = key[:-3]
@@ -31,12 +43,6 @@ def dataset_key_from_result_stem(stem: str) -> str:
         if key.startswith(prefix):
             key = key[len(prefix):]
             break
-    if not key.startswith("bm_GSE"):
-        for token in ("GSE", "GSM"):
-            idx = key.find(token)
-            if idx > 0:
-                key = key[idx:]
-                break
     return key
 
 

@@ -1,6 +1,6 @@
 """Single-case figure composer.
 
-Layout (16in × 12in, 200 DPI)::
+Layout (16in × 16in, 200 DPI)::
 
     ┌───────────┬───────────┬───────────┬─────────────┐
     │ A         │ B         │ C         │ D           │
@@ -13,6 +13,10 @@ Layout (16in × 12in, 200 DPI)::
     │                                   │             │
     ├───────────────────────────────────┴─────────────┤
     │ E   Top-1 correlated gene per latent dim table  │
+    ├─────────────────────────────────────────────────┤
+    │ H   GO Biological Process enrichment dotplot    │
+    │     terms × latent dim, size = % overlap,       │
+    │     color = -log10(adj.p)                       │
     └─────────────────────────────────────────────────┘
 
 The composer never raises on missing panels — every cell is wrapped in
@@ -36,6 +40,7 @@ from ..visualize.scatter import render_categorical_scatter, render_continuous_sc
 from ..visualize.heatmap import render_latent_corr, render_top_gene_table
 from ..visualize.violin import render_condition_violin
 from ..visualize.gene_grid import render_gene_grid
+from ..visualize.dotplot import render_gobp_dotplot
 
 log = logging.getLogger(__name__)
 
@@ -59,15 +64,17 @@ def compose_case_figure(payload: dict, out_dir: Path) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     fig = plt.figure(figsize=(PANEL_W_INCH, PANEL_H_INCH), dpi=PANEL_DPI)
-    # height_ratios: row0 (UMAPs+heatmap, square-ish) is shorter than the
-    # mid-rows (F gene grid is dense), and row3 (table E) is half-height
-    # since the table stays compact regardless of dim count.
+    # 5-row GridSpec:
+    #   row 0 — A B C D (UMAPs + heatmap, shortest)
+    #   row 1+2 — F (gene grid) + G (violin)
+    #   row 3 — E (table; half-height, compact regardless of dim count)
+    #   row 4 — H (GO BP dotplot; tall, terms × dim grid)
     gs = GridSpec(
-        nrows=4, ncols=4,
+        nrows=5, ncols=4,
         figure=fig,
-        height_ratios=[2.6, 3.2, 3.2, 1.6],
+        height_ratios=[2.4, 2.8, 2.8, 1.3, 3.5],
         hspace=0.55, wspace=0.34,
-        left=0.045, right=0.975, top=0.91, bottom=0.045,
+        left=0.05, right=0.975, top=0.93, bottom=0.04,
     )
 
     # ── Header / title bar ───────────────────────────────────────────
@@ -133,11 +140,19 @@ def compose_case_figure(payload: dict, out_dir: Path) -> Path:
         title="G · Per-condition latent value distribution (first 5 dims)",
     )
 
-    # ── Bottom row — E (table) ──────────────────────────────────────
+    # ── Row 3 — E (top-gene table, half-height) ─────────────────────
     ax_E = fig.add_subplot(gs[3, :])
     _safe(
         render_top_gene_table, ax_E, payload.get("top_k_genes_df"),
         title="E · Top-1 correlated gene per latent dim",
+    )
+
+    # ── Row 4 — H (GO BP enrichment dotplot, full width) ────────────
+    ax_H = fig.add_subplot(gs[4, :])
+    _safe(
+        render_gobp_dotplot, ax_H, payload.get("enrichment_df"),
+        title="H · GO Biological Process enrichment per latent dim "
+              "(top-100 |correlated| genes; dot size = % overlap, color = -log10 padj)",
     )
 
     pdf_path = out_dir / f"fig_biovalidation_case_{case.case_id}.pdf"
