@@ -104,15 +104,15 @@ def _compose_pair(left_case: str, right_case: str, pair_label: str,
         img_r = img_r.resize((int(img_r.width * ratio), img_l.height),
                               Image.LANCZOS)
 
-    # Vertical band on top for the pair-level title (~ 80 px).
-    title_band_h = 90
+    # Vertical band on top for the pair-level title (~ 220 px so the title
+    # remains legible when the figure is downscaled in the manuscript).
+    title_band_h = 220
     canvas = Image.new("RGB",
                         (img_l.width + img_r.width, img_l.height + title_band_h),
                         "white")
     canvas.paste(img_l, (0, title_band_h))
     canvas.paste(img_r, (img_l.width, title_band_h))
 
-    # Draw title via matplotlib (cleaner antialiasing than PIL.ImageDraw).
     out_dir.mkdir(parents=True, exist_ok=True)
     png_path = out_dir / f"{out_stem}.png"
     pdf_path = out_dir / f"{out_stem}.pdf"
@@ -123,12 +123,17 @@ def _compose_pair(left_case: str, right_case: str, pair_label: str,
     ax = fig.add_subplot(111)
     ax.axis("off")
     ax.imshow(canvas, aspect="equal")
+    # Centred title at the very top of the title band; case-side labels
+    # are drawn just above each half of the case content (LEFT|RIGHT).
     fig.suptitle(
         f"Bio-validation paired case · {pair_label}",
-        fontsize=18, fontweight="bold", y=0.985,
+        fontsize=44, fontweight="bold", y=0.985,
     )
-    fig.text(0.005, 0.97, f"left: case {left_case}", fontsize=10, color="#475569")
-    fig.text(0.505, 0.97, f"right: case {right_case}", fontsize=10, color="#475569")
+    sub_y = 1 - (title_band_h * 0.84) / canvas.size[1]   # below the title
+    fig.text(0.25, sub_y, f"LEFT panel — case {left_case}",
+             fontsize=22, fontweight="bold", color="#0F172A", ha="center")
+    fig.text(0.75, sub_y, f"RIGHT panel — case {right_case}",
+             fontsize=22, fontweight="bold", color="#0F172A", ha="center")
     fig.savefig(pdf_path, bbox_inches="tight", pad_inches=0.05)
     fig.savefig(png_path, bbox_inches="tight", pad_inches=0.05, dpi=200)
     plt.close(fig)
