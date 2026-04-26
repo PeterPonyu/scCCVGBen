@@ -1,7 +1,7 @@
 ---
 title: "interpretation_intrin"
 type: docs
-weight: 125
+weight: 121
 geekdocHidden: false
 ---
 

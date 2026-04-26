@@ -1,7 +1,7 @@
 ---
 title: "manifold_dimensionality_intrin"
 type: docs
-weight: 116
+weight: 113
 geekdocHidden: false
 ---
 

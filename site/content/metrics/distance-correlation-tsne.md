@@ -1,7 +1,7 @@
 ---
 title: "distance_correlation_tsne"
 type: docs
-weight: 111
+weight: 108
 geekdocHidden: false
 ---
 

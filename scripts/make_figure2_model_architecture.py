@@ -22,9 +22,12 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.path import Path as MplPath
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
+from scccvgben.figures.fonts import register_arial_with_matplotlib
 
 log = logging.getLogger(__name__)
+register_arial_with_matplotlib()
 
 # Match Figure 1's clean publication palette while using architecture-specific rails.
 C_ORANGE = "#D35400"
@@ -39,22 +42,23 @@ C_CARD = "#FFFFFF"
 C_LINE = "#CBD5E1"
 
 ENCODERS = [
-    "GAT", "GATv2", "Transformer", "SuperGAT",
+    "GAT", "GATv2", "Trans-\nformer", "Super\nGAT",
     "GCN", "SAGE", "Graph", "Cheb", "TAG", "ARMA", "SG", "SSG",
-    "GIN", "EdgeConv",
+    "GIN", "Edge\nConv",
 ]
-GRAPH_METHODS = ["kNN_euclidean", "kNN_cosine", "snn", "mutual_knn", "gaussian_threshold"]
-BEN_METRICS = ["NMI", "ARI", "ASW", "CAL", "DAV", "COR"]
-DRE_METRICS = ["DC", "QL", "QG", "OV", "overall"]
-LSE_METRICS = ["MD", "SDR", "PR", "AS", "TD", "NR", "CQ", "overall"]
+GRAPH_METHODS = ["kNN-Euclid", "kNN-cosine", "SNN", "Mutual kNN", "Gaussian threshold"]
+BEN_METRICS = ["ASW", "DAV", "CAL"]
+DRE_METRICS = ["DC", "QL", "QG", "Kmax", "Overall"]
+LSE_METRICS = ["MD", "SDR", "PR", "AS", "TD", "NR", "Overall"]
 
 plt.rcParams.update({
     "pdf.fonttype": 42,
     "ps.fonttype": 42,
-    "font.family": "Liberation Sans",
+    "font.family": "Arial",
+    "font.sans-serif": ["Arial", "Liberation Sans", "DejaVu Sans"],
     "savefig.bbox": "tight",
     "savefig.dpi": 300,
-    "font.size": 12,
+    "font.size": 15,
     "axes.spines.top": False,
     "axes.spines.right": False,
 })
@@ -62,7 +66,8 @@ plt.rcParams.update({
 FIG_W = 20.2
 FIG_H = 8.45
 AX_XMAX = 20.35
-AX_YMAX = 8.38
+AX_YMIN = 0.12
+AX_YMAX = 7.95
 
 
 def _box(ax: plt.Axes, x: float, y: float, w: float, h: float, label: str,
@@ -88,30 +93,75 @@ def _box(ax: plt.Axes, x: float, y: float, w: float, h: float, label: str,
         fontsize=size,
         color=color,
         fontweight=weight,
-        linespacing=1.2,
-        zorder=3,
+        linespacing=1.05 if "\n" in label else 1.2,
+        zorder=4.0,
     )
     return patch
 
 
-def _label(ax: plt.Axes, x: float, y: float, text: str, *, size: float = 10,
+def _label(ax: plt.Axes, x: float, y: float, text: str, *, size: float = 10.6,
            color: str = C_DARK, weight: str = "bold", ha: str = "left") -> None:
     ax.text(x, y, text, ha=ha, va="center", fontsize=size, color=color,
             fontweight=weight, zorder=4)
 
 
 def _arrow(ax: plt.Axes, start: tuple[float, float], end: tuple[float, float],
-           *, color: str = C_MUTED, lw: float = 1.8, rad: float = 0.0) -> None:
+           *, color: str = C_MUTED, lw: float = 1.8, rad: float = 0.0,
+           zorder: float = 1.85, mutation_scale: float = 15.0) -> None:
     arr = FancyArrowPatch(
         start, end,
         connectionstyle=f"arc3,rad={rad}",
         arrowstyle="-|>",
-        mutation_scale=14,
+        mutation_scale=mutation_scale,
         linewidth=lw,
         color=color,
-        zorder=5,
+        zorder=zorder,
     )
     ax.add_patch(arr)
+
+
+def _path_arrow(
+    ax: plt.Axes,
+    points: list[tuple[float, float]],
+    *,
+    color: str = C_MUTED,
+    lw: float = 1.8,
+    zorder: float = 1.85,
+    mutation_scale: float = 15.0,
+) -> None:
+    """Draw a routed connector so arrows use whitespace corridors instead of labels."""
+    codes = [MplPath.MOVETO] + [MplPath.LINETO] * (len(points) - 1)
+    arr = FancyArrowPatch(
+        path=MplPath(points, codes),
+        arrowstyle="-|>",
+        mutation_scale=mutation_scale,
+        linewidth=lw,
+        color=color,
+        zorder=zorder,
+        capstyle="round",
+        joinstyle="round",
+    )
+    ax.add_patch(arr)
+
+
+def _flow_label(ax: plt.Axes, x: float, y: float, text: str, *, color: str) -> None:
+    ax.text(
+        x,
+        y,
+        text,
+        fontsize=9.4,
+        color=color,
+        fontweight="bold",
+        ha="center",
+        va="center",
+        bbox={
+            "boxstyle": "round,pad=0.12,rounding_size=0.05",
+            "facecolor": "white",
+            "edgecolor": "none",
+            "alpha": 0.88,
+        },
+        zorder=4.5,
+    )
 
 
 def _pill_row(ax: plt.Axes, labels: Iterable[str], x: float, y: float, w: float,
@@ -145,7 +195,7 @@ def _metric_family_card(
     title: str,
     body: str,
     *,
-    size: float = 8.4,
+    size: float = 9.2,
 ) -> None:
     """Draw one grouped evaluation-family card without expanding it into a catalogue."""
     _box(ax, x, y, w, h, "", fc="white", ec=C_PURPLE, lw=1.1, radius=0.10)
@@ -155,7 +205,7 @@ def _metric_family_card(
         family,
         ha="left",
         va="top",
-        fontsize=9.2,
+        fontsize=size + 0.2,
         fontweight="bold",
         color=C_PURPLE,
         zorder=4,
@@ -192,142 +242,189 @@ def make_figure(
 ) -> list[Path]:
     fig, ax = plt.subplots(figsize=(FIG_W, FIG_H))
     ax.set_xlim(0, AX_XMAX)
-    ax.set_ylim(0, AX_YMAX)
+    ax.set_ylim(AX_YMIN, AX_YMAX)
     ax.axis("off")
     fig.patch.set_facecolor("white")
     ax.set_facecolor("white")
 
-    # Soft background ribbons.
-    _box(ax, 0.15, 0.28, 19.7, 7.20, "", fc=C_BG, ec="#E2E8F0", lw=1.0, radius=0.22)
-    ax.text(0.30, 7.88, "scCCVGBen model architecture",
-            fontsize=21.5, fontweight="bold", color=C_DARK, ha="left", va="center")
-    ax.text(19.70, 7.88, "graph construction • encoder axis • dual reconstruction • BEN/DRE/LSE",
-            fontsize=12.0, color=C_MUTED, ha="right", va="center")
+    _box(ax, 0.12, 0.24, 20.05, 7.20, "", fc=C_BG, ec="#E2E8F0", lw=1.0, radius=0.22)
+    ax.text(0.28, 7.70, "scCCVGBen model architecture",
+            fontsize=29.0, fontweight="bold", color=C_DARK, ha="left", va="center")
+    ax.text(19.85, 7.70, "graph construction • encoder axis • dual reconstruction • BEN/DRE/LSE",
+            fontsize=16.6, color=C_MUTED, ha="right", va="center")
 
-    # Column headings.
-    _label(ax, 0.55, 7.05, "A  Input + graph construction", color=C_BLUE, size=13.2)
-    _label(ax, 4.45, 7.05, "B  Encoder plugin axis", color=C_ORANGE, size=13.2)
-    _label(ax, 10.00, 7.05, "C  Variational core + dual reconstruction", color=C_TEAL, size=13.0)
-    _label(ax, 16.78, 7.05, "D  BEN / DRE / LSE output", color=C_PURPLE, size=13.2)
+    # Section envelopes make the architecture denser than a loose flowchart.
+    sections = [
+        (0.38, 0.66, 3.45, 6.64, C_BLUE, "A  input + graph"),
+        (4.04, 0.66, 5.05, 6.64, C_ORANGE, "B  encoder plug-ins"),
+        (9.32, 0.66, 6.40, 6.64, C_TEAL, "C  variational core"),
+        (15.95, 0.66, 4.05, 6.64, C_PURPLE, "D  metric output"),
+    ]
+    for x, y, w, h, color, title in sections:
+        _box(ax, x, y, w, h, "", fc="white", ec=color, lw=1.15, radius=0.18)
+        ax.text(x + 0.22, y + h - 0.24, title, fontsize=18.0, color=color,
+                fontweight="bold", ha="left", va="top")
 
-    # A: data and graph construction.
-    _box(ax, 0.55, 6.00, 3.05, 0.66, "AnnData input\nX + optional labels", fc="#EFF6FF", ec=C_BLUE,
-         color=C_DARK, size=11.4, weight="bold")
-    _box(ax, 0.55, 5.05, 3.05, 0.66, "Counts layer → log/HVG\nPCA feature matrix", fc="#FFFFFF", ec=C_BLUE,
-         color=C_DARK, size=10.5)
-    _arrow(ax, (2.08, 5.99), (2.08, 5.73), color=C_BLUE)
-    _arrow(ax, (2.08, 5.04), (2.08, 4.72), color=C_BLUE)
-    _box(ax, 0.48, 2.42, 3.20, 2.05, "", fc="#F0F9FF", ec=C_BLUE, lw=1.1)
-    ax.text(0.67, 4.17, "5 graph choices", fontsize=11.8, fontweight="bold", color=C_BLUE)
+    # A: data preparation and graph construction axis.
+    _box(ax, 0.62, 6.05, 2.98, 0.58, "AnnData input\nX + optional labels", fc="#EFF6FF", ec=C_BLUE,
+         color=C_DARK, size=14.4, weight="bold")
+    _box(ax, 0.62, 5.22, 2.98, 0.58, "counts → log/HVG\nPCA feature matrix", fc="#FFFFFF", ec=C_BLUE,
+         color=C_DARK, size=13.4)
+    _box(ax, 0.62, 2.62, 2.98, 2.18, "", fc="#F0F9FF", ec=C_BLUE, lw=1.0)
+    ax.text(0.84, 4.48, "5 graph choices", fontsize=15.6, fontweight="bold", color=C_BLUE)
     for i, method in enumerate(GRAPH_METHODS):
-        yy = 3.82 - i * 0.30
-        ax.text(0.72, yy, f"• {method}", fontsize=9.8, color=C_DARK, ha="left", va="center")
-    _box(ax, 1.10, 1.58, 2.05, 0.58, "cell graph A", fc="#DBEAFE", ec=C_BLUE,
-         color=C_BLUE, size=11.3, weight="bold")
-    _arrow(ax, (2.08, 2.48), (2.08, 2.17), color=C_BLUE)
+        ax.text(0.86, 4.08 - i * 0.33, f"• {method}", fontsize=13.0,
+                color=C_DARK, ha="left", va="center")
+    _box(ax, 0.58, 1.72, 3.06, 0.64, "cell graph A\n(edge_index / weight)",
+         fc="#DBEAFE", ec=C_BLUE, color=C_BLUE, size=11.9, weight="bold")
+    _box(ax, 0.68, 0.94, 2.86, 0.48, "same cells; graph axis", fc="#FFFFFF",
+         ec="#93C5FD", color=C_MUTED, size=11.6)
+    _arrow(ax, (2.11, 6.04), (2.11, 5.82), color=C_BLUE, lw=2.0)
+    _arrow(ax, (2.11, 5.21), (2.11, 4.82), color=C_BLUE, lw=2.0)
+    _arrow(ax, (1.00, 2.62), (1.00, 2.38), color=C_BLUE, lw=2.0)
+    _arrow(ax, (3.62, 5.52), (4.02, 5.52), color=C_BLUE, lw=2.35,
+           zorder=3.2, mutation_scale=18)
+    _flow_label(ax, 3.94, 5.69, "X", color=C_BLUE)
+    _arrow(ax, (3.66, 2.04), (4.02, 1.62), color=C_BLUE, lw=2.35, rad=-0.08,
+           zorder=3.2, mutation_scale=18)
+    _flow_label(ax, 3.96, 2.02, "A", color=C_BLUE)
 
-    # B: encoder axis.
-    _box(ax, 4.25, 2.18, 4.95, 4.32, "", fc="#FFF7ED", ec=C_ORANGE, lw=1.2, radius=0.18)
-    ax.text(4.50, 6.18, "Interchangeable encoder registry (14)", fontsize=12.6,
+    # B: encoder plug-in registry, tightly grouped by architectural family.
+    ax.text(4.32, 6.42, "Encoder registry (14 plug-ins)", fontsize=17.2,
             color=C_ORANGE, fontweight="bold", ha="left", va="center")
-    ax.text(4.50, 5.78, "same data/losses; swap only\nmessage-passing module",
-            fontsize=9.9, color=C_MUTED, ha="left", va="center", linespacing=1.08)
-    _pill_row(ax, ENCODERS[:4], 4.50, 5.00, 4.35, 0.64, cols=4, color=C_ORANGE, size=9.1)
-    ax.text(4.50, 4.78, "attention family", fontsize=9.2, color=C_MUTED, ha="left")
-    _pill_row(ax, ENCODERS[4:12], 4.50, 3.33, 4.35, 1.18, cols=4, color="#B45309", size=9.1)
-    ax.text(4.50, 3.12, "message-passing / spectral family", fontsize=9.2, color=C_MUTED, ha="left")
-    _pill_row(ax, ENCODERS[12:], 4.50, 2.53, 2.25, 0.50, cols=2, color=C_ORANGE, size=9.1)
-    ax.text(7.04, 2.78, "+ edge/dynamic variants", fontsize=9.4, color=C_MUTED, ha="left", va="center")
+    ax.text(4.32, 6.06, "fixed data/graph/losses; swap only fθ",
+            fontsize=12.8, color=C_MUTED, ha="left", va="center")
+    _pill_row(ax, ENCODERS[:4], 4.32, 5.18, 4.55, 0.76, cols=4, color=C_ORANGE, size=10.6)
+    ax.text(4.34, 5.04, "attention family", fontsize=11.6, color=C_MUTED, ha="left")
+    _pill_row(ax, ENCODERS[4:12], 4.32, 3.34, 4.55, 1.42, cols=4, color="#B45309", size=10.9)
+    ax.text(4.34, 3.13, "message-passing / spectral family", fontsize=11.6, color=C_MUTED, ha="left")
+    _pill_row(ax, ENCODERS[12:], 4.32, 2.45, 2.25, 0.62, cols=2, color=C_ORANGE, size=10.3)
+    ax.text(6.82, 2.72, "+ edge/dynamic", fontsize=12.0,
+            color=C_MUTED, ha="left", va="center")
+    _box(ax, 4.30, 1.06, 4.60, 0.90,
+         "plug-in contract: fθ(X, A) → qμ/qσ\nlosses + evaluation stay fixed",
+         fc="#FFF7ED", ec="#FDBA74", color=C_DARK, size=12.0, ha="left")
+    _arrow(ax, (8.84, 5.55), (9.60, 5.86), color=C_ORANGE, lw=2.35, rad=0.02,
+           zorder=3.2, mutation_scale=18)
+    _flow_label(ax, 9.15, 5.58, "fθ", color=C_ORANGE)
 
-    _arrow(ax, (3.15, 1.86), (4.22, 3.92), color=C_MUTED, rad=0.12)
-    _arrow(ax, (3.55, 6.33), (4.22, 5.88), color=C_MUTED, rad=-0.08)
+    # C: variational core and explicit dual reconstruction paths.
+    ax.text(9.58, 6.42, "Variational graph autoencoder core", fontsize=17.0,
+            color=C_TEAL, fontweight="bold", ha="left", va="center")
+    _box(ax, 9.62, 5.55, 1.95, 0.62, "fθ(X, A)\ngraph encoder", fc="#ECFDF5", ec=C_TEAL,
+         color=C_TEAL, size=13.4, weight="bold")
+    _box(ax, 11.92, 5.55, 1.42, 0.62, "qμ, qσ", fc="#ECFDF5", ec=C_TEAL,
+         color=C_TEAL, size=14.8, weight="bold")
+    _box(ax, 13.58, 5.55, 0.76, 0.62, "z", fc="#D1FAE5", ec=C_TEAL,
+         color=C_TEAL, size=18.4, weight="bold")
+    _box(ax, 14.52, 5.55, 1.02, 0.62, "pred_x", fc="#EFF6FF", ec=C_BLUE,
+         color=C_BLUE, size=13.8, weight="bold")
+    _box(ax, 9.78, 4.12, 1.85, 0.64, "pred_a\nadj decoder", fc="#F0FDFA", ec=C_TEAL,
+         color=C_TEAL, size=13.2, weight="bold")
+    _box(ax, 12.00, 4.12, 1.35, 0.64, "KL", fc="#F0FDFA", ec=C_TEAL,
+         color=C_TEAL, size=14.8, weight="bold")
+    _box(ax, 13.58, 4.12, 0.76, 0.64, "i", fc="#FEF3C7", ec="#B45309",
+         color="#92400E", size=18.4, weight="bold")
+    _box(ax, 13.58, 2.80, 0.76, 0.64, "z′", fc="#D1FAE5", ec=C_TEAL,
+         color=C_TEAL, size=18.4, weight="bold")
+    _box(ax, 14.52, 2.80, 1.02, 0.64, "pred_xl", fc="#FFF7ED", ec=C_ORANGE,
+         color=C_ORANGE, size=13.8, weight="bold")
+    _box(ax, 9.76, 1.20, 5.95, 0.86,
+         "loss = recon(pred_x, X) + inner-recon(pred_xl, X)\n+ adj(pred_a, A) + KL",
+         fc="#FFFFFF", ec=C_LINE, color=C_DARK, size=12.9, ha="left")
+    _box(ax, 9.68, 2.42, 3.02, 0.38, "adjacency path: A → pred_a", fc="#FFFFFF",
+         ec="#A7F3D0", color=C_TEAL, size=10.9)
+    _box(ax, 12.98, 2.42, 2.56, 0.38, "feature path: z / z′ → x", fc="#FFFFFF",
+         ec="#FED7AA", color="#92400E", size=10.9)
+    ax.text(12.88, 4.96, "latent sampling", fontsize=12.0, color=C_MUTED, ha="center")
+    ax.text(
+        14.05,
+        3.68,
+        "inner bottleneck",
+        fontsize=10.9,
+        color="#92400E",
+        ha="center",
+        bbox={
+            "boxstyle": "round,pad=0.10,rounding_size=0.04",
+            "facecolor": "white",
+            "edgecolor": "none",
+            "alpha": 0.90,
+        },
+        zorder=4.4,
+    )
+    # Make the tensor logic explicit without letting connector strokes cover labels.
+    _arrow(ax, (11.58, 5.86), (11.90, 5.86), color=C_TEAL, lw=2.2,
+           zorder=3.1, mutation_scale=18)
+    _arrow(ax, (13.35, 5.86), (13.56, 5.86), color=C_TEAL, lw=2.2,
+           zorder=3.1, mutation_scale=18)
+    _arrow(ax, (14.36, 5.86), (14.50, 5.86), color=C_BLUE, lw=2.2,
+           zorder=3.1, mutation_scale=18)
+    _arrow(ax, (13.96, 5.54), (13.96, 4.78), color="#B45309", lw=2.0,
+           zorder=3.05, mutation_scale=17)
+    _arrow(ax, (13.96, 4.10), (13.96, 3.46), color=C_TEAL, lw=2.0,
+           zorder=3.05, mutation_scale=17)
+    _arrow(ax, (14.36, 3.12), (14.50, 3.12), color=C_ORANGE, lw=2.2,
+           zorder=3.1, mutation_scale=18)
+    _path_arrow(ax, [(10.58, 5.52), (10.30, 5.18), (10.30, 4.78)],
+                color=C_TEAL, lw=2.0, zorder=3.0, mutation_scale=17)
+    _path_arrow(ax, [(10.70, 4.10), (10.02, 3.68), (10.02, 2.10)],
+                color=C_TEAL, lw=2.0, zorder=2.65, mutation_scale=17)
+    _path_arrow(ax, [(12.68, 4.10), (12.18, 3.68), (12.18, 2.10)],
+                color=C_TEAL, lw=2.0, zorder=2.65, mutation_scale=17)
+    _path_arrow(ax, [(15.02, 5.54), (15.62, 5.54), (15.62, 2.08)],
+                color=C_BLUE, lw=2.0, zorder=2.65, mutation_scale=17)
+    _path_arrow(ax, [(15.02, 2.78), (15.40, 2.78), (15.40, 2.08)],
+                color=C_ORANGE, lw=2.0, zorder=2.65, mutation_scale=17)
+    _path_arrow(ax, [(15.56, 5.86), (15.86, 5.86), (16.10, 5.62)],
+                color=C_PURPLE, lw=2.25, zorder=2.55, mutation_scale=17)
+    _path_arrow(ax, [(15.56, 3.12), (15.84, 3.12), (16.10, 4.22)],
+                color=C_PURPLE, lw=2.25, zorder=2.55, mutation_scale=17)
+    _path_arrow(ax, [(15.56, 1.64), (15.84, 1.64), (16.10, 2.18)],
+                color=C_PURPLE, lw=2.25, zorder=2.55, mutation_scale=17)
 
-    # C: model core.
-    _box(ax, 10.00, 5.75, 2.05, 0.64, "Graph encoder\nfθ(X, A)", fc="#ECFDF5", ec=C_TEAL,
-         color=C_TEAL, size=10.8, weight="bold")
-    _box(ax, 12.45, 5.75, 1.50, 0.64, "qμ, qσ", fc="#ECFDF5", ec=C_TEAL,
-         color=C_TEAL, size=11.5, weight="bold")
-    _box(ax, 14.23, 5.75, 0.92, 0.64, "z", fc="#D1FAE5", ec=C_TEAL,
-         color=C_TEAL, size=14.0, weight="bold")
-    _box(ax, 14.23, 4.37, 0.92, 0.64, "i", fc="#FEF3C7", ec="#B45309",
-         color="#92400E", size=14.0, weight="bold")
-    _box(ax, 14.23, 2.95, 0.92, 0.64, "z′", fc="#D1FAE5", ec=C_TEAL,
-         color=C_TEAL, size=14.0, weight="bold")
-    _box(ax, 10.00, 4.37, 2.02, 0.64, "A decoder\npred_a", fc="#F0FDFA", ec=C_TEAL,
-         color=C_TEAL, size=10.6, weight="bold")
-    _box(ax, 12.15, 4.37, 1.45, 0.64, "KL", fc="#F0FDFA", ec=C_TEAL,
-         color=C_TEAL, size=11.2, weight="bold")
-    _box(ax, 15.55, 5.75, 1.25, 0.64, "pred_x", fc="#EFF6FF", ec=C_BLUE,
-         color=C_BLUE, size=11.2, weight="bold")
-    _box(ax, 15.55, 2.95, 1.25, 0.64, "pred_xl", fc="#FFF7ED", ec=C_ORANGE,
-         color=C_ORANGE, size=11.2, weight="bold")
-    _box(ax, 9.75, 1.08, 7.10, 0.74,
-         "loss = recon(pred_x, X) + inner-recon(pred_xl, X)\n+ KL + adj(pred_a, A)",
-         fc="#FFFFFF", ec=C_LINE, color=C_DARK, size=9.8)
-
-    _arrow(ax, (9.20, 4.18), (9.97, 6.04), color=C_TEAL, rad=0.08)
-    _arrow(ax, (12.05, 6.07), (12.42, 6.07), color=C_TEAL)
-    _arrow(ax, (13.95, 6.07), (14.20, 6.07), color=C_TEAL)
-    _arrow(ax, (14.69, 5.74), (14.69, 5.03), color="#B45309")
-    _arrow(ax, (14.69, 4.36), (14.69, 3.61), color=C_TEAL)
-    _arrow(ax, (15.15, 6.07), (15.52, 6.07), color=C_BLUE)
-    _arrow(ax, (15.15, 3.27), (15.52, 3.27), color=C_ORANGE)
-    _arrow(ax, (10.55, 5.68), (10.95, 5.03), color=C_TEAL, rad=0.12)
-    _arrow(ax, (11.02, 4.36), (11.02, 1.83), color=C_TEAL, rad=0.0)
-    _arrow(ax, (16.18, 5.74), (15.70, 1.83), color=C_BLUE, rad=0.12)
-    _arrow(ax, (16.18, 2.94), (15.70, 1.83), color=C_ORANGE, rad=-0.12)
-
-    ax.text(12.20, 5.12, "latent sampling", fontsize=9.6, color=C_MUTED, ha="left")
-    ax.text(15.12, 4.82, "inner bottleneck", fontsize=9.6, color="#92400E", ha="left")
-
-    # D: grouped output metrics.  Keep this concise so it reads as an
-    # evaluation-family summary rather than a field catalogue.
-    _box(ax, 17.10, 5.62, 2.55, 0.88, "grouped metric table\n26 reported scores",
-         fc="#F5F3FF", ec=C_PURPLE, color=C_PURPLE, size=10.0, weight="bold")
-    ben_text = ", ".join(BEN_METRICS)
+    # D: output table; compact groups retain the 20-score structure without
+    # adding a second title that competes with the section label.
+    _box(ax, 16.18, 6.18, 3.55, 0.62, "metric table: 20 display scores\n3 BEN + 10 DRE + 7 LSE", fc="#F5F3FF",
+         ec=C_PURPLE, color=C_PURPLE, size=13.0, weight="bold")
     _metric_family_card(
-        ax, 17.00, 4.62, 2.85, 0.72,
-        "BEN", "clustering (6)",
-        ben_text,
-        size=8.4,
+        ax, 16.18, 5.24, 3.55, 0.74,
+        "BEN", "clustering compactness (3)",
+        ", ".join(BEN_METRICS),
+        size=10.6,
     )
     dre_text = (
         f"UMAP: {', '.join(DRE_METRICS)}\n"
         f"t-SNE: {', '.join(DRE_METRICS)}"
     )
     _metric_family_card(
-        ax, 17.00, 3.28, 2.85, 1.08,
-        "DRE", "embedding/coranking (10)",
+        ax, 16.18, 3.56, 3.55, 1.34,
+        "DRE", "embedding / coranking (10)",
         dre_text,
-        size=8.0,
+        size=10.25,
     )
-    lse_text = (
-        f"{', '.join(LSE_METRICS)}\n"
-        "+ data-type and interpretation annotations"
-    )
+    lse_text = f"{', '.join(LSE_METRICS)}"
     _metric_family_card(
-        ax, 17.00, 1.58, 2.85, 1.42,
-        "LSE", "intrinsic geometry (10)",
+        ax, 16.18, 1.56, 3.55, 1.68,
+        "LSE", "intrinsic geometry (7)",
         lse_text,
-        size=7.9,
+        size=10.35,
     )
-    _arrow(ax, (16.82, 6.07), (17.13, 6.00), color=C_PURPLE)
-    _arrow(ax, (16.82, 3.27), (17.00, 3.72), color=C_PURPLE, rad=0.12)
+    _box(ax, 16.18, 0.92, 3.55, 0.38, "publication grid: 4 rows × 5 panels", fc="#FFFFFF",
+         ec="#DDD6FE", color=C_MUTED, size=11.2)
 
-    # Bottom legend rails to distinguish benchmark axes from model tensors.
     legend_items = [
-        (0.58, C_BLUE, "graph axis"), (2.10, C_ORANGE, "encoder axis"),
-        (3.70, C_TEAL, "model tensors"), (5.35, C_PURPLE, "metric output"),
+        (0.62, C_BLUE, "graph axis"), (2.36, C_ORANGE, "encoder axis"),
+        (4.18, C_TEAL, "model tensors"), (6.16, C_PURPLE, "metric output"),
     ]
     for x, c, txt in legend_items:
-          _box(ax, x, 0.58, 0.24, 0.18, "", fc=c, ec=c, radius=0.04)
-          ax.text(x + 0.34, 0.67, txt, fontsize=9.7, color=C_MUTED, ha="left", va="center")
+        _box(ax, x, 0.32, 0.25, 0.18, "", fc=c, ec=c, radius=0.04)
+        ax.text(x + 0.34, 0.41, txt, fontsize=12.0, color=C_MUTED, ha="left", va="center")
 
     out_dir.mkdir(parents=True, exist_ok=True)
     png = out_dir / f"{stem}.png"
     pdf = out_dir / f"{stem}.pdf"
-    fig.savefig(png, dpi=300, bbox_inches="tight", pad_inches=0.14)
-    fig.savefig(pdf, dpi=300, bbox_inches="tight", pad_inches=0.14)
+    fig.savefig(png, dpi=300, bbox_inches="tight", pad_inches=0.04)
+    fig.savefig(pdf, dpi=300, bbox_inches="tight", pad_inches=0.04)
     plt.close(fig)
     outputs = [png, pdf]
 
@@ -338,7 +435,6 @@ def make_figure(
         outputs.append(site_png)
 
     return outputs
-
 
 def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)

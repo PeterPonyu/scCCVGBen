@@ -30,7 +30,6 @@ For the full execution sequence see `LAUNCH_BENCHMARK.md`.
 | `make_figure1_site.py` | Builds `figures/fig1_scCCVGBen_site.png` and `.pdf` from local screenshots in `figures/site_shots/`. The screenshots are not committed. |
 | `make_figure2_model_architecture.py` | Builds the wide publication-ready model architecture diagram as `figures/fig2_scCCVGBen_model_architecture.{png,pdf}`. |
 | `make_all_figures.py` | Regenerates the local manuscript figure folder without training or recomputing benchmark results; accepts `--partial-ok` while Axis A/B runs are still incomplete. |
-| `compose_manuscript_figures.py` | Composes the currently rendered local PNGs into `figures/manuscript_figures.pdf` and writes the local manifest. |
 
 ## Benchmark sweeps (GPU-bound; launch via LAUNCH_BENCHMARK.md)
 

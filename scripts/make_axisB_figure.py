@@ -123,6 +123,7 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     metrics = available_numeric_metrics(long_df, PRIMARY_METRICS)
+    log.info("metric coverage: %d/%d display metrics", len(metrics), len(PRIMARY_METRICS))
     reference = short_method_name(args.reference) if args.reference in methods_present else None
     method_order = [short_method_name(m) for m in methods_present]
     audit = metric_coverage_audit(
@@ -135,13 +136,6 @@ def main(argv: list[str] | None = None) -> int:
     )
     write_metric_audit(args.out_dir / "_metric_audit.csv", audit, figure_id="axisB")
 
-    title = "Axis B — graph-construction robustness across the complete 24-metric grid"
-    subtitle = (
-        f"{len(methods_present)} graph rules · {len(metrics)}/{len(PRIMARY_METRICS)} "
-        f"metrics with data · {n_datasets}/{args.target_n} scRNA datasets"
-    )
-    if n_datasets < args.target_n:
-        subtitle += " · PRELIMINARY"
     fig, _ = create_metric_grid_figure(
         long_df,
         metric_grid=METRIC_PANEL_GRID,
@@ -149,11 +143,11 @@ def main(argv: list[str] | None = None) -> int:
         reference_method=reference,
         method_order=method_order,
         family_titles=METRIC_FAMILY_TITLES,
-        title=title,
-        subtitle=subtitle,
+        title=None,
+        subtitle=None,
         metric_labels=METRIC_LABELS,
-        per_col_width=2.55,
-        per_row_height=3.04,
+        per_col_width=3.02,
+        per_row_height=3.20,
     )
 
     args.out_dir.mkdir(parents=True, exist_ok=True)

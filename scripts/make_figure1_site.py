@@ -4,11 +4,12 @@
 Input  : figures/site_shots/{home,datasets,methods,metrics,dataset-detail}.png
 Output : figures/fig1_scCCVGBen_site.{png,pdf}
 
-The compositor intentionally avoids panel letters. It crops each screenshot to
-the article content, trims excess white margins, and preserves screenshot aspect
-ratios so typography is not stretched in the final paper figure. Capture the
-source pages with a desktop viewport (for example 1800×3200, device scale 1)
-and the site's xlarge text-scale option when regenerating the composed figure.
+The compositor adds explicit A-H panel labels in visual reading order, crops
+each screenshot to the article content, trims excess white margins, and
+preserves screenshot aspect ratios so typography is not stretched in the final
+paper figure. Capture the source pages with a desktop viewport (for example
+1800×4600, device scale 1) and the site's xlarge text-scale option when
+regenerating the composed figure.
 """
 from __future__ import annotations
 
@@ -20,29 +21,32 @@ from textwrap import wrap
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
+from scccvgben.figures.fonts import arial_font_path
+
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_SHOTS = ROOT / "figures" / "site_shots"
 DEFAULT_OUT_DIR = ROOT / "figures"
 
 DPI = 300
 CARD_WIDTH = 1740
-CARD_PAD = 38
-TITLE_HEIGHT = 216
-TITLE_FONT_PX = 78
-CALLOUT_FONT_PX = 39
-HEADER_HEIGHT = 250
-HEADER_TITLE_FONT_PX = 82
-HEADER_BODY_FONT_PX = 42
-BADGE_FONT_PX = 38
-GAP_X = 38
-GAP_Y = 34
-CANVAS_PAD = 30
+CARD_PAD = 34
+TITLE_HEIGHT = 270
+TITLE_FONT_PX = 88
+CALLOUT_FONT_PX = 48
+HEADER_HEIGHT = 270
+HEADER_TITLE_FONT_PX = 102
+HEADER_BODY_FONT_PX = 52
+BADGE_FONT_PX = 46
+GAP_X = 34
+GAP_Y = 30
+CANVAS_PAD = 26
 MIN_DESKTOP_SHOT_WIDTH = 1400
 MIN_RIGHT_SIDE_CONTENT_PIXELS = 500
-# Three columns keep the cards aligned while balancing tall registry/detail
-# screenshots so the final mosaic stays dense rather than leaving a sparse
-# lower-right quadrant.
-COLUMN_ORDER = ((0, 4, 7), (3, 2), (5, 6, 1))
+# Four visual columns keep the first row in the natural manuscript sequence
+# (A-D: overview, composition, metadata distributions, dataset index).
+# The second-row pairings are balanced by screenshot height, and panel letters
+# are assigned row-major so the figure reads A-B-C-D / E-F-G-H.
+COLUMN_ORDER = ((0, 6), (1, 4), (2, 5), (3, 7))
 
 
 @dataclass(frozen=True)
@@ -55,41 +59,44 @@ class Panel:
 
 
 PANELS = [
-    # Home is 1600×3200 with sections: hero/KPI (0-0.15), composition (0.15-0.39),
-    # model architecture (0.39-0.60), metadata distributions (0.60-0.94), explore (0.94+).
+    # Home captures use a tall 1800×4600 viewport so source-page typography can stay
+    # large while the composition/metadata panels are cropped to their own sections.
     Panel("home.png", "Benchmark overview",
             "Landing-page KPIs frame the 200-dataset benchmark before readers enter registries.",
-            (0.190, 0.005, 1.000, 0.180), "#1f5f9f"),
+            (0.240, 0.005, 1.000, 0.260), "#1f5f9f"),
     Panel("home.png", "Tissue and species composition",
             "Coverage summaries expose tissue, species, modality, and study-balance structure.",
-            (0.190, 0.185, 1.000, 0.340), "#24989f"),
+            (0.255, 0.257, 0.990, 0.380), "#24989f"),
     Panel("home.png", "Metadata distributions (4 charts)",
             "Distribution panels make scale and metadata skew visible without leaving the overview.",
-            (0.190, 0.575, 1.000, 0.875), "#5a7d2f"),
+            (0.252, 0.515, 0.985, 0.745), "#5a7d2f"),
     Panel("datasets.png", "Dataset index with filters",
             "Searchable dataset cards connect GEO provenance, modality, organism, tissue, and task tags.",
-            (0.190, 0.010, 1.000, 0.715), "#b7791f"),
+            (0.240, 0.010, 1.000, 0.195), "#b7791f"),
     Panel("methods.png", "Method catalog (32 clickable cards)",
             "Method registry contrasts baseline families and scCCVGBen encoder/graph variants.",
-            (0.190, 0.010, 1.000, 0.780), "#7a5ab8"),
-    Panel("metrics.png", "Metric registry (26 with details)",
-            "BEN, DRE, and LSE metric families are documented with definitions and interpretation notes.",
-            (0.190, 0.010, 1.000, 0.380), "#b54848"),
+            (0.240, 0.010, 1.000, 0.375), "#7a5ab8"),
+    Panel("metrics.png", "Metric registry and definitions",
+            "BEN, DRE, and LSE are documented while publication panels use curated display metrics.",
+            (0.240, 0.010, 1.000, 0.340), "#b54848"),
     Panel("dataset-detail.png", "Per-dataset detail page",
             "Detail pages preserve dataset-level audit trails for capture, labels, and benchmark context.",
-            (0.190, 0.010, 1.000, 0.520), "#24989f"),
+            (0.240, 0.010, 1.000, 0.315), "#24989f"),
     Panel("method-detail.png", "Per-method detail page",
             "Method pages summarize implementation choices so benchmark comparisons remain traceable.",
-            (0.190, 0.010, 1.000, 0.500), "#7a5ab8"),
+            (0.240, 0.010, 1.000, 0.300), "#7a5ab8"),
 ]
 
 
 def _font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
+    arial = arial_font_path(bold=bold)
+    if arial is not None:
+        return ImageFont.truetype(str(arial), size=size)
     names = [
-        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf" if bold else
-        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
         "/usr/share/fonts/truetype/liberation2/LiberationSans-Bold.ttf" if bold else
         "/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf" if bold else
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     ]
     for name in names:
         path = Path(name)
@@ -204,7 +211,7 @@ def _draw_callout(
     return max(0, height - line_gap)
 
 
-def _panel_card(panel: Panel, shots_dir: Path) -> Image.Image:
+def _panel_card(panel: Panel, shots_dir: Path, label: str) -> Image.Image:
     img = _trim_white(_crop_fraction(_load(shots_dir, panel.image), panel.crop))
     content_w = CARD_WIDTH - CARD_PAD * 2
     content_h = max(1, round(img.height * content_w / img.width))
@@ -227,15 +234,34 @@ def _panel_card(panel: Panel, shots_dir: Path) -> Image.Image:
         outline=panel.accent,
         width=1,
     )
+    label_box = (CARD_PAD, 24, CARD_PAD + 90, 114)
+    draw.rounded_rectangle(
+        label_box,
+        radius=12,
+        fill=panel.accent,
+        outline=panel.accent,
+        width=1,
+    )
+    label_font = _font(76, bold=True)
+    lb = draw.textbbox((0, 0), label, font=label_font)
     draw.text(
-        (CARD_PAD, 24),
+        (
+            label_box[0] + (label_box[2] - label_box[0] - (lb[2] - lb[0])) // 2,
+            label_box[1] + (label_box[3] - label_box[1] - (lb[3] - lb[1])) // 2 - 5,
+        ),
+        label,
+        font=label_font,
+        fill="white",
+    )
+    draw.text(
+        (CARD_PAD + 118, 18),
         panel.title,
         font=_font(TITLE_FONT_PX, bold=True),
         fill="#172033",
     )
     _draw_callout(
         draw,
-        (CARD_PAD, 112),
+        (CARD_PAD, 128),
         panel.callout,
         font=_font(CALLOUT_FONT_PX),
         max_width=content_w,
@@ -249,6 +275,28 @@ MIN_ASPECT_W_OVER_H = 17 / 21
 
 def _column_height(column: list[Image.Image]) -> int:
     return sum(card.height for card in column) + GAP_Y * (len(column) - 1)
+
+
+def _visual_labels(column_order: tuple[tuple[int, ...], ...]) -> dict[int, str]:
+    """Assign panel letters by row-major reading order rather than source list order."""
+    labels: dict[int, str] = {}
+    next_label = ord("A")
+    for row_idx in range(max(len(column) for column in column_order)):
+        for column in column_order:
+            if row_idx >= len(column):
+                continue
+            panel_idx = column[row_idx]
+            labels[panel_idx] = chr(next_label)
+            next_label += 1
+
+    expected = set(range(len(PANELS)))
+    if set(labels) != expected:
+        missing = sorted(expected - set(labels))
+        extra = sorted(set(labels) - expected)
+        raise ValueError(
+            f"Figure 1 layout does not cover panels exactly once; missing={missing}, extra={extra}"
+        )
+    return labels
 
 
 def _draw_header(draw: ImageDraw.ImageDraw, x: int, y: int, width: int) -> None:
@@ -277,9 +325,9 @@ def _draw_header(draw: ImageDraw.ImageDraw, x: int, y: int, width: int) -> None:
         "A multi-page website mosaic links dataset provenance, method registry, "
         "metric families, and drill-down audit trails used by the benchmark."
     )
-    for line_idx, line in enumerate(wrap(body, width=105)):
+    for line_idx, line in enumerate(wrap(body, width=84)):
         draw.text(
-            (text_x, y + 132 + line_idx * 50),
+            (text_x, y + 132 + line_idx * 58),
             line,
             font=_font(HEADER_BODY_FONT_PX),
             fill="#3b465c",
@@ -288,25 +336,25 @@ def _draw_header(draw: ImageDraw.ImageDraw, x: int, y: int, width: int) -> None:
     badges = [
         ("200 datasets", "#1f5f9f"),
         ("32 methods", "#7a5ab8"),
-        ("26 metrics", "#b54848"),
+        ("20 display metrics", "#b54848"),
         ("detail pages", "#24989f"),
     ]
     badge_widths = [
-        draw.textbbox((0, 0), label, font=_font(BADGE_FONT_PX, bold=True))[2] + 42
+        draw.textbbox((0, 0), label, font=_font(BADGE_FONT_PX, bold=True))[2] + 48
         for label, _ in badges
     ]
     badge_x = x + width - sum(badge_widths) - 20 * (len(badges) - 1) - 42
-    badge_y = y + HEADER_HEIGHT - 72
+    badge_y = y + HEADER_HEIGHT - 76
     for (label, color), badge_w in zip(badges, badge_widths, strict=True):
         draw.rounded_rectangle(
-            (badge_x, badge_y, badge_x + badge_w, badge_y + 48),
-            radius=24,
+            (badge_x, badge_y, badge_x + badge_w, badge_y + 58),
+            radius=29,
             fill=color,
             outline=color,
             width=1,
         )
         draw.text(
-            (badge_x + 21, badge_y + 3),
+            (badge_x + 24, badge_y + 4),
             label,
             font=_font(BADGE_FONT_PX, bold=True),
             fill="white",
@@ -315,7 +363,11 @@ def _draw_header(draw: ImageDraw.ImageDraw, x: int, y: int, width: int) -> None:
 
 
 def _build_canvas(shots_dir: Path) -> Image.Image:
-    cards = [_panel_card(panel, shots_dir) for panel in PANELS]
+    labels = _visual_labels(COLUMN_ORDER)
+    cards = [
+        _panel_card(panel, shots_dir, labels[idx])
+        for idx, panel in enumerate(PANELS)
+    ]
     columns = [[cards[i] for i in order] for order in COLUMN_ORDER]
     col_heights = [_column_height(column) for column in columns]
     target_col_height = max(col_heights)

@@ -1,7 +1,7 @@
 ---
 title: "noise_resilience_intrin"
 type: docs
-weight: 121
+weight: 118
 geekdocHidden: false
 ---
 

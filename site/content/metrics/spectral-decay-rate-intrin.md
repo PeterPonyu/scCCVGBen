@@ -1,7 +1,7 @@
 ---
 title: "spectral_decay_rate_intrin"
 type: docs
-weight: 117
+weight: 114
 geekdocHidden: false
 ---
 

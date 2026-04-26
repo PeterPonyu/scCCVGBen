@@ -1,7 +1,7 @@
 ---
 title: "Q_global_umap"
 type: docs
-weight: 108
+weight: 105
 geekdocHidden: false
 ---
 

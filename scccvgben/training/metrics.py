@@ -1,8 +1,16 @@
-"""Compute the 27-column benchmark metrics matching CG_dl_merged/ schema.
+"""Compute the benchmark metrics for scCCVGBen runs.
 
-This module is a thin wrapper over the vendored reference benchmark
-``compute_metrics`` logic. Keep benchmark rows bit-compatible with the reused
-CG_dl_merged CSVs.
+The active schema keeps annotation-free clustering compactness scores, DRE
+neighbourhood-preservation diagnostics, and LSE intrinsic-geometry outputs.
+Two legacy label-agreement fields were removed on 2026-04-25 because most
+source datasets lack metric-grade biological labels; the historical fallback
+therefore produced self-comparisons rather than informative benchmark scores.
+
+``COR`` is also omitted from active outputs because current sweeps did not
+populate it consistently and its direction/definition differed from the
+vendored reference. The methodologically aligned latent-dimension
+decorrelation helper is preserved as an opt-in utility, but active runners do
+not call it and do not recompute historical results.
 """
 from __future__ import annotations
 
@@ -14,8 +22,6 @@ from sklearn.metrics import (
     silhouette_score,
     davies_bouldin_score,
     calinski_harabasz_score,
-    adjusted_rand_score,
-    normalized_mutual_info_score,
 )
 from sklearn.cluster import KMeans
 
@@ -23,11 +29,11 @@ from sklearn.cluster import KMeans
 from scccvgben.external.reference_core.dre import evaluate_dimensionality_reduction
 from scccvgben.external.reference_core.lse import evaluate_single_cell_latent_space
 
-# Canonical 27-column schema (method + 26 metrics). Matches CG_dl_merged
-# exactly so a new row can be pd.concat'ed onto a reused CSV.
+# Canonical 24-column schema (method + 23 metrics). legacy label-agreement fields and COR dropped —
+# see module docstring for rationale.
 METRIC_COLS = [
     "method",
-    "ASW", "DAV", "CAL", "COR",
+    "ASW", "DAV", "CAL",
     "distance_correlation_umap", "Q_local_umap", "Q_global_umap",
     "K_max_umap", "overall_quality_umap",
     "distance_correlation_tsne", "Q_local_tsne", "Q_global_tsne",
@@ -37,7 +43,6 @@ METRIC_COLS = [
     "trajectory_directionality_intrin", "noise_resilience_intrin",
     "core_quality_intrin", "overall_quality_intrin",
     "data_type_intrin", "interpretation_intrin",
-    "NMI", "ARI",
 ]
 # Back-compat alias (some downstream scripts still import METRIC_COLUMNS)
 METRIC_COLUMNS = METRIC_COLS
@@ -53,14 +58,16 @@ def _reference_compute_metrics(latent: np.ndarray,
     """
     results: dict = {}
 
-    # BEN clustering metrics ---------------------------------------------------
+    # Clustering compactness metrics (no ground-truth dependency) -------------
+    # ``labels`` is accepted only to size n_clusters; values themselves are
+    # never compared (legacy label-agreement fields removed — see module docstring).
     if labels is not None:
         n_clusters = max(2, int(len(np.unique(labels))))
     else:
         n_clusters = 10
 
     if latent.shape[0] < 2 or np.unique(latent, axis=0).shape[0] < 2:
-        for k in ("NMI", "ARI", "ASW", "DAV", "CAL"):
+        for k in ("ASW", "DAV", "CAL"):
             results[k] = np.nan
     else:
         km = KMeans(
@@ -68,9 +75,6 @@ def _reference_compute_metrics(latent: np.ndarray,
             n_init=10, random_state=42,
         ).fit(latent)
         pred = km.labels_
-        ref = labels if labels is not None else pred
-        results["NMI"] = float(normalized_mutual_info_score(ref, pred))
-        results["ARI"] = float(adjusted_rand_score(ref, pred))
         try:
             results["ASW"] = float(silhouette_score(latent, pred))
         except Exception:
@@ -119,10 +123,6 @@ def _reference_compute_metrics(latent: np.ndarray,
                   "core_quality", "overall_quality", "data_type", "interpretation"):
             results[f"{k}_intrin"] = np.nan
 
-    # COR (Spearman on pairwise distances Z vs X_orig) — scCCVGBen doesn't include
-    # this in hyperparam_sensitivity but CG_dl_merged has a 'COR' column. Leave
-    # as NaN here; callers that need it should populate externally before write.
-    results.setdefault("COR", np.nan)
     return results
 
 
@@ -136,33 +136,19 @@ def compute_metrics(Z: np.ndarray,
     Parameters
     ----------
     Z          : (N, L) latent embedding
-    X_orig     : (N, F) pre-processed feature matrix. If supplied, Spearman
-                 correlation between pairwise distances in Z vs X is stored
-                 under 'COR'. If None, COR is NaN.
-    labels     : (N,) integer cell-type labels or None (self-reference mode)
+    X_orig     : retained for legacy keyword compatibility; ignored. The COR
+                 column it used to populate has been removed (see module
+                 docstring; ``compute_latent_dimension_decorrelation`` is
+                 the methodologically correct replacement).
+    labels     : retained for legacy keyword compatibility; not consulted by
+                 the active metric set (see module docstring).
     method_name: string for the 'method' column
     data_type  : 'trajectory' (default) or 'steady_state' for LSE scoring
     """
+    del X_orig  # explicitly ignored — see docstring
     Z = np.asarray(Z, dtype=np.float32)
     results = _reference_compute_metrics(Z, labels, data_type=data_type)
     results["method"] = method_name
-
-    # Optional COR via spearman on pairwise distances
-    if X_orig is not None and np.isnan(results.get("COR", np.nan)):
-        try:
-            from sklearn.metrics.pairwise import pairwise_distances
-            from scipy.stats import spearmanr
-            n = min(500, Z.shape[0])
-            rng = np.random.default_rng(0)
-            idx = rng.choice(Z.shape[0], size=n, replace=False)
-            dz = pairwise_distances(Z[idx]).ravel()
-            dx = pairwise_distances(np.asarray(X_orig)[idx]).ravel()
-            with warnings.catch_warnings():
-                warnings.simplefilter("ignore")
-                r, _ = spearmanr(dz, dx)
-            results["COR"] = float(r) if np.isfinite(r) else np.nan
-        except Exception:
-            results["COR"] = np.nan
 
     # Ensure every canonical column present
     for col in METRIC_COLS:

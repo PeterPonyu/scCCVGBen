@@ -1,7 +1,7 @@
 ---
 title: "data_type_intrin"
 type: docs
-weight: 124
+weight: 120
 geekdocHidden: false
 ---
 

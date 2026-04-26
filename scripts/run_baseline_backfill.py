@@ -6,7 +6,7 @@ workspace/reused_results/scrna_baselines/). For each new dataset and each
 baseline method, calls scccvgben.baselines.run_baseline() and writes a CSV.
 
 Output: results/baselines/scrna_{dataset_key}.csv
-  Columns: method, <27 metrics>
+  Columns: method, <23 metrics> (legacy label-agreement fields and COR dropped — see metrics.py docstring)
 
 Usage:
     python scripts/run_baseline_backfill.py \\
@@ -33,7 +33,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 REUSED_SCRNA_DIR = REPO_ROOT / "workspace" / "reused_results" / "scrna_baselines"
 
 METRIC_COLUMNS = [
-    "method", "ASW", "DAV", "CAL", "COR",
+    "method", "ASW", "DAV", "CAL",
     "distance_correlation_umap", "Q_local_umap", "Q_global_umap",
     "K_max_umap", "overall_quality_umap",
     "distance_correlation_tsne", "Q_local_tsne", "Q_global_tsne",
@@ -43,7 +43,7 @@ METRIC_COLUMNS = [
     "trajectory_directionality_intrin", "noise_resilience_intrin",
     "core_quality_intrin", "overall_quality_intrin",
     "data_type_intrin", "interpretation_intrin",
-    "NMI", "ARI",
+    # legacy label-agreement fields and COR removed 2026-04-25 — see scccvgben.training.metrics docstring.
 ]
 
 ALL_BASELINES = [

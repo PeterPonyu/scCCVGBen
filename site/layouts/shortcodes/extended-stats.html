@@ -42,8 +42,10 @@
     return {
       background: "transparent",
       axis: { labelColor: c.text, titleColor: c.text, gridColor: c.grid,
-              domainColor: c.grid, tickColor: c.grid },
-      legend: { labelColor: c.text, titleColor: c.text },
+              domainColor: c.grid, tickColor: c.grid,
+              labelFontSize: 13, titleFontSize: 14, labelLimit: 180 },
+      legend: { labelColor: c.text, titleColor: c.text,
+                labelFontSize: 13, titleFontSize: 14 },
       view: { stroke: c.grid },
     };
   }
@@ -119,7 +121,7 @@
       mark: { type: "bar", tooltip: true },
       encoding: {
         y: { field: "filename_key", type: "nominal", title: null, sort: "-x",
-             axis: { labelLimit: 220, labelFontSize: 10 } },
+             axis: { labelLimit: 250, labelFontSize: 13 } },
         x: { field: "cell_count", type: "quantitative", title: "Cell count" },
         color: {
           field: "modality", type: "nominal",
@@ -135,7 +137,7 @@
     }, opt);
   }
   waitVega(() => {
-    fetch({{ "summary.json" | absURL }})
+    fetch({{ "summary.json" | relURL }})
       .then(r => r.json())
       .then(render);
   });
@@ -152,7 +154,7 @@
 .xs-block h3 {
   margin: 0 0 0.55rem;
   color: var(--scc-text);
-  font-size: 1.02rem;
+  font-size: 1.12rem;
   font-weight: 650;
 }
 .xs-chart {

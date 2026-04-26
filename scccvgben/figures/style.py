@@ -36,14 +36,17 @@ import seaborn as sns  # noqa: E402
 from matplotlib.patches import FancyBboxPatch, Patch, Rectangle  # noqa: E402
 
 from ._significance import select_significance_pairs
+from .fonts import register_arial_with_matplotlib
 from .metrics import METRIC_PANEL_GRID, METRIC_TO_FAMILY
+
+register_arial_with_matplotlib()
 
 PUBLICATION_RCPARAMS: dict = {
     "pdf.fonttype": 42,
     "ps.fonttype": 42,
     "savefig.dpi": 300,
     "savefig.bbox": "tight",
-    "font.family": "sans-serif",
+    "font.family": "Arial",
     "font.sans-serif": ["Arial", "Liberation Sans", "DejaVu Sans"],
     "axes.spines.top": False,
     "axes.spines.right": False,
@@ -64,6 +67,7 @@ def apply_publication_rcparams() -> None:
     module may have made (for example module-level style mutations).
     """
     mpl.rcdefaults()
+    register_arial_with_matplotlib()
     mpl.rcParams.update(PUBLICATION_RCPARAMS)
     sns.set_palette("Spectral")
     logging.getLogger("fontTools").setLevel(logging.WARNING)
@@ -87,7 +91,7 @@ def _draw_significance_brackets(
         x1, x2 = positions[a], positions[b]
         y = base + j * step
         ax.plot([x1, x1, x2, x2], [y - step * 0.2, y, y, y - step * 0.2],
-                lw=1.0, color="black")
+                lw=1.25, color="black")
         if p < 0.001:
             sig = "***"
         elif p < 0.01:
@@ -97,7 +101,7 @@ def _draw_significance_brackets(
         else:
             sig = "ns"
         ax.text((x1 + x2) / 2, y + step * 0.05, sig,
-                ha="center", va="bottom", fontsize=8)
+                ha="center", va="bottom", fontsize=10.5)
     ax.set_ylim(top=base + (len(pairs) + 1) * step)
 
 
@@ -461,7 +465,7 @@ def _family_header(ax: plt.Axes, family: str, color: str) -> None:
         Rectangle(
             (0.0, 1.015),
             1.0,
-            0.070,
+            0.092,
             transform=ax.transAxes,
             facecolor=color,
             edgecolor="none",
@@ -471,12 +475,12 @@ def _family_header(ax: plt.Axes, family: str, color: str) -> None:
     )
     ax.text(
         0.018,
-        1.050,
+        1.062,
         family,
         transform=ax.transAxes,
         ha="left",
         va="center",
-        fontsize=7.8,
+        fontsize=10.8,
         fontweight="bold",
         color="white",
         zorder=9,
@@ -495,7 +499,7 @@ def _draw_missing_metric_panel(
     ax.set_yticks([])
     ax.set_xlabel("")
     ax.set_ylabel("")
-    ax.set_title(label, fontsize=10.6, fontweight="bold", pad=18)
+    ax.set_title(label, fontsize=12.6, fontweight="bold", pad=20)
     for spine in ax.spines.values():
         spine.set_visible(True)
         spine.set_color("#CBD5E1")
@@ -508,7 +512,7 @@ def _draw_missing_metric_panel(
         transform=ax.transAxes,
         ha="center",
         va="center",
-        fontsize=13.0,
+        fontsize=16.0,
         fontweight="bold",
         color=color,
     )
@@ -519,7 +523,7 @@ def _draw_missing_metric_panel(
         transform=ax.transAxes,
         ha="center",
         va="center",
-        fontsize=8.9,
+        fontsize=11.6,
         color="#64748B",
         linespacing=1.15,
     )
@@ -542,10 +546,10 @@ def create_metric_grid_figure(
     pair_col: str = "dataset_id",
     show_significance: bool = True,
     metric_labels: Mapping[str, str] | None = None,
-    per_col_width: float = 2.74,
-    per_row_height: float = 3.10,
+    per_col_width: float = 3.12,
+    per_row_height: float = 3.30,
 ) -> tuple[plt.Figure, list[plt.Axes]]:
-    """Render the 24 numeric metrics as a fixed 4×6 publication grid.
+    """Render the curated 20 numeric metrics as a fixed 4×5 publication grid.
 
     The metric families remain visible via coloured panel headers and a compact
     legend, but row/column geometry is governed by the publication layout
@@ -593,13 +597,12 @@ def create_metric_grid_figure(
             left=0.040,
             right=0.992,
             bottom=0.064,
-            top=0.865 if title else 0.940,
-            hspace=0.66,
-            wspace=0.32,
+            top=0.866 if title else 0.952,
+            hspace=0.78,
+            wspace=0.34,
         )
 
         axes: list[plt.Axes] = []
-        panel_idx = 0
         used_families: list[str] = []
         for row_idx, row in enumerate(rows):
             for col_idx, metric in enumerate(row):
@@ -618,19 +621,7 @@ def create_metric_grid_figure(
                         family=family,
                         color=color,
                     )
-                    ax.text(
-                        -0.085,
-                        1.105,
-                        chr(ord("A") + panel_idx),
-                        transform=ax.transAxes,
-                        fontsize=14.0,
-                        fontweight="bold",
-                        color=color,
-                        va="bottom",
-                        ha="right",
-                    )
                     axes.append(ax)
-                    panel_idx += 1
                     continue
 
                 sns.boxplot(
@@ -643,9 +634,9 @@ def create_metric_grid_figure(
                     legend=False,
                     ax=ax,
                     showfliers=False,
-                    width=0.58,
-                    linewidth=0.9,
-                    boxprops={"alpha": 0.68},
+                    width=0.62,
+                    linewidth=1.12,
+                    boxprops={"alpha": 0.70},
                     palette=palette,
                 )
                 sns.stripplot(
@@ -654,33 +645,22 @@ def create_metric_grid_figure(
                     y="value",
                     order=method_order,
                     ax=ax,
-                    size=1.6,
-                    alpha=0.44,
+                    size=2.35,
+                    alpha=0.54,
                     color="black",
                     jitter=0.18,
                 )
 
                 _family_header(ax, family, color)
-                ax.set_title(label, fontsize=10.6, fontweight="bold", pad=18)
+                ax.set_title(label, fontsize=12.6, fontweight="bold", pad=20)
                 ax.set_xlabel("")
                 ax.set_ylabel("")
-                ax.tick_params(axis="x", rotation=52, labelsize=7.5, pad=0.8)
-                ax.tick_params(axis="y", labelsize=8.1)
+                ax.tick_params(axis="x", rotation=52, labelsize=10.9, pad=1.4)
+                ax.tick_params(axis="y", labelsize=11.2)
                 for tick in ax.get_xticklabels():
                     tick.set_horizontalalignment("right")
                     tick.set_rotation_mode("anchor")
                 ax.grid(axis="y", color="#E2E8F0", linewidth=0.55, alpha=0.82)
-                ax.text(
-                    -0.085,
-                    1.105,
-                    chr(ord("A") + panel_idx),
-                    transform=ax.transAxes,
-                    fontsize=14.0,
-                    fontweight="bold",
-                    color=color,
-                    va="bottom",
-                    ha="right",
-                )
 
                 if show_significance and reference_method is not None:
                     pairs = select_significance_pairs(
@@ -700,7 +680,28 @@ def create_metric_grid_figure(
                         )
 
                 axes.append(ax)
-                panel_idx += 1
+
+        for row_idx, row in enumerate(rows):
+            first_metric = row[0]
+            first_family = metric_to_family.get(first_metric, "metrics")
+            row_color = family_colors.get(first_family, "#475569")
+            axes_grid[row_idx, 0].text(
+                -0.135,
+                1.062,
+                chr(ord("A") + row_idx),
+                transform=axes_grid[row_idx, 0].transAxes,
+                fontsize=18.8,
+                fontweight="bold",
+                color="white",
+                va="center",
+                ha="center",
+                bbox={
+                    "boxstyle": "round,pad=0.16,rounding_size=0.05",
+                    "facecolor": row_color,
+                    "edgecolor": "none",
+                },
+                zorder=10,
+            )
 
         if title:
             fig.text(
@@ -709,7 +710,7 @@ def create_metric_grid_figure(
                 title,
                 ha="left",
                 va="top",
-                fontsize=19,
+                fontsize=21.5,
                 fontweight="bold",
                 color="#172033",
             )
@@ -720,7 +721,7 @@ def create_metric_grid_figure(
                 subtitle,
                 ha="left",
                 va="top",
-                fontsize=11.3,
+                fontsize=12.4,
                 color="#475569",
             )
 
@@ -736,14 +737,14 @@ def create_metric_grid_figure(
             )
             for family in used_families
         ]
-        if legend_handles:
+        if legend_handles and (title or subtitle):
             fig.legend(
                 handles=legend_handles,
                 loc="upper right",
                 bbox_to_anchor=(0.992, 0.957),
                 ncol=min(4, len(legend_handles)),
                 frameon=False,
-                fontsize=8.8,
+                fontsize=10.2,
                 handlelength=1.15,
                 columnspacing=1.05,
             )

@@ -53,7 +53,7 @@
   align-items: center;
   margin: 0.75rem 0 0.8rem;
   color: var(--scc-muted);
-  font-size: 0.86rem;
+  font-size: 0.95rem;
 }
 .dataset-filters label {
   display: inline-flex;
@@ -73,7 +73,7 @@
 }
 #dataset-table {
   display: table;
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   line-height: 1.32;
 }
 #dataset-table th,
@@ -100,7 +100,7 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
 }
 #dataset-table .dataset-key {
   color: var(--scc-text);
-  font-size: 0.74rem;
+  font-size: 0.82rem;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   white-space: normal;
   word-break: break-word;
@@ -119,7 +119,7 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
 .dataTables_wrapper .dataTables_info,
 .dataTables_wrapper .dataTables_paginate {
   color: var(--scc-muted);
-  font-size: 0.82rem;
+  font-size: 0.90rem;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   border-radius: 4px;
@@ -136,7 +136,7 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
 (function() {
   const GEO_BASE = "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=";
 
-  fetch({{ "datasets.json" | absURL }})
+  fetch({{ "datasets.json" | relURL }})
     .then(r => r.json())
     .then(data => {
       // Populate filter dropdowns
@@ -157,7 +157,7 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
         const keyLink = document.createElement("a");
         keyLink.className = "dt-key-link dataset-key";
         const slug = String(d.filename_key || "").replace(/[^A-Za-z0-9_\-]+/g, "_").replace(/^_|_$/g, "");
-        keyLink.href = {{ "datasets/" | absURL }} + slug + "/";
+        keyLink.href = {{ "datasets/" | relURL }} + slug + "/";
         keyLink.textContent = d.filename_key || "";
         tdKey.appendChild(keyLink);
         tr.appendChild(tdKey);

@@ -17,24 +17,6 @@
       "description": "Calinski–Harabasz Index",
       "source": "sklearn.metrics.calinski_harabasz_score",
       "note": "Higher is better"
-    },
-    {
-      "name": "NMI",
-      "description": "Normalised Mutual Information",
-      "source": "sklearn.metrics.normalized_mutual_info_score",
-      "note": "Higher is better"
-    },
-    {
-      "name": "ARI",
-      "description": "Adjusted Rand Index",
-      "source": "sklearn.metrics.adjusted_rand_score",
-      "note": "Higher is better"
-    },
-    {
-      "name": "COR",
-      "description": "Pairwise distance correlation",
-      "source": "Spearman on pairwise distances Z vs X_orig",
-      "note": "Higher is better"
     }
   ],
   "dre": [
@@ -45,7 +27,7 @@
     },
     {
       "name": "Q_local_umap",
-      "description": "Coranking Q_NX local average (k=1..K_max)",
+      "description": "Coranking Q_NX local average over the selected neighbourhood range",
       "source": "DRE Lee & Verleysen 2009"
     },
     {
@@ -118,11 +100,6 @@
     {
       "name": "noise_resilience_intrin",
       "description": "Perturbation robustness score",
-      "source": "LSE"
-    },
-    {
-      "name": "core_quality_intrin",
-      "description": "Mean of 4 core manifold metrics",
       "source": "LSE"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-04-25T02:00:12.242396+00:00",
+  "built_at": "2026-04-26T13:13:53.165470+00:00",
   "total_datasets": 200,
   "modality": {
     "scRNA": 100,
@@ -366,105 +366,120 @@
   ],
   "pubmed_top15": [
     {
-      "filename_key": "GSE128033_new",
+      "id": "GSE128033",
+      "GSE": "GSE128033",
       "pubmed_id": "31221805; 37706427; 37566492",
       "cell_count": 737280,
       "species": "human",
       "modality": "scRNA"
     },
     {
-      "filename_key": "GSE247719_PanSci_05_Muscle_adata",
+      "id": "GSE247719",
+      "GSE": "GSE247719",
       "pubmed_id": "39607904",
       "cell_count": 696410,
       "species": "mouse",
       "modality": "scRNA"
     },
     {
-      "filename_key": "GSE164378_new",
+      "id": "GSE164378",
+      "GSE": "GSE164378",
       "pubmed_id": "34062119",
       "cell_count": 161764,
       "species": "human",
       "modality": "scRNA"
     },
     {
-      "filename_key": "GSE262288_breastMetasisHmCancer",
+      "id": "GSE262288",
+      "GSE": "GSE262288",
       "pubmed_id": "39955556",
       "cell_count": 157518,
       "species": "human",
       "modality": "scRNA"
     },
     {
-      "filename_key": "GSE174367_snATAC-seq_filtered_peak_bc_matrix",
+      "id": "GSE174367",
+      "GSE": "GSE174367",
       "pubmed_id": "34239132",
       "cell_count": 143401,
       "species": "human",
       "modality": "scATAC"
     },
     {
-      "filename_key": "GSE222369_NKsLymphomaHmCancer",
+      "id": "GSE222369",
+      "GSE": "GSE222369",
       "pubmed_id": "37467318",
       "cell_count": 138805,
       "species": "human",
       "modality": "scRNA"
     },
     {
-      "filename_key": "GSE235787_bcellsALLHmCancer",
+      "id": "GSE235787",
+      "GSE": "GSE235787",
       "pubmed_id": "38593781",
       "cell_count": 113495,
       "species": "human",
       "modality": "scRNA"
     },
     {
-      "filename_key": "GSE181061_new",
+      "id": "GSE181061",
+      "GSE": "GSE181061",
       "pubmed_id": "35668194",
       "cell_count": 108421,
       "species": "human",
       "modality": "scRNA"
     },
     {
-      "filename_key": "GSE190604_new",
+      "id": "GSE190604",
+      "GSE": "GSE190604",
       "pubmed_id": "35113687",
       "cell_count": 103805,
       "species": "human",
       "modality": "scRNA"
     },
     {
-      "filename_key": "GSE189070_astrocytesSCIMmDev",
+      "id": "GSE189070",
+      "GSE": "GSE189070",
       "pubmed_id": "35816276",
       "cell_count": 103446,
       "species": "mouse",
       "modality": "scRNA"
     },
     {
-      "filename_key": "GSE120926_new",
+      "id": "GSE120926",
+      "GSE": "GSE120926",
       "pubmed_id": "32901110",
       "cell_count": 102525,
       "species": "human",
       "modality": "scRNA"
     },
     {
-      "filename_key": "GSE253355_bmNicheHm",
+      "id": "GSE253355",
+      "GSE": "GSE253355",
       "pubmed_id": "38714197",
       "cell_count": 99846,
       "species": "human",
       "modality": "scRNA"
     },
     {
-      "filename_key": "bm_GSE120446",
+      "id": "GSE120446",
+      "GSE": "GSE120446",
       "pubmed_id": "30518681",
       "cell_count": 90653,
       "species": "human",
       "modality": "scRNA"
     },
     {
-      "filename_key": "GSE149689_new",
+      "id": "GSE149689",
+      "GSE": "GSE149689",
       "pubmed_id": "32651212; 36229591",
       "cell_count": 85144,
       "species": "human",
       "modality": "scRNA"
     },
     {
-      "filename_key": "GSE225600_breast_CancerHm",
+      "id": "GSE225600",
+      "GSE": "GSE225600",
       "pubmed_id": "36594618",
       "cell_count": 81683,
       "species": "human",
@@ -472,5 +487,5 @@
     }
   ],
   "methods_total": 32,
-  "metrics_total": 26
+  "metrics_total": 20
 }

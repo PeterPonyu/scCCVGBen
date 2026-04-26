@@ -1,7 +1,7 @@
 ---
 title: "Q_local_umap"
 type: docs
-weight: 107
+weight: 104
 geekdocHidden: false
 ---
 
@@ -15,7 +15,7 @@ geekdocHidden: false
 
 ## Description
 
-Coranking Q_NX local average (k=1..K_max)
+Coranking Q_NX local average over the selected neighbourhood range
 
 ---
 

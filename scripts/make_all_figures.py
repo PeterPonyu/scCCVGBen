@@ -64,10 +64,6 @@ REGISTRY: tuple[FigureSpec, ...] = (
                "fig08_scrna_benchmark*.pdf", 100, "reconciled_scrna"),
     FigureSpec("fig09", "scripts.make_fig09_scatac_benchmark",
                "fig09_scatac_benchmark*.pdf", 100, "reconciled_scatac"),
-    FigureSpec("fig10_12", "scripts.make_fig10_12_case_studies",
-               "fig1[012]*.pdf", 3, "case_candidates"),
-    FigureSpec("fig14", "scripts.make_fig14_runtime",
-               "fig14_runtime*.pdf", 1, "runtime_logs"),
 )
 
 
@@ -133,16 +129,6 @@ def _observed_n(spec: FigureSpec) -> int:
             _count_csvs(REPO_ROOT / "results" / "reconciled" / "scrna", modality="scrna")
             + _count_csvs(REPO_ROOT / "results" / "reconciled" / "scatac", modality="scatac")
         )
-    if spec.count_kind == "case_candidates":
-        return min(3, _observed_n(FigureSpec("fig08", "", "", 100, "reconciled_scrna"))
-                   + _observed_n(FigureSpec("fig09", "", "", 100, "reconciled_scatac")))
-    if spec.count_kind == "runtime_logs":
-        log_dir = REPO_ROOT / "workspace" / "logs"
-        if not log_dir.is_dir():
-            return 0
-        from scripts.make_fig14_runtime import _parse_logs
-
-        return 1 if not _parse_logs(log_dir).empty else 0
     return 0
 
 
@@ -282,6 +268,12 @@ def main(argv: list[str] | None = None) -> int:
 
     only = {s.strip() for s in args.only.split(",")} if args.only else None
     isolate = {s.strip() for s in args.isolate.split(",")} if args.isolate else set()
+    if only is not None:
+        known = {spec.figure_id for spec in REGISTRY}
+        unknown = sorted(only - known)
+        if unknown:
+            log.error("unknown figure_id(s): %s", ", ".join(unknown))
+            return 2
 
     rows: list[dict] = []
     for spec in REGISTRY:

@@ -25,9 +25,10 @@ import argparse
 import csv
 import glob
 import logging
-import sys
 import time
 from pathlib import Path
+
+from scccvgben.training.metrics import METRIC_COLS
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
@@ -49,8 +50,6 @@ ENCODERS = [
     "TAG", "ARMA", "SG", "SSG",          # reference encoder set
     "GIN", "EdgeConv",                   # project extensions
 ]
-
-from scccvgben.training.metrics import METRIC_COLS
 
 
 def _old_scrna_keys() -> set[str]:
@@ -125,7 +124,8 @@ def main() -> None:
                     reader = csv.DictReader(fh)
                     for r in reader:
                         m = r.get("method", "").strip()
-                        if m: done_methods.add(m)
+                        if m:
+                            done_methods.add(m)
             except Exception:
                 pass
 
@@ -155,10 +155,10 @@ def main() -> None:
                 w.writerow(row)
             done_methods.add(method)
             n_done += 1
-            log.info("  ✓ %s / %s (%.0fs) ASW=%.3f NMI=%.3f [row appended]",
+            log.info("  ✓ %s / %s (%.0fs) ASW=%.3f CAL=%.0f [row appended]",
                      dataset_key, encoder, time.time() - t0,
                      row.get("ASW", float("nan")),
-                     row.get("NMI", float("nan")))
+                     row.get("CAL", float("nan")))
 
     log.info("Axis A complete: %d runs, %d per-encoder skips (resumed), %d errors",
              n_done, n_skip_encoder, n_err)

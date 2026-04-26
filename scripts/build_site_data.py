@@ -8,7 +8,7 @@ Inputs:
 Outputs:
   site/data/datasets.json          — array of 200 dataset objects (for DataTables)
   site/data/methods.json           — 29 methods grouped by 3 categories
-  site/data/metrics.json           — 26 metrics grouped by 3 categories
+  site/data/metrics.json           — curated 20 display metrics + 2 annotations
   site/data/summary.json           — home-page headline stats + chart data
   site/content/datasets/*.md       — one page per dataset (auto-generated)
 
@@ -42,17 +42,103 @@ def _dump_json_dual(obj, name: str) -> None:
 
 # ─────────────────────────────── Datasets ────────────────────────────────
 
+def _public_id(filename_key: str, gse: str, modality: str, idx: int) -> str:
+    """Map an internal filename_key to a public-safe identifier.
+
+    Public site IDs must NEVER expose internal sample suffixes ("_new",
+    "_filtered_peak_bc_matrix", "_LungAdreHmCancer"), short internal aliases
+    ("irall", "wtko", "hemato"), or any descriptive subset path. Only the GEO
+    accession (GSE/GSM) is published. Where multiple datasets share a GSE,
+    a numeric suffix disambiguates ("GSE145929-1", "GSE145929-2") without
+    revealing the internal grouping.
+
+    Resolution order:
+      1. If a GSE/GSM accession is available → use it (with -N suffix if
+         several rows share the same accession).
+      2. Otherwise → fall back to a stable opaque token ``ds-<modality>-<idx>``
+         so an internal alias never leaks.
+    """
+    gse_clean = (gse or "").strip().upper()
+    if gse_clean and (gse_clean.startswith("GSE") or gse_clean.startswith("GSM")):
+        return gse_clean
+    return f"ds-{modality.lower()}-{idx:03d}"
+
+
+_FILENAME_SUFFIX_RE = re.compile(
+    r"_(?:new|filtered_peak_bc_matrix|filtered_feature_bc_matrix"
+    r"|LungAdreHmCancer|BreastHmCancer|HmCancer|MmCancer|HmDev|MmDev|MmAged|HmAged"
+    r"|PanSci_\w+_adata)\b",
+    flags=re.IGNORECASE,
+)
+# Strip "GSE\d+_" or "GSM\d+_" filename-leading accession prefix when the
+# remainder is the internal sample tag (i.e. the value started life as an
+# h5ad filename copied into a description/title).
+_FILENAME_FULL_RE = re.compile(
+    r"\bGS[EM]\d+_[A-Za-z0-9_]+_(?:filtered|adata|new|HmCancer|MmCancer|HmDev|MmDev|HmAged|MmAged)\b"
+)
+
+
+def _sanitize_text(s: str, *, internal_aliases: tuple[str, ...] = ("irall", "wtko", "hemato")) -> str:
+    """Strip internal aliases and filename suffixes from any free-form text
+    that might be exposed publicly (description, geo_title, source_name).
+
+    Strategy:
+      1. If the text *is* a filename-shaped token like
+         ``GSE123902_LungAdreHmCancer`` or ``GSE247719_PanSci_05_Muscle_adata``,
+         drop everything after the GSE accession (keep the accession only).
+      2. Remove case-insensitive matches of internal alias tokens
+         (``irall`` / ``wtko`` / ``hemato``).
+      3. Strip remaining filename-only suffixes that may appear inside
+         longer free-form text.
+      4. Collapse whitespace.
+    """
+    if not s:
+        return ""
+    out = s.strip()
+    # Whole-string filename → reduce to GSE/GSM accession only.
+    # Triggers when the value is exactly "<accession>_<anything>" AND contains
+    # any internal-suffix marker (filename suffix, sample tag, or sequencer
+    # output token like ``_cellrangerGenome``).
+    m = re.fullmatch(r"(GS[EM]\d+)_[A-Za-z0-9_]+", out)
+    if m and (
+        out.lower().endswith(("_new", "_adata", "_filtered_peak_bc_matrix",
+                               "_filtered_feature_bc_matrix"))
+        or _FILENAME_SUFFIX_RE.search(out)
+        or "_filtered_peak_bc_matrix" in out.lower()
+        or "_filtered_feature_bc_matrix" in out.lower()
+        or "_cellranger" in out.lower()
+        or "_pansci_" in out.lower()
+    ):
+        return m.group(1)
+    # Drop internal aliases
+    for alias in internal_aliases:
+        out = re.sub(rf"\b{re.escape(alias)}\b", "", out, flags=re.IGNORECASE)
+    # Drop any filename-shaped substring
+    out = _FILENAME_FULL_RE.sub("", out)
+    # Drop bare filename suffixes
+    out = _FILENAME_SUFFIX_RE.sub("", out)
+    out = re.sub(r"\s{2,}", " ", out).strip(" -_")
+    return out
+
+
 def build_datasets() -> list[dict]:
-    """Load benchmark_manifest.csv and normalise into site-friendly JSON."""
+    """Load benchmark_manifest.csv and normalise into site-friendly JSON.
+
+    The published site never exposes ``filename_key`` or any internal
+    sample alias — only the GEO accession (with disambiguation suffix when a
+    single GSE has multiple samples) and sanitised metadata.
+    """
     src = REPO / "data" / "benchmark_manifest.csv"
     df = pd.read_csv(src)
     rows: list[dict] = []
-    for _, r in df.iterrows():
-        # Use corrected species + manifest fields
-        key = str(r.get("filename_key", "")).strip()
+
+    # Track GSE collisions so we can append -1, -2 suffixes without exposing
+    # the original filename suffix.
+    seen_pub_id: dict[str, int] = {}
+
+    for idx, (_, r) in enumerate(df.iterrows()):
         gse = str(r.get("gse_extract") or r.get("GSE") or "").strip()
         modality = str(r.get("modality", "")).strip()
-        # scRNA or scATAC capitalisation for display
         modality_display = {"scrna": "scRNA", "scatac": "scATAC"}.get(
             modality.lower(), modality
         )
@@ -62,18 +148,23 @@ def build_datasets() -> list[dict]:
             cell_count = int(r.get("cell_count", 0))
         except Exception:
             cell_count = 0
-        description = str(r.get("description", "")).strip()
-        geo_title = str(r.get("geo_title", "")).strip()
-        geo_url = str(r.get("scrna_geo_source", "")).strip()
-        pubmed = str(r.get("geo_pubmed_id", "")).strip()
-        subdate = str(r.get("geo_submission_date", "")).strip()
-        source_name = str(r.get("geo_source_name", "")).strip()
+        description = _sanitize_text(str(r.get("description", "")).strip())
+        geo_title   = _sanitize_text(str(r.get("geo_title", "")).strip())
+        geo_url     = str(r.get("scrna_geo_source", "")).strip()
+        pubmed      = str(r.get("geo_pubmed_id", "")).strip()
+        subdate     = str(r.get("geo_submission_date", "")).strip()
+        source_name = _sanitize_text(str(r.get("geo_source_name", "")).strip())
 
-        # Enrich tissue via keyword scan on GEO metadata + description
+        # Compute public-safe identifier (GSE accession only — no filename leak)
+        pub_id = _public_id(str(r.get("filename_key", "")).strip(), gse, modality, idx)
+        seen_pub_id[pub_id] = seen_pub_id.get(pub_id, 0) + 1
+        if seen_pub_id[pub_id] > 1:
+            pub_id = f"{pub_id}-{seen_pub_id[pub_id]}"
+
         canon_tissue = _slugify_tissue(tissue, source_name, description, geo_title)
 
         rows.append({
-            "filename_key": key,
+            "id": pub_id,                 # public-facing identifier (GSE accession or opaque token)
             "GSE": gse,
             "modality": modality_display,
             "species": species,
@@ -86,6 +177,9 @@ def build_datasets() -> list[dict]:
             "pubmed_id": pubmed,
             "submission_date": subdate,
             "source_name": source_name,
+            # NOTE: ``filename_key`` deliberately omitted — this internal
+            # identifier may contain unpublished sample suffixes and project
+            # aliases that must not leak to the public site.
         })
     return rows
 
@@ -205,14 +299,13 @@ METRICS_CLUSTER = [
     ("ASW",  "Average Silhouette Width",        "sklearn.metrics.silhouette_score",      "Higher is better"),
     ("DAV",  "Davies–Bouldin Index",             "sklearn.metrics.davies_bouldin_score",   "Lower is better"),
     ("CAL",  "Calinski–Harabasz Index",          "sklearn.metrics.calinski_harabasz_score","Higher is better"),
-    ("NMI",  "Normalised Mutual Information",    "sklearn.metrics.normalized_mutual_info_score", "Higher is better"),
-    ("ARI",  "Adjusted Rand Index",              "sklearn.metrics.adjusted_rand_score",    "Higher is better"),
-    ("COR",  "Pairwise distance correlation",    "Spearman on pairwise distances Z vs X_orig", "Higher is better"),
+    # Removed legacy label-agreement and sparse-correlation entries on
+    # 2026-04-25 — see scccvgben.training.metrics docstring.
 ]
 
 METRICS_DRE = [
     ("distance_correlation_umap","Spearman distance corr (latent vs UMAP)",    "DRE.evaluate_dimensionality_reduction"),
-    ("Q_local_umap",             "Coranking Q_NX local average (k=1..K_max)",  "DRE Lee & Verleysen 2009"),
+    ("Q_local_umap",             "Coranking Q_NX local average over the selected neighbourhood range",  "DRE Lee & Verleysen 2009"),
     ("Q_global_umap",            "Coranking Q_NX global average",               "DRE"),
     ("K_max_umap",               "Argmax of Q_NX(k) — optimal neighbourhood scale", "DRE"),
     ("overall_quality_umap",     "Weighted composite of Q_local + Q_global",    "DRE"),
@@ -236,16 +329,23 @@ METRICS_LSE = [
     ("interpretation_intrin",         "Structured dict: quality_level, strengths, weaknesses, recommendations", "LSE"),
 ]
 
+PUBLICATION_EXCLUDED_METRICS = {
+    "core_quality_intrin",
+}
+
 
 def build_metrics() -> dict:
     def _c(name, desc, src, note=""):
         d = {"name": name, "description": desc, "source": src}
-        if note: d["note"] = note
+        if note:
+            d["note"] = note
         return d
+    def _shown(rows):
+        return [row for row in rows if row[0] not in PUBLICATION_EXCLUDED_METRICS]
     return {
-        "clustering": [_c(n, d, s, note) for n, d, s, note in METRICS_CLUSTER],
-        "dre":        [_c(n, d, s) for n, d, s in METRICS_DRE],
-        "lse":        [_c(n, d, s) for n, d, s in METRICS_LSE],
+        "clustering": [_c(n, d, s, note) for n, d, s, note in _shown(METRICS_CLUSTER)],
+        "dre":        [_c(n, d, s) for n, d, s in _shown(METRICS_DRE)],
+        "lse":        [_c(n, d, s) for n, d, s in _shown(METRICS_LSE)],
     }
 
 
@@ -283,9 +383,12 @@ def build_summary(datasets: list[dict]) -> dict:
 
     # Largest PubMed-linked studies by cell count.
     with_pubmed = df[df["pubmed_id"].astype(str).str.strip() != ""]
+    # Public summary uses sanitised public id only — filename_key is internal.
+    cols = [c for c in ("id","gse_extract","GSE","pubmed_id","cell_count","species","modality")
+            if c in with_pubmed.columns]
     pubmed_top = (
         with_pubmed.sort_values("cell_count", ascending=False)
-        .head(15)[["filename_key", "pubmed_id", "cell_count", "species", "modality"]]
+        .head(15)[cols]
         .to_dict("records")
     )
 
@@ -306,7 +409,7 @@ def build_summary(datasets: list[dict]) -> dict:
         "submission_year_timeline": timeline,
         "pubmed_top15": pubmed_top,
         "methods_total": 14 + 5 + 13,
-        "metrics_total": 6 + 10 + 10,
+        "metrics_total": 20,
     }
 
 
@@ -323,7 +426,7 @@ geekdocHidden: false
 
 | Field | Value |
 |-------|-------|
-| **filename_key** | `{filename_key}` |
+| **Dataset ID** | `{public_id}` |
 | **GSE / GSM accession** | {gse_link} |
 | **Modality** | {modality} |
 | **Species** | {species} |
@@ -359,8 +462,11 @@ def write_dataset_pages(datasets: list[dict]) -> int:
 
     written = 0
     for i, d in enumerate(datasets):
-        key = d["filename_key"]
-        if not key:
+        # Use public-safe id only (typically the GSE accession). Internal
+        # ``filename_key`` is intentionally not present in the sanitized
+        # ``datasets`` records produced by ``build_datasets``.
+        public_id = d.get("id") or d.get("GSE")
+        if not public_id:
             continue
         gse_link = (
             f"[{d['GSE']}]({d['geo_url']})" if d.get("geo_url") else d.get("GSE", "—")
@@ -370,10 +476,10 @@ def write_dataset_pages(datasets: list[dict]) -> int:
             if d.get("pubmed_id") else "—"
         )
         page = DATASET_PAGE_TEMPLATE.format(
-            title=key,
-            display_title=key,
+            title=public_id,
+            display_title=public_id,
             weight=100 + i,
-            filename_key=key,
+            public_id=public_id,
             gse_link=gse_link,
             modality=d.get("modality", ""),
             species=d.get("species", "unknown"),
@@ -385,7 +491,7 @@ def write_dataset_pages(datasets: list[dict]) -> int:
             geo_title=d.get("geo_title", "(no online title recorded)") or "(no online title)",
             description=d.get("description", "(no description)") or "(no description)",
         )
-        (ds_dir / f"{_slugify_filename(key)}.md").write_text(page, encoding="utf-8")
+        (ds_dir / f"{_slugify_filename(public_id)}.md").write_text(page, encoding="utf-8")
         written += 1
     return written
 
@@ -423,8 +529,8 @@ geekdocHidden: false
 ---
 
 <small>Auto-generated from `scripts/build_site_data.py`. scCCVGBen benchmark
-tests each method against the same 200 datasets and 26 metrics; see the
-[Methods index](../) for the full set.</small>
+tests each method against the same 200 datasets and curated 20 publication-display
+metrics; see the [Methods index](../) for the full set.</small>
 """
 
 METHOD_EXTRA = {
@@ -443,7 +549,7 @@ METHOD_EXTRA = {
     "baselines": (
         "## Role in scCCVGBen\n\n"
         "Axis C (baseline comparison): this method produces a latent embedding\n"
-        "evaluated with the same 26 metrics as scCCVGBen. Benchmark naming: `{name}`\n"
+        "evaluated with the same curated 20 publication-display metrics as scCCVGBen. Benchmark naming: `{name}`\n"
         "(row label is the method name itself, with no scCCVGBen prefix).\n"
     ),
 }

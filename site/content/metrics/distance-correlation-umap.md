@@ -1,7 +1,7 @@
 ---
 title: "distance_correlation_umap"
 type: docs
-weight: 106
+weight: 103
 geekdocHidden: false
 ---
 

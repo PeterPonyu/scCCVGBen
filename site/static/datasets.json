@@ -1,6 +1,6 @@
 [
   {
-    "filename_key": "GSE115571_LPSMmDev",
+    "id": "GSE115571",
     "GSE": "GSE115571",
     "modality": "scRNA",
     "species": "mouse",
@@ -15,7 +15,7 @@
     "source_name": "microglia isolated from saline control mice"
   },
   {
-    "filename_key": "GSE117988_MCCPBMCCancer",
+    "id": "GSE117988",
     "GSE": "GSE117988",
     "modality": "scRNA",
     "species": "human",
@@ -30,7 +30,7 @@
     "source_name": "Tumor"
   },
   {
-    "filename_key": "GSE120505_bloodAged",
+    "id": "GSE120505",
     "GSE": "GSE120505",
     "modality": "scRNA",
     "species": "mouse",
@@ -45,7 +45,7 @@
     "source_name": "peripheral blood"
   },
   {
-    "filename_key": "GSE123813_bccHmCancer",
+    "id": "GSE123813",
     "GSE": "GSE123813",
     "modality": "scRNA",
     "species": "human",
@@ -60,14 +60,14 @@
     "source_name": "Basal cell carinoma tumor"
   },
   {
-    "filename_key": "GSE123902_LungAdreHmCancer",
+    "id": "GSE123902",
     "GSE": "GSE123902",
     "modality": "scRNA",
     "species": "human",
     "tissue": "lung",
     "cell_count": 42847,
     "category": "lung",
-    "description": "GSE123902_LungAdreHmCancer",
+    "description": "GSE123902",
     "geo_title": "The single cell transcriptional landscape of human lung adenocarcinoma (primary tumours and metastases)",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE123902",
     "pubmed_id": "32042191",
@@ -75,7 +75,7 @@
     "source_name": "Patient primary lung adenocarcinoma"
   },
   {
-    "filename_key": "GSE124310_MMHmCancer",
+    "id": "GSE124310",
     "GSE": "GSE124310",
     "modality": "scRNA",
     "species": "human",
@@ -90,7 +90,7 @@
     "source_name": "Bone Marrow"
   },
   {
-    "filename_key": "GSE130148_LungHmDev",
+    "id": "GSE130148",
     "GSE": "GSE130148",
     "modality": "scRNA",
     "species": "human",
@@ -105,7 +105,7 @@
     "source_name": "Parenchymal lung tissue"
   },
   {
-    "filename_key": "GSE130646_muscleHm",
+    "id": "GSE130646",
     "GSE": "GSE130646",
     "modality": "scRNA",
     "species": "human",
@@ -120,7 +120,7 @@
     "source_name": "Vastus Lateralis Biopsy Mononuclear Cells"
   },
   {
-    "filename_key": "GSE132509_acutelymluekPBMCHmCancer",
+    "id": "GSE132509",
     "GSE": "GSE132509",
     "modality": "scRNA",
     "species": "human",
@@ -135,7 +135,7 @@
     "source_name": "ETV6-RUNX1"
   },
   {
-    "filename_key": "GSE138709_LiverCancer",
+    "id": "GSE138709",
     "GSE": "GSE138709",
     "modality": "scRNA",
     "species": "human",
@@ -150,7 +150,7 @@
     "source_name": "adjacent"
   },
   {
-    "filename_key": "GSE142653pitHmDev",
+    "id": "GSE142653",
     "GSE": "GSE142653",
     "modality": "scRNA",
     "species": "human",
@@ -165,7 +165,7 @@
     "source_name": "fetal pituitary cells"
   },
   {
-    "filename_key": "GSE143423_lbm_CancerBrainHm",
+    "id": "GSE143423",
     "GSE": "GSE143423",
     "modality": "scRNA",
     "species": "human",
@@ -180,7 +180,7 @@
     "source_name": "brain"
   },
   {
-    "filename_key": "GSE145929_ProgastinMmDev",
+    "id": "GSE145929",
     "GSE": "GSE145929",
     "modality": "scRNA",
     "species": "mouse",
@@ -195,7 +195,7 @@
     "source_name": "Viable mouse prostate"
   },
   {
-    "filename_key": "GSE148215_hESCHSPCD8Hm",
+    "id": "GSE148215",
     "GSE": "GSE148215",
     "modality": "scRNA",
     "species": "human",
@@ -210,7 +210,7 @@
     "source_name": "human embryonic cells"
   },
   {
-    "filename_key": "GSE148218_bmALLHmCancer",
+    "id": "GSE148218",
     "GSE": "GSE148218",
     "modality": "scRNA",
     "species": "human",
@@ -225,7 +225,7 @@
     "source_name": "Primary pre-B-ALL BM"
   },
   {
-    "filename_key": "GSE149655_CAHmCancer",
+    "id": "GSE149655",
     "GSE": "GSE149655",
     "modality": "scRNA",
     "species": "human",
@@ -240,7 +240,7 @@
     "source_name": "lung distal normal tissue from patient 01"
   },
   {
-    "filename_key": "GSE155109_bcECHmCancer",
+    "id": "GSE155109",
     "GSE": "GSE155109",
     "modality": "scRNA",
     "species": "human",
@@ -255,7 +255,7 @@
     "source_name": "breast_1z"
   },
   {
-    "filename_key": "GSE165784_RetinaHmDev",
+    "id": "GSE165784",
     "GSE": "GSE165784",
     "modality": "scRNA",
     "species": "human",
@@ -270,7 +270,7 @@
     "source_name": "Fibrous membrane_PVR"
   },
   {
-    "filename_key": "GSE165844_LSKMmBatch",
+    "id": "GSE165844",
     "GSE": "GSE165844",
     "modality": "scRNA",
     "species": "mouse",
@@ -285,7 +285,7 @@
     "source_name": "FACS sorted bone marrow"
   },
   {
-    "filename_key": "GSE167597_spineMm",
+    "id": "GSE167597",
     "GSE": "GSE167597",
     "modality": "scRNA",
     "species": "mouse",
@@ -300,14 +300,14 @@
     "source_name": "Cervical spinal cord"
   },
   {
-    "filename_key": "GSE168181_BreastHmCancer",
+    "id": "GSE168181",
     "GSE": "GSE168181",
     "modality": "scRNA",
     "species": "mouse",
     "tissue": "tumor",
     "cell_count": 23556,
     "category": "tumor",
-    "description": "GSE168181_BreastHmCancer",
+    "description": "GSE168181",
     "geo_title": "Single-cell sequencing reveals cancer cell heterogeneity in a murine breast cancer lymph node metastasis model",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE168181",
     "pubmed_id": "37341991",
@@ -315,7 +315,7 @@
     "source_name": "inguinal lymph node"
   },
   {
-    "filename_key": "GSE183904_GastricHmCancer",
+    "id": "GSE183904",
     "GSE": "GSE183904",
     "modality": "scRNA",
     "species": "human",
@@ -330,7 +330,7 @@
     "source_name": "Stomach"
   },
   {
-    "filename_key": "GSE189070_astrocytesSCIMmDev",
+    "id": "GSE189070",
     "GSE": "GSE189070",
     "modality": "scRNA",
     "species": "mouse",
@@ -342,17 +342,17 @@
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE189070",
     "pubmed_id": "35816276",
     "submission_date": "Nov 18 2021",
-    "source_name": "uninjured spinal cord  tissue"
+    "source_name": "uninjured spinal cord tissue"
   },
   {
-    "filename_key": "GSE189357_lungAdreHmCancer",
+    "id": "GSE189357",
     "GSE": "GSE189357",
     "modality": "scRNA",
     "species": "human",
     "tissue": "lung",
     "cell_count": 45938,
     "category": "lung",
-    "description": "GSE189357_lungAdreHmCancer",
+    "description": "GSE189357",
     "geo_title": "Spatiotemporal transcriptional atlas of lung adenocarcinoma from adenocarcinoma in situ to invasive carcinoma [scRNA-seq]",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE189357",
     "pubmed_id": "36434043",
@@ -360,7 +360,7 @@
     "source_name": "Lung adenocarcinoma"
   },
   {
-    "filename_key": "GSE192857_hESCHmTimes",
+    "id": "GSE192857",
     "GSE": "GSE192857",
     "modality": "scRNA",
     "species": "human",
@@ -375,7 +375,7 @@
     "source_name": "HS360, day 0, hESCs undifferentiated"
   },
   {
-    "filename_key": "GSE213740_ADHm",
+    "id": "GSE213740",
     "GSE": "GSE213740",
     "modality": "scRNA",
     "species": "human",
@@ -390,7 +390,7 @@
     "source_name": "Ascending aortic wall tissue"
   },
   {
-    "filename_key": "GSE222002_TcellsHmCancer",
+    "id": "GSE222002",
     "GSE": "GSE222002",
     "modality": "scRNA",
     "species": "mouse",
@@ -405,7 +405,7 @@
     "source_name": "TME"
   },
   {
-    "filename_key": "GSE222369_NKsLymphomaHmCancer",
+    "id": "GSE222369",
     "GSE": "GSE222369",
     "modality": "scRNA",
     "species": "human",
@@ -420,7 +420,7 @@
     "source_name": "blood"
   },
   {
-    "filename_key": "GSE225600_breast_CancerHm",
+    "id": "GSE225600",
     "GSE": "GSE225600",
     "modality": "scRNA",
     "species": "human",
@@ -435,7 +435,7 @@
     "source_name": "human breast cancer"
   },
   {
-    "filename_key": "GSE225857_liverColonMetasisHmCancer",
+    "id": "GSE225857",
     "GSE": "GSE225857",
     "modality": "scRNA",
     "species": "human",
@@ -450,7 +450,7 @@
     "source_name": "colorectal and liver tissues"
   },
   {
-    "filename_key": "GSE226131_HSCMmAged",
+    "id": "GSE226131",
     "GSE": "GSE226131",
     "modality": "scRNA",
     "species": "mouse",
@@ -465,14 +465,14 @@
     "source_name": "Bone Marrow"
   },
   {
-    "filename_key": "GSE228499_breastHmCancer",
+    "id": "GSE228499",
     "GSE": "GSE228499",
     "modality": "scRNA",
     "species": "human",
     "tissue": "tumor",
     "cell_count": 32349,
     "category": "tumor",
-    "description": "GSE228499_breastHmCancer",
+    "description": "GSE228499",
     "geo_title": "Single cell RNA sequencing of primary breast cancer",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE228499",
     "pubmed_id": "38892065",
@@ -480,7 +480,7 @@
     "source_name": "primary breast cancer"
   },
   {
-    "filename_key": "GSE235787_bcellsALLHmCancer",
+    "id": "GSE235787",
     "GSE": "GSE235787",
     "modality": "scRNA",
     "species": "human",
@@ -495,14 +495,14 @@
     "source_name": "Peripheral blood"
   },
   {
-    "filename_key": "GSE247719_PanSci_05_Muscle_adata",
+    "id": "GSE247719",
     "GSE": "GSE247719",
     "modality": "scRNA",
     "species": "mouse",
     "tissue": "muscle",
     "cell_count": 696410,
     "category": "muscle",
-    "description": "GSE247719_PanSci_05_Muscle_adata",
+    "description": "GSE247719",
     "geo_title": "A Panoramic View of Cell Population Dynamics in Mammalian Aging",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE247719",
     "pubmed_id": "39607904",
@@ -510,7 +510,7 @@
     "source_name": "kidney"
   },
   {
-    "filename_key": "GSE253355_bmNicheHm",
+    "id": "GSE253355",
     "GSE": "GSE253355",
     "modality": "scRNA",
     "species": "human",
@@ -525,7 +525,7 @@
     "source_name": "Bone marrow"
   },
   {
-    "filename_key": "GSE255019_hematoMmAged",
+    "id": "GSE255019",
     "GSE": "GSE255019",
     "modality": "scRNA",
     "species": "mouse",
@@ -540,7 +540,7 @@
     "source_name": "Bone Marrow"
   },
   {
-    "filename_key": "GSE262288_breastMetasisHmCancer",
+    "id": "GSE262288",
     "GSE": "GSE262288",
     "modality": "scRNA",
     "species": "human",
@@ -555,7 +555,7 @@
     "source_name": "Pleural effusion"
   },
   {
-    "filename_key": "GSE275119_TeethMmDev",
+    "id": "GSE275119",
     "GSE": "GSE275119",
     "modality": "scRNA",
     "species": "mouse",
@@ -570,7 +570,7 @@
     "source_name": "Incisor Pulp"
   },
   {
-    "filename_key": "GSE283205_hepatoblastomaCancer",
+    "id": "GSE283205",
     "GSE": "GSE283205",
     "modality": "scRNA",
     "species": "human",
@@ -585,7 +585,7 @@
     "source_name": "Formalin-fixed paraffin-embedded hepatoblastoma"
   },
   {
-    "filename_key": "GSE98638_TcellLiverHmCancer",
+    "id": "GSE98638",
     "GSE": "GSE98638",
     "modality": "scRNA",
     "species": "human",
@@ -600,7 +600,7 @@
     "source_name": "T cells"
   },
   {
-    "filename_key": "bm_GSE120446",
+    "id": "GSE120446",
     "GSE": "GSE120446",
     "modality": "scRNA",
     "species": "human",
@@ -615,7 +615,7 @@
     "source_name": "Bone marrow"
   },
   {
-    "filename_key": "dentate",
+    "id": "ds-scrna-041",
     "GSE": "nan",
     "modality": "scRNA",
     "species": "mouse",
@@ -630,7 +630,7 @@
     "source_name": "nan"
   },
   {
-    "filename_key": "endo",
+    "id": "ds-scrna-042",
     "GSE": "nan",
     "modality": "scRNA",
     "species": "mouse",
@@ -645,7 +645,7 @@
     "source_name": "nan"
   },
   {
-    "filename_key": "endo_GSE84133",
+    "id": "GSE84133",
     "GSE": "GSE84133",
     "modality": "scRNA",
     "species": "human",
@@ -660,7 +660,7 @@
     "source_name": "Male donor, age 17, BMI: 21.5"
   },
   {
-    "filename_key": "hESC_GSE144024",
+    "id": "GSE144024",
     "GSE": "GSE144024",
     "modality": "scRNA",
     "species": "human",
@@ -675,7 +675,7 @@
     "source_name": "human embryonic cells"
   },
   {
-    "filename_key": "ifnHSPC_GSE226824",
+    "id": "GSE226824",
     "GSE": "GSE226824",
     "modality": "scRNA",
     "species": "mouse",
@@ -690,7 +690,7 @@
     "source_name": "Bone Marrow"
   },
   {
-    "filename_key": "lung",
+    "id": "ds-scrna-046",
     "GSE": "nan",
     "modality": "scRNA",
     "species": "mouse",
@@ -705,7 +705,7 @@
     "source_name": "nan"
   },
   {
-    "filename_key": "setty",
+    "id": "ds-scrna-047",
     "GSE": "nan",
     "modality": "scRNA",
     "species": "human",
@@ -720,14 +720,14 @@
     "source_name": "nan"
   },
   {
-    "filename_key": "GSE174367_snATAC-seq_filtered_peak_bc_matrix",
+    "id": "GSE174367",
     "GSE": "GSE174367",
     "modality": "scATAC",
     "species": "human",
     "tissue": "brain",
     "cell_count": 143401,
     "category": "brain",
-    "description": "GSE174367_snATAC-seq_filtered_peak_bc_matrix",
+    "description": "GSE174367_snATAC-seq",
     "geo_title": "Single-nucleus chromatin accessibility and transcriptomic characterization of Alzheimer’s Disease",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE174367",
     "pubmed_id": "34239132",
@@ -735,14 +735,14 @@
     "source_name": "Control brain"
   },
   {
-    "filename_key": "GSE198730_aPSM_scATAC_rep1_filtered_peak_bc_matrix",
+    "id": "GSE198730",
     "GSE": "GSE198730",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "stem_cell",
     "cell_count": 5010,
     "category": "stem_cell",
-    "description": "GSE198730_aPSM_scATAC_rep1_filtered_peak_bc_matrix",
+    "description": "GSE198730",
     "geo_title": "Transcriptomics, Regulatory Syntax, and Enhancer Identification in Heterogenous Populations of Mesoderm-Induced ESCs at Single-Cell Resolution",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE198730",
     "pubmed_id": "35977485",
@@ -750,14 +750,14 @@
     "source_name": "Naïve ESC"
   },
   {
-    "filename_key": "GSE198730_naive_ESC_scATAC_rep1_filtered_peak_bc_matrix",
+    "id": "GSE198730-2",
     "GSE": "GSE198730",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "stem_cell",
     "cell_count": 5000,
     "category": "stem_cell",
-    "description": "GSE198730_naive_ESC_scATAC_rep1_filtered_peak_bc_matrix",
+    "description": "GSE198730",
     "geo_title": "Transcriptomics, Regulatory Syntax, and Enhancer Identification in Heterogenous Populations of Mesoderm-Induced ESCs at Single-Cell Resolution",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE198730",
     "pubmed_id": "35977485",
@@ -765,14 +765,14 @@
     "source_name": "Naïve ESC"
   },
   {
-    "filename_key": "GSE206767_filtered_peak_bc_matrix",
+    "id": "GSE206767",
     "GSE": "GSE206767",
     "modality": "scATAC",
     "species": "human",
     "tissue": "other",
     "cell_count": 15259,
     "category": "other",
-    "description": "GSE206767_filtered_peak_bc_matrix",
+    "description": "GSE206767",
     "geo_title": "Chemical-based external stimulation reprograms BJs into FiNs (scATAC-seq)",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE206767",
     "pubmed_id": "nan",
@@ -780,7 +780,7 @@
     "source_name": "BJ cells"
   },
   {
-    "filename_key": "GSM5124061_PDX_390_vehicle_peak_bc_matrix",
+    "id": "GSM5124061",
     "GSE": "GSM5124061",
     "modality": "scATAC",
     "species": "human",
@@ -795,14 +795,14 @@
     "source_name": "breast cancer"
   },
   {
-    "filename_key": "GSM5342787_scA_filtered_peak_bc_matrix",
+    "id": "GSM5342787",
     "GSE": "GSM5342787",
     "modality": "scATAC",
     "species": "human",
     "tissue": "other",
     "cell_count": 1202,
     "category": "other",
-    "description": "GSM5342787_scA_filtered_peak_bc_matrix",
+    "description": "GSM5342787",
     "geo_title": "scA: Patient 1 scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5342787",
     "pubmed_id": "nan",
@@ -810,14 +810,14 @@
     "source_name": "Coronary artery"
   },
   {
-    "filename_key": "GSM5342788_scB_filtered_peak_bc_matrix",
+    "id": "GSM5342788",
     "GSE": "GSM5342788",
     "modality": "scATAC",
     "species": "human",
     "tissue": "other",
     "cell_count": 2633,
     "category": "other",
-    "description": "GSM5342788_scB_filtered_peak_bc_matrix",
+    "description": "GSM5342788",
     "geo_title": "scB: Patient 2 scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5342788",
     "pubmed_id": "nan",
@@ -825,14 +825,14 @@
     "source_name": "Coronary artery"
   },
   {
-    "filename_key": "GSM5402770_P115L1mutP_filtered_peak_bc_matrix",
+    "id": "GSM5402770",
     "GSE": "GSM5402770",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "blood",
     "cell_count": 9495,
     "category": "blood",
-    "description": "GSM5402770_P115L1mutP_filtered_peak_bc_matrix",
+    "description": "GSM5402770",
     "geo_title": "P115Lats1mutparaspinal",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5402770",
     "pubmed_id": "nan",
@@ -840,14 +840,14 @@
     "source_name": "Peripheral nerve tumor"
   },
   {
-    "filename_key": "GSM5402771_NF_2-004_filtered_peak_bc_matrix",
+    "id": "GSM5402771",
     "GSE": "GSM5402771",
     "modality": "scATAC",
     "species": "human",
     "tissue": "blood",
     "cell_count": 4745,
     "category": "blood",
-    "description": "GSM5402771_NF_2-004_filtered_peak_bc_matrix",
+    "description": "GSM5402771_NF_2-004",
     "geo_title": "NF_2-004",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5402771",
     "pubmed_id": "nan",
@@ -855,14 +855,14 @@
     "source_name": "Peripheral nerve tumor"
   },
   {
-    "filename_key": "GSM5402772_MPNST_2-084_filtered_peak_bc_matrix",
+    "id": "GSM5402772",
     "GSE": "GSM5402772",
     "modality": "scATAC",
     "species": "human",
     "tissue": "blood",
     "cell_count": 1658,
     "category": "blood",
-    "description": "GSM5402772_MPNST_2-084_filtered_peak_bc_matrix",
+    "description": "GSM5402772_MPNST_2-084",
     "geo_title": "MPNST_2-084",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5402772",
     "pubmed_id": "nan",
@@ -870,14 +870,14 @@
     "source_name": "Peripheral nerve tumor"
   },
   {
-    "filename_key": "GSM5766892_d0-ctrl_filtered_peak_bc_matrix",
+    "id": "GSM5766892",
     "GSE": "GSM5766892",
     "modality": "scATAC",
     "species": "human",
     "tissue": "stem_cell",
     "cell_count": 4901,
     "category": "stem_cell",
-    "description": "GSM5766892_d0-ctrl_filtered_peak_bc_matrix",
+    "description": "GSM5766892_d0-ctrl",
     "geo_title": "HS360-Day0-rep1 [scATAC-seq]",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5766892",
     "pubmed_id": "nan",
@@ -885,14 +885,14 @@
     "source_name": "HS360, day 0, hESCs undifferentiated"
   },
   {
-    "filename_key": "GSM5766893_d20-ctrl_filtered_peak_bc_matrix",
+    "id": "GSM5766893",
     "GSE": "GSM5766893",
     "modality": "scATAC",
     "species": "human",
     "tissue": "other",
     "cell_count": 2847,
     "category": "other",
-    "description": "GSM5766893_d20-ctrl_filtered_peak_bc_matrix",
+    "description": "GSM5766893_d20-ctrl",
     "geo_title": "HS360-Day20-rep1 [scATAC-seq]",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5766893",
     "pubmed_id": "nan",
@@ -900,14 +900,14 @@
     "source_name": "HS360, day 20, past stage III maturation"
   },
   {
-    "filename_key": "GSM5769453_WT_S_filtered_peak_bc_matrix",
+    "id": "GSM5769453",
     "GSE": "GSM5769453",
     "modality": "scATAC",
     "species": "zebrafish",
     "tissue": "other",
     "cell_count": 5264,
     "category": "other",
-    "description": "GSM5769453_WT_S_filtered_peak_bc_matrix",
+    "description": "GSM5769453",
     "geo_title": "Untreated_WT_Saccule_scATACseq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5769453",
     "pubmed_id": "nan",
@@ -915,14 +915,14 @@
     "source_name": "Untreated wild-type saccule"
   },
   {
-    "filename_key": "GSM5769454_WT_U_filtered_peak_bc_matrix",
+    "id": "GSM5769454",
     "GSE": "GSM5769454",
     "modality": "scATAC",
     "species": "zebrafish",
     "tissue": "other",
     "cell_count": 1535,
     "category": "other",
-    "description": "GSM5769454_WT_U_filtered_peak_bc_matrix",
+    "description": "GSM5769454",
     "geo_title": "Untreated_WT_Utricle_scATACseq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5769454",
     "pubmed_id": "nan",
@@ -930,14 +930,14 @@
     "source_name": "Untreated wild-type utricle"
   },
   {
-    "filename_key": "GSM5769456_DTR_S_filtered_peak_bc_matrix",
+    "id": "GSM5769456",
     "GSE": "GSM5769456",
     "modality": "scATAC",
     "species": "zebrafish",
     "tissue": "other",
     "cell_count": 4320,
     "category": "other",
-    "description": "GSM5769456_DTR_S_filtered_peak_bc_matrix",
+    "description": "GSM5769456",
     "geo_title": "Untreated_DTR_Saccule_scATACseq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5769456",
     "pubmed_id": "nan",
@@ -945,14 +945,14 @@
     "source_name": "Untreated DTR saccule"
   },
   {
-    "filename_key": "GSM5769460_Day5_DTR_S_filtered_peak_bc_matrix",
+    "id": "GSM5769460",
     "GSE": "GSM5769460",
     "modality": "scATAC",
     "species": "zebrafish",
     "tissue": "other",
     "cell_count": 15982,
     "category": "other",
-    "description": "GSM5769460_Day5_DTR_S_filtered_peak_bc_matrix",
+    "description": "GSM5769460",
     "geo_title": "Day5_DTR_Saccule_scATACseq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5769460",
     "pubmed_id": "nan",
@@ -960,14 +960,14 @@
     "source_name": "Regenerating adult zebrafish saccule"
   },
   {
-    "filename_key": "GSM5769461_Day5_DTR_U_filtered_peak_bc_matrix",
+    "id": "GSM5769461",
     "GSE": "GSM5769461",
     "modality": "scATAC",
     "species": "zebrafish",
     "tissue": "other",
     "cell_count": 5409,
     "category": "other",
-    "description": "GSM5769461_Day5_DTR_U_filtered_peak_bc_matrix",
+    "description": "GSM5769461",
     "geo_title": "Day5_DTR_Utricle_scATACseq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5769461",
     "pubmed_id": "nan",
@@ -975,14 +975,14 @@
     "source_name": "Regenerating adult zebrafish utricle"
   },
   {
-    "filename_key": "GSM5769462_Day7_DTR_S_filtered_peak_bc_matrix",
+    "id": "GSM5769462",
     "GSE": "GSM5769462",
     "modality": "scATAC",
     "species": "zebrafish",
     "tissue": "other",
     "cell_count": 3267,
     "category": "other",
-    "description": "GSM5769462_Day7_DTR_S_filtered_peak_bc_matrix",
+    "description": "GSM5769462",
     "geo_title": "Day7_DTR_Saccule_scATACseq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5769462",
     "pubmed_id": "nan",
@@ -990,14 +990,14 @@
     "source_name": "Regenerating adult zebrafish saccule"
   },
   {
-    "filename_key": "GSM5769463_Day7_DTR_U_filtered_peak_bc_matrix",
+    "id": "GSM5769463",
     "GSE": "GSM5769463",
     "modality": "scATAC",
     "species": "zebrafish",
     "tissue": "other",
     "cell_count": 3187,
     "category": "other",
-    "description": "GSM5769463_Day7_DTR_U_filtered_peak_bc_matrix",
+    "description": "GSM5769463",
     "geo_title": "Day7_DTR_Utricle_scATACseq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5769463",
     "pubmed_id": "nan",
@@ -1005,14 +1005,14 @@
     "source_name": "Regenerating adult zebrafish utricle"
   },
   {
-    "filename_key": "GSM5975165_Arm_d60_filtered_peak_bc_matrix",
+    "id": "GSM5975165",
     "GSE": "GSM5975165",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "other",
     "cell_count": 3805,
     "category": "other",
-    "description": "GSM5975165_Arm_d60_filtered_peak_bc_matrix",
+    "description": "GSM5975165",
     "geo_title": "Arm_d60",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5975165",
     "pubmed_id": "nan",
@@ -1020,14 +1020,14 @@
     "source_name": "P14 CD8 T cells from LCMV Armstrong infection 60 days post infection"
   },
   {
-    "filename_key": "GSM5975166_Arm_d200_filtered_peak_bc_matrix",
+    "id": "GSM5975166",
     "GSE": "GSM5975166",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "other",
     "cell_count": 4007,
     "category": "other",
-    "description": "GSM5975166_Arm_d200_filtered_peak_bc_matrix",
+    "description": "GSM5975166",
     "geo_title": "Arm_d200",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5975166",
     "pubmed_id": "nan",
@@ -1035,14 +1035,14 @@
     "source_name": "P14 CD8 T cells from LCMV Armstrong infection 200 days post infection"
   },
   {
-    "filename_key": "GSM6044072_1P_human_filtered_peak_bc_matrix",
+    "id": "GSM6044072",
     "GSE": "GSM6044072",
     "modality": "scATAC",
     "species": "human",
     "tissue": "tumor",
     "cell_count": 2775,
     "category": "tumor",
-    "description": "GSM6044072_1P_human_filtered_peak_bc_matrix",
+    "description": "GSM6044072",
     "geo_title": "CRC_primary_1",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6044072",
     "pubmed_id": "nan",
@@ -1050,14 +1050,14 @@
     "source_name": "colorectal cancer cells"
   },
   {
-    "filename_key": "GSM6044073_2P_human_filtered_peak_bc_matrix",
+    "id": "GSM6044073",
     "GSE": "GSM6044073",
     "modality": "scATAC",
     "species": "human",
     "tissue": "tumor",
     "cell_count": 3268,
     "category": "tumor",
-    "description": "GSM6044073_2P_human_filtered_peak_bc_matrix",
+    "description": "GSM6044073",
     "geo_title": "CRC_primary_2",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6044073",
     "pubmed_id": "nan",
@@ -1065,14 +1065,14 @@
     "source_name": "colorectal cancer cells"
   },
   {
-    "filename_key": "GSM6044074_4P_human_filtered_peak_bc_matrix",
+    "id": "GSM6044074",
     "GSE": "GSM6044074",
     "modality": "scATAC",
     "species": "human",
     "tissue": "tumor",
     "cell_count": 1178,
     "category": "tumor",
-    "description": "GSM6044074_4P_human_filtered_peak_bc_matrix",
+    "description": "GSM6044074",
     "geo_title": "CRC_primary_3",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6044074",
     "pubmed_id": "nan",
@@ -1080,14 +1080,14 @@
     "source_name": "colorectal cancer cells"
   },
   {
-    "filename_key": "GSM6044075_1LM_human_filtered_peak_bc_matrix",
+    "id": "GSM6044075",
     "GSE": "GSM6044075",
     "modality": "scATAC",
     "species": "human",
     "tissue": "liver",
     "cell_count": 6617,
     "category": "liver",
-    "description": "GSM6044075_1LM_human_filtered_peak_bc_matrix",
+    "description": "GSM6044075",
     "geo_title": "CRC_liver_metastasis_1",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6044075",
     "pubmed_id": "nan",
@@ -1095,14 +1095,14 @@
     "source_name": "colorectal cancer cells"
   },
   {
-    "filename_key": "GSM6044076_2LM_human_filtered_peak_bc_matrix",
+    "id": "GSM6044076",
     "GSE": "GSM6044076",
     "modality": "scATAC",
     "species": "human",
     "tissue": "liver",
     "cell_count": 3329,
     "category": "liver",
-    "description": "GSM6044076_2LM_human_filtered_peak_bc_matrix",
+    "description": "GSM6044076",
     "geo_title": "CRC_liver_metastasis_2",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6044076",
     "pubmed_id": "nan",
@@ -1110,14 +1110,14 @@
     "source_name": "colorectal cancer cells"
   },
   {
-    "filename_key": "GSM6044077_4LM_human_filtered_peak_bc_matrix",
+    "id": "GSM6044077",
     "GSE": "GSM6044077",
     "modality": "scATAC",
     "species": "human",
     "tissue": "liver",
     "cell_count": 5280,
     "category": "liver",
-    "description": "GSM6044077_4LM_human_filtered_peak_bc_matrix",
+    "description": "GSM6044077",
     "geo_title": "CRC_liver_metastasis_3",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6044077",
     "pubmed_id": "nan",
@@ -1125,7 +1125,7 @@
     "source_name": "colorectal cancer cells"
   },
   {
-    "filename_key": "GSM6052781_E13",
+    "id": "GSM6052781",
     "GSE": "GSM6052781",
     "modality": "scATAC",
     "species": "mouse",
@@ -1140,7 +1140,7 @@
     "source_name": "skin"
   },
   {
-    "filename_key": "GSM6052782_E16",
+    "id": "GSM6052782",
     "GSE": "GSM6052782",
     "modality": "scATAC",
     "species": "mouse",
@@ -1155,14 +1155,14 @@
     "source_name": "skin"
   },
   {
-    "filename_key": "GSM6052783_P0_filtered_peak_bc_matrix",
+    "id": "GSM6052783",
     "GSE": "GSM6052783",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "skin",
     "cell_count": 7896,
     "category": "skin",
-    "description": "GSM6052783_P0_filtered_peak_bc_matrix",
+    "description": "GSM6052783",
     "geo_title": "scATAC_seq_P0",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6052783",
     "pubmed_id": "nan",
@@ -1170,14 +1170,14 @@
     "source_name": "skin"
   },
   {
-    "filename_key": "GSM6214533_1_CIEL_filtered_peak_bc_matrix",
+    "id": "GSM6214533",
     "GSE": "GSM6214533",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "blood",
     "cell_count": 1459,
     "category": "blood",
-    "description": "GSM6214533_1_CIEL_filtered_peak_bc_matrix",
+    "description": "GSM6214533",
     "geo_title": "CIEL P14 CD8+ T cells",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6214533",
     "pubmed_id": "nan",
@@ -1185,14 +1185,14 @@
     "source_name": "Small intestine intraepithelial lymphocytes"
   },
   {
-    "filename_key": "GSM6214534_2_CLPL_filtered_peak_bc_matrix",
+    "id": "GSM6214534",
     "GSE": "GSM6214534",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "gut",
     "cell_count": 1869,
     "category": "gut",
-    "description": "GSM6214534_2_CLPL_filtered_peak_bc_matrix",
+    "description": "GSM6214534",
     "geo_title": "CLPL P14 CD8+ T cells",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6214534",
     "pubmed_id": "nan",
@@ -1200,14 +1200,14 @@
     "source_name": "Small intestine LPL"
   },
   {
-    "filename_key": "GSM6214535_4_SI_IEL_filtered_peak_bc_matrix",
+    "id": "GSM6214535",
     "GSE": "GSM6214535",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "gut",
     "cell_count": 8253,
     "category": "gut",
-    "description": "GSM6214535_4_SI_IEL_filtered_peak_bc_matrix",
+    "description": "GSM6214535",
     "geo_title": "SI_IEL P14 CD8+ T cells",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6214535",
     "pubmed_id": "nan",
@@ -1215,14 +1215,14 @@
     "source_name": "Colon IEL"
   },
   {
-    "filename_key": "GSM6214536_6_SI_LPL_filtered_peak_bc_matrix",
+    "id": "GSM6214536",
     "GSE": "GSM6214536",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "gut",
     "cell_count": 1458,
     "category": "gut",
-    "description": "GSM6214536_6_SI_LPL_filtered_peak_bc_matrix",
+    "description": "GSM6214536",
     "geo_title": "SI_LPL P14 CD8+ T cells",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6214536",
     "pubmed_id": "nan",
@@ -1230,14 +1230,14 @@
     "source_name": "Colon LPL"
   },
   {
-    "filename_key": "GSM6449878_NSCLC8_TIL_eTreg_scATAC_filtered_peak_bc_matrix",
+    "id": "GSM6449878",
     "GSE": "GSM6449878",
     "modality": "scATAC",
     "species": "human",
     "tissue": "other",
     "cell_count": 3179,
     "category": "other",
-    "description": "GSM6449878_NSCLC8_TIL_eTreg_scATAC_filtered_peak_bc_matrix",
+    "description": "GSM6449878",
     "geo_title": "NSCLC 8, TIL, eTreg, scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6449878",
     "pubmed_id": "nan",
@@ -1245,14 +1245,14 @@
     "source_name": "TIL"
   },
   {
-    "filename_key": "GSM6449879_NSCLC14_NormalLung_TregandCD8posT_scATAC_filtered_peak_bc_matrix",
+    "id": "GSM6449879",
     "GSE": "GSM6449879",
     "modality": "scATAC",
     "species": "human",
     "tissue": "lung",
     "cell_count": 2513,
     "category": "lung",
-    "description": "GSM6449879_NSCLC14_NormalLung_TregandCD8posT_scATAC_filtered_peak_bc_matrix",
+    "description": "GSM6449879",
     "geo_title": "NSCLC 14, normal lung, Treg and CD8+ T, scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6449879",
     "pubmed_id": "nan",
@@ -1260,14 +1260,14 @@
     "source_name": "normal lung"
   },
   {
-    "filename_key": "GSM6449880_HD4_PBMC_eTreg_scATAC_filtered_peak_bc_matrix",
+    "id": "GSM6449880",
     "GSE": "GSM6449880",
     "modality": "scATAC",
     "species": "human",
     "tissue": "pbmc",
     "cell_count": 3303,
     "category": "pbmc",
-    "description": "GSM6449880_HD4_PBMC_eTreg_scATAC_filtered_peak_bc_matrix",
+    "description": "GSM6449880",
     "geo_title": "HD 4, PBMC, eTreg, scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6449880",
     "pubmed_id": "nan",
@@ -1275,14 +1275,14 @@
     "source_name": "PBMC"
   },
   {
-    "filename_key": "GSM6449881_HD4_CD4CD25posT_scATAC_filtered_peak_bc_matrix",
+    "id": "GSM6449881",
     "GSE": "GSM6449881",
     "modality": "scATAC",
     "species": "human",
     "tissue": "blood",
     "cell_count": 3473,
     "category": "blood",
-    "description": "GSM6449881_HD4_CD4CD25posT_scATAC_filtered_peak_bc_matrix",
+    "description": "GSM6449881",
     "geo_title": "HD 4, PBMC, CD4+ CD25+ T, scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6449881",
     "pubmed_id": "nan",
@@ -1290,14 +1290,14 @@
     "source_name": "PBMC"
   },
   {
-    "filename_key": "GSM6449882_HD4_PBMC_nTreg_scATAC_filtered_peak_bc_matrix",
+    "id": "GSM6449882",
     "GSE": "GSM6449882",
     "modality": "scATAC",
     "species": "human",
     "tissue": "pbmc",
     "cell_count": 2849,
     "category": "pbmc",
-    "description": "GSM6449882_HD4_PBMC_nTreg_scATAC_filtered_peak_bc_matrix",
+    "description": "GSM6449882",
     "geo_title": "HD 4, PBMC, nTreg, scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6449882",
     "pubmed_id": "nan",
@@ -1305,14 +1305,14 @@
     "source_name": "PBMC"
   },
   {
-    "filename_key": "GSM6449883_HD5_PBMC_nTreg_scATAC_filtered_peak_bc_matrix",
+    "id": "GSM6449883",
     "GSE": "GSM6449883",
     "modality": "scATAC",
     "species": "human",
     "tissue": "pbmc",
     "cell_count": 1166,
     "category": "pbmc",
-    "description": "GSM6449883_HD5_PBMC_nTreg_scATAC_filtered_peak_bc_matrix",
+    "description": "GSM6449883",
     "geo_title": "HD 5, PBMC, nTreg, scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6449883",
     "pubmed_id": "nan",
@@ -1320,14 +1320,14 @@
     "source_name": "PBMC"
   },
   {
-    "filename_key": "GSM6638254_filtered_peak_bc_matrix",
+    "id": "GSM6638254",
     "GSE": "GSM6638254",
     "modality": "scATAC",
     "species": "human",
     "tissue": "other",
     "cell_count": 7990,
     "category": "other",
-    "description": "GSM6638254_filtered_peak_bc_matrix",
+    "description": "GSM6638254",
     "geo_title": "633, invitro",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6638254",
     "pubmed_id": "nan",
@@ -1335,14 +1335,14 @@
     "source_name": "MG63.3-GFP"
   },
   {
-    "filename_key": "GSM6783751_d20-p100_filtered_peak_bc_matrix",
+    "id": "GSM6783751",
     "GSE": "GSM6783751",
     "modality": "scATAC",
     "species": "human",
     "tissue": "other",
     "cell_count": 3084,
     "category": "other",
-    "description": "GSM6783751_d20-p100_filtered_peak_bc_matrix",
+    "description": "GSM6783751_d20-p100",
     "geo_title": "HS360-Day20-P100 [scATAC-seq]",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6783751",
     "pubmed_id": "nan",
@@ -1350,14 +1350,14 @@
     "source_name": "HS360, day 20, past stage III maturation, exposed to 100 μM paracetamol"
   },
   {
-    "filename_key": "GSM6783752_d20-p200_filtered_peak_bc_matrix",
+    "id": "GSM6783752",
     "GSE": "GSM6783752",
     "modality": "scATAC",
     "species": "human",
     "tissue": "other",
     "cell_count": 3722,
     "category": "other",
-    "description": "GSM6783752_d20-p200_filtered_peak_bc_matrix",
+    "description": "GSM6783752_d20-p200",
     "geo_title": "HS360-Day20-P200 [scATAC-seq]",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM6783752",
     "pubmed_id": "nan",
@@ -1365,14 +1365,14 @@
     "source_name": "HS360, day 20, past stage III maturation, exposed to 200 μM paracetamol"
   },
   {
-    "filename_key": "GSM7056609_HP_20210331_MONOS_filtered_peak_bc_matrix",
+    "id": "GSM7056609",
     "GSE": "GSM7056609",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "other",
     "cell_count": 6654,
     "category": "other",
-    "description": "GSM7056609_HP_20210331_MONOS_filtered_peak_bc_matrix",
+    "description": "GSM7056609",
     "geo_title": "C57Bl/6 Murine Synovial CD45+CD11b+Ly6g-SiglecF-Cd64-MHCII- cells, ATAC",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7056609",
     "pubmed_id": "nan",
@@ -1380,14 +1380,14 @@
     "source_name": "Ankle Joint Synovium"
   },
   {
-    "filename_key": "GSM7062446_Naive_filtered_peak_bc_matrix",
+    "id": "GSM7062446",
     "GSE": "GSM7062446",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "blood",
     "cell_count": 5171,
     "category": "blood",
-    "description": "GSM7062446_Naive_filtered_peak_bc_matrix",
+    "description": "GSM7062446",
     "geo_title": "Naïve CD8T scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7062446",
     "pubmed_id": "nan",
@@ -1395,14 +1395,14 @@
     "source_name": "Lymphocytes"
   },
   {
-    "filename_key": "GSM7062447_D2_filtered_peak_bc_matrix",
+    "id": "GSM7062447",
     "GSE": "GSM7062447",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "blood",
     "cell_count": 5764,
     "category": "blood",
-    "description": "GSM7062447_D2_filtered_peak_bc_matrix",
+    "description": "GSM7062447",
     "geo_title": "D2 CD8T scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7062447",
     "pubmed_id": "nan",
@@ -1410,14 +1410,14 @@
     "source_name": "Lymphocytes"
   },
   {
-    "filename_key": "GSM7062448_D8-1_filtered_peak_bc_matrix",
+    "id": "GSM7062448",
     "GSE": "GSM7062448",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "blood",
     "cell_count": 2510,
     "category": "blood",
-    "description": "GSM7062448_D8-1_filtered_peak_bc_matrix",
+    "description": "GSM7062448_D8-1",
     "geo_title": "D8-1 CD8T scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7062448",
     "pubmed_id": "nan",
@@ -1425,14 +1425,14 @@
     "source_name": "Lymphocytes"
   },
   {
-    "filename_key": "GSM7062449_D8-2_filtered_peak_bc_matrix",
+    "id": "GSM7062449",
     "GSE": "GSM7062449",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "blood",
     "cell_count": 4379,
     "category": "blood",
-    "description": "GSM7062449_D8-2_filtered_peak_bc_matrix",
+    "description": "GSM7062449_D8-2",
     "geo_title": "D8-2 CD8T scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7062449",
     "pubmed_id": "nan",
@@ -1440,14 +1440,14 @@
     "source_name": "Lymphocytes"
   },
   {
-    "filename_key": "GSM7062450_D180_filtered_peak_bc_matrix",
+    "id": "GSM7062450",
     "GSE": "GSM7062450",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "blood",
     "cell_count": 3693,
     "category": "blood",
-    "description": "GSM7062450_D180_filtered_peak_bc_matrix",
+    "description": "GSM7062450",
     "geo_title": "D180 CD8T scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7062450",
     "pubmed_id": "nan",
@@ -1455,14 +1455,14 @@
     "source_name": "Lymphocytes"
   },
   {
-    "filename_key": "GSM7064214_19_D003_filtered_peak_bc_matrix",
+    "id": "GSM7064214",
     "GSE": "GSM7064214",
     "modality": "scATAC",
     "species": "human",
     "tissue": "retina",
     "cell_count": 4112,
     "category": "retina",
-    "description": "GSM7064214_19_D003_filtered_peak_bc_matrix",
+    "description": "GSM7064214",
     "geo_title": "19_D003_atac_lib",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7064214",
     "pubmed_id": "nan",
@@ -1470,14 +1470,14 @@
     "source_name": "macula lutea"
   },
   {
-    "filename_key": "GSM7064215_19_D005_filtered_peak_bc_matrix",
+    "id": "GSM7064215",
     "GSE": "GSM7064215",
     "modality": "scATAC",
     "species": "human",
     "tissue": "retina",
     "cell_count": 10545,
     "category": "retina",
-    "description": "GSM7064215_19_D005_filtered_peak_bc_matrix",
+    "description": "GSM7064215",
     "geo_title": "19_D005_atac_lib",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7064215",
     "pubmed_id": "nan",
@@ -1485,14 +1485,14 @@
     "source_name": "macula lutea"
   },
   {
-    "filename_key": "GSM7064216_19_D006_filtered_peak_bc_matrix",
+    "id": "GSM7064216",
     "GSE": "GSM7064216",
     "modality": "scATAC",
     "species": "human",
     "tissue": "retina",
     "cell_count": 8905,
     "category": "retina",
-    "description": "GSM7064216_19_D006_filtered_peak_bc_matrix",
+    "description": "GSM7064216",
     "geo_title": "19_D006_atac_lib",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7064216",
     "pubmed_id": "nan",
@@ -1500,14 +1500,14 @@
     "source_name": "macula lutea"
   },
   {
-    "filename_key": "GSM7064217_19_D007_filtered_peak_bc_matrix",
+    "id": "GSM7064217",
     "GSE": "GSM7064217",
     "modality": "scATAC",
     "species": "human",
     "tissue": "retina",
     "cell_count": 7102,
     "category": "retina",
-    "description": "GSM7064217_19_D007_filtered_peak_bc_matrix",
+    "description": "GSM7064217",
     "geo_title": "19_D007_atac_lib",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7064217",
     "pubmed_id": "nan",
@@ -1515,14 +1515,14 @@
     "source_name": "macula lutea"
   },
   {
-    "filename_key": "GSM7308367_Exp157DukeaBMTB_filtered_peak_bc_matrix",
+    "id": "GSM7308367",
     "GSE": "GSM7308367",
     "modality": "scATAC",
     "species": "human",
     "tissue": "blood",
     "cell_count": 12773,
     "category": "blood",
-    "description": "GSM7308367_Exp157DukeaBMTB_filtered_peak_bc_matrix",
+    "description": "GSM7308367",
     "geo_title": "Healthy Donor, rep1",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7308367",
     "pubmed_id": "nan",
@@ -1530,14 +1530,14 @@
     "source_name": "PBMC"
   },
   {
-    "filename_key": "GSM7308369_Exp157DukeaBMTC_filtered_peak_bc_matrix",
+    "id": "GSM7308369",
     "GSE": "GSM7308369",
     "modality": "scATAC",
     "species": "human",
     "tissue": "blood",
     "cell_count": 9302,
     "category": "blood",
-    "description": "GSM7308369_Exp157DukeaBMTC_filtered_peak_bc_matrix",
+    "description": "GSM7308369",
     "geo_title": "Pre-transplant, no_future_aGVHD, rep1",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7308369",
     "pubmed_id": "nan",
@@ -1545,14 +1545,14 @@
     "source_name": "PBMC"
   },
   {
-    "filename_key": "GSM7734290_Naive_filtered_peak_bc_matrix",
+    "id": "GSM7734290",
     "GSE": "GSM7734290",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "blood",
     "cell_count": 12883,
     "category": "blood",
-    "description": "GSM7734290_Naive_filtered_peak_bc_matrix",
+    "description": "GSM7734290",
     "geo_title": "Naïve CD8T, scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7734290",
     "pubmed_id": "nan",
@@ -1560,14 +1560,14 @@
     "source_name": "Lymphocytes"
   },
   {
-    "filename_key": "GSM7734291_D2_filtered_peak_bc_matrix",
+    "id": "GSM7734291",
     "GSE": "GSM7734291",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "blood",
     "cell_count": 15709,
     "category": "blood",
-    "description": "GSM7734291_D2_filtered_peak_bc_matrix",
+    "description": "GSM7734291",
     "geo_title": "D2 CD8T, scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7734291",
     "pubmed_id": "nan",
@@ -1575,14 +1575,14 @@
     "source_name": "Lymphocytes"
   },
   {
-    "filename_key": "GSM7734292_D8_filtered_peak_bc_matrix",
+    "id": "GSM7734292",
     "GSE": "GSM7734292",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "blood",
     "cell_count": 13313,
     "category": "blood",
-    "description": "GSM7734292_D8_filtered_peak_bc_matrix",
+    "description": "GSM7734292",
     "geo_title": "D8 CD8T, scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7734292",
     "pubmed_id": "nan",
@@ -1590,14 +1590,14 @@
     "source_name": "Lymphocytes"
   },
   {
-    "filename_key": "GSM7734711_MGH227_filtered_peak_bc_matrix",
+    "id": "GSM7734711",
     "GSE": "GSM7734711",
     "modality": "scATAC",
     "species": "human",
     "tissue": "other",
     "cell_count": 1992,
     "category": "other",
-    "description": "GSM7734711_MGH227_filtered_peak_bc_matrix",
+    "description": "GSM7734711",
     "geo_title": "MGH227_scATAC",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7734711",
     "pubmed_id": "nan",
@@ -1605,14 +1605,14 @@
     "source_name": "primary tissue"
   },
   {
-    "filename_key": "GSM7734712_MGH230_filtered_peak_bc_matrix",
+    "id": "GSM7734712",
     "GSE": "GSM7734712",
     "modality": "scATAC",
     "species": "human",
     "tissue": "other",
     "cell_count": 7028,
     "category": "other",
-    "description": "GSM7734712_MGH230_filtered_peak_bc_matrix",
+    "description": "GSM7734712",
     "geo_title": "MGH230_scATAC",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7734712",
     "pubmed_id": "nan",
@@ -1620,14 +1620,14 @@
     "source_name": "primary tissue"
   },
   {
-    "filename_key": "GSM7734713_MGH231_filtered_peak_bc_matrix",
+    "id": "GSM7734713",
     "GSE": "GSM7734713",
     "modality": "scATAC",
     "species": "human",
     "tissue": "other",
     "cell_count": 3720,
     "category": "other",
-    "description": "GSM7734713_MGH231_filtered_peak_bc_matrix",
+    "description": "GSM7734713",
     "geo_title": "MGH231_scATAC",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7734713",
     "pubmed_id": "nan",
@@ -1635,14 +1635,14 @@
     "source_name": "primary tissue"
   },
   {
-    "filename_key": "GSM7734714_MGH232_filtered_peak_bc_matrix",
+    "id": "GSM7734714",
     "GSE": "GSM7734714",
     "modality": "scATAC",
     "species": "human",
     "tissue": "other",
     "cell_count": 2496,
     "category": "other",
-    "description": "GSM7734714_MGH232_filtered_peak_bc_matrix",
+    "description": "GSM7734714",
     "geo_title": "MGH232_scATAC",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7734714",
     "pubmed_id": "nan",
@@ -1650,14 +1650,14 @@
     "source_name": "primary tissue"
   },
   {
-    "filename_key": "GSM7734715_MGH234_filtered_peak_bc_matrix",
+    "id": "GSM7734715",
     "GSE": "GSM7734715",
     "modality": "scATAC",
     "species": "human",
     "tissue": "other",
     "cell_count": 6357,
     "category": "other",
-    "description": "GSM7734715_MGH234_filtered_peak_bc_matrix",
+    "description": "GSM7734715",
     "geo_title": "MGH234_scATAC",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7734715",
     "pubmed_id": "nan",
@@ -1665,14 +1665,14 @@
     "source_name": "primary tissue"
   },
   {
-    "filename_key": "GSM7734716_MGH236_filtered_peak_bc_matrix",
+    "id": "GSM7734716",
     "GSE": "GSM7734716",
     "modality": "scATAC",
     "species": "human",
     "tissue": "other",
     "cell_count": 5754,
     "category": "other",
-    "description": "GSM7734716_MGH236_filtered_peak_bc_matrix",
+    "description": "GSM7734716",
     "geo_title": "MGH236_scATAC",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7734716",
     "pubmed_id": "nan",
@@ -1680,14 +1680,14 @@
     "source_name": "primary tissue"
   },
   {
-    "filename_key": "GSM7734717_MGH239_filtered_peak_bc_matrix",
+    "id": "GSM7734717",
     "GSE": "GSM7734717",
     "modality": "scATAC",
     "species": "human",
     "tissue": "other",
     "cell_count": 2981,
     "category": "other",
-    "description": "GSM7734717_MGH239_filtered_peak_bc_matrix",
+    "description": "GSM7734717",
     "geo_title": "MGH239_scATAC",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7734717",
     "pubmed_id": "nan",
@@ -1695,14 +1695,14 @@
     "source_name": "primary tissue"
   },
   {
-    "filename_key": "GSM7777060_CTRL_filtered_peak_bc_matrix",
+    "id": "GSM7777060",
     "GSE": "GSM7777060",
     "modality": "scATAC",
     "species": "human",
     "tissue": "blood",
     "cell_count": 5814,
     "category": "blood",
-    "description": "GSM7777060_CTRL_filtered_peak_bc_matrix",
+    "description": "GSM7777060",
     "geo_title": "scATACseq_CD34+_Notreatment_24h_multipledonors",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7777060",
     "pubmed_id": "nan",
@@ -1710,14 +1710,14 @@
     "source_name": "umbilical cord blood"
   },
   {
-    "filename_key": "GSM7777061_2DG_filtered_peak_bc_matrix",
+    "id": "GSM7777061",
     "GSE": "GSM7777061",
     "modality": "scATAC",
     "species": "human",
     "tissue": "blood",
     "cell_count": 4074,
     "category": "blood",
-    "description": "GSM7777061_2DG_filtered_peak_bc_matrix",
+    "description": "GSM7777061",
     "geo_title": "scATACseq_CD34+_2DGtreatment_24h_multipledonors",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7777061",
     "pubmed_id": "nan",
@@ -1725,14 +1725,14 @@
     "source_name": "umbilical cord blood"
   },
   {
-    "filename_key": "GSM7777062_DON_filtered_peak_bc_matrix",
+    "id": "GSM7777062",
     "GSE": "GSM7777062",
     "modality": "scATAC",
     "species": "human",
     "tissue": "blood",
     "cell_count": 6433,
     "category": "blood",
-    "description": "GSM7777062_DON_filtered_peak_bc_matrix",
+    "description": "GSM7777062",
     "geo_title": "scATACseq_CD34+_DONtreatment_24h_multipledonors",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7777062",
     "pubmed_id": "nan",
@@ -1740,14 +1740,14 @@
     "source_name": "umbilical cord blood"
   },
   {
-    "filename_key": "GSM7777063_AOA_filtered_peak_bc_matrix",
+    "id": "GSM7777063",
     "GSE": "GSM7777063",
     "modality": "scATAC",
     "species": "human",
     "tissue": "blood",
     "cell_count": 6819,
     "category": "blood",
-    "description": "GSM7777063_AOA_filtered_peak_bc_matrix",
+    "description": "GSM7777063",
     "geo_title": "scATACseq_CD34+_AOAtreatment_24h_multipledonors",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7777063",
     "pubmed_id": "nan",
@@ -1755,14 +1755,14 @@
     "source_name": "umbilical cord blood"
   },
   {
-    "filename_key": "GSM7884540_D013_13_lobe_atac_filtered_peak_bc_matrix",
+    "id": "GSM7884540",
     "GSE": "GSM7884540",
     "modality": "scATAC",
     "species": "human",
     "tissue": "blood",
     "cell_count": 5876,
     "category": "blood",
-    "description": "GSM7884540_D013_13_lobe_atac_filtered_peak_bc_matrix",
+    "description": "GSM7884540",
     "geo_title": "10xATAC_D013_13_hu_Lobe_atac_lib",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7884540",
     "pubmed_id": "nan",
@@ -1770,14 +1770,14 @@
     "source_name": "peripheral region of retina"
   },
   {
-    "filename_key": "GSM7884541_D027_13_lobe_atac_filtered_peak_bc_matrix",
+    "id": "GSM7884541",
     "GSE": "GSM7884541",
     "modality": "scATAC",
     "species": "human",
     "tissue": "blood",
     "cell_count": 9868,
     "category": "blood",
-    "description": "GSM7884541_D027_13_lobe_atac_filtered_peak_bc_matrix",
+    "description": "GSM7884541",
     "geo_title": "10xATAC_D027_13_hu_Lobe_atac_lib",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7884541",
     "pubmed_id": "nan",
@@ -1785,14 +1785,14 @@
     "source_name": "peripheral region of retina"
   },
   {
-    "filename_key": "GSM7884543_D030_13_macular_atac_filtered_peak_bc_matrix",
+    "id": "GSM7884543",
     "GSE": "GSM7884543",
     "modality": "scATAC",
     "species": "human",
     "tissue": "retina",
     "cell_count": 9640,
     "category": "retina",
-    "description": "GSM7884543_D030_13_macular_atac_filtered_peak_bc_matrix",
+    "description": "GSM7884543",
     "geo_title": "10xATAC_D030_13_atac_lib",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7884543",
     "pubmed_id": "nan",
@@ -1800,14 +1800,14 @@
     "source_name": "macula lutea"
   },
   {
-    "filename_key": "GSM7884545_D021_13_lobe_atac_filtered_peak_bc_matrix",
+    "id": "GSM7884545",
     "GSE": "GSM7884545",
     "modality": "scATAC",
     "species": "human",
     "tissue": "blood",
     "cell_count": 7682,
     "category": "blood",
-    "description": "GSM7884545_D021_13_lobe_atac_filtered_peak_bc_matrix",
+    "description": "GSM7884545",
     "geo_title": "10xATAC_D021_13_hu_Lobe_atac_lib",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7884545",
     "pubmed_id": "nan",
@@ -1815,14 +1815,14 @@
     "source_name": "peripheral region of retina"
   },
   {
-    "filename_key": "GSM7884549_D009_13_lobe_atac_filtered_peak_bc_matrix",
+    "id": "GSM7884549",
     "GSE": "GSM7884549",
     "modality": "scATAC",
     "species": "human",
     "tissue": "blood",
     "cell_count": 9041,
     "category": "blood",
-    "description": "GSM7884549_D009_13_lobe_atac_filtered_peak_bc_matrix",
+    "description": "GSM7884549",
     "geo_title": "10xATAC_D9_13_hu_Lobe_atac_lib",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7884549",
     "pubmed_id": "nan",
@@ -1830,14 +1830,14 @@
     "source_name": "peripheral region of retina"
   },
   {
-    "filename_key": "GSM7884550_D005_13_lobe_atac_filtered_peak_bc_matrix",
+    "id": "GSM7884550",
     "GSE": "GSM7884550",
     "modality": "scATAC",
     "species": "human",
     "tissue": "blood",
     "cell_count": 6390,
     "category": "blood",
-    "description": "GSM7884550_D005_13_lobe_atac_filtered_peak_bc_matrix",
+    "description": "GSM7884550",
     "geo_title": "10xATAC_D5_13_hu_Lobe_atac_lib",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7884550",
     "pubmed_id": "nan",
@@ -1845,14 +1845,14 @@
     "source_name": "peripheral region of retina"
   },
   {
-    "filename_key": "GSM8008841_vcap_d_filtered_peak_bc_matrix",
+    "id": "GSM8008841",
     "GSE": "GSM8008841",
     "modality": "scATAC",
     "species": "human",
     "tissue": "other",
     "cell_count": 1077,
     "category": "other",
-    "description": "GSM8008841_vcap_d_filtered_peak_bc_matrix",
+    "description": "GSM8008841",
     "geo_title": "VCaP, DMSO",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8008841",
     "pubmed_id": "nan",
@@ -1860,14 +1860,14 @@
     "source_name": "Prostate"
   },
   {
-    "filename_key": "GSM8397466_WT1_filtered_peak_bc_matrix",
+    "id": "GSM8397466",
     "GSE": "GSM8397466",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "bone_marrow",
     "cell_count": 18157,
     "category": "bone_marrow",
-    "description": "GSM8397466_WT1_filtered_peak_bc_matrix",
+    "description": "GSM8397466",
     "geo_title": "Bone marrow, WT, female, biol rep 1, scATACseq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8397466",
     "pubmed_id": "nan",
@@ -1875,14 +1875,14 @@
     "source_name": "Bone marrow"
   },
   {
-    "filename_key": "GSM8397467_WT2_filtered_peak_bc_matrix",
+    "id": "GSM8397467",
     "GSE": "GSM8397467",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "bone_marrow",
     "cell_count": 4207,
     "category": "bone_marrow",
-    "description": "GSM8397467_WT2_filtered_peak_bc_matrix",
+    "description": "GSM8397467",
     "geo_title": "Bone marrow, WT, female, biol rep 2, scATACseq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8397467",
     "pubmed_id": "nan",
@@ -1890,14 +1890,14 @@
     "source_name": "Bone marrow"
   },
   {
-    "filename_key": "GSM8462143_AL05_ATAC_filtered_peak_bc_matrix",
+    "id": "GSM8462143",
     "GSE": "GSM8462143",
     "modality": "scATAC",
     "species": "human",
     "tissue": "lung",
     "cell_count": 8872,
     "category": "lung",
-    "description": "GSM8462143_AL05_ATAC_filtered_peak_bc_matrix",
+    "description": "GSM8462143",
     "geo_title": "AL05, scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8462143",
     "pubmed_id": "nan",
@@ -1905,14 +1905,14 @@
     "source_name": "Lung"
   },
   {
-    "filename_key": "GSM8462144_AL08_ATAC_filtered_peak_bc_matrix",
+    "id": "GSM8462144",
     "GSE": "GSM8462144",
     "modality": "scATAC",
     "species": "human",
     "tissue": "lung",
     "cell_count": 4116,
     "category": "lung",
-    "description": "GSM8462144_AL08_ATAC_filtered_peak_bc_matrix",
+    "description": "GSM8462144",
     "geo_title": "AL08, scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8462144",
     "pubmed_id": "nan",
@@ -1920,14 +1920,14 @@
     "source_name": "Lung"
   },
   {
-    "filename_key": "GSM8462145_AL10_ATAC_filtered_peak_bc_matrix",
+    "id": "GSM8462145",
     "GSE": "GSM8462145",
     "modality": "scATAC",
     "species": "human",
     "tissue": "lung",
     "cell_count": 8389,
     "category": "lung",
-    "description": "GSM8462145_AL10_ATAC_filtered_peak_bc_matrix",
+    "description": "GSM8462145",
     "geo_title": "AL10, scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8462145",
     "pubmed_id": "nan",
@@ -1935,14 +1935,14 @@
     "source_name": "Lung"
   },
   {
-    "filename_key": "GSM8462146_AL11_ATAC_filtered_peak_bc_matrix",
+    "id": "GSM8462146",
     "GSE": "GSM8462146",
     "modality": "scATAC",
     "species": "human",
     "tissue": "lung",
     "cell_count": 2075,
     "category": "lung",
-    "description": "GSM8462146_AL11_ATAC_filtered_peak_bc_matrix",
+    "description": "GSM8462146",
     "geo_title": "AL11, scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8462146",
     "pubmed_id": "nan",
@@ -1950,14 +1950,14 @@
     "source_name": "Lung"
   },
   {
-    "filename_key": "GSM8462147_AL12_ATAC_filtered_peak_bc_matrix",
+    "id": "GSM8462147",
     "GSE": "GSM8462147",
     "modality": "scATAC",
     "species": "human",
     "tissue": "lung",
     "cell_count": 5048,
     "category": "lung",
-    "description": "GSM8462147_AL12_ATAC_filtered_peak_bc_matrix",
+    "description": "GSM8462147",
     "geo_title": "AL12, scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8462147",
     "pubmed_id": "nan",
@@ -1965,14 +1965,14 @@
     "source_name": "Lung"
   },
   {
-    "filename_key": "GSM8517035_scATAC_P28_Dlx_ALM_rep1_filtered_peak_bc_matrix",
+    "id": "GSM8517035",
     "GSE": "GSM8517035",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "brain",
     "cell_count": 4425,
     "category": "brain",
-    "description": "GSM8517035_scATAC_P28_Dlx_ALM_rep1_filtered_peak_bc_matrix",
+    "description": "GSM8517035",
     "geo_title": "Replicate 1 for P28 cortex ALM interneuron",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8517035",
     "pubmed_id": "nan",
@@ -1980,44 +1980,44 @@
     "source_name": "Cortex - ALM"
   },
   {
-    "filename_key": "GSM8546124_Control_filtered_peak_bc_matrix",
+    "id": "GSM8546124",
     "GSE": "GSM8546124",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "lung",
     "cell_count": 9531,
     "category": "lung",
-    "description": "GSM8546124_Control_filtered_peak_bc_matrix",
+    "description": "GSM8546124",
     "geo_title": "control, lung mesenchymal, adult, ATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8546124",
     "pubmed_id": "nan",
     "submission_date": "Sep 30 2024",
-    "source_name": "Epcam-CD31-CD45-"
+    "source_name": "Epcam-CD31-CD45"
   },
   {
-    "filename_key": "GSM8546125_BLM_filtered_peak_bc_matrix",
+    "id": "GSM8546125",
     "GSE": "GSM8546125",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "lung",
     "cell_count": 10772,
     "category": "lung",
-    "description": "GSM8546125_BLM_filtered_peak_bc_matrix",
+    "description": "GSM8546125",
     "geo_title": "bleomycin, lung mesenchymal, adult, ATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8546125",
     "pubmed_id": "nan",
     "submission_date": "Sep 30 2024",
-    "source_name": "Epcam-CD31-CD45-"
+    "source_name": "Epcam-CD31-CD45"
   },
   {
-    "filename_key": "GSM8685152_TK64_filtered_feature_bc_matrix",
+    "id": "GSM8685152",
     "GSE": "GSM8685152",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "other",
     "cell_count": 27166,
     "category": "other",
-    "description": "GSM8685152_TK64_filtered_feature_bc_matrix",
+    "description": "GSM8685152",
     "geo_title": "E11.5 Wild Type scRNA-Seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8685152",
     "pubmed_id": "nan",
@@ -2025,14 +2025,14 @@
     "source_name": "Hypothalamus and Prethalamus"
   },
   {
-    "filename_key": "GSM8685155_TKX_filtered_feature_bc_matrix",
+    "id": "GSM8685155",
     "GSE": "GSM8685155",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "other",
     "cell_count": 16236,
     "category": "other",
-    "description": "GSM8685155_TKX_filtered_feature_bc_matrix",
+    "description": "GSM8685155",
     "geo_title": "E13.5 Wild Type scRNA-Seq Replicate 1",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8685155",
     "pubmed_id": "nan",
@@ -2040,14 +2040,14 @@
     "source_name": "Hypothalamus and Prethalamus"
   },
   {
-    "filename_key": "GSM8685177_TKC7_filtered_feature_bc_matrix",
+    "id": "GSM8685177",
     "GSE": "GSM8685177",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "other",
     "cell_count": 22409,
     "category": "other",
-    "description": "GSM8685177_TKC7_filtered_feature_bc_matrix",
+    "description": "GSM8685177",
     "geo_title": "P8 Foxd1-Cre/+ ; Dlx1/2-flox/flox scRNA-Seq Replicate 1",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8685177",
     "pubmed_id": "nan",
@@ -2055,14 +2055,14 @@
     "source_name": "Hypothalamus and Prethalamus"
   },
   {
-    "filename_key": "GSM8729707_filtered_peak_bc_matrix_cellrangerGenome",
+    "id": "GSM8729707",
     "GSE": "GSM8729707",
     "modality": "scATAC",
     "species": "human",
     "tissue": "other",
     "cell_count": 7934,
     "category": "other",
-    "description": "GSM8729707_filtered_peak_bc_matrix_cellrangerGenome",
+    "description": "GSM8729707",
     "geo_title": "Human aortic media",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8729707",
     "pubmed_id": "nan",
@@ -2070,14 +2070,14 @@
     "source_name": "aortic media"
   },
   {
-    "filename_key": "GSM8852347_MH_07_042_M2_filtered_peak_bc_matrix",
+    "id": "GSM8852347",
     "GSE": "GSM8852347",
     "modality": "scATAC",
     "species": "human",
     "tissue": "tumor",
     "cell_count": 3147,
     "category": "tumor",
-    "description": "GSM8852347_MH_07_042_M2_filtered_peak_bc_matrix",
+    "description": "GSM8852347",
     "geo_title": "scATAC-seq of MH_07-042-M2",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8852347",
     "pubmed_id": "nan",
@@ -2085,14 +2085,14 @@
     "source_name": "tumor tissue"
   },
   {
-    "filename_key": "GSM8852348_MH_13-084-D12_filtered_feature_bc_matrix",
+    "id": "GSM8852348",
     "GSE": "GSM8852348",
     "modality": "scATAC",
     "species": "human",
     "tissue": "tumor",
     "cell_count": 9865,
     "category": "tumor",
-    "description": "GSM8852348_MH_13-084-D12_filtered_feature_bc_matrix",
+    "description": "GSM8852348_MH_13-084-D12",
     "geo_title": "scATAC-seq of MH_13-084-D12",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8852348",
     "pubmed_id": "nan",
@@ -2100,14 +2100,14 @@
     "source_name": "tumor tissue"
   },
   {
-    "filename_key": "GSM8852349_MH_13_084_D13_filtered_peak_bc_matrix",
+    "id": "GSM8852349",
     "GSE": "GSM8852349",
     "modality": "scATAC",
     "species": "human",
     "tissue": "tumor",
     "cell_count": 16176,
     "category": "tumor",
-    "description": "GSM8852349_MH_13_084_D13_filtered_peak_bc_matrix",
+    "description": "GSM8852349",
     "geo_title": "scATAC-seq of MH_13-084-D13",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8852349",
     "pubmed_id": "nan",
@@ -2115,14 +2115,14 @@
     "source_name": "tumor tissue"
   },
   {
-    "filename_key": "GSM8900548_sample1_ATAC_filtered_peak_bc_matrix",
+    "id": "GSM8900548",
     "GSE": "GSM8900548",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "lung",
     "cell_count": 20005,
     "category": "lung",
-    "description": "GSM8900548_sample1_ATAC_filtered_peak_bc_matrix",
+    "description": "GSM8900548",
     "geo_title": "Multiome, murine lung tissue, ATAC1",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8900548",
     "pubmed_id": "nan",
@@ -2130,14 +2130,14 @@
     "source_name": "lung"
   },
   {
-    "filename_key": "GSM8900549_sample2_ATAC_filtered_peak_bc_matrix",
+    "id": "GSM8900549",
     "GSE": "GSM8900549",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "lung",
     "cell_count": 16778,
     "category": "lung",
-    "description": "GSM8900549_sample2_ATAC_filtered_peak_bc_matrix",
+    "description": "GSM8900549",
     "geo_title": "Multiome, murine lung tissue, ATAC2",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8900549",
     "pubmed_id": "nan",
@@ -2145,14 +2145,14 @@
     "source_name": "lung"
   },
   {
-    "filename_key": "GSM8900550_sample3_ATAC_filtered_peak_bc_matrix",
+    "id": "GSM8900550",
     "GSE": "GSM8900550",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "lung",
     "cell_count": 15701,
     "category": "lung",
-    "description": "GSM8900550_sample3_ATAC_filtered_peak_bc_matrix",
+    "description": "GSM8900550",
     "geo_title": "Multiome, murine lung tissue, ATAC3",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8900550",
     "pubmed_id": "nan",
@@ -2160,14 +2160,14 @@
     "source_name": "lung"
   },
   {
-    "filename_key": "GSM8900551_sample4_ATAC_filtered_peak_bc_matrix",
+    "id": "GSM8900551",
     "GSE": "GSM8900551",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "lung",
     "cell_count": 20020,
     "category": "lung",
-    "description": "GSM8900551_sample4_ATAC_filtered_peak_bc_matrix",
+    "description": "GSM8900551",
     "geo_title": "Multiome, murine lung tissue, ATAC4",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8900551",
     "pubmed_id": "nan",
@@ -2175,14 +2175,14 @@
     "source_name": "lung"
   },
   {
-    "filename_key": "GSM8900552_sample5_ATAC_filtered_peak_bc_matrix",
+    "id": "GSM8900552",
     "GSE": "GSM8900552",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "lung",
     "cell_count": 9382,
     "category": "lung",
-    "description": "GSM8900552_sample5_ATAC_filtered_peak_bc_matrix",
+    "description": "GSM8900552",
     "geo_title": "Multiome, murine lung tissue, ATAC5",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8900552",
     "pubmed_id": "nan",
@@ -2190,14 +2190,14 @@
     "source_name": "lung"
   },
   {
-    "filename_key": "GSM8900553_sample6_ATAC_filtered_peak_bc_matrix",
+    "id": "GSM8900553",
     "GSE": "GSM8900553",
     "modality": "scATAC",
     "species": "mouse",
     "tissue": "lung",
     "cell_count": 14346,
     "category": "lung",
-    "description": "GSM8900553_sample6_ATAC_filtered_peak_bc_matrix",
+    "description": "GSM8900553",
     "geo_title": "Multiome, murine lung tissue, ATAC6",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8900553",
     "pubmed_id": "nan",
@@ -2205,14 +2205,14 @@
     "source_name": "lung"
   },
   {
-    "filename_key": "GSM8997246_Sample1_filtered_peak_bc_matrix",
+    "id": "GSM8997246",
     "GSE": "GSM8997246",
     "modality": "scATAC",
     "species": "human",
     "tissue": "blood",
     "cell_count": 9346,
     "category": "blood",
-    "description": "GSM8997246_Sample1_filtered_peak_bc_matrix",
+    "description": "GSM8997246",
     "geo_title": "Donor 1 scATAC-seq",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM8997246",
     "pubmed_id": "nan",
@@ -2220,7 +2220,7 @@
     "source_name": "Blood"
   },
   {
-    "filename_key": "GSE185538_new",
+    "id": "GSE185538",
     "GSE": "GSE185538",
     "modality": "scRNA",
     "species": "rat",
@@ -2235,7 +2235,7 @@
     "source_name": "P7 rat brain"
   },
   {
-    "filename_key": "GSE130430_new",
+    "id": "GSE130430",
     "GSE": "GSE130430",
     "modality": "scRNA",
     "species": "human",
@@ -2250,7 +2250,7 @@
     "source_name": "Bone marrow"
   },
   {
-    "filename_key": "GSE155249_new",
+    "id": "GSE155249",
     "GSE": "GSE155249",
     "modality": "scRNA",
     "species": "human",
@@ -2265,7 +2265,7 @@
     "source_name": "Sorted macrophages and T cells"
   },
   {
-    "filename_key": "GSE205506_new",
+    "id": "GSE205506",
     "GSE": "GSE205506",
     "modality": "scRNA",
     "species": "human",
@@ -2280,7 +2280,7 @@
     "source_name": "colon"
   },
   {
-    "filename_key": "GSE139324_new",
+    "id": "GSE139324",
     "GSE": "GSE139324",
     "modality": "scRNA",
     "species": "human",
@@ -2295,7 +2295,7 @@
     "source_name": "peripheral blood"
   },
   {
-    "filename_key": "GSE167118_new",
+    "id": "GSE167118",
     "GSE": "GSE167118",
     "modality": "scRNA",
     "species": "human",
@@ -2310,7 +2310,7 @@
     "source_name": "blood"
   },
   {
-    "filename_key": "GSE162454_new",
+    "id": "GSE162454",
     "GSE": "GSE162454",
     "modality": "scRNA",
     "species": "human",
@@ -2325,7 +2325,7 @@
     "source_name": "Tumor tissue"
   },
   {
-    "filename_key": "GSE145926_new",
+    "id": "GSE145926",
     "GSE": "GSE145926",
     "modality": "scRNA",
     "species": "human",
@@ -2340,7 +2340,7 @@
     "source_name": "BALF"
   },
   {
-    "filename_key": "GSE166635_new",
+    "id": "GSE166635",
     "GSE": "GSE166635",
     "modality": "scRNA",
     "species": "human",
@@ -2355,7 +2355,7 @@
     "source_name": "liver cancer"
   },
   {
-    "filename_key": "GSE163558_new",
+    "id": "GSE163558",
     "GSE": "GSE163558",
     "modality": "scRNA",
     "species": "human",
@@ -2370,7 +2370,7 @@
     "source_name": "primary gastric cancer"
   },
   {
-    "filename_key": "GSE164378_new",
+    "id": "GSE164378",
     "GSE": "GSE164378",
     "modality": "scRNA",
     "species": "human",
@@ -2385,7 +2385,7 @@
     "source_name": "PBMC"
   },
   {
-    "filename_key": "GSE149689_new",
+    "id": "GSE149689",
     "GSE": "GSE149689",
     "modality": "scRNA",
     "species": "human",
@@ -2400,7 +2400,7 @@
     "source_name": "nCoV_PBMC"
   },
   {
-    "filename_key": "GSE151530_new",
+    "id": "GSE151530",
     "GSE": "GSE151530",
     "modality": "scRNA",
     "species": "human",
@@ -2415,7 +2415,7 @@
     "source_name": "Primary liver cancer single-cell"
   },
   {
-    "filename_key": "GSE158803_new",
+    "id": "GSE158803",
     "GSE": "GSE158803",
     "modality": "scRNA",
     "species": "human",
@@ -2430,7 +2430,7 @@
     "source_name": "brain metastasis"
   },
   {
-    "filename_key": "GSE163484_new",
+    "id": "GSE163484",
     "GSE": "GSE163484",
     "modality": "scRNA",
     "species": "mouse",
@@ -2445,7 +2445,7 @@
     "source_name": "P21 Brain"
   },
   {
-    "filename_key": "GSE175814_new",
+    "id": "GSE175814",
     "GSE": "GSE175814",
     "modality": "scRNA",
     "species": "human",
@@ -2453,14 +2453,14 @@
     "cell_count": 6223,
     "category": "lung",
     "description": "GEO cellranger download (6223 cells)",
-    "geo_title": "Single cell RNA sequencing  analysis of human Alzheimer’s disease brain samples  reveal neuronal and glial specific cells differential expression",
+    "geo_title": "Single cell RNA sequencing analysis of human Alzheimer’s disease brain samples reveal neuronal and glial specific cells differential expression",
     "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE175814",
     "pubmed_id": "36827281",
     "submission_date": "May 30 2021",
     "source_name": "Brain"
   },
   {
-    "filename_key": "GSE181061_new",
+    "id": "GSE181061",
     "GSE": "GSE181061",
     "modality": "scRNA",
     "species": "human",
@@ -2475,7 +2475,7 @@
     "source_name": "Donor"
   },
   {
-    "filename_key": "GSE186344_new",
+    "id": "GSE186344",
     "GSE": "GSE186344",
     "modality": "scRNA",
     "species": "human",
@@ -2490,7 +2490,7 @@
     "source_name": "Human Brain Metastasis"
   },
   {
-    "filename_key": "GSE197177_new",
+    "id": "GSE197177",
     "GSE": "GSE197177",
     "modality": "scRNA",
     "species": "human",
@@ -2505,7 +2505,7 @@
     "source_name": "primary pancreatic tumors"
   },
   {
-    "filename_key": "GSE213337_new",
+    "id": "GSE213337",
     "GSE": "GSE213337",
     "modality": "scRNA",
     "species": "mouse",
@@ -2520,7 +2520,7 @@
     "source_name": "heart"
   },
   {
-    "filename_key": "GSE235063_new",
+    "id": "GSE235063",
     "GSE": "GSE235063",
     "modality": "scRNA",
     "species": "human",
@@ -2535,7 +2535,7 @@
     "source_name": "Marrow"
   },
   {
-    "filename_key": "GSE139555_new",
+    "id": "GSE139555",
     "GSE": "GSE139555",
     "modality": "scRNA",
     "species": "human",
@@ -2550,7 +2550,7 @@
     "source_name": "CD3+ immune cells"
   },
   {
-    "filename_key": "GSE149655_new",
+    "id": "GSE149655-2",
     "GSE": "GSE149655",
     "modality": "scRNA",
     "species": "human",
@@ -2565,7 +2565,7 @@
     "source_name": "lung distal normal tissue from patient 01"
   },
   {
-    "filename_key": "GSE154778_new",
+    "id": "GSE154778",
     "GSE": "GSE154778",
     "modality": "scRNA",
     "species": "human",
@@ -2580,7 +2580,7 @@
     "source_name": "Pancreatic ductal adenocarcinoma"
   },
   {
-    "filename_key": "GSE181388_new",
+    "id": "GSE181388",
     "GSE": "GSE181388",
     "modality": "scRNA",
     "species": "human",
@@ -2595,7 +2595,7 @@
     "source_name": "lung"
   },
   {
-    "filename_key": "GSE188676_new",
+    "id": "GSE188676",
     "GSE": "GSE188676",
     "modality": "scRNA",
     "species": "mouse",
@@ -2610,7 +2610,7 @@
     "source_name": "Intestinal Organoids"
   },
   {
-    "filename_key": "GSE125449_new",
+    "id": "GSE125449",
     "GSE": "GSE125449",
     "modality": "scRNA",
     "species": "human",
@@ -2625,7 +2625,7 @@
     "source_name": "Primary liver cancer single-cell"
   },
   {
-    "filename_key": "GSE128033_new",
+    "id": "GSE128033",
     "GSE": "GSE128033",
     "modality": "scRNA",
     "species": "human",
@@ -2640,7 +2640,7 @@
     "source_name": "mix of upper + lower lobe lung_healthy donor"
   },
   {
-    "filename_key": "GSE138794_new",
+    "id": "GSE138794",
     "GSE": "GSE138794",
     "modality": "scRNA",
     "species": "human",
@@ -2655,7 +2655,7 @@
     "source_name": "Brain"
   },
   {
-    "filename_key": "GSE159519_new",
+    "id": "GSE159519",
     "GSE": "GSE159519",
     "modality": "scRNA",
     "species": "human",
@@ -2670,7 +2670,7 @@
     "source_name": "ECCITE-seq cDNA: A549-ACE2"
   },
   {
-    "filename_key": "GSE161277_new",
+    "id": "GSE161277",
     "GSE": "GSE161277",
     "modality": "scRNA",
     "species": "human",
@@ -2685,7 +2685,7 @@
     "source_name": "Colorectal"
   },
   {
-    "filename_key": "GSE173193_new",
+    "id": "GSE173193",
     "GSE": "GSE173193",
     "modality": "scRNA",
     "species": "human",
@@ -2700,7 +2700,7 @@
     "source_name": "placenta"
   },
   {
-    "filename_key": "GSE190604_new",
+    "id": "GSE190604",
     "GSE": "GSE190604",
     "modality": "scRNA",
     "species": "human",
@@ -2715,7 +2715,7 @@
     "source_name": "Primary bulk T cells"
   },
   {
-    "filename_key": "GSE120926_new",
+    "id": "GSE120926",
     "GSE": "GSE120926",
     "modality": "scRNA",
     "species": "human",
@@ -2730,7 +2730,7 @@
     "source_name": "NPC cells"
   },
   {
-    "filename_key": "GSE189357_new",
+    "id": "GSE189357-2",
     "GSE": "GSE189357",
     "modality": "scRNA",
     "species": "human",
@@ -2745,7 +2745,7 @@
     "source_name": "Lung adenocarcinoma"
   },
   {
-    "filename_key": "GSE208074_new",
+    "id": "GSE208074",
     "GSE": "GSE208074",
     "modality": "scRNA",
     "species": "human",
@@ -2760,7 +2760,7 @@
     "source_name": "peritumoral brain"
   },
   {
-    "filename_key": "GSE220297_new",
+    "id": "GSE220297",
     "GSE": "GSE220297",
     "modality": "scRNA",
     "species": "pig",
@@ -2775,7 +2775,7 @@
     "source_name": "blood"
   },
   {
-    "filename_key": "GSE220840_new",
+    "id": "GSE220840",
     "GSE": "GSE220840",
     "modality": "scRNA",
     "species": "human",
@@ -2790,7 +2790,7 @@
     "source_name": "Human induced pluripotent stem cell"
   },
   {
-    "filename_key": "GSE260778_new",
+    "id": "GSE260778",
     "GSE": "GSE260778",
     "modality": "scRNA",
     "species": "human",
@@ -2805,7 +2805,7 @@
     "source_name": "Lung"
   },
   {
-    "filename_key": "GSE264586_new",
+    "id": "GSE264586",
     "GSE": "GSE264586",
     "modality": "scRNA",
     "species": "human",
@@ -2820,7 +2820,7 @@
     "source_name": "Lymph node"
   },
   {
-    "filename_key": "GSE270891_new",
+    "id": "GSE270891",
     "GSE": "GSE270891",
     "modality": "scRNA",
     "species": "human",
@@ -2835,7 +2835,7 @@
     "source_name": "iPSC"
   },
   {
-    "filename_key": "GSE273423_new",
+    "id": "GSE273423",
     "GSE": "GSE273423",
     "modality": "scRNA",
     "species": "human",
@@ -2850,7 +2850,7 @@
     "source_name": "Blood"
   },
   {
-    "filename_key": "GSE274905_new",
+    "id": "GSE274905",
     "GSE": "GSE274905",
     "modality": "scRNA",
     "species": "human",
@@ -2865,7 +2865,7 @@
     "source_name": "JHOS2 (CVCL_4647)"
   },
   {
-    "filename_key": "GSE279264_new",
+    "id": "GSE279264",
     "GSE": "GSE279264",
     "modality": "scRNA",
     "species": "human",
@@ -2880,7 +2880,7 @@
     "source_name": "hiPS cell-deerived regionalized organoids"
   },
   {
-    "filename_key": "GSE280258_new",
+    "id": "GSE280258",
     "GSE": "GSE280258",
     "modality": "scRNA",
     "species": "human",
@@ -2895,7 +2895,7 @@
     "source_name": "PBMC"
   },
   {
-    "filename_key": "GSE280767_new",
+    "id": "GSE280767",
     "GSE": "GSE280767",
     "modality": "scRNA",
     "species": "human",
@@ -2910,7 +2910,7 @@
     "source_name": "PBMC"
   },
   {
-    "filename_key": "GSE283554_new",
+    "id": "GSE283554",
     "GSE": "GSE283554",
     "modality": "scRNA",
     "species": "human",
@@ -2925,7 +2925,7 @@
     "source_name": "PBMC"
   },
   {
-    "filename_key": "GSE193807_new",
+    "id": "GSE193807",
     "GSE": "GSE193807",
     "modality": "scRNA",
     "species": "human",
@@ -2940,7 +2940,7 @@
     "source_name": "skin"
   },
   {
-    "filename_key": "GSE216673_new",
+    "id": "GSE216673",
     "GSE": "GSE216673",
     "modality": "scRNA",
     "species": "human",
@@ -2955,7 +2955,7 @@
     "source_name": "embryonic stem cell"
   },
   {
-    "filename_key": "GSE232938_new",
+    "id": "GSE232938",
     "GSE": "GSE232938",
     "modality": "scRNA",
     "species": "human",
@@ -2970,7 +2970,7 @@
     "source_name": "H9"
   },
   {
-    "filename_key": "GSE253936_new",
+    "id": "GSE253936",
     "GSE": "GSE253936",
     "modality": "scRNA",
     "species": "human",
@@ -2985,7 +2985,7 @@
     "source_name": "cord blood-derived CD34+ cells"
   },
   {
-    "filename_key": "GSE272457_new",
+    "id": "GSE272457",
     "GSE": "GSE272457",
     "modality": "scRNA",
     "species": "human",

@@ -32,7 +32,8 @@ statistical analysis, please refer to the accompanying paper.
 
 Figure 2 summarizes the model-first path through scCCVGBen: input preprocessing,
 five graph-construction choices, the 14-encoder registry, variational latent
-flow, dual reconstruction outputs, and the grouped 26-metric evaluation table.
+flow, dual reconstruction outputs, and the grouped 20-display-metric evaluation
+table.
 The publication image is rendered locally by
 `scripts/make_figure2_model_architecture.py`; generated figure binaries are not
 checked into the code-only figure-pipeline branch.
@@ -53,7 +54,9 @@ checked into the code-only figure-pipeline branch.
 - [**Methods →**]({{< ref "/methods" >}}) 14 scCCVGBen graph encoders
   (attention + message-passing), 5 graph construction methods, and 13 baseline
   dimensionality-reduction algorithms.
-- [**Metrics →**]({{< ref "/metrics" >}}) 26 evaluation metrics: 6 clustering
-  quality, 10 coranking-based DRE, 10 latent-space intrinsic-geometry.
+- [**Metrics →**]({{< ref "/metrics" >}}) 20 publication-display numeric
+  metrics: 3 clustering-compactness scores, 10 DRE neighbourhood/scale
+  diagnostics, and 7 latent-space intrinsic-geometry scores, with two retained
+  intrinsic annotations documented separately.
 - [**About →**]({{< ref "/about" >}}) Paper citation, reproducibility pointers,
   license.
