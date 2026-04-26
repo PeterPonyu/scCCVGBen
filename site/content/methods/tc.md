@@ -19,12 +19,12 @@ geekdocHidden: false
 ## Role in scCCVGBen
 
 Axis C (baseline comparison): this method produces a latent embedding
-evaluated with the same 26 metrics as scCCVGBen. Benchmark naming: `TC`
+evaluated with the same curated 20 publication-display metrics as scCCVGBen. Benchmark naming: `TC`
 (row label is the method name itself, with no scCCVGBen prefix).
 
 
 ---
 
 <small>Auto-generated from `scripts/build_site_data.py`. scCCVGBen benchmark
-tests each method against the same 200 datasets and 26 metrics; see the
-[Methods index](../) for the full set.</small>
+tests each method against the same 200 datasets and curated 20 publication-display
+metrics; see the [Methods index](../) for the full set.</small>

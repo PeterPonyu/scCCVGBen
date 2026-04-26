@@ -17,7 +17,7 @@
     "baseline":     { cls: "mb-bl",   label: "BASE"   }
   };
 
-  fetch({{ "methods.json" | absURL }})
+  fetch({{ "methods.json" | relURL }})
     .then(r => r.json())
     .then(data => {
       const root = document.getElementById("methods-root");
@@ -29,7 +29,7 @@
         items.forEach(m => {
           const card = document.createElement("a");
           card.className = "method-card scc-card";
-          card.href = {{ "methods/" | absURL }} + String(m.name).toLowerCase().replace(/[^a-z0-9]+/g, "-") + "/";
+          card.href = {{ "methods/" | relURL }} + String(m.name).toLowerCase().replace(/[^a-z0-9]+/g, "-") + "/";
           const hdr = document.createElement("div"); hdr.className = "method-hdr";
           const nm = document.createElement("span"); nm.className = "method-name";
           nm.textContent = m.name;
@@ -88,15 +88,18 @@
   margin-bottom: 0.35rem;
 }
 .method-name {
+  min-width: 0;
   color: var(--scc-text);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  font-size: 0.88rem;
+  font-size: 0.98rem;
   font-weight: 700;
   line-height: 1.1;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .method-badge {
   flex: 0 0 auto;
-  font-size: 0.64rem; font-weight: 700; padding: 0.16em 0.48em;
+  font-size: 0.72rem; font-weight: 700; padding: 0.16em 0.48em;
   border-radius: 4px; letter-spacing: 0;
 }
 .mb-att { background: color-mix(in srgb, var(--scc-accent-amber) 20%, transparent); color: var(--scc-accent-amber); }
@@ -104,7 +107,7 @@
 .mb-gr  { background: color-mix(in srgb, var(--scc-accent-teal) 18%, transparent); color: var(--scc-accent-teal); }
 .mb-bl  { background: color-mix(in srgb, var(--scc-muted) 18%, transparent); color: var(--scc-muted); }
 .method-desc {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   line-height: 1.45;
   margin: 0;
   color: var(--scc-muted);

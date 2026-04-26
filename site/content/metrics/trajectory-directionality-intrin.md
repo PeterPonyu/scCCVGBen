@@ -1,7 +1,7 @@
 ---
 title: "trajectory_directionality_intrin"
 type: docs
-weight: 120
+weight: 117
 geekdocHidden: false
 ---
 

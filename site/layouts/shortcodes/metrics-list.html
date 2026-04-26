@@ -6,17 +6,17 @@
 <script>
 (function() {
   const GROUP_TITLES = {
-    "clustering": "Clustering quality (6)",
+    "clustering": "Clustering compactness (3)",
     "dre":        "Dimensionality-reduction evaluation — UMAP + tSNE (10)",
-    "lse":        "Latent-space intrinsic geometry (10)"
+    "lse":        "Latent-space intrinsic geometry (7 + 2 annotations)"
   };
   const GROUP_SUMMARY = {
-    "clustering": "External labels, cluster separation, and original-space distance preservation.",
-    "dre":        "Neighbourhood preservation and global structure after UMAP/tSNE projection.",
+    "clustering": "Annotation-free latent compactness and separation diagnostics.",
+    "dre":        "Neighbourhood preservation, global structure, and selected scale after UMAP/tSNE projection.",
     "lse":        "Intrinsic latent geometry, robustness, trajectory signal, and interpretation."
   };
 
-  fetch({{ "metrics.json" | absURL }})
+  fetch({{ "metrics.json" | relURL }})
     .then(r => r.json())
     .then(data => {
       const root = document.getElementById("metrics-root");
@@ -35,7 +35,7 @@
         items.forEach(m => {
           const chip = document.createElement("a");
           chip.className = "metric-chip";
-          chip.href = {{ "metrics/" | absURL }} + String(m.name).toLowerCase().replace(/[^a-z0-9]+/g, "-") + "/";
+          chip.href = {{ "metrics/" | relURL }} + String(m.name).toLowerCase().replace(/[^a-z0-9]+/g, "-") + "/";
           chip.textContent = m.name;
           chips.appendChild(chip);
         });
@@ -59,7 +59,7 @@
           const td1 = document.createElement("td");
           const name = document.createElement("a");
           name.className = "metric-name dt-key-link";
-          name.href = {{ "metrics/" | absURL }} + String(m.name).toLowerCase().replace(/[^a-z0-9]+/g, "-") + "/";
+          name.href = {{ "metrics/" | relURL }} + String(m.name).toLowerCase().replace(/[^a-z0-9]+/g, "-") + "/";
           name.textContent = m.name;
           td1.appendChild(name);
           tr.appendChild(td1);
@@ -96,12 +96,12 @@
 .metric-family-dre { border-top-color: var(--scc-accent-teal); }
 .metric-family-lse { border-top-color: var(--scc-accent-amber); }
 .metric-family-card h2 {
-  font-size: 1.03rem;
+  font-size: 1.12rem;
   margin: 0 0 0.42rem;
 }
 .metric-family-card p {
   color: var(--scc-muted);
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   line-height: 1.35;
   margin: 0 0 0.72rem;
 }
@@ -117,7 +117,7 @@
   color: var(--scc-text);
   display: inline-block;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  font-size: 0.66rem;
+  font-size: 0.76rem;
   font-weight: 650;
   line-height: 1.2;
   padding: 0.2rem 0.32rem;
@@ -131,7 +131,7 @@
 table.metric-tbl {
   width: 100%; border-collapse: collapse; margin: 0.45rem 0 1.35rem;
   display: table;
-  font-size: 0.82rem;
+  font-size: 0.92rem;
   line-height: 1.35;
 }
 table.metric-tbl th, table.metric-tbl td {
@@ -147,7 +147,7 @@ table.metric-tbl tr:nth-child(2n) { background: color-mix(in srgb, var(--scc-pan
   padding: 0;
   color: var(--scc-text);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 650;
   line-height: 1.2;
 }

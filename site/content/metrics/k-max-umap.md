@@ -1,7 +1,7 @@
 ---
 title: "K_max_umap"
 type: docs
-weight: 109
+weight: 106
 geekdocHidden: false
 ---
 

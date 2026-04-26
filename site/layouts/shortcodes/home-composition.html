@@ -34,12 +34,17 @@
         "titleColor": c.text,
         "gridColor": c.grid,
         "domainColor": c.grid,
-        "tickColor": c.grid
+        "tickColor": c.grid,
+        "labelFontSize": 14,
+        "titleFontSize": 15,
+        "labelLimit": 180
       },
       "legend": {
         "labelColor": c.text,
         "titleColor": c.text,
-        "symbolStrokeColor": c.grid
+        "symbolStrokeColor": c.grid,
+        "labelFontSize": 13,
+        "titleFontSize": 14
       },
       "view": { "stroke": c.grid }
     };
@@ -103,7 +108,7 @@
     vegaEmbed("#home-species-modality-vega", barSpec, chartOptions);
   }
 
-  fetch({{ "summary.json" | absURL }})
+  fetch({{ "summary.json" | relURL }})
     .then(r => r.json())
     .then(render);
 
@@ -126,7 +131,7 @@
 .home-chart-block h3 {
   margin: 0 0 0.55rem;
   color: var(--scc-text);
-  font-size: 1.05rem;
+  font-size: 1.14rem;
   font-weight: 650;
   line-height: 1.2;
 }

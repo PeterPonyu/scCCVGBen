@@ -7,4 +7,4 @@ theme = "hugo-book"
   description = "Multi-encoder, multi-graph, baseline benchmark for scCCVGBen on 200 scRNA+scATAC datasets"
   BookSearch = true
   BookToC = true
-  SccFontScaleDefault = "large"
+  SccFontScaleDefault = "xlarge"

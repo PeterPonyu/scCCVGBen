@@ -10,7 +10,7 @@
       setTimeout(drawOnce, 120);
       return;
     }
-    fetch({{ "summary.json" | absURL }})
+    fetch({{ "summary.json" | relURL }})
       .then(r => r.json())
       .then(s => {
         const spec = {

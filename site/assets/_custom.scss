@@ -2,11 +2,43 @@
 
 // @import "plugins/numbered";
 
+@font-face {
+  font-display: swap;
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/Arial.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: 700 900;
+  src: url("fonts/Arial-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Arial";
+  font-style: italic;
+  font-weight: 400;
+  src: url("fonts/Arial-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Arial";
+  font-style: italic;
+  font-weight: 700 900;
+  src: url("fonts/Arial-Bold-Italic.ttf") format("truetype");
+}
+
 :root {
   --scc-root-font-compact: 16px;
-  --scc-root-font-normal: 17px;
-  --scc-root-font-large: 19px;
-  --scc-root-font-xlarge: 20.5px;
+  --scc-root-font-normal: 18px;
+  --scc-root-font-large: 22px;
+  --scc-root-font-xlarge: 32px;
   --body-background: #f6f8fb;
   --body-font-color: #172033;
   --gray-100: #f3f6fa;
@@ -69,7 +101,15 @@ body {
   background:
     linear-gradient(180deg, var(--scc-panel) 0, var(--body-background) 21rem);
   color: var(--scc-text);
+  font-family: "Arial", sans-serif;
   letter-spacing: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: "Arial", sans-serif;
 }
 
 .container {
