@@ -33,6 +33,7 @@ from scccvgben.biovalidation.case_definition import CaseSpec
 from scccvgben.training.scccvgben_runner import preprocess_scrna_scccvgben
 
 from .latent_gene_corr import top_k_genes_per_dim, latent_self_correlation
+from .pathway import go_bp_enrichment_per_dim
 
 log = logging.getLogger(__name__)
 
@@ -70,6 +71,8 @@ def run_case(
     subsample_cells: int = 3000,
     n_top_genes: int = 2000,
     top_k_genes: int = 5,
+    enrichment_top_n_genes: int = 100,
+    enrichment_top_terms: int = 8,
     silent: bool = True,
 ) -> dict:
     """Train the case-spec encoder, compute UMAP and the bio-validation payload."""
@@ -125,15 +128,30 @@ def run_case(
     # Latent self-correlation
     latent_corr = latent_self_correlation(latent)
 
-    # Top-K genes per dim (use log-normalised X, which is adata_pp.X)
+    # Compute correlation once at the larger k so the GO enrichment panel
+    # gets enough genes per dim while the gene-grid panel only consumes the
+    # top ``top_k_genes`` from the same DataFrame.
     X = adata_pp.X
     if hasattr(X, "toarray"):
         X = X.toarray()
     expression_df = pd.DataFrame(np.asarray(X), columns=list(adata_pp.var_names))
-    top_k = top_k_genes_per_dim(latent, expression_df, k=top_k_genes, method="spearman")
-    # Subset expression matrix down to genes mentioned in top-k for compose
+    enrich_k = max(top_k_genes, enrichment_top_n_genes)
+    top_full = top_k_genes_per_dim(latent, expression_df, k=enrich_k, method="spearman")
+
+    # Slice for the gene-grid panel: keep only top ``top_k_genes`` ranks per dim.
+    top_k = top_full[top_full["rank"] < top_k_genes].reset_index(drop=True)
     keep_genes = list(dict.fromkeys(top_k["gene"]))
     expression_subset = expression_df[keep_genes]
+
+    # GO BP enrichment per dim from the full ranking.
+    log.info("[%s] computing GO BP enrichment per latent dim ...", case.case_id)
+    enrich_df = go_bp_enrichment_per_dim(
+        top_full,
+        n_genes_per_dim=enrichment_top_n_genes,
+        top_terms=enrichment_top_terms,
+    )
+    log.info("[%s] enrichment rows: %d (across %d dims)",
+             case.case_id, len(enrich_df), enrich_df["dim"].nunique() if not enrich_df.empty else 0)
 
     return {
         "case": case,
@@ -148,4 +166,5 @@ def run_case(
         "latent_corr": latent_corr,
         "top_k_genes_df": top_k,
         "expression": expression_subset,
+        "enrichment_df": enrich_df,
     }
