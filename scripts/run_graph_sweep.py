@@ -30,6 +30,8 @@ import logging
 import time
 from pathlib import Path
 
+from scccvgben.training.metrics import METRIC_COLS
+
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
@@ -38,8 +40,6 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 GRAPH_METHODS = ["kNN_euclidean", "kNN_cosine", "snn", "mutual_knn", "gaussian_threshold"]
 # kNN_euclidean is the Axis-A shared cell — skip here to avoid duplicating.
 SKIP_GRAPHS = {"kNN_euclidean"}
-
-from scccvgben.training.metrics import METRIC_COLS
 
 
 def _run_one(h5ad_path: Path, graph_method: str, epochs: int, k: int) -> dict:
@@ -108,7 +108,8 @@ def main() -> None:
                     reader = csv.DictReader(fh)
                     for r in reader:
                         m = r.get("method", "").strip()
-                        if m: done_methods.add(m)
+                        if m:
+                            done_methods.add(m)
             except Exception:
                 pass
 
@@ -134,10 +135,10 @@ def main() -> None:
                 w.writerow(row)
             done_methods.add(method)
             n_done += 1
-            log.info("  ✓ %s / %s (%.0fs) ASW=%.3f NMI=%.3f [row appended]",
+            log.info("  ✓ %s / %s (%.0fs) ASW=%.3f CAL=%.0f [row appended]",
                      dataset_key, graph_method, time.time() - t0,
                      row.get("ASW", float("nan")),
-                     row.get("NMI", float("nan")))
+                     row.get("CAL", float("nan")))
 
     log.info("Axis B complete: %d runs, %d per-graph skips (resumed), %d errors",
              n_done, n_skip_graph, n_err)

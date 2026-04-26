@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """reconcile_result_schema.py — Produce scCCVGBen-format per-dataset result CSVs.
 
-The downstream integration target is the scCCVGBen reused-results layout:
+The downstream integration target is the scCCVGBen reused-results layout
+(legacy label-agreement columns dropped 2026-04-25):
 
-  CG_dl_merged/{Category}_{GSE}_{desc}_df.csv      — 27 cols, methods as rows
-                                                      header: method, ASW, ..., NMI, ARI
+  CG_dl_merged/{Category}_{GSE}_{desc}_df.csv      — 25 cols, methods as rows
+                                                      header: method, ASW, ..., interpretation_intrin
                                                       rows:   PCA, KPCA, ..., scCCVGBen
 
-  CG_atacs/tables/ATA_{GSE}_{desc}_df.csv          — 27 cols, methods as rows
-                                                      header: "", NMI, ARI, ASW, ..., interpretation_intrin
+  CG_atacs/tables/ATA_{GSE}_{desc}_df.csv          — 25 cols, methods as rows
+                                                      header: "", ASW, ..., interpretation_intrin
                                                       rows:   LSI, PeakVI, PoissonVI, scCCVGBen
                                                       (method name is the pandas index, no 'method' column)
 
@@ -44,7 +45,6 @@ from __future__ import annotations
 import argparse
 import logging
 import re
-import sys
 from pathlib import Path
 
 import pandas as pd
@@ -54,10 +54,10 @@ log = logging.getLogger(__name__)
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
-# scRNA canonical schema (matches CG_dl_merged)
+# scRNA canonical schema (matches CG_dl_merged; legacy label-agreement fields and COR removed 2026-04-25)
 SCRNA_COLS = [
     "method",
-    "ASW", "DAV", "CAL", "COR",
+    "ASW", "DAV", "CAL",
     "distance_correlation_umap", "Q_local_umap", "Q_global_umap",
     "K_max_umap", "overall_quality_umap",
     "distance_correlation_tsne", "Q_local_tsne", "Q_global_tsne",
@@ -67,13 +67,11 @@ SCRNA_COLS = [
     "trajectory_directionality_intrin", "noise_resilience_intrin",
     "core_quality_intrin", "overall_quality_intrin",
     "data_type_intrin", "interpretation_intrin",
-    "NMI", "ARI",
 ]
 
-# scATAC canonical schema (matches CG_atacs/tables: method is the row-index,
-# NMI/ARI are columns 2-3)
+# scATAC canonical schema (matches CG_atacs/tables: method is the row-index)
 SCATAC_COLS_INDEXED = [
-    "NMI", "ARI", "ASW", "DAV", "CAL", "COR",
+    "ASW", "DAV", "CAL",
     "distance_correlation_umap", "Q_local_umap", "Q_global_umap",
     "K_max_umap", "overall_quality_umap",
     "distance_correlation_tsne", "Q_local_tsne", "Q_global_tsne",

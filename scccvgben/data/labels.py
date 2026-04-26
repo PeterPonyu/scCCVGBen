@@ -1,9 +1,19 @@
-"""Unified label extraction for scCCVGBen.
+"""Unified label extraction for scCCVGBen — descriptive / plotting use only.
 
-Ported from the reference benchmark hyperparameter routine
-(revised 2026-04-23). Centralises the fallback chain that ``loader.py`` and
-``baselines/runner.py`` previously implemented independently, preventing
-drift between the two code paths.
+DO NOT USE as metric-grade ground truth (deprecated 2026-04-25)
+===========================================================
+The current self-supervised benchmark protocol defines reference labels as
+``KMeans(n_clusters=latent_dim).fit_predict(X_pre)`` on the pre-processed
+input matrix, **not** any column of ``adata.obs``. See
+``scccvgben.training.metrics`` module docstring for the current
+self-supervised metric protocol.
+
+This module is retained for legitimate descriptive uses — e.g. colouring a
+UMAP plot by ``batch`` or ``celltype`` when those columns happen to exist —
+but its output must not be passed as a ground-truth label to clustering
+metrics. The fallback chain below is intentionally permissive (returning
+``batch``, ``Sex``, etc. when present) and is therefore not safe as a
+metric-grade label source.
 
 Usage:
     labels = get_labels(adata)  # returns str-array or None

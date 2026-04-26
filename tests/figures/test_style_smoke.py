@@ -1,9 +1,9 @@
 """Smoke test for scccvgben.figures.style.create_publication_figure.
 
-Renders a 2-metric synthetic figure and asserts:
+Renders synthetic figures and asserts:
 - Backend is Agg.
 - pdf.fonttype is 42 inside the render context.
-- Panel labels A and B are present.
+- Dense metric grids use one row label per row rather than one label per metric.
 - Significance bracket count <= 3 per panel when reference_method given.
 - import REA does not appear anywhere in scccvgben.figures.
 """
@@ -19,6 +19,8 @@ import numpy as np
 import pandas as pd
 
 from scccvgben.figures import (
+    ALL_NUMERIC_METRICS,
+    EXCLUDED_PUBLICATION_METRICS,
     METRIC_FAMILY_ROWS,
     METRIC_FAMILY_TITLES,
     METRIC_PANEL_GRID,
@@ -37,7 +39,7 @@ from scccvgben.figures import (
 def _synthetic_long_df(n_datasets: int = 12) -> pd.DataFrame:
     rng = np.random.default_rng(seed=42)
     methods = ["scCCVGBen_GAT", "GCN", "PCA", "scVI"]
-    metrics = ["ARI", "NMI"]
+    metrics = ["ASW", "DAV"]
     rows = []
     for ds in range(n_datasets):
         for m in methods:
@@ -70,7 +72,7 @@ def test_apply_publication_rcparams_idempotent():
 def test_create_publication_figure_renders_without_reference():
     df = _synthetic_long_df()
     fig, axes = create_publication_figure(
-        df, metrics=["ARI", "NMI"], reference_method=None,
+        df, metrics=["ASW", "DAV"], reference_method=None,
     )
     assert len(axes) == 2
     panel_letters = []
@@ -87,7 +89,7 @@ def test_create_publication_figure_renders_without_reference():
 def test_create_publication_figure_with_significance_brackets():
     df = _synthetic_long_df()
     fig, axes = create_publication_figure(
-        df, metrics=["ARI", "NMI"], reference_method="scCCVGBen_GAT",
+        df, metrics=["ASW", "DAV"], reference_method="scCCVGBen_GAT",
     )
     for ax in axes:
         bracket_lines = [
@@ -101,9 +103,9 @@ def test_create_publication_figure_with_significance_brackets():
 def test_create_metric_family_figure_renders_group_rails():
     df = _synthetic_long_df()
     metric_rows = tuple(
-        (family, tuple(metric for metric in metrics if metric in {"ARI", "NMI"}))
+        (family, tuple(metric for metric in metrics if metric in {"ASW", "DAV"}))
         for family, metrics in METRIC_FAMILY_ROWS
-        if any(metric in {"ARI", "NMI"} for metric in metrics)
+        if any(metric in {"ASW", "DAV"} for metric in metrics)
     )
     fig, axes = create_metric_family_figure(
         df,
@@ -120,7 +122,7 @@ def test_create_metric_family_figure_renders_group_rails():
     assert any(text.get_text() == "BEN" for text in all_text)
 
 
-def test_create_metric_grid_figure_keeps_24_panels_with_missing_badge():
+def test_create_metric_grid_figure_keeps_20_panels_with_missing_badge():
     df = _synthetic_long_df()
     fig, axes = create_metric_grid_figure(
         df,
@@ -128,13 +130,20 @@ def test_create_metric_grid_figure_keeps_24_panels_with_missing_badge():
         reference_method=None,
         method_order=["scCCVGBen_GAT", "GCN", "PCA", "scVI"],
         family_titles=METRIC_FAMILY_TITLES,
-        title="4x6 metric smoke",
+        title="4x5 metric smoke",
         subtitle="synthetic",
     )
-    assert len(axes) == 24
-    assert len(fig.axes) == 24
+    assert len(axes) == 20
+    assert len(fig.axes) == 20
     all_text = [text.get_text() for ax in fig.axes for text in ax.texts]
     assert "missing" in all_text
+    assert [label for label in ("A", "B", "C", "D") if label in all_text] == [
+        "A",
+        "B",
+        "C",
+        "D",
+    ]
+    assert not any(label in all_text for label in ("E", "F", "G", "T"))
     assert any(text == "BEN" for text in all_text)
     assert any(text == "DRE-UMAP" for text in all_text)
     assert any(text == "LSE" for text in all_text)
@@ -144,14 +153,14 @@ def test_metric_coverage_audit_reports_missing_expected_metric():
     df = _synthetic_long_df()
     audit = metric_coverage_audit(
         df,
-        ["ARI", "NMI", "COR"],
+        ["ASW", "DAV", "COR"],
         figure_id="smoke",
         expected_datasets=12,
         expected_methods=4,
     )
     status = dict(zip(audit["metric"], audit["status"]))
-    assert status["ARI"] == "complete"
-    assert status["NMI"] == "complete"
+    assert status["ASW"] == "complete"
+    assert status["DAV"] == "complete"
     assert status["COR"] == "missing"
 
 
@@ -175,7 +184,7 @@ def test_preliminary_path_grammar():
 def test_significance_pair_selection_handles_small_n():
     df = _synthetic_long_df(n_datasets=2)
     pairs = select_significance_pairs(
-        df, metric="ARI", reference_method="scCCVGBen_GAT",
+        df, metric="ASW", reference_method="scCCVGBen_GAT",
     )
     assert pairs == []
 
@@ -183,7 +192,7 @@ def test_significance_pair_selection_handles_small_n():
 def test_significance_pair_selection_returns_top_k():
     df = _synthetic_long_df(n_datasets=20)
     pairs = select_significance_pairs(
-        df, metric="ARI", reference_method="scCCVGBen_GAT", top_k=3,
+        df, metric="ASW", reference_method="scCCVGBen_GAT", top_k=3,
     )
     assert len(pairs) <= 3
     for ref, other, p in pairs:
@@ -192,7 +201,10 @@ def test_significance_pair_selection_returns_top_k():
 
 
 def test_numeric_metric_catalog_matches_reported_numeric_fields():
-    assert len(NUMERIC_METRICS) == 24
+    assert len(ALL_NUMERIC_METRICS) == 21
+    assert len(NUMERIC_METRICS) == 20
+    assert not set(EXCLUDED_PUBLICATION_METRICS).intersection(NUMERIC_METRICS)
+    assert set(EXCLUDED_PUBLICATION_METRICS).issubset(ALL_NUMERIC_METRICS)
     assert "data_type_intrin" not in NUMERIC_METRICS
     assert "interpretation_intrin" not in NUMERIC_METRICS
 

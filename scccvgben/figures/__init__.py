@@ -3,7 +3,7 @@
 Public surface:
 - create_publication_figure: DataFrame-native multi-panel renderer.
 - create_metric_family_figure: BEN/DRE/LSE grouped metric-family renderer.
-- create_metric_grid_figure: fixed 4×6, 24-metric publication renderer.
+- create_metric_grid_figure: fixed 4×5, 20-metric publication renderer.
 - apply_publication_rcparams: idempotent rcParams + seaborn palette reset.
 - melt_reconciled: reconciled per-dataset CSV directory -> long DataFrame.
 - preliminary_path: filename grammar (figXX_<scope>.PRELIMINARY.pdf).
@@ -16,6 +16,8 @@ from ._long_form import dataset_key_from_result_stem, filter_to_manifest, melt_r
 from ._naming import preliminary_path
 from ._significance import select_significance_pairs
 from .metrics import (
+    ALL_NUMERIC_METRICS,
+    EXCLUDED_PUBLICATION_METRICS,
     METRIC_LABELS,
     METRIC_FAMILY_ROWS,
     METRIC_FAMILY_TITLES,
@@ -30,6 +32,7 @@ from .metrics import (
     short_method_name,
     write_metric_audit,
 )
+from .fonts import arial_font_path, arial_font_paths, register_arial_with_matplotlib
 from .style import (
     apply_publication_rcparams,
     create_metric_family_figure,
@@ -39,6 +42,8 @@ from .style import (
 
 __all__ = [
     "METRIC_LABELS",
+    "ALL_NUMERIC_METRICS",
+    "EXCLUDED_PUBLICATION_METRICS",
     "METRIC_FAMILY_ROWS",
     "METRIC_FAMILY_TITLES",
     "METRIC_PANEL_GRID",
@@ -48,6 +53,8 @@ __all__ = [
     "NUMERIC_METRICS",
     "add_method_display",
     "apply_publication_rcparams",
+    "arial_font_path",
+    "arial_font_paths",
     "available_numeric_metrics",
     "create_metric_family_figure",
     "create_metric_grid_figure",
@@ -59,5 +66,6 @@ __all__ = [
     "select_significance_pairs",
     "short_method_name",
     "metric_coverage_audit",
+    "register_arial_with_matplotlib",
     "write_metric_audit",
 ]

@@ -88,6 +88,7 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     metrics = available_numeric_metrics(long_df, PRIMARY_METRICS)
+    log.info("metric coverage: %d/%d display metrics", len(metrics), len(PRIMARY_METRICS))
     reference_raw = args.reference if args.reference in methods_present else None
     if reference_raw is None:
         reference_raw = next((m for m in REFERENCE_METHODS if m in methods_present), None)
@@ -103,13 +104,6 @@ def main(argv: list[str] | None = None) -> int:
     )
     write_metric_audit(args.out_dir / "_metric_audit.csv", audit, figure_id="fig08")
 
-    title = "scRNA benchmark — complete 24-metric publication grid"
-    subtitle = (
-        f"{len(methods_present)} methods · {len(metrics)}/{len(PRIMARY_METRICS)} "
-        f"metrics with data · {n_datasets}/{args.target_n} scRNA datasets"
-    )
-    if n_datasets < args.target_n:
-        subtitle += " · PRELIMINARY"
     fig, _ = create_metric_grid_figure(
         long_df,
         metric_grid=METRIC_PANEL_GRID,
@@ -117,11 +111,11 @@ def main(argv: list[str] | None = None) -> int:
         reference_method=reference,
         method_order=method_order,
         family_titles=METRIC_FAMILY_TITLES,
-        title=title,
-        subtitle=subtitle,
+        title=None,
+        subtitle=None,
         metric_labels=METRIC_LABELS,
-        per_col_width=2.95,
-        per_row_height=3.35,
+        per_col_width=3.22,
+        per_row_height=3.38,
     )
 
     args.out_dir.mkdir(parents=True, exist_ok=True)

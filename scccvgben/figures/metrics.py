@@ -1,9 +1,14 @@
 """Shared metric catalog and display helpers for manuscript figures.
 
-The benchmark computes 26 reported fields. Twenty-four are numeric and can be
-drawn as box/strip, heatmap, or delta panels; the remaining two intrinsic-space
-fields are categorical/structured annotations and should be reported in text or
-tables rather than coerced into numeric plots.
+The benchmark result tables carry 23 reported fields after removing two
+legacy label-agreement scores and one inconsistently populated correlation
+score on 2026-04-25; see scccvgben.training.metrics for the full rationale.
+Twenty-one are numeric source fields and two intrinsic-space fields are
+categorical/structured annotations. Publication figures display a curated
+20-metric numeric panel: ``core_quality_intrin`` duplicates the role of the
+retained intrinsic overall score and is excluded. The two ``K_max`` fields
+are retained so DRE scale diagnostics remain visible while preserving the
+4×5 panel geometry.
 """
 
 from __future__ import annotations
@@ -13,16 +18,13 @@ from os import PathLike
 
 import pandas as pd
 
-CLUSTERING_METRICS: tuple[str, ...] = (
+ALL_CLUSTERING_METRICS: tuple[str, ...] = (
     "ASW",
     "DAV",
     "CAL",
-    "NMI",
-    "ARI",
-    "COR",
 )
 
-DRE_UMAP_METRICS: tuple[str, ...] = (
+ALL_DRE_UMAP_METRICS: tuple[str, ...] = (
     "distance_correlation_umap",
     "Q_local_umap",
     "Q_global_umap",
@@ -30,7 +32,7 @@ DRE_UMAP_METRICS: tuple[str, ...] = (
     "overall_quality_umap",
 )
 
-DRE_TSNE_METRICS: tuple[str, ...] = (
+ALL_DRE_TSNE_METRICS: tuple[str, ...] = (
     "distance_correlation_tsne",
     "Q_local_tsne",
     "Q_global_tsne",
@@ -38,7 +40,7 @@ DRE_TSNE_METRICS: tuple[str, ...] = (
     "overall_quality_tsne",
 )
 
-INTRINSIC_NUMERIC_METRICS: tuple[str, ...] = (
+ALL_INTRINSIC_NUMERIC_METRICS: tuple[str, ...] = (
     "manifold_dimensionality_intrin",
     "spectral_decay_rate_intrin",
     "participation_ratio_intrin",
@@ -49,9 +51,38 @@ INTRINSIC_NUMERIC_METRICS: tuple[str, ...] = (
     "overall_quality_intrin",
 )
 
+EXCLUDED_PUBLICATION_METRICS: tuple[str, ...] = (
+    "core_quality_intrin",
+)
+
+CLUSTERING_METRICS: tuple[str, ...] = tuple(
+    metric for metric in ALL_CLUSTERING_METRICS if metric not in EXCLUDED_PUBLICATION_METRICS
+)
+
+DRE_UMAP_METRICS: tuple[str, ...] = tuple(
+    metric for metric in ALL_DRE_UMAP_METRICS if metric not in EXCLUDED_PUBLICATION_METRICS
+)
+
+DRE_TSNE_METRICS: tuple[str, ...] = tuple(
+    metric for metric in ALL_DRE_TSNE_METRICS if metric not in EXCLUDED_PUBLICATION_METRICS
+)
+
+INTRINSIC_NUMERIC_METRICS: tuple[str, ...] = tuple(
+    metric
+    for metric in ALL_INTRINSIC_NUMERIC_METRICS
+    if metric not in EXCLUDED_PUBLICATION_METRICS
+)
+
 NON_NUMERIC_METRICS: tuple[str, ...] = (
     "data_type_intrin",
     "interpretation_intrin",
+)
+
+ALL_NUMERIC_METRIC_FAMILIES: tuple[tuple[str, tuple[str, ...]], ...] = (
+    ("Clustering and distance preservation", ALL_CLUSTERING_METRICS),
+    ("UMAP neighbourhood preservation", ALL_DRE_UMAP_METRICS),
+    ("t-SNE neighbourhood preservation", ALL_DRE_TSNE_METRICS),
+    ("Intrinsic latent geometry", ALL_INTRINSIC_NUMERIC_METRICS),
 )
 
 NUMERIC_METRIC_FAMILIES: tuple[tuple[str, tuple[str, ...]], ...] = (
@@ -75,18 +106,49 @@ METRIC_TO_FAMILY: dict[str, str] = {
 }
 
 METRIC_FAMILY_TITLES: dict[str, str] = {
-    "BEN": "clustering\nlabels + distance",
-    "DRE-UMAP": "UMAP\nneighbourhoods",
-    "DRE-tSNE": "t-SNE\nneighbourhoods",
+    "BEN": "clustering\ncompactness",
+    "DRE-UMAP": "UMAP\nneighbourhood + scale",
+    "DRE-tSNE": "t-SNE\nneighbourhood + scale",
     "LSE": "intrinsic\nlatent geometry",
 }
 
-NUMERIC_METRICS: tuple[str, ...] = tuple(
-    metric for _, metrics in NUMERIC_METRIC_FAMILIES for metric in metrics
+ALL_NUMERIC_METRICS: tuple[str, ...] = tuple(
+    metric for _, metrics in ALL_NUMERIC_METRIC_FAMILIES for metric in metrics
 )
 
-METRIC_PANEL_GRID: tuple[tuple[str, ...], ...] = tuple(
-    tuple(NUMERIC_METRICS[i:i + 6]) for i in range(0, len(NUMERIC_METRICS), 6)
+METRIC_PANEL_GRID: tuple[tuple[str, ...], ...] = (
+    (
+        "ASW",
+        "DAV",
+        "CAL",
+        "K_max_umap",
+        "K_max_tsne",
+    ),
+    (
+        "distance_correlation_umap",
+        "Q_local_umap",
+        "Q_global_umap",
+        "overall_quality_umap",
+        "distance_correlation_tsne",
+    ),
+    (
+        "Q_local_tsne",
+        "Q_global_tsne",
+        "overall_quality_tsne",
+        "manifold_dimensionality_intrin",
+        "spectral_decay_rate_intrin",
+    ),
+    (
+        "participation_ratio_intrin",
+        "anisotropy_score_intrin",
+        "trajectory_directionality_intrin",
+        "noise_resilience_intrin",
+        "overall_quality_intrin",
+    ),
+)
+
+NUMERIC_METRICS: tuple[str, ...] = tuple(
+    metric for row in METRIC_PANEL_GRID for metric in row
 )
 
 LOWER_IS_BETTER: frozenset[str] = frozenset({"DAV"})
@@ -95,9 +157,6 @@ METRIC_LABELS: dict[str, str] = {
     "ASW": "ASW ↑",
     "DAV": "DAV ↓",
     "CAL": "CAL ↑",
-    "NMI": "NMI ↑",
-    "ARI": "ARI ↑",
-    "COR": "COR ↑",
     "distance_correlation_umap": "DC UMAP ↑",
     "Q_local_umap": "QL UMAP ↑",
     "Q_global_umap": "QG UMAP ↑",

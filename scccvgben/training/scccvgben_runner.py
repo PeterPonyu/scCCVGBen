@@ -50,25 +50,45 @@ SCCCVGBEN_DEFAULTS: dict[str, Any] = {
 
 
 def _get_labels(adata: ad.AnnData) -> np.ndarray | None:
-    """Extract ground-truth labels via the unified helper. None if absent."""
-    from scccvgben.data.labels import get_labels
-    lbl = get_labels(adata)
-    if lbl is None:
-        return None
-    import pandas as pd
-    return np.asarray(pd.Categorical(lbl).codes, dtype=np.int64)
+    """Deprecated label-extraction helper (returns ``None``).
+
+    The active metric protocol is fully self-supervised: KMeans on the
+    pre-processed input X versus KMeans on the latent (see
+    ``scccvgben.training.metrics`` docstring). No ``adata.obs`` column is
+    consulted for clustering metrics. Kept as a stub so downstream callers
+    that still pass a ``labels`` keyword keep working.
+    """
+    return None
 
 
 def preprocess_scrna_scccvgben(adata: ad.AnnData,
                             subsample_cells: int = 3000,
                             n_top_genes: int = 2000,
-                            random_state: int = 42) -> ad.AnnData:
+                            random_state: int = 42,
+                            min_counts_per_cell: int = 200,
+                            min_cells_per_gene: int = 10) -> ad.AnnData:
     """Preprocess matching the reference benchmark hyperparameter routine.
 
-    Subsample -> normalize_total(1e4) -> log1p -> HVG -> subset.
+    QC filter -> subsample -> normalize_total(1e4) -> log1p -> HVG -> subset.
     Raw counts stashed in adata.layers['counts'] for CGVAE_agent's
     layer='counts' parameter.
+
+    QC filter (added 2026-04-25):
+        Drops empty droplets (cell sum < ``min_counts_per_cell``) and
+        zero-variance genes (expressed in fewer than ``min_cells_per_gene``
+        cells) BEFORE the random subsample. Without this step, raw cellranger
+        matrices like GSE128033_new (737k barcodes, 82% empty droplets)
+        produce a near-singular feature matrix after subsample, raising
+        "near singularities" / "reciprocal condition number" inside the
+        downstream KMeans / SVD path. The thresholds match standard scanpy
+        defaults for raw scRNA matrices.
     """
+    # QC: remove empty cells and zero-variance genes before subsampling
+    if min_counts_per_cell > 0:
+        sc.pp.filter_cells(adata, min_counts=min_counts_per_cell)
+    if min_cells_per_gene > 0:
+        sc.pp.filter_genes(adata, min_cells=min_cells_per_gene)
+
     # Subsample to cap training time
     if adata.n_obs > subsample_cells:
         rng = np.random.default_rng(random_state)

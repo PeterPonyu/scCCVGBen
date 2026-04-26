@@ -30,7 +30,7 @@ SUPPORTED_BASELINES = list(SKLEARN_REGISTRY) + list(DEEP_REGISTRY) + ["scCCVGBen
 
 # ── metric column schema (matches CG_dl_merged CSVs) ─────────────────────────
 METRIC_COLUMNS = [
-    "method", "ASW", "DAV", "CAL", "COR",
+    "method", "ASW", "DAV", "CAL",
     "distance_correlation_umap", "Q_local_umap", "Q_global_umap",
     "K_max_umap", "overall_quality_umap",
     "distance_correlation_tsne", "Q_local_tsne", "Q_global_tsne",
@@ -40,7 +40,7 @@ METRIC_COLUMNS = [
     "trajectory_directionality_intrin", "noise_resilience_intrin",
     "core_quality_intrin", "overall_quality_intrin",
     "data_type_intrin", "interpretation_intrin",
-    "NMI", "ARI",
+    # legacy label-agreement fields and COR removed 2026-04-25 — see scccvgben.training.metrics docstring.
 ]
 
 
@@ -82,9 +82,13 @@ def _get_X(adata: ad.AnnData) -> np.ndarray:
 
 
 def _get_labels(adata: ad.AnnData) -> np.ndarray | None:
-    """Extract cell-type labels via the unified scccvgben.data.labels.get_labels helper."""
-    from scccvgben.data.labels import get_labels
-    return get_labels(adata)
+    """Deprecated label-extraction stub (returns ``None``).
+
+    The active metric protocol is self-supervised (no external annotation).
+    See ``scccvgben.training.metrics`` docstring. Retained as a stub so
+    legacy callers passing a ``labels`` keyword keep working.
+    """
+    return None
 
 
 def _compute_metrics(
@@ -93,7 +97,9 @@ def _compute_metrics(
     X: np.ndarray,
     method_name: str,
 ) -> dict[str, Any]:
-    """Compute the 27-metric schema. Falls back to NaN if metrics module absent."""
+    """Compute the 23-metric schema (legacy label-agreement fields and COR removed; see metrics.py).
+    Falls back to NaN if metrics module absent.
+    """
     try:
         from scccvgben.training.metrics import compute_metrics
         metrics_df = compute_metrics(Z=z, X_orig=X, labels=labels, method_name=method_name)

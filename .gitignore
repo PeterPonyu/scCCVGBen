@@ -27,6 +27,9 @@ figures/manuscript_figures.*
 figures/fig*.png
 figures/fig*.pdf
 figures/fig*.jpg
+figures/**/*.png
+figures/**/*.pdf
+figures/**/*.jpg
 figures/fig_axis*.png
 figures/fig_axis*.pdf
 site/static/images/fig*.png
@@ -46,6 +49,9 @@ TRAINING_STATE.md
 HANDOFF_GPU_SESSION.md
 KNOWN_ISSUES.md
 LAUNCH_BENCHMARK.md
+
+# Local reference checkouts
+/*CVGAE/
 
 # OS
 .DS_Store
