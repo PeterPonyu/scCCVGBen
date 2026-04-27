@@ -67,7 +67,15 @@ _AGENT_DEFAULTS = dict(
     subgraph_size=300,
     hidden_dim=128,
     latent_dim=10,
-    i_dim=5,
+    # Aligned with CCVGAE-revised CGVAE_agent default (10), not the prior
+    # scccvgben override of 5. CouVAE_pair ag1 has w_irecon=1.0 — i_dim
+    # controls the inner latent_encoder/decoder bottleneck (vae.py L61-62)
+    # which only contributes to the loss when w_irecon > 0. With i_dim=10
+    # all three pairs (Linear/VGAE/CouVAE) become directly comparable to
+    # the legacy CCVGAE pair_sweep results that scripts/reuse_ccvgae_pairs.py
+    # imports — letting us reuse 45 CCVGAE-overlap datasets and retrain only
+    # 55 NEW per pair instead of all 100.
+    i_dim=10,
     lr=1e-4,
     w_recon=1.0,
     w_kl=1.0,

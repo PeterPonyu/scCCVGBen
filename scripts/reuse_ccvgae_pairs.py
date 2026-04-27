@@ -51,9 +51,14 @@ from run_pair_sweep import _resolve_prefix  # noqa: E402
 LEGACY_ROOT = Path("/home/zeyufu/LAB/CCVGAE/CentroidVAE_results")
 NEW_ROOT = REPO_ROOT / "results" / "pair_sweep"
 
-# Pairs to reuse — i_dim doesn't affect outputs because both ag0 and ag1
-# have w_irecon=0.
-SAFE_PAIRS = ("Linear_pair", "VGAE_pair")
+# Pairs to reuse from CCVGAE-revised legacy. With scccvgben's pair_sweep
+# default i_dim now aligned to 10 (matching CCVGAE), all three pairs are
+# directly comparable to legacy outputs:
+#   Linear_pair: w_irecon=0 for both → i_dim never enters loss
+#   VGAE_pair:   w_irecon=0 for both → i_dim never enters loss
+#   CouVAE_pair: ag1 w_irecon=1 → i_dim DID enter loss but legacy's i_dim=10
+#                matches scccvgben's new default i_dim=10 → consistent.
+SAFE_PAIRS = ("Linear_pair", "VGAE_pair", "CouVAE_pair")
 
 DEPRECATED_COLS = ("N" + "MI", "A" + "RI", "COR")
 
@@ -61,15 +66,18 @@ DEPRECATED_COLS = ("N" + "MI", "A" + "RI", "COR")
 SERIES_HUE_REMAP = {
     "Linear_pair": {"q_m": "CenVAE", "q_z": "VAE"},
     "VGAE_pair":   {"VAE": "VAE", "VGAE": "GAT-VAE"},
+    "CouVAE_pair": {"VAE": "VAE", "CouVAE": "CouVAE"},
 }
 
 # Method labels for promoting legacy integer index 0/1 in tables. These match
 # the order of ag0/ag1 in CCVGAE_supplement/run_centroidvae_supplement.py:
 #   Linear_pair = (q_m, q_z)   → scccvgben labels: (CenVAE, VAE)
 #   VGAE_pair   = (VAE, VGAE)  → scccvgben labels: (VAE, GAT-VAE)
+#   CouVAE_pair = (VAE, CouVAE) → scccvgben labels: (VAE, CouVAE)  [identity]
 TABLE_METHOD_LABELS = {
     "Linear_pair": ("CenVAE", "VAE"),
     "VGAE_pair":   ("VAE", "GAT-VAE"),
+    "CouVAE_pair": ("VAE", "CouVAE"),
 }
 
 
