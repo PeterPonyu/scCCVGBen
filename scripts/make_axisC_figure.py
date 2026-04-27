@@ -42,9 +42,13 @@ from scccvgben.figures import (  # noqa: E402
 log = logging.getLogger(__name__)
 
 PRIMARY_METRICS = NUMERIC_METRICS
-REFERENCE_METHODS = ("scCCVGBen", "scCCVGBen_GAT")
+REFERENCE_METHODS = ("scCCVGBen_GAT",)
+# Bare 'scCCVGBen' was the legacy CCVGAE-revised GAT row (epochs=200, i_dim=10);
+# scCCVGBen_GAT is the current scccvgben GAT (epochs=100, i_dim=5). Plotting
+# both was a hyperparameter-inconsistent duplicate. Stripped from reconciled
+# data and dropped from the method list — only the canonical current row stays.
 BASELINE_METHODS = (
-    "scCCVGBen", "scCCVGBen_GAT", "PCA", "KPCA", "ICA", "FA", "NMF", "TSVD",
+    "scCCVGBen_GAT", "PCA", "KPCA", "ICA", "FA", "NMF", "TSVD",
     "DICL", "scVI", "DIP", "DIPVAE", "INFO", "InfoVAE", "TC", "TCVAE",
     "highBeta", "HighBetaVAE",
 )
