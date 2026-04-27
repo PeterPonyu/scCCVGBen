@@ -88,7 +88,11 @@ def _classify(path: Path) -> tuple[str, str]:
     """Return (axis, modality) guessed from the path."""
     parts = [p.name for p in path.parents]
     name = path.name.lower()
-    if "encoder_sweep" in parts or "axisA_GAT_scrna" in parts:
+    if (
+        "encoder_sweep" in parts
+        or "encoder_sweep_flagship" in parts
+        or "axisA_GAT_scrna" in parts
+    ):
         axis = "A"
     elif "graph_sweep" in parts:
         axis = "B"
@@ -222,6 +226,14 @@ def main() -> None:
             str(REPO_ROOT / "results" / "graph_sweep"),
             str(REPO_ROOT / "results" / "baselines"),
             str(REPO_ROOT / "workspace" / "reused_results"),
+            # Flagship-aligned scCCVGBen_GAT row (epochs=200, i_dim=10) —
+            # produced by scripts/run_flagship_alignment.py to match the
+            # legacy CCVGAE-revised configuration. Listed LAST so its
+            # 200-epoch / i_dim=10 row wins the method-level dedup over
+            # encoder_sweep's 100-epoch / i_dim=5 scCCVGBen_GAT row,
+            # giving fig08/fig09/axisC a flagship column trained at the
+            # same config as the pair_sweep ablation columns.
+            str(REPO_ROOT / "results" / "encoder_sweep_flagship"),
         ],
         help="Input directories to scan recursively for *.csv",
     )

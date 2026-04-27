@@ -61,7 +61,12 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--pair-root", type=Path,
                    default=REPO_ROOT / "results" / "pair_sweep")
     p.add_argument("--encoder-dir", type=Path,
-                   default=REPO_ROOT / "results" / "encoder_sweep")
+                   default=REPO_ROOT / "results" / "encoder_sweep_flagship",
+                   help="Source for the CCVGAE flagship row (default: "
+                        "encoder_sweep_flagship/, which trains scCCVGBen_GAT "
+                        "at epochs=200, i_dim=10 — matching the pair_sweep "
+                        "ablation columns. Pass --encoder-dir results/"
+                        "encoder_sweep to fall back to the 100-epoch source.")
     p.add_argument("--manifest", type=Path,
                    default=REPO_ROOT / "data" / "benchmark_manifest.csv")
     p.add_argument("--out-dir", type=Path, default=REPO_ROOT / "figures")
