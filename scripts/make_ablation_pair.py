@@ -78,9 +78,12 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--out-dir", type=Path, default=REPO_ROOT / "figures")
     p.add_argument("--out", default=None,
                    help="Output stem (default fig_{pair}_ablation).")
-    p.add_argument("--target-n", type=int, default=46,
+    p.add_argument("--target-n", type=int, default=100,
                    help="Expected dataset count for the pair sweep "
-                        "(default 46 = the 45 'new' set + 1 supplement).")
+                        "(default 100 = scccvgben benchmark_manifest.csv scRNA "
+                        "size — 45 CCVGAE-overlap inherited via "
+                        "scripts/reuse_ccvgae_pairs.py + 55 NEW datasets "
+                        "trained by run_pair_sweep.py).")
     p.add_argument("--partial-ok", action="store_true")
     args = p.parse_args(argv)
 

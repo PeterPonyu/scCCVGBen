@@ -66,7 +66,10 @@ def main(argv: list[str] | None = None) -> int:
                    default=REPO_ROOT / "data" / "benchmark_manifest.csv")
     p.add_argument("--out-dir", type=Path, default=REPO_ROOT / "figures")
     p.add_argument("--out", default="fig08")
-    p.add_argument("--target-n", type=int, default=46)
+    p.add_argument("--target-n", type=int, default=100,
+                   help="100 = scccvgben benchmark_manifest scRNA size "
+                        "(45 CCVGAE-overlap reused via reuse_ccvgae_pairs.py + "
+                        "55 NEW from run_pair_sweep.py).")
     p.add_argument("--partial-ok", action="store_true")
     args = p.parse_args(argv)
 
