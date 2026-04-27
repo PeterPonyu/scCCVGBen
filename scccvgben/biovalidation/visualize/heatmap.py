@@ -18,16 +18,16 @@ def render_latent_corr(ax: plt.Axes, corr: np.ndarray, *, title: str = "Latent s
     L = corr.shape[0]
     ax.set_xticks(range(L))
     ax.set_yticks(range(L))
-    ax.set_xticklabels(range(L), fontsize=6)
-    ax.set_yticklabels(range(L), fontsize=6)
-    ax.set_xlabel("latent dim", fontsize=7)
-    ax.set_ylabel("latent dim", fontsize=7)
-    ax.set_title(title, pad=4)
+    ax.set_xticklabels(range(L), fontsize=9)
+    ax.set_yticklabels(range(L), fontsize=9)
+    ax.set_xlabel("latent dim", fontsize=10)
+    ax.set_ylabel("latent dim", fontsize=10)
+    ax.set_title(title, pad=4, fontsize=11)
     # Use a small inset axis for the colorbar so the heatmap fills the panel
     # without the cbar consuming ~half the panel width.
     cbar = ax.figure.colorbar(im, ax=ax, fraction=0.038, shrink=0.85, pad=0.012)
-    cbar.ax.tick_params(labelsize=6)
-    cbar.set_label("|corr|", fontsize=6)
+    cbar.ax.tick_params(labelsize=8)
+    cbar.set_label("|corr|", fontsize=8)
 
 
 def render_top_gene_table(ax: plt.Axes, top_k_df: pd.DataFrame,
@@ -63,9 +63,9 @@ def render_top_gene_table(ax: plt.Axes, top_k_df: pd.DataFrame,
     for col_idx in range(n_cols):
         x0 = col_idx * col_w
         # column header
-        ax.text(x0 + 0.02, 0.98, "dim",  fontsize=7.5, fontweight="bold")
-        ax.text(x0 + 0.10, 0.98, "gene", fontsize=7.5, fontweight="bold")
-        ax.text(x0 + 0.42, 0.98, "ρ",    fontsize=7.5, fontweight="bold")
+        ax.text(x0 + 0.02, 0.98, "dim",  fontsize=10, fontweight="bold")
+        ax.text(x0 + 0.10, 0.98, "gene", fontsize=10, fontweight="bold")
+        ax.text(x0 + 0.42, 0.98, "ρ",    fontsize=10, fontweight="bold")
         for j in range(per_col):
             idx = col_idx * per_col + j
             if idx >= n:
@@ -73,6 +73,6 @@ def render_top_gene_table(ax: plt.Axes, top_k_df: pd.DataFrame,
             d, g, rho = rows[idx]
             y = y_top - (j + 0.5) * y_step
             color = "#0EA5E9" if rho > 0 else "#EF4444"
-            ax.text(x0 + 0.02, y, str(d),       fontsize=7)
-            ax.text(x0 + 0.10, y, g[:24],       fontsize=7, fontfamily="monospace")
-            ax.text(x0 + 0.42, y, f"{rho:+.3f}", fontsize=7, color=color)
+            ax.text(x0 + 0.02, y, str(d),       fontsize=9)
+            ax.text(x0 + 0.10, y, g[:24],       fontsize=9, fontfamily="monospace")
+            ax.text(x0 + 0.42, y, f"{rho:+.3f}", fontsize=9, color=color)

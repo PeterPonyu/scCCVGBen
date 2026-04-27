@@ -142,7 +142,7 @@ def _run_scccvgben(X: np.ndarray, labels: np.ndarray | None, adata: ad.AnnData) 
 
         from scccvgben.training.trainer import fit_one
         # fit_one auto-detects device; modality determines loss function
-        fit_one(model, data, "scrna", epochs=50, lr=1e-4)
+        fit_one(model, data, "scrna", epochs=200, lr=1e-4)
 
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model = model.to(device)

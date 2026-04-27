@@ -20,7 +20,7 @@ from torch.utils.data import DataLoader, TensorDataset
 
 log = logging.getLogger(__name__)
 
-_EPOCHS = 50
+_EPOCHS = 200
 _LR = 1e-4
 _LATENT_DIM = 10
 _HIDDEN = 128

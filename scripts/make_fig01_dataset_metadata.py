@@ -172,7 +172,9 @@ def _panel_tissue(ax: plt.Axes, df: pd.DataFrame, top_k: int = 12) -> None:
     ax.set_ylabel("")
     ax.set_title(f"Top-{top_k} annotated tissue sources",
                  loc="left", fontsize=13, pad=8)
-    ax.legend(frameon=False, fontsize=8, loc="lower right")
+    # No per-panel legend: panel A already shows the global scRNA/scATAC
+    # modality legend, so a duplicate here would just collide with the
+    # 'tumor' bar that fills the upper-right.
     if n_unannotated:
         ax.text(
             0.99, 0.02,

@@ -57,13 +57,13 @@ def render_categorical_scatter(
     if title:
         ax.set_title(title, pad=4)
     if legend_loc and len(cats) <= max_legend:
-        ax.legend(loc="best", fontsize=6, frameon=False, markerscale=1.5,
+        ax.legend(loc="best", fontsize=8, frameon=False, markerscale=1.5,
                   handlelength=0.6, handletextpad=0.3, labelspacing=0.2)
     elif legend_loc:
         ax.text(
             0.99, 0.02, f"{len(cats)} categories",
             transform=ax.transAxes, ha="right", va="bottom",
-            fontsize=6, color="#475569",
+            fontsize=8, color="#475569",
             bbox=dict(facecolor="white", edgecolor="#CBD5E1",
                       boxstyle="round,pad=0.18", lw=0.5, alpha=0.85),
         )
@@ -95,4 +95,4 @@ def render_continuous_scatter(
         ax.set_title(title, pad=4)
     if show_colorbar:
         cbar = ax.figure.colorbar(sc, ax=ax, shrink=0.6, pad=0.02)
-        cbar.ax.tick_params(labelsize=6)
+        cbar.ax.tick_params(labelsize=8)

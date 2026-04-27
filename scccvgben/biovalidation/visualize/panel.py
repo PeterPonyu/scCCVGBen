@@ -20,7 +20,10 @@ import matplotlib.pyplot as plt
 
 PANEL_W_INCH: float = 16.0      # full case figure width
 PANEL_H_INCH: float = 16.0      # full case figure height — accommodates 5 rows
-PANEL_DPI:    int   = 200       # publication 2x density (still ~ 5 MB / fig)
+# 144 DPI keeps text crisp at submission size while keeping each case PNG
+# under ~1 MB. 200 DPI produced 3+ MB PNGs that bloated the stitched
+# pair figures (fig11/12/13) past 3 MB each.
+PANEL_DPI:    int   = 144
 
 
 @dataclass(frozen=True)
@@ -69,13 +72,16 @@ def apply_publication_rcparams() -> None:
         "savefig.dpi": PANEL_DPI,
         "font.family": "sans-serif",
         "font.sans-serif": ["DejaVu Sans", "Liberation Sans", "Arial"],
-        "font.size": 9,
-        "axes.titlesize": 10,
+        # Body text bumped from 9pt to 12pt so per-case panels stay readable
+        # when stitched into the wider pair figures (fig11/12/13). Pair
+        # title is 22pt; body 12pt → ratio < 2x → no visual cliff.
+        "font.size": 12,
+        "axes.titlesize": 13,
         "axes.titleweight": "bold",
-        "axes.labelsize": 8.5,
-        "xtick.labelsize": 8,
-        "ytick.labelsize": 8,
-        "legend.fontsize": 8,
+        "axes.labelsize": 11,
+        "xtick.labelsize": 10,
+        "ytick.labelsize": 10,
+        "legend.fontsize": 10,
         "axes.spines.top": False,
         "axes.spines.right": False,
     })

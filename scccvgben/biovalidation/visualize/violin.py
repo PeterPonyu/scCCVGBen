@@ -56,10 +56,10 @@ def render_condition_violin(
             parts["cmedians"].set_linewidth(0.6)
 
     ax.set_xticks(positions)
-    ax.set_xticklabels([f"d{d}" for d in range(L)], fontsize=7)
-    ax.set_ylabel("latent value")
-    ax.set_title(title, pad=4)
-    ax.tick_params(axis="y", labelsize=7)
+    ax.set_xticklabels([f"d{d}" for d in range(L)], fontsize=9)
+    ax.set_ylabel("latent value", fontsize=10)
+    ax.set_title(title, pad=4, fontsize=11)
+    ax.tick_params(axis="y", labelsize=9)
     # Legend: only when condition count fits inside the panel; otherwise show
     # a small badge with the category count to keep the panel within its
     # canonical bounding box (no canvas expansion).
@@ -67,13 +67,13 @@ def render_condition_violin(
     if len(cats) <= MAX_LEGEND:
         from matplotlib.patches import Patch
         handles = [Patch(facecolor=cmap(i % cmap.N), label=c) for i, c in enumerate(cats)]
-        ax.legend(handles=handles, loc="best", fontsize=6, frameon=False,
+        ax.legend(handles=handles, loc="best", fontsize=8, frameon=False,
                   handlelength=1.0, handletextpad=0.3, labelspacing=0.2)
     else:
         ax.text(
             0.99, 0.02, f"{len(cats)} categories",
             transform=ax.transAxes, ha="right", va="bottom",
-            fontsize=6, color="#475569",
+            fontsize=8, color="#475569",
             bbox=dict(facecolor="white", edgecolor="#CBD5E1",
                       boxstyle="round,pad=0.18", lw=0.5, alpha=0.85),
         )

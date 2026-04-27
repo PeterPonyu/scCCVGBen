@@ -74,20 +74,24 @@ def compose_case_figure(payload: dict, out_dir: Path) -> Path:
         figure=fig,
         height_ratios=[2.4, 2.8, 2.8, 1.3, 3.5],
         hspace=0.55, wspace=0.34,
-        left=0.05, right=0.975, top=0.93, bottom=0.04,
+        # left widened from 0.05 to 0.18 (≈2.9 in at 16-in width) so the
+        # GO BP dotplot's long term labels in row 4 (H) are not clipped
+        # by the figure edge. 0.13 was insufficient — terms like
+        # "regulation of immune system process" were still cropped.
+        left=0.18, right=0.975, top=0.93, bottom=0.04,
     )
 
     # ── Header / title bar ───────────────────────────────────────────
     fig.suptitle(
         f"Bio-validation case · {case.title}",
-        fontsize=14, fontweight="bold", y=0.985,
+        fontsize=15, fontweight="bold", y=0.985,
     )
     sub = (
-        f"{case.accession} · theme={case.theme} · encoder={case.encoder} · "
-        f"N={payload.get('n_obs_subsampled','?')} of {payload.get('n_obs','?')} cells, "
+        f"{case.accession}  ·  theme = {case.theme}  ·  encoder = {case.encoder}  ·  "
+        f"N = {payload.get('n_obs_subsampled','?')} / {payload.get('n_obs','?')} cells  ·  "
         f"{payload.get('n_vars_post_hvg','?')} HVGs"
     )
-    fig.text(0.04, 0.955, sub, fontsize=8.5, color="#475569")
+    fig.text(0.18, 0.955, sub, fontsize=10, color="#475569")
 
     # ── Row 0 — A B C D ─────────────────────────────────────────────
     ax_A = fig.add_subplot(gs[0, 0])

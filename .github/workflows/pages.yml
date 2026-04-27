@@ -26,9 +26,21 @@ jobs:
     steps:
       - name: Install Hugo CLI (extended)
         run: |
-          wget -O ${{ runner.temp }}/hugo.deb \
-            https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
-          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+          # Retry up to 5 times with 10s waits — GitHub release CDN occasionally
+          # returns 502 (e.g. run 24961200916). --tries doesn't cover 502, so we
+          # loop manually and verify the .deb is non-empty before installing.
+          set -euo pipefail
+          DEB="${{ runner.temp }}/hugo.deb"
+          URL="https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          for i in 1 2 3 4 5; do
+            if wget --tries=3 --timeout=30 -O "$DEB" "$URL" && [ -s "$DEB" ]; then
+              break
+            fi
+            echo "wget attempt $i failed; retrying in 10s..."
+            sleep 10
+          done
+          [ -s "$DEB" ] || { echo "Failed to download Hugo after 5 attempts" >&2; exit 1; }
+          sudo dpkg -i "$DEB"
 
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2

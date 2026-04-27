@@ -104,9 +104,11 @@ def _compose_pair(left_case: str, right_case: str, pair_label: str,
         img_r = img_r.resize((int(img_r.width * ratio), img_l.height),
                               Image.LANCZOS)
 
-    # Vertical band on top for the pair-level title (~ 220 px so the title
-    # remains legible when the figure is downscaled in the manuscript).
-    title_band_h = 220
+    # Vertical title band split into two lines: top = bold pair label,
+    # bottom = small LEFT/RIGHT case markers. 130-px band at 200 dpi
+    # leaves 35-px clearance for the 22-pt title and another 60 px for
+    # the 14-pt subtitle so the two lines never collide.
+    title_band_h = 130
     canvas = Image.new("RGB",
                         (img_l.width + img_r.width, img_l.height + title_band_h),
                         "white")
@@ -120,22 +122,30 @@ def _compose_pair(left_case: str, right_case: str, pair_label: str,
     fig_w_in = (img_l.width + img_r.width) / 200
     fig_h_in = (img_l.height + title_band_h) / 200
     fig = plt.figure(figsize=(fig_w_in, fig_h_in), dpi=200)
-    ax = fig.add_subplot(111)
+    ax = fig.add_axes([0.0, 0.0, 1.0, 1.0])  # axes fill the entire figure
     ax.axis("off")
     ax.imshow(canvas, aspect="equal")
-    # Centred title at the very top of the title band; case-side labels
-    # are drawn just above each half of the case content (LEFT|RIGHT).
-    fig.suptitle(
-        f"Bio-validation paired case · {pair_label}",
-        fontsize=44, fontweight="bold", y=0.985,
-    )
-    sub_y = 1 - (title_band_h * 0.84) / canvas.size[1]   # below the title
-    fig.text(0.25, sub_y, f"LEFT panel — case {left_case}",
-             fontsize=22, fontweight="bold", color="#0F172A", ha="center")
-    fig.text(0.75, sub_y, f"RIGHT panel — case {right_case}",
-             fontsize=22, fontweight="bold", color="#0F172A", ha="center")
-    fig.savefig(pdf_path, bbox_inches="tight", pad_inches=0.05)
-    fig.savefig(png_path, bbox_inches="tight", pad_inches=0.05, dpi=200)
+    # With axes filling the figure, figure-y == canvas-y. Place the
+    # title at canvas_y ≈ 35 px and the subtitles at canvas_y ≈ 95 px;
+    # both fit inside the 130-px white band painted at the top of the
+    # canvas, with comfortable separation between the 22-pt title and
+    # 14-pt subtitles.
+    canvas_h = canvas.size[1]
+    title_y = 1.0 - 35.0 / canvas_h
+    sub_y   = 1.0 - 95.0 / canvas_h
+    fig.text(0.5, title_y,
+             f"Bio-validation paired case · {pair_label}",
+             fontsize=22, fontweight="bold", ha="center", va="center")
+    fig.text(0.25, sub_y, f"LEFT — case {left_case}",
+             fontsize=14, fontweight="bold", color="#0F172A",
+             ha="center", va="center")
+    fig.text(0.75, sub_y, f"RIGHT — case {right_case}",
+             fontsize=14, fontweight="bold", color="#0F172A",
+             ha="center", va="center")
+    # bbox=None is mandatory: bbox_inches="tight" crops the white
+    # title band and the title gets pulled down onto the case content.
+    fig.savefig(pdf_path, pad_inches=0.0)
+    fig.savefig(png_path, pad_inches=0.0, dpi=200)
     plt.close(fig)
     log.info("wrote %s + .png", pdf_path)
     return pdf_path

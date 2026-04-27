@@ -70,16 +70,18 @@ def render_gobp_dotplot(
                     edgecolors="white", linewidths=0.4)
 
     ax.set_xticks(range(len(dims)))
-    ax.set_xticklabels([f"d{d}" for d in dims], fontsize=7)
+    ax.set_xticklabels([f"d{d}" for d in dims], fontsize=9)
     ax.set_yticks(range(len(terms)))
-    # Truncate term names so they fit
-    ax.set_yticklabels([_pretty_term(t)[:62] for t in terms], fontsize=6)
+    # Truncate term names. With the case figure left margin now 0.18
+    # (≈2.9 in label space at 16-in width) and 9-pt sans, ~60 chars fit
+    # comfortably without colliding into the plot area.
+    ax.set_yticklabels([_pretty_term(t)[:60] for t in terms], fontsize=9)
     ax.set_xlim(-0.5, len(dims) - 0.5)
     ax.set_ylim(-0.5, len(terms) - 0.5)
     ax.invert_yaxis()  # best-padj at top
-    ax.set_xlabel("latent dim", fontsize=7)
-    ax.set_title(title, pad=4)
-    ax.tick_params(axis="x", labelsize=7)
+    ax.set_xlabel("latent dim", fontsize=9)
+    ax.set_title(title, pad=6, fontsize=11)
+    ax.tick_params(axis="x", labelsize=9)
     ax.grid(True, color="#E2E8F0", linewidth=0.4, alpha=0.6, zorder=0)
     ax.set_axisbelow(True)
     for s in ax.spines.values():
@@ -88,8 +90,8 @@ def render_gobp_dotplot(
 
     # Inline colorbar (small, top-right) and size legend
     cbar = ax.figure.colorbar(sc, ax=ax, fraction=0.018, shrink=0.55, pad=0.006)
-    cbar.ax.tick_params(labelsize=6)
-    cbar.set_label("-log10(padj)", fontsize=6)
+    cbar.ax.tick_params(labelsize=8)
+    cbar.set_label("-log10(padj)", fontsize=8)
 
     # Size legend overlay (lower-right corner)
     sample_pcts = [0.05, 0.15, 0.30]
@@ -99,7 +101,7 @@ def render_gobp_dotplot(
         for p in sample_pcts
     ]
     ax.legend(handles=handles, loc="lower right", title="overlap",
-              fontsize=6, title_fontsize=6, frameon=False, handlelength=1.2,
+              fontsize=8, title_fontsize=8, frameon=False, handlelength=1.2,
               labelspacing=0.4, borderpad=0.2)
 
 

@@ -15,7 +15,7 @@ log = logging.getLogger(__name__)
 
 def preprocess_scrna(
     adata: ad.AnnData,
-    n_top_genes: int = 2000,
+    n_top_genes: int = 5000,
     n_pcs: int = 50,
     subsample: int | None = None,
 ) -> ad.AnnData:

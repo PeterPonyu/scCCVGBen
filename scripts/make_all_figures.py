@@ -47,6 +47,10 @@ class FigureSpec:
     output_glob: str
     target_n: int
     count_kind: str
+    # Extra CLI args appended after --out-dir (and --partial-ok if requested).
+    # Used for scripts that render multiple canonical figures from one module
+    # (e.g. make_ablation_pair.py drives fig05/06/07).
+    extra_argv: tuple[str, ...] = ()
 
 
 REGISTRY: tuple[FigureSpec, ...] = (
@@ -54,16 +58,37 @@ REGISTRY: tuple[FigureSpec, ...] = (
                "fig1_scCCVGBen_site*.pdf", 0, "static"),
     FigureSpec("fig02", "scripts.make_figure2_model_architecture",
                "fig2_scCCVGBen_model_architecture*.pdf", 0, "static"),
+    # Canonical ablation-pair figures (CenVAE / CouVAE / GAT-VAE vs VAE).
+    # All three share make_ablation_pair.py with --pair / --out flags.
+    FigureSpec("fig05", "scripts.make_ablation_pair", "fig05.pdf",
+               100, "pair_sweep_linear",
+               extra_argv=("--pair", "Linear_pair", "--out", "fig05")),
+    FigureSpec("fig06", "scripts.make_ablation_pair", "fig06.pdf",
+               100, "pair_sweep_couvae",
+               extra_argv=("--pair", "CouVAE_pair", "--out", "fig06")),
+    FigureSpec("fig07", "scripts.make_ablation_pair", "fig07.pdf",
+               100, "pair_sweep_vgae",
+               extra_argv=("--pair", "VGAE_pair", "--out", "fig07")),
+    # CCVGAE composite (flagship vs three pair variants).
+    FigureSpec("fig08", "scripts.make_fig08_ccvgae_composite", "fig08.pdf",
+               100, "pair_sweep_any", extra_argv=("--out", "fig08")),
     FigureSpec("axisA", "scripts.make_axisA_figure",
                "fig_axisA_encoder_ranking*.pdf", 100, "encoder_sweep"),
     FigureSpec("axisB", "scripts.make_axisB_figure",
                "fig_axisB_graph_robustness*.pdf", 100, "graph_sweep"),
     FigureSpec("axisC", "scripts.make_axisC_figure",
                "fig_axisC_baselines*.pdf", 200, "reconciled_all"),
-    FigureSpec("fig08", "scripts.make_fig08_scrna_benchmark",
+    FigureSpec("fig09", "scripts.make_fig08_scrna_benchmark",
                "fig08_scrna_benchmark*.pdf", 100, "reconciled_scrna"),
-    FigureSpec("fig09", "scripts.make_fig09_scatac_benchmark",
+    FigureSpec("fig10", "scripts.make_fig09_scatac_benchmark",
                "fig09_scatac_benchmark*.pdf", 100, "reconciled_scatac"),
+    # Bio-validation paired cases — six cases stitched into three figures.
+    FigureSpec("fig11", "scripts.make_biovalidation_pairs", "fig11.pdf",
+               2, "biovalidation_pair", extra_argv=("--pairs", "fig11")),
+    FigureSpec("fig12", "scripts.make_biovalidation_pairs", "fig12.pdf",
+               2, "biovalidation_pair", extra_argv=("--pairs", "fig12")),
+    FigureSpec("fig13", "scripts.make_biovalidation_pairs", "fig13.pdf",
+               2, "biovalidation_pair", extra_argv=("--pairs", "fig13")),
 )
 
 
@@ -111,6 +136,17 @@ def _count_csvs(path: Path, *, modality: str | None = None) -> int:
     return len(files & keep) if keep else len(files)
 
 
+def _count_pair_sweep(pair_name: str) -> int:
+    """Count datasets that have BOTH series + tables CSVs in pair_sweep/{pair}/."""
+    base = REPO_ROOT / "results" / "pair_sweep" / pair_name
+    series_dir, tables_dir = base / "series", base / "tables"
+    if not series_dir.is_dir() or not tables_dir.is_dir():
+        return 0
+    series_keys = {p.stem.removesuffix("_dfs") for p in series_dir.glob("*_dfs.csv")}
+    tables_keys = {p.stem.removesuffix("_df") for p in tables_dir.glob("*_df.csv")}
+    return len(series_keys & tables_keys)
+
+
 def _observed_n(spec: FigureSpec) -> int:
     if spec.count_kind == "static":
         return spec.target_n
@@ -129,6 +165,20 @@ def _observed_n(spec: FigureSpec) -> int:
             _count_csvs(REPO_ROOT / "results" / "reconciled" / "scrna", modality="scrna")
             + _count_csvs(REPO_ROOT / "results" / "reconciled" / "scatac", modality="scatac")
         )
+    if spec.count_kind == "pair_sweep_linear":
+        return _count_pair_sweep("Linear_pair")
+    if spec.count_kind == "pair_sweep_couvae":
+        return _count_pair_sweep("CouVAE_pair")
+    if spec.count_kind == "pair_sweep_vgae":
+        return _count_pair_sweep("VGAE_pair")
+    if spec.count_kind == "pair_sweep_any":
+        return min(_count_pair_sweep("Linear_pair"),
+                   _count_pair_sweep("CouVAE_pair"),
+                   _count_pair_sweep("VGAE_pair"))
+    if spec.count_kind == "biovalidation_pair":
+        # Count case payload PDFs available in figures/biovalidation/
+        bio = REPO_ROOT / "figures" / "biovalidation"
+        return len(list(bio.glob("fig_biovalidation_case_*.pdf"))) if bio.is_dir() else 0
     return 0
 
 
@@ -149,8 +199,9 @@ def _run_one(
         _reset_state()
         module = importlib.import_module(spec.script)
         argv: list[str] = ["--out-dir", str(out_dir)]
-        if partial_ok:
+        if partial_ok and "--partial-ok" not in spec.extra_argv:
             argv.append("--partial-ok")
+        argv.extend(spec.extra_argv)
         buf_out, buf_err = io.StringIO(), io.StringIO()
         with redirect_stdout(buf_out), redirect_stderr(buf_err):
             rc = module.main(argv)
@@ -195,8 +246,9 @@ def _run_subprocess(
     import subprocess
     cmd = [sys.executable, str(REPO_ROOT / "scripts" / _module_basename(spec.script)),
            "--out-dir", str(out_dir)]
-    if partial_ok:
+    if partial_ok and "--partial-ok" not in spec.extra_argv:
         cmd.append("--partial-ok")
+    cmd.extend(spec.extra_argv)
     try:
         proc = subprocess.run(cmd, capture_output=True, text=True, check=False)
         duration = time.perf_counter() - start

@@ -57,8 +57,12 @@ CASES: dict[str, CaseSpec] = {
         theme="legacy",
         h5ad_path=_LEGACY_RESULTS / "SubSampledUCB.h5ad",
         accession="legacy-reference/UCB",
-        condition_obs="L0",
-        cell_type_obs="L4",
+        # SubSampledUCB.h5ad has only 'batch' (5 levels) as a categorical
+        # column; L0..L9 are continuous latent embeddings (~2900 unique
+        # floats). Using L0/L4 produces "2962 categories" violins which
+        # are visually meaningless. Fall back to leiden for cell_type.
+        condition_obs="batch",
+        cell_type_obs=None,
         notes="Hematopoietic differentiation. Legacy-reference fig12.",
     ),
     "IR": CaseSpec(
@@ -78,7 +82,9 @@ CASES: dict[str, CaseSpec] = {
         theme="cancer",
         h5ad_path=_LOCAL / "GSE183904_GastricHmCancer.h5ad",
         accession="GSE183904",
-        condition_obs=None,
+        # 15 batches available — use as condition. cell_type leiden-fallback
+        # since the public h5ad has no cell-type annotation.
+        condition_obs="batch",
         cell_type_obs=None,
         notes="Cancer / TME — new theme.",
     ),
