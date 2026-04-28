@@ -5,18 +5,17 @@ Input  : figures/site_shots/{home,datasets,methods,metrics,dataset-detail}.png
 Output : figures/fig1_scCCVGBen_site.{png,pdf}
 
 The compositor adds explicit A-H panel labels in visual reading order, crops
-each screenshot to the article content, trims excess white margins, and
-preserves screenshot aspect ratios so typography is not stretched in the final
-paper figure. Capture the source pages with a desktop viewport (for example
-1800×4600, device scale 1) and the site's xlarge text-scale option when
-regenerating the composed figure.
+each screenshot to the article content, trims excess white margins, and lays
+the panels out in three wide columns so the captured page content remains
+legible after the figure is scaled to manuscript text width. Capture the source
+pages with a desktop viewport (for example 1800×4600, device scale 1) and the
+site's xlarge text-scale option when regenerating the composed figure.
 """
 from __future__ import annotations
 
 import argparse
 from dataclasses import dataclass
 from pathlib import Path
-from textwrap import wrap
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
@@ -28,32 +27,30 @@ DEFAULT_SHOTS = ROOT / "figures" / "site_shots"
 DEFAULT_OUT_DIR = ROOT / "figures"
 
 DPI = 300
-CARD_WIDTH = 1740
-CARD_PAD = 34
-TITLE_HEIGHT = 270
-TITLE_FONT_PX = 88
-CALLOUT_FONT_PX = 48
-HEADER_HEIGHT = 270
-HEADER_TITLE_FONT_PX = 102
-HEADER_BODY_FONT_PX = 52
-BADGE_FONT_PX = 46
-GAP_X = 34
-GAP_Y = 30
-CANVAS_PAD = 26
+CARD_WIDTH = 1900
+CARD_PAD = 28
+TITLE_HEIGHT = 134
+TITLE_FONT_PX = 78
+HEADER_HEIGHT = 170
+HEADER_TITLE_FONT_PX = 92
+BADGE_FONT_PX = 60
+BADGE_GAP_PX = 30
+GAP_X = 28
+GAP_Y = 26
+CANVAS_PAD = 22
 MIN_DESKTOP_SHOT_WIDTH = 1400
 MIN_RIGHT_SIDE_CONTENT_PIXELS = 500
-# Four visual columns keep the first row in the natural manuscript sequence
-# (A-D: overview, composition, metadata distributions, dataset index).
-# The second-row pairings are balanced by screenshot height, and panel letters
-# are assigned row-major so the figure reads A-B-C-D / E-F-G-H.
-COLUMN_ORDER = ((0, 6), (1, 4), (2, 5), (3, 7))
+# Three visual columns keep each screenshot larger after the composed figure is
+# scaled to manuscript text width.  Row-major labels match the caption:
+# A-C homepage sections, D dataset index, E dataset detail, F method catalogue,
+# G method detail, H metric taxonomy.
+COLUMN_ORDER = ((0, 3, 7), (1, 6, 5), (2, 4))
 
 
 @dataclass(frozen=True)
 class Panel:
     image: str
     title: str
-    callout: str
     crop: tuple[float, float, float, float]
     accent: str
 
@@ -61,30 +58,22 @@ class Panel:
 PANELS = [
     # Home captures use a tall 1800×4600 viewport so source-page typography can stay
     # large while the composition/metadata panels are cropped to their own sections.
-    Panel("home.png", "Benchmark overview",
-            "Landing-page KPIs frame the 200-dataset benchmark before readers enter registries.",
-            (0.240, 0.005, 1.000, 0.260), "#1f5f9f"),
-    Panel("home.png", "Tissue and species composition",
-            "Coverage summaries expose tissue, species, modality, and study-balance structure.",
-            (0.255, 0.257, 0.990, 0.380), "#24989f"),
-    Panel("home.png", "Metadata distributions (4 charts)",
-            "Distribution panels make scale and metadata skew visible without leaving the overview.",
-            (0.252, 0.515, 0.985, 0.745), "#5a7d2f"),
-    Panel("datasets.png", "Dataset index with filters",
-            "Searchable dataset cards connect GEO provenance, modality, organism, tissue, and task tags.",
-            (0.240, 0.010, 1.000, 0.195), "#b7791f"),
-    Panel("methods.png", "Method catalog (32 clickable cards)",
-            "Method registry contrasts baseline families and scCCVGBen encoder/graph variants.",
-            (0.240, 0.010, 1.000, 0.375), "#7a5ab8"),
-    Panel("metrics.png", "Metric registry and definitions",
-            "BEN, DRE, and LSE are documented while publication panels use curated display metrics.",
-            (0.240, 0.010, 1.000, 0.340), "#b54848"),
-    Panel("dataset-detail.png", "Per-dataset detail page",
-            "Detail pages preserve dataset-level audit trails for capture, labels, and benchmark context.",
-            (0.240, 0.010, 1.000, 0.315), "#24989f"),
-    Panel("method-detail.png", "Per-method detail page",
-            "Method pages summarize implementation choices so benchmark comparisons remain traceable.",
-            (0.240, 0.010, 1.000, 0.300), "#7a5ab8"),
+    Panel("home.png", "Atlas entry point",
+          (0.245, 0.000, 1.000, 0.176), "#1f5f9f"),
+    Panel("home.png", "Cohort balance view",
+          (0.245, 0.180, 1.000, 0.330), "#24989f"),
+    Panel("home.png", "Scale audit charts",
+          (0.245, 0.428, 1.000, 0.673), "#5a7d2f"),
+    Panel("datasets.png", "Dataset browser",
+          (0.240, 0.010, 1.000, 0.195), "#b7791f"),
+    Panel("methods.png", "Comparator registry",
+          (0.240, 0.010, 1.000, 0.345), "#7a5ab8"),
+    Panel("metrics.png", "Metric taxonomy",
+          (0.240, 0.010, 1.000, 0.340), "#b54848"),
+    Panel("dataset-detail.png", "Dataset audit trail",
+          (0.240, 0.010, 1.000, 0.270), "#24989f"),
+    Panel("method-detail.png", "Method audit trail",
+          (0.240, 0.010, 1.000, 0.255), "#7a5ab8"),
 ]
 
 
@@ -169,48 +158,6 @@ def _trim_white(
     return img.crop((left, top, right, bottom))
 
 
-def _wrapped_lines(
-    draw: ImageDraw.ImageDraw,
-    text: str,
-    font: ImageFont.FreeTypeFont | ImageFont.ImageFont,
-    max_width: int,
-) -> list[str]:
-    """Wrap text by rendered width so callouts remain readable on export."""
-    words = text.split()
-    lines: list[str] = []
-    current: list[str] = []
-    for word in words:
-        candidate = " ".join([*current, word])
-        if draw.textbbox((0, 0), candidate, font=font)[2] <= max_width:
-            current.append(word)
-            continue
-        if current:
-            lines.append(" ".join(current))
-        current = [word]
-    if current:
-        lines.append(" ".join(current))
-    return lines
-
-
-def _draw_callout(
-    draw: ImageDraw.ImageDraw,
-    xy: tuple[int, int],
-    text: str,
-    *,
-    font: ImageFont.FreeTypeFont | ImageFont.ImageFont,
-    max_width: int,
-    fill: str = "#3b465c",
-    line_gap: int = 8,
-) -> int:
-    x, y = xy
-    height = 0
-    for line in _wrapped_lines(draw, text, font, max_width):
-        draw.text((x, y + height), line, font=font, fill=fill)
-        bbox = draw.textbbox((x, y + height), line, font=font)
-        height += int(bbox[3] - bbox[1]) + line_gap
-    return max(0, height - line_gap)
-
-
 def _panel_card(panel: Panel, shots_dir: Path, label: str) -> Image.Image:
     img = _trim_white(_crop_fraction(_load(shots_dir, panel.image), panel.crop))
     content_w = CARD_WIDTH - CARD_PAD * 2
@@ -259,13 +206,9 @@ def _panel_card(panel: Panel, shots_dir: Path, label: str) -> Image.Image:
         font=_font(TITLE_FONT_PX, bold=True),
         fill="#172033",
     )
-    _draw_callout(
-        draw,
-        (CARD_PAD, 128),
-        panel.callout,
-        font=_font(CALLOUT_FONT_PX),
-        max_width=content_w,
-    )
+    # Per-panel callout prose is omitted: the captured screenshot already
+    # carries an in-page H1 / lede so a second sentence above the image only
+    # duplicates information. Text moved to the LaTeX figure caption.
     card.paste(img, (CARD_PAD, TITLE_HEIGHT))
     return card
 
@@ -315,23 +258,16 @@ def _draw_header(draw: ImageDraw.ImageDraw, x: int, y: int, width: int) -> None:
         width=1,
     )
     text_x = x + 42
+    title_y = y + (HEADER_HEIGHT - HEADER_TITLE_FONT_PX) // 2 - 6
     draw.text(
-        (text_x, y + 36),
+        (text_x, title_y),
         "Interactive scCCVGBen benchmark atlas",
         font=_font(HEADER_TITLE_FONT_PX, bold=True),
         fill="#13213a",
     )
-    body = (
-        "A multi-page website mosaic links dataset provenance, method registry, "
-        "metric families, and drill-down audit trails used by the benchmark."
-    )
-    for line_idx, line in enumerate(wrap(body, width=84)):
-        draw.text(
-            (text_x, y + 132 + line_idx * 58),
-            line,
-            font=_font(HEADER_BODY_FONT_PX),
-            fill="#3b465c",
-        )
+    # Long descriptive subtitle moved to the LaTeX figure caption per
+    # paper-layout policy. The header now carries only the title plus
+    # the colored count badges below.
 
     badges = [
         ("200 datasets", "#1f5f9f"),
@@ -343,8 +279,10 @@ def _draw_header(draw: ImageDraw.ImageDraw, x: int, y: int, width: int) -> None:
         draw.textbbox((0, 0), label, font=_font(BADGE_FONT_PX, bold=True))[2] + 48
         for label, _ in badges
     ]
-    badge_x = x + width - sum(badge_widths) - 20 * (len(badges) - 1) - 42
-    badge_y = y + HEADER_HEIGHT - 76
+    badge_x = x + width - sum(badge_widths) - BADGE_GAP_PX * (len(badges) - 1) - 42
+    # Badge row vertically centered against the title baseline; pulls in
+    # close to the title now that the header is shorter.
+    badge_y = y + (HEADER_HEIGHT - 70) // 2
     for (label, color), badge_w in zip(badges, badge_widths, strict=True):
         draw.rounded_rectangle(
             (badge_x, badge_y, badge_x + badge_w, badge_y + 58),
@@ -359,7 +297,7 @@ def _draw_header(draw: ImageDraw.ImageDraw, x: int, y: int, width: int) -> None:
             font=_font(BADGE_FONT_PX, bold=True),
             fill="white",
         )
-        badge_x += badge_w + 20
+        badge_x += badge_w + BADGE_GAP_PX
 
 
 def _build_canvas(shots_dir: Path) -> Image.Image:
