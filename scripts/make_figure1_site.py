@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 from dataclasses import dataclass
 from pathlib import Path
+from textwrap import wrap
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
@@ -28,16 +29,18 @@ DEFAULT_OUT_DIR = ROOT / "figures"
 
 DPI = 300
 CARD_WIDTH = 1900
-CARD_PAD = 28
-TITLE_HEIGHT = 134
-TITLE_FONT_PX = 78
-HEADER_HEIGHT = 170
-HEADER_TITLE_FONT_PX = 92
-BADGE_FONT_PX = 60
-BADGE_GAP_PX = 30
-GAP_X = 28
-GAP_Y = 26
-CANVAS_PAD = 22
+CARD_PAD = 18
+TITLE_HEIGHT = 124
+TITLE_FONT_PX = 100
+CALLOUT_FONT_PX = 48
+HEADER_HEIGHT = 210
+HEADER_TITLE_FONT_PX = 104
+HEADER_BODY_FONT_PX = 58
+BADGE_FONT_PX = 68
+BADGE_GAP_PX = 22
+GAP_X = 16
+GAP_Y = 12
+CANVAS_PAD = 12
 MIN_DESKTOP_SHOT_WIDTH = 1400
 MIN_RIGHT_SIDE_CONTENT_PIXELS = 500
 # Three visual columns keep each screenshot larger after the composed figure is
@@ -51,6 +54,7 @@ COLUMN_ORDER = ((0, 3, 7), (1, 6, 5), (2, 4))
 class Panel:
     image: str
     title: str
+    callout: str
     crop: tuple[float, float, float, float]
     accent: str
 
@@ -58,22 +62,24 @@ class Panel:
 PANELS = [
     # Home captures use a tall 1800×4600 viewport so source-page typography can stay
     # large while the composition/metadata panels are cropped to their own sections.
-    Panel("home.png", "Atlas entry point",
-          (0.245, 0.000, 1.000, 0.176), "#1f5f9f"),
-    Panel("home.png", "Cohort balance view",
-          (0.245, 0.180, 1.000, 0.330), "#24989f"),
-    Panel("home.png", "Scale audit charts",
-          (0.245, 0.428, 1.000, 0.673), "#5a7d2f"),
-    Panel("datasets.png", "Dataset browser",
-          (0.240, 0.010, 1.000, 0.195), "#b7791f"),
-    Panel("methods.png", "Comparator registry",
-          (0.240, 0.010, 1.000, 0.345), "#7a5ab8"),
-    Panel("metrics.png", "Metric taxonomy",
-          (0.240, 0.010, 1.000, 0.340), "#b54848"),
-    Panel("dataset-detail.png", "Dataset audit trail",
-          (0.240, 0.010, 1.000, 0.270), "#24989f"),
-    Panel("method-detail.png", "Method audit trail",
-          (0.240, 0.010, 1.000, 0.255), "#7a5ab8"),
+    # Y-fractions are anchored to homepage section headers so future copy edits
+    # do not silently shift the panel boundaries.
+    Panel("home.png", "Atlas entry point", "",
+          (0.245, 0.000, 1.000, 0.165), "#1f5f9f"),
+    Panel("home.png", "Cohort balance view", "",
+          (0.245, 0.180, 1.000, 0.300), "#24989f"),
+    Panel("home.png", "Scale audit charts", "",
+          (0.245, 0.428, 1.000, 0.652), "#5a7d2f"),
+    Panel("datasets.png", "Dataset browser", "",
+          (0.240, 0.010, 1.000, 0.176), "#b7791f"),
+    Panel("methods.png", "Comparator registry", "",
+          (0.240, 0.010, 1.000, 0.318), "#7a5ab8"),
+    Panel("metrics.png", "Metric taxonomy", "",
+          (0.240, 0.010, 1.000, 0.300), "#b54848"),
+    Panel("dataset-detail.png", "Dataset audit trail", "",
+          (0.240, 0.010, 1.000, 0.232), "#24989f"),
+    Panel("method-detail.png", "Method audit trail", "",
+          (0.240, 0.010, 1.000, 0.235), "#7a5ab8"),
 ]
 
 
@@ -137,7 +143,7 @@ def _crop_fraction(img: Image.Image, crop: tuple[float, float, float, float]) ->
 
 def _trim_white(
     img: Image.Image,
-    pad: int = 26,
+    pad: int = 14,
     threshold: int = 236,
     min_density: float = 0.006,
 ) -> Image.Image:
@@ -156,6 +162,48 @@ def _trim_white(
     right = min(img.width, int(xs.max()) + pad + 1)
     bottom = min(img.height, int(ys.max()) + pad + 1)
     return img.crop((left, top, right, bottom))
+
+
+def _wrapped_lines(
+    draw: ImageDraw.ImageDraw,
+    text: str,
+    font: ImageFont.FreeTypeFont | ImageFont.ImageFont,
+    max_width: int,
+) -> list[str]:
+    """Wrap text by rendered width so callouts remain readable on export."""
+    words = text.split()
+    lines: list[str] = []
+    current: list[str] = []
+    for word in words:
+        candidate = " ".join([*current, word])
+        if draw.textbbox((0, 0), candidate, font=font)[2] <= max_width:
+            current.append(word)
+            continue
+        if current:
+            lines.append(" ".join(current))
+        current = [word]
+    if current:
+        lines.append(" ".join(current))
+    return lines
+
+
+def _draw_callout(
+    draw: ImageDraw.ImageDraw,
+    xy: tuple[int, int],
+    text: str,
+    *,
+    font: ImageFont.FreeTypeFont | ImageFont.ImageFont,
+    max_width: int,
+    fill: str = "#3b465c",
+    line_gap: int = 8,
+) -> int:
+    x, y = xy
+    height = 0
+    for line in _wrapped_lines(draw, text, font, max_width):
+        draw.text((x, y + height), line, font=font, fill=fill)
+        bbox = draw.textbbox((x, y + height), line, font=font)
+        height += int(bbox[3] - bbox[1]) + line_gap
+    return max(0, height - line_gap)
 
 
 def _panel_card(panel: Panel, shots_dir: Path, label: str) -> Image.Image:
@@ -181,15 +229,15 @@ def _panel_card(panel: Panel, shots_dir: Path, label: str) -> Image.Image:
         outline=panel.accent,
         width=1,
     )
-    label_box = (CARD_PAD, 24, CARD_PAD + 90, 114)
+    label_box = (CARD_PAD, 14, CARD_PAD + 104, 116)
     draw.rounded_rectangle(
         label_box,
-        radius=12,
+        radius=14,
         fill=panel.accent,
         outline=panel.accent,
         width=1,
     )
-    label_font = _font(76, bold=True)
+    label_font = _font(86, bold=True)
     lb = draw.textbbox((0, 0), label, font=label_font)
     draw.text(
         (
@@ -201,7 +249,7 @@ def _panel_card(panel: Panel, shots_dir: Path, label: str) -> Image.Image:
         fill="white",
     )
     draw.text(
-        (CARD_PAD + 118, 18),
+        (CARD_PAD + 132, 10),
         panel.title,
         font=_font(TITLE_FONT_PX, bold=True),
         fill="#172033",
@@ -258,17 +306,15 @@ def _draw_header(draw: ImageDraw.ImageDraw, x: int, y: int, width: int) -> None:
         width=1,
     )
     text_x = x + 42
-    title_y = y + (HEADER_HEIGHT - HEADER_TITLE_FONT_PX) // 2 - 6
+    title_y = y + 22
     draw.text(
         (text_x, title_y),
         "Interactive scCCVGBen benchmark atlas",
         font=_font(HEADER_TITLE_FONT_PX, bold=True),
         fill="#13213a",
     )
-    # Long descriptive subtitle moved to the LaTeX figure caption per
-    # paper-layout policy. The header now carries only the title plus
-    # the colored count badges below.
 
+    # Count badges sit on the same row as the title (right-aligned).
     badges = [
         ("200 datasets", "#1f5f9f"),
         ("32 methods", "#7a5ab8"),
@@ -280,9 +326,7 @@ def _draw_header(draw: ImageDraw.ImageDraw, x: int, y: int, width: int) -> None:
         for label, _ in badges
     ]
     badge_x = x + width - sum(badge_widths) - BADGE_GAP_PX * (len(badges) - 1) - 42
-    # Badge row vertically centered against the title baseline; pulls in
-    # close to the title now that the header is shorter.
-    badge_y = y + (HEADER_HEIGHT - 70) // 2
+    badge_y = y + (HEADER_HEIGHT - 58) // 2
     for (label, color), badge_w in zip(badges, badge_widths, strict=True):
         draw.rounded_rectangle(
             (badge_x, badge_y, badge_x + badge_w, badge_y + 58),
@@ -300,13 +344,36 @@ def _draw_header(draw: ImageDraw.ImageDraw, x: int, y: int, width: int) -> None:
         badge_x += badge_w + BADGE_GAP_PX
 
 
+def _balance_columns(cards: list[Image.Image], n_cols: int = 4,
+                     per_col: int = 2) -> list[list[Image.Image]]:
+    """Greedy LPT packing — assign tallest cards first to the shortest column,
+    capped at ``per_col`` cards per column.  Keeps per-card label mapping intact
+    while eliminating the long trailing whitespace that fixed pairings create
+    when card heights are very unequal."""
+    indexed = sorted(range(len(cards)), key=lambda i: cards[i].height, reverse=True)
+    cols: list[list[int]] = [[] for _ in range(n_cols)]
+    heights = [0] * n_cols
+    for idx in indexed:
+        eligible = [c for c in range(n_cols) if len(cols[c]) < per_col]
+        target = min(eligible, key=lambda c: heights[c])
+        cols[target].append(idx)
+        heights[target] += cards[idx].height
+    # Sort each column top-down by original panel order so the reading flow
+    # within a column still tracks the source PANELS sequence, then sort the
+    # columns themselves left-to-right by the top card's panel index so the
+    # row-1 reading order remains roughly A→D.
+    sorted_cols = [sorted(col) for col in cols if col]
+    sorted_cols.sort(key=lambda col: col[0])
+    return [[cards[i] for i in col] for col in sorted_cols]
+
+
 def _build_canvas(shots_dir: Path) -> Image.Image:
     labels = _visual_labels(COLUMN_ORDER)
     cards = [
         _panel_card(panel, shots_dir, labels[idx])
         for idx, panel in enumerate(PANELS)
     ]
-    columns = [[cards[i] for i in order] for order in COLUMN_ORDER]
+    columns = [[cards[idx] for idx in column] for column in COLUMN_ORDER]
     col_heights = [_column_height(column) for column in columns]
     target_col_height = max(col_heights)
 
@@ -330,11 +397,17 @@ def _build_canvas(shots_dir: Path) -> Image.Image:
     for col_idx, column in enumerate(columns):
         x = x_start + col_idx * (CARD_WIDTH + GAP_X)
         y = CANVAS_PAD + HEADER_HEIGHT + GAP_Y
+        # Distribute per-column slack into inter-card gaps so shorter columns
+        # end flush with the canvas bottom (no trailing whitespace band).
+        cards_height = sum(card.height for card in column)
+        n_gaps = max(1, len(column) - 1)
+        slack = target_col_height - cards_height - GAP_Y * n_gaps
+        extra_per_gap = max(0, slack // n_gaps) if len(column) > 1 else 0
         for card_idx, card in enumerate(column):
             canvas.paste(card, (x, y))
             y += card.height
             if card_idx < len(column) - 1:
-                y += GAP_Y
+                y += GAP_Y + extra_per_gap
 
     return canvas
 

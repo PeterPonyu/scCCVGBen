@@ -1,35 +1,35 @@
 {
-  "built_at": "2026-04-26T15:49:38.830634+00:00",
+  "built_at": "2026-04-29T05:11:51.085134+00:00",
   "total_datasets": 200,
+  "restricted_datasets": 6,
   "modality": {
     "scRNA": 100,
     "scATAC": 100
   },
   "species": {
-    "human": 120,
-    "mouse": 49,
-    "nan": 24,
+    "human": 133,
+    "mouse": 60,
     "zebrafish": 5,
     "rat": 1,
     "pig": 1
   },
   "tissue_top10": {
-    "blood": 30,
-    "nan": 24,
+    "blood": 36,
     "other": 24,
+    "unknown": 20,
     "tumor": 19,
     "lung": 18,
     "brain": 12,
     "stem_cell": 10,
-    "liver": 9,
     "bone_marrow": 9,
+    "liver": 9,
     "retina": 7
   },
   "species_modality": [
     {
       "species": "human",
       "modality": "scATAC",
-      "count": 41
+      "count": 54
     },
     {
       "species": "human",
@@ -39,17 +39,12 @@
     {
       "species": "mouse",
       "modality": "scATAC",
-      "count": 30
+      "count": 41
     },
     {
       "species": "mouse",
       "modality": "scRNA",
       "count": 19
-    },
-    {
-      "species": "nan",
-      "modality": "scATAC",
-      "count": 24
     },
     {
       "species": "pig",
@@ -91,7 +86,7 @@
     {
       "tissue": "blood",
       "modality": "scATAC",
-      "count": 22
+      "count": 28
     },
     {
       "tissue": "blood",
@@ -182,11 +177,6 @@
       "tissue": "muscle",
       "modality": "scRNA",
       "count": 3
-    },
-    {
-      "tissue": "nan",
-      "modality": "scATAC",
-      "count": 24
     },
     {
       "tissue": "neural",
@@ -290,19 +280,25 @@
     },
     {
       "tissue": "unknown",
+      "modality": "scATAC",
+      "count": 18
+    },
+    {
+      "tissue": "unknown",
       "modality": "scRNA",
       "count": 2
     }
   ],
   "cell_count_range": {
-    "min": 0,
-    "median": 8003,
+    "min": 585,
+    "median": 8639,
     "max": 737280
   },
+  "cell_count_missing": 18,
   "cell_count_hist": [
     {
       "bin": "<1k",
-      "count": 26
+      "count": 2
     },
     {
       "bin": "1–3k",
@@ -310,7 +306,7 @@
     },
     {
       "bin": "3–10k",
-      "count": 89
+      "count": 95
     },
     {
       "bin": "10–30k",

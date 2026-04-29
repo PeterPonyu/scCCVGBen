@@ -1,0 +1,1400 @@
+{
+  "version": 5,
+  "case_id": "SD",
+  "title": "Sleep deprivation",
+  "theme": "reference",
+  "accession": "Reference subset SD",
+  "encoder": "GAT",
+  "condition_obs": "batch",
+  "cell_type_obs": "cell_type",
+  "condition_is_inferred": false,
+  "cell_type_is_inferred": false,
+  "n_obs": 3000,
+  "n_obs_subsampled": 3000,
+  "n_vars_post_hvg": 2000,
+  "condition_latent": {
+    "dims": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "conditions": [
+      {
+        "label": "wt",
+        "raw_label": "wt",
+        "n": 1548
+      },
+      {
+        "label": "sd",
+        "raw_label": "sd",
+        "n": 1452
+      }
+    ],
+    "records": [
+      {
+        "dim": 0,
+        "condition": "wt",
+        "raw_condition": "wt",
+        "n": 1548,
+        "median_z": 0.006820680062381627,
+        "q25_z": -0.5249383405455736,
+        "q75_z": 0.8469659757936306,
+        "median_raw": -0.7088071405887604
+      },
+      {
+        "dim": 0,
+        "condition": "sd",
+        "raw_condition": "sd",
+        "n": 1452,
+        "median_z": -0.007579930191074303,
+        "q25_z": -0.5583202177853452,
+        "q75_z": 0.7847819348705333,
+        "median_raw": -0.739976555109024
+      },
+      {
+        "dim": 1,
+        "condition": "wt",
+        "raw_condition": "wt",
+        "n": 1548,
+        "median_z": 0.01303019189920188,
+        "q25_z": -0.8375678289927292,
+        "q75_z": 0.5228358740325632,
+        "median_raw": 0.2379922792315483
+      },
+      {
+        "dim": 1,
+        "condition": "sd",
+        "raw_condition": "sd",
+        "n": 1452,
+        "median_z": -0.05608060711775355,
+        "q25_z": -0.9369451729393502,
+        "q75_z": 0.43571233661457587,
+        "median_raw": 0.1756308749318123
+      },
+      {
+        "dim": 2,
+        "condition": "wt",
+        "raw_condition": "wt",
+        "n": 1548,
+        "median_z": -0.02304124075148333,
+        "q25_z": -0.9466735479763788,
+        "q75_z": 0.5611956890972545,
+        "median_raw": 0.5269797146320343
+      },
+      {
+        "dim": 2,
+        "condition": "sd",
+        "raw_condition": "sd",
+        "n": 1452,
+        "median_z": 0.026323011555784023,
+        "q25_z": -0.8110764551341874,
+        "q75_z": 0.3770469211790862,
+        "median_raw": 0.6261117160320282
+      },
+      {
+        "dim": 3,
+        "condition": "wt",
+        "raw_condition": "wt",
+        "n": 1548,
+        "median_z": -0.014230184191015944,
+        "q25_z": -0.19556091849353405,
+        "q75_z": 1.1596830816720343,
+        "median_raw": -1.3012622594833374
+      },
+      {
+        "dim": 3,
+        "condition": "sd",
+        "raw_condition": "sd",
+        "n": 1452,
+        "median_z": 0.02170624602562938,
+        "q25_z": -0.19755268238881285,
+        "q75_z": 1.1454025861614245,
+        "median_raw": -1.2189019322395325
+      },
+      {
+        "dim": 4,
+        "condition": "wt",
+        "raw_condition": "wt",
+        "n": 1548,
+        "median_z": 0.01374317615163841,
+        "q25_z": -0.7920998909456564,
+        "q75_z": 0.5862197962636181,
+        "median_raw": 1.0420545935630798
+      },
+      {
+        "dim": 4,
+        "condition": "sd",
+        "raw_condition": "sd",
+        "n": 1452,
+        "median_z": -0.01375345777848171,
+        "q25_z": -0.7932296307780528,
+        "q75_z": 0.5106650975550038,
+        "median_raw": 0.9620340466499329
+      }
+    ]
+  },
+  "latent_corr": [
+    [
+      0.9999999999999999,
+      0.2578450467376976,
+      0.14918922741649276,
+      0.25700100045191165,
+      0.6427711869358236,
+      0.7506787422138617,
+      0.2847423923030916,
+      0.16880747834585896,
+      0.5284202669048009,
+      0.6625909871523964
+    ],
+    [
+      0.2578450467376976,
+      1.0,
+      0.60762902660777,
+      0.5475457659747393,
+      0.42112321624580623,
+      0.1829868510385205,
+      0.31975236115211125,
+      0.7342169555498707,
+      0.28671484629948873,
+      0.33899749485872444
+    ],
+    [
+      0.1491892274164928,
+      0.60762902660777,
+      0.9999999999999998,
+      0.06492241712143089,
+      0.039675476719511216,
+      0.14399630989863527,
+      0.0030919630283850886,
+      0.4883789222261899,
+      0.24464323253940298,
+      0.5790798650003015
+    ],
+    [
+      0.25700100045191165,
+      0.5475457659747393,
+      0.06492241712143089,
+      1.0,
+      0.7410582428065411,
+      0.02707099544146143,
+      0.7755355178785236,
+      0.5914780006790544,
+      0.5821342939999279,
+      0.0945852834606537
+    ],
+    [
+      0.6427711869358236,
+      0.4211232162458062,
+      0.039675476719511216,
+      0.7410582428065411,
+      1.0,
+      0.25366459761936827,
+      0.4404034776915848,
+      0.3739835642458705,
+      0.19192078887642075,
+      0.3071705067144131
+    ],
+    [
+      0.7506787422138615,
+      0.18298685103852053,
+      0.14399630989863524,
+      0.02707099544146143,
+      0.25366459761936827,
+      0.9999999999999998,
+      0.36742860278129835,
+      0.4772229705593355,
+      0.5955262578878119,
+      0.3487806822866306
+    ],
+    [
+      0.2847423923030916,
+      0.3197523611521113,
+      0.003091963028385089,
+      0.7755355178785236,
+      0.44040347769158483,
+      0.36742860278129835,
+      1.0,
+      0.30170946216941247,
+      0.2613925531212821,
+      0.1019007814368743
+    ],
+    [
+      0.16880747834585896,
+      0.7342169555498707,
+      0.4883789222261899,
+      0.5914780006790544,
+      0.37398356424587054,
+      0.4772229705593355,
+      0.3017094621694124,
+      0.9999999999999999,
+      0.6625948560818817,
+      0.03769427438152732
+    ],
+    [
+      0.5284202669048009,
+      0.28671484629948873,
+      0.244643232539403,
+      0.5821342939999279,
+      0.19192078887642075,
+      0.5955262578878119,
+      0.2613925531212821,
+      0.6625948560818818,
+      1.0,
+      0.6787773793204707
+    ],
+    [
+      0.6625909871523964,
+      0.33899749485872444,
+      0.5790798650003015,
+      0.09458528346065369,
+      0.30717050671441315,
+      0.3487806822866306,
+      0.1019007814368743,
+      0.03769427438152732,
+      0.6787773793204708,
+      1.0
+    ]
+  ],
+  "top_gene_rows": [
+    {
+      "dim": 0,
+      "rank": 0,
+      "gene": "Nrg2",
+      "rho": -0.6169012581124745
+    },
+    {
+      "dim": 1,
+      "rank": 0,
+      "gene": "Syne1",
+      "rho": -0.6672969847522875
+    },
+    {
+      "dim": 2,
+      "rank": 0,
+      "gene": "Tnik",
+      "rho": 0.5083782336423532
+    },
+    {
+      "dim": 3,
+      "rank": 0,
+      "gene": "Mmp9",
+      "rho": 0.6740356119620339
+    },
+    {
+      "dim": 4,
+      "rank": 0,
+      "gene": "Mmp9",
+      "rho": -0.6690150648688571
+    },
+    {
+      "dim": 5,
+      "rank": 0,
+      "gene": "Pde4d",
+      "rho": -0.5184575866849367
+    },
+    {
+      "dim": 6,
+      "rank": 0,
+      "gene": "Mmp9",
+      "rho": 0.6478586387523789
+    },
+    {
+      "dim": 7,
+      "rank": 0,
+      "gene": "Wfdc21",
+      "rho": -0.7874126336468761
+    },
+    {
+      "dim": 8,
+      "rank": 0,
+      "gene": "Anxa1",
+      "rho": -0.7409021206827475
+    },
+    {
+      "dim": 9,
+      "rank": 0,
+      "gene": "F13a1",
+      "rho": -0.4346748109060266
+    }
+  ],
+  "top_k_genes_df": [
+    {
+      "dim": 0,
+      "rank": 0,
+      "gene": "Nrg2",
+      "rho": -0.6169012581124745,
+      "abs_rho": 0.6169012581124745
+    },
+    {
+      "dim": 0,
+      "rank": 1,
+      "gene": "Mki67",
+      "rho": -0.5730463256122658,
+      "abs_rho": 0.5730463256122658
+    },
+    {
+      "dim": 0,
+      "rank": 2,
+      "gene": "Gria3",
+      "rho": -0.5683971773375022,
+      "abs_rho": 0.5683971773375022
+    },
+    {
+      "dim": 0,
+      "rank": 3,
+      "gene": "Pclaf",
+      "rho": -0.5605711020470536,
+      "abs_rho": 0.5605711020470536
+    },
+    {
+      "dim": 0,
+      "rank": 4,
+      "gene": "Ms4a3",
+      "rho": -0.5558869990175799,
+      "abs_rho": 0.5558869990175799
+    },
+    {
+      "dim": 1,
+      "rank": 0,
+      "gene": "Syne1",
+      "rho": -0.6672969847522875,
+      "abs_rho": 0.6672969847522875
+    },
+    {
+      "dim": 1,
+      "rank": 1,
+      "gene": "Cd177",
+      "rho": -0.6546229524793911,
+      "abs_rho": 0.6546229524793911
+    },
+    {
+      "dim": 1,
+      "rank": 2,
+      "gene": "Wfdc21",
+      "rho": -0.6300814468946746,
+      "abs_rho": 0.6300814468946746
+    },
+    {
+      "dim": 1,
+      "rank": 3,
+      "gene": "Lcn2",
+      "rho": -0.6157825204162847,
+      "abs_rho": 0.6157825204162847
+    },
+    {
+      "dim": 1,
+      "rank": 4,
+      "gene": "Ltf",
+      "rho": -0.6025809445336108,
+      "abs_rho": 0.6025809445336108
+    },
+    {
+      "dim": 2,
+      "rank": 0,
+      "gene": "Tnik",
+      "rho": 0.5083782336423532,
+      "abs_rho": 0.5083782336423532
+    },
+    {
+      "dim": 2,
+      "rank": 1,
+      "gene": "Ctss",
+      "rho": -0.5077672252375148,
+      "abs_rho": 0.5077672252375148
+    },
+    {
+      "dim": 2,
+      "rank": 2,
+      "gene": "Ctla2a",
+      "rho": 0.4981736997474023,
+      "abs_rho": 0.4981736997474023
+    },
+    {
+      "dim": 2,
+      "rank": 3,
+      "gene": "Pld4",
+      "rho": -0.4967825666600179,
+      "abs_rho": 0.4967825666600179
+    },
+    {
+      "dim": 2,
+      "rank": 4,
+      "gene": "Pid1",
+      "rho": -0.4946450286049141,
+      "abs_rho": 0.4946450286049141
+    },
+    {
+      "dim": 3,
+      "rank": 0,
+      "gene": "Mmp9",
+      "rho": 0.6740356119620339,
+      "abs_rho": 0.6740356119620339
+    },
+    {
+      "dim": 3,
+      "rank": 1,
+      "gene": "Wfdc21",
+      "rho": 0.662692577280636,
+      "abs_rho": 0.662692577280636
+    },
+    {
+      "dim": 3,
+      "rank": 2,
+      "gene": "Il1r2",
+      "rho": 0.6366411579033892,
+      "abs_rho": 0.6366411579033892
+    },
+    {
+      "dim": 3,
+      "rank": 3,
+      "gene": "Lyz2",
+      "rho": 0.6362187012248461,
+      "abs_rho": 0.6362187012248461
+    },
+    {
+      "dim": 3,
+      "rank": 4,
+      "gene": "Ifitm6",
+      "rho": 0.6202073331411507,
+      "abs_rho": 0.6202073331411507
+    },
+    {
+      "dim": 4,
+      "rank": 0,
+      "gene": "Mmp9",
+      "rho": -0.6690150648688571,
+      "abs_rho": 0.6690150648688571
+    },
+    {
+      "dim": 4,
+      "rank": 1,
+      "gene": "Rnf220",
+      "rho": 0.6472095867143616,
+      "abs_rho": 0.6472095867143616
+    },
+    {
+      "dim": 4,
+      "rank": 2,
+      "gene": "Sox4",
+      "rho": 0.6119621103315435,
+      "abs_rho": 0.6119621103315435
+    },
+    {
+      "dim": 4,
+      "rank": 3,
+      "gene": "Il1r2",
+      "rho": -0.6023105626645906,
+      "abs_rho": 0.6023105626645906
+    },
+    {
+      "dim": 4,
+      "rank": 4,
+      "gene": "Lilr4b",
+      "rho": -0.5894293705649505,
+      "abs_rho": 0.5894293705649505
+    },
+    {
+      "dim": 5,
+      "rank": 0,
+      "gene": "Pde4d",
+      "rho": -0.5184575866849367,
+      "abs_rho": 0.5184575866849367
+    },
+    {
+      "dim": 5,
+      "rank": 1,
+      "gene": "Mki67",
+      "rho": -0.5022251453328136,
+      "abs_rho": 0.5022251453328136
+    },
+    {
+      "dim": 5,
+      "rank": 2,
+      "gene": "Fcnb",
+      "rho": -0.48194828704190185,
+      "abs_rho": 0.48194828704190185
+    },
+    {
+      "dim": 5,
+      "rank": 3,
+      "gene": "Plcb1",
+      "rho": -0.4605456715211893,
+      "abs_rho": 0.4605456715211893
+    },
+    {
+      "dim": 5,
+      "rank": 4,
+      "gene": "Blnk",
+      "rho": 0.44842872273208595,
+      "abs_rho": 0.44842872273208595
+    },
+    {
+      "dim": 6,
+      "rank": 0,
+      "gene": "Mmp9",
+      "rho": 0.6478586387523789,
+      "abs_rho": 0.6478586387523789
+    },
+    {
+      "dim": 6,
+      "rank": 1,
+      "gene": "Il1r2",
+      "rho": 0.5614846541908275,
+      "abs_rho": 0.5614846541908275
+    },
+    {
+      "dim": 6,
+      "rank": 2,
+      "gene": "Mmp8",
+      "rho": 0.5363216664068801,
+      "abs_rho": 0.5363216664068801
+    },
+    {
+      "dim": 6,
+      "rank": 3,
+      "gene": "Retnlg",
+      "rho": 0.5330000474956432,
+      "abs_rho": 0.5330000474956432
+    },
+    {
+      "dim": 6,
+      "rank": 4,
+      "gene": "Pbx1",
+      "rho": 0.5242472319865543,
+      "abs_rho": 0.5242472319865543
+    },
+    {
+      "dim": 7,
+      "rank": 0,
+      "gene": "Wfdc21",
+      "rho": -0.7874126336468761,
+      "abs_rho": 0.7874126336468761
+    },
+    {
+      "dim": 7,
+      "rank": 1,
+      "gene": "Syne1",
+      "rho": -0.7783767853167071,
+      "abs_rho": 0.7783767853167071
+    },
+    {
+      "dim": 7,
+      "rank": 2,
+      "gene": "Dach1",
+      "rho": -0.7570605688856802,
+      "abs_rho": 0.7570605688856802
+    },
+    {
+      "dim": 7,
+      "rank": 3,
+      "gene": "Abca13",
+      "rho": -0.7390440874488514,
+      "abs_rho": 0.7390440874488514
+    },
+    {
+      "dim": 7,
+      "rank": 4,
+      "gene": "Anxa1",
+      "rho": -0.7091895577084725,
+      "abs_rho": 0.7091895577084725
+    },
+    {
+      "dim": 8,
+      "rank": 0,
+      "gene": "Anxa1",
+      "rho": -0.7409021206827475,
+      "abs_rho": 0.7409021206827475
+    },
+    {
+      "dim": 8,
+      "rank": 1,
+      "gene": "Lyz2",
+      "rho": -0.7357755964421219,
+      "abs_rho": 0.7357755964421219
+    },
+    {
+      "dim": 8,
+      "rank": 2,
+      "gene": "Abca13",
+      "rho": -0.7329035765673524,
+      "abs_rho": 0.7329035765673524
+    },
+    {
+      "dim": 8,
+      "rank": 3,
+      "gene": "Chil3",
+      "rho": -0.7188801691231167,
+      "abs_rho": 0.7188801691231167
+    },
+    {
+      "dim": 8,
+      "rank": 4,
+      "gene": "Wfdc21",
+      "rho": -0.7094825844252646,
+      "abs_rho": 0.7094825844252646
+    },
+    {
+      "dim": 9,
+      "rank": 0,
+      "gene": "F13a1",
+      "rho": -0.4346748109060266,
+      "abs_rho": 0.4346748109060266
+    },
+    {
+      "dim": 9,
+      "rank": 1,
+      "gene": "Plcb1",
+      "rho": -0.4308331195895824,
+      "abs_rho": 0.4308331195895824
+    },
+    {
+      "dim": 9,
+      "rank": 2,
+      "gene": "Pid1",
+      "rho": -0.4201118040007471,
+      "abs_rho": 0.4201118040007471
+    },
+    {
+      "dim": 9,
+      "rank": 3,
+      "gene": "Gimap6",
+      "rho": 0.4163827833193896,
+      "abs_rho": 0.4163827833193896
+    },
+    {
+      "dim": 9,
+      "rank": 4,
+      "gene": "Skap1",
+      "rho": 0.4092849141939755,
+      "abs_rho": 0.4092849141939755
+    }
+  ],
+  "enrichment": [
+    {
+      "dim": 0,
+      "term": "GOBP_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 25,
+      "n_term": 1684,
+      "percent": 0.014845605700712588,
+      "padj": 0.0002030488378230606,
+      "neg_log10_padj": 3.692399491908868
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_CELL_ACTIVATION",
+      "n_overlap": 20,
+      "n_term": 1221,
+      "percent": 0.01638001638001638,
+      "padj": 0.0005837915834934868,
+      "neg_log10_padj": 3.233742170513959
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_CYTOKINE_PRODUCTION",
+      "n_overlap": 17,
+      "n_term": 917,
+      "percent": 0.018538713195201745,
+      "padj": 0.0006016325763444907,
+      "neg_log10_padj": 3.2206686562202362
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_POSITIVE_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 19,
+      "n_term": 1177,
+      "percent": 0.016142735768903994,
+      "padj": 0.000726252370473461,
+      "neg_log10_padj": 3.1389124370706476
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_LEUKOCYTE_MIGRATION",
+      "n_overlap": 11,
+      "n_term": 395,
+      "percent": 0.027848101265822784,
+      "padj": 0.000726252370473461,
+      "neg_log10_padj": 3.1389124370706476
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_MYELOID_LEUKOCYTE_MIGRATION",
+      "n_overlap": 9,
+      "n_term": 246,
+      "percent": 0.036585365853658534,
+      "padj": 0.000726252370473461,
+      "neg_log10_padj": 3.1389124370706476
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_POSITIVE_REGULATION_OF_CYTOKINE_PRODUCTION",
+      "n_overlap": 12,
+      "n_term": 525,
+      "percent": 0.022857142857142857,
+      "padj": 0.0015904643115396482,
+      "neg_log10_padj": 2.7984760715898096
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_CELL_CHEMOTAXIS",
+      "n_overlap": 9,
+      "n_term": 329,
+      "percent": 0.02735562310030395,
+      "padj": 0.0032980387100034047,
+      "neg_log10_padj": 2.481744251225699
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_DEFENSE_RESPONSE",
+      "n_overlap": 45,
+      "n_term": 1851,
+      "percent": 0.024311183144246355,
+      "padj": 2.448450279521979e-18,
+      "neg_log10_padj": 17.611108710738467
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_INFLAMMATORY_RESPONSE",
+      "n_overlap": 26,
+      "n_term": 830,
+      "percent": 0.03132530120481928,
+      "padj": 1.6658795488511175e-11,
+      "neg_log10_padj": 10.778356403385672
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_BIOLOGICAL_PROCESS_INVOLVED_IN_INTERSPECIES_INTERACTION_BETWEEN_ORGANISMS",
+      "n_overlap": 36,
+      "n_term": 1864,
+      "percent": 0.019313304721030045,
+      "padj": 7.37699199817617e-11,
+      "neg_log10_padj": 10.132120687620626
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_INNATE_IMMUNE_RESPONSE",
+      "n_overlap": 24,
+      "n_term": 968,
+      "percent": 0.024793388429752067,
+      "padj": 1.5290565569479214e-08,
+      "neg_log10_padj": 7.8155764505483525
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_CELL_ACTIVATION",
+      "n_overlap": 26,
+      "n_term": 1221,
+      "percent": 0.021294021294021293,
+      "padj": 4.325124697796417e-08,
+      "neg_log10_padj": 7.364001366861779
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_DEFENSE_RESPONSE_TO_OTHER_ORGANISM",
+      "n_overlap": 26,
+      "n_term": 1286,
+      "percent": 0.02021772939346812,
+      "padj": 1.1149704892391966e-07,
+      "neg_log10_padj": 6.952736627261724
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_CYTOKINE_PRODUCTION",
+      "n_overlap": 22,
+      "n_term": 917,
+      "percent": 0.023991275899672846,
+      "padj": 1.3075805851263867e-07,
+      "neg_log10_padj": 6.883531536420725
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 29,
+      "n_term": 1684,
+      "percent": 0.0172209026128266,
+      "padj": 2.5467577940461233e-07,
+      "neg_log10_padj": 6.594012356061516
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 27,
+      "n_term": 1684,
+      "percent": 0.016033254156769598,
+      "padj": 1.0543055097289887e-05,
+      "neg_log10_padj": 4.977033523882611
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_POSITIVE_REGULATION_OF_RESPONSE_TO_EXTERNAL_STIMULUS",
+      "n_overlap": 17,
+      "n_term": 656,
+      "percent": 0.025914634146341462,
+      "padj": 1.0543055097289887e-05,
+      "neg_log10_padj": 4.977033523882611
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_DEFENSE_RESPONSE",
+      "n_overlap": 28,
+      "n_term": 1851,
+      "percent": 0.015126958400864398,
+      "padj": 1.0543055097289887e-05,
+      "neg_log10_padj": 4.977033523882611
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_POSITIVE_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 22,
+      "n_term": 1177,
+      "percent": 0.018691588785046728,
+      "padj": 1.0849704396263388e-05,
+      "neg_log10_padj": 4.964582094149137
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_REGULATION_OF_RESPONSE_TO_EXTERNAL_STIMULUS",
+      "n_overlap": 21,
+      "n_term": 1121,
+      "percent": 0.01873327386262266,
+      "padj": 1.4420831884905856e-05,
+      "neg_log10_padj": 4.841009686037988
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_REGULATION_OF_CELL_ADHESION",
+      "n_overlap": 18,
+      "n_term": 821,
+      "percent": 0.02192448233861145,
+      "padj": 1.4420831884905856e-05,
+      "neg_log10_padj": 4.841009686037988
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_CELL_ACTIVATION",
+      "n_overlap": 22,
+      "n_term": 1221,
+      "percent": 0.018018018018018018,
+      "padj": 1.4420831884905856e-05,
+      "neg_log10_padj": 4.841009686037988
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_POSITIVE_REGULATION_OF_GENE_EXPRESSION",
+      "n_overlap": 22,
+      "n_term": 1297,
+      "percent": 0.016962220508866616,
+      "padj": 3.0369565422241075e-05,
+      "neg_log10_padj": 4.517561422637975
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_DEFENSE_RESPONSE",
+      "n_overlap": 33,
+      "n_term": 1851,
+      "percent": 0.017828200972447326,
+      "padj": 9.983323005706748e-09,
+      "neg_log10_padj": 8.000724877266475
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 31,
+      "n_term": 1684,
+      "percent": 0.01840855106888361,
+      "padj": 1.2307448437388858e-08,
+      "neg_log10_padj": 7.9098319750477435
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_POSITIVE_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 26,
+      "n_term": 1177,
+      "percent": 0.022090059473237042,
+      "padj": 1.2307448437388858e-08,
+      "neg_log10_padj": 7.9098319750477435
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_CELL_ACTIVATION",
+      "n_overlap": 26,
+      "n_term": 1221,
+      "percent": 0.021294021294021293,
+      "padj": 2.0841672692574035e-08,
+      "neg_log10_padj": 7.681067428750488
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_BIOLOGICAL_PROCESS_INVOLVED_IN_INTERSPECIES_INTERACTION_BETWEEN_ORGANISMS",
+      "n_overlap": 31,
+      "n_term": 1864,
+      "percent": 0.016630901287553648,
+      "padj": 5.6537299358749063e-08,
+      "neg_log10_padj": 7.247664940480475
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_IMMUNE_RESPONSE_REGULATING_CELL_SURFACE_RECEPTOR_SIGNALING_PATHWAY",
+      "n_overlap": 14,
+      "n_term": 304,
+      "percent": 0.046052631578947366,
+      "padj": 5.6537299358749063e-08,
+      "neg_log10_padj": 7.247664940480475
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_INNATE_IMMUNE_RESPONSE",
+      "n_overlap": 21,
+      "n_term": 968,
+      "percent": 0.02169421487603306,
+      "padj": 9.858092527301367e-07,
+      "neg_log10_padj": 6.0062071099074235
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_DEFENSE_RESPONSE_TO_OTHER_ORGANISM",
+      "n_overlap": 24,
+      "n_term": 1286,
+      "percent": 0.01866251944012442,
+      "padj": 1.0037530834691427e-06,
+      "neg_log10_padj": 5.998373107584668
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 30,
+      "n_term": 1684,
+      "percent": 0.017814726840855107,
+      "padj": 2.2256142541776177e-07,
+      "neg_log10_padj": 6.652550105859011
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_MYELOID_LEUKOCYTE_MIGRATION",
+      "n_overlap": 12,
+      "n_term": 246,
+      "percent": 0.04878048780487805,
+      "padj": 2.5924614038585463e-06,
+      "neg_log10_padj": 5.586287700596021
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_DEFENSE_RESPONSE",
+      "n_overlap": 29,
+      "n_term": 1851,
+      "percent": 0.015667206915180983,
+      "padj": 3.4291750135993627e-06,
+      "neg_log10_padj": 5.464810349384663
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_TUBE_DEVELOPMENT",
+      "n_overlap": 23,
+      "n_term": 1228,
+      "percent": 0.018729641693811076,
+      "padj": 5.022713357553757e-06,
+      "neg_log10_padj": 5.299061605990324
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_CELL_ACTIVATION",
+      "n_overlap": 23,
+      "n_term": 1221,
+      "percent": 0.018837018837018837,
+      "padj": 5.022713357553757e-06,
+      "neg_log10_padj": 5.299061605990324
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_TUBE_MORPHOGENESIS",
+      "n_overlap": 20,
+      "n_term": 973,
+      "percent": 0.020554984583761562,
+      "padj": 1.0223603911517887e-05,
+      "neg_log10_padj": 4.990395984535275
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_LEUKOCYTE_MIGRATION",
+      "n_overlap": 13,
+      "n_term": 395,
+      "percent": 0.03291139240506329,
+      "padj": 1.6812292680173477e-05,
+      "neg_log10_padj": 4.774373058098084
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_MONONUCLEAR_CELL_MIGRATION",
+      "n_overlap": 10,
+      "n_term": 218,
+      "percent": 0.045871559633027525,
+      "padj": 2.4462791020813586e-05,
+      "neg_log10_padj": 4.61149399473275
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 29,
+      "n_term": 1684,
+      "percent": 0.0172209026128266,
+      "padj": 5.23998664833577e-07,
+      "neg_log10_padj": 6.280669819611977
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_CELL_ACTIVATION",
+      "n_overlap": 25,
+      "n_term": 1221,
+      "percent": 0.020475020475020474,
+      "padj": 5.23998664833577e-07,
+      "neg_log10_padj": 6.280669819611977
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_MONONUCLEAR_CELL_DIFFERENTIATION",
+      "n_overlap": 17,
+      "n_term": 576,
+      "percent": 0.029513888888888888,
+      "padj": 1.266689825425541e-06,
+      "neg_log10_padj": 5.897329717869239
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_LEUKOCYTE_DIFFERENTIATION",
+      "n_overlap": 18,
+      "n_term": 712,
+      "percent": 0.025280898876404494,
+      "padj": 3.3834268814773887e-06,
+      "neg_log10_padj": 5.470643204525278
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_REGULATION_OF_CELL_POPULATION_PROLIFERATION",
+      "n_overlap": 27,
+      "n_term": 1793,
+      "percent": 0.01505856107083101,
+      "padj": 1.4957154672325306e-05,
+      "neg_log10_padj": 4.825151015270795
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_LYMPHOCYTE_ACTIVATION",
+      "n_overlap": 19,
+      "n_term": 897,
+      "percent": 0.021181716833890748,
+      "padj": 1.4957154672325306e-05,
+      "neg_log10_padj": 4.825151015270795
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_POSITIVE_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 21,
+      "n_term": 1177,
+      "percent": 0.01784197111299915,
+      "padj": 3.780276393764444e-05,
+      "neg_log10_padj": 4.422476445692294
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_HEMOPOIESIS",
+      "n_overlap": 20,
+      "n_term": 1104,
+      "percent": 0.018115942028985508,
+      "padj": 5.523609774196692e-05,
+      "neg_log10_padj": 4.257777010560332
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_DEFENSE_RESPONSE",
+      "n_overlap": 37,
+      "n_term": 1851,
+      "percent": 0.019989195029713667,
+      "padj": 4.728029822777565e-12,
+      "neg_log10_padj": 11.325319792738712
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 34,
+      "n_term": 1684,
+      "percent": 0.020190023752969122,
+      "padj": 4.067283619563786e-11,
+      "neg_log10_padj": 10.390695542344167
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_CELL_ACTIVATION",
+      "n_overlap": 29,
+      "n_term": 1221,
+      "percent": 0.02375102375102375,
+      "padj": 7.009056470925543e-11,
+      "neg_log10_padj": 10.154340440956311
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_POSITIVE_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 28,
+      "n_term": 1177,
+      "percent": 0.0237892948173322,
+      "padj": 1.5439139103349898e-10,
+      "neg_log10_padj": 9.811376919873885
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_LEUKOCYTE_MIGRATION",
+      "n_overlap": 17,
+      "n_term": 395,
+      "percent": 0.043037974683544304,
+      "padj": 1.518132158475009e-09,
+      "neg_log10_padj": 8.81869042000963
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_MYELOID_LEUKOCYTE_MIGRATION",
+      "n_overlap": 14,
+      "n_term": 246,
+      "percent": 0.056910569105691054,
+      "padj": 3.0426097278876387e-09,
+      "neg_log10_padj": 8.51675375053198
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_LEUKOCYTE_CELL_CELL_ADHESION",
+      "n_overlap": 16,
+      "n_term": 426,
+      "percent": 0.03755868544600939,
+      "padj": 3.81898428234558e-08,
+      "neg_log10_padj": 7.418052129032974
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_IMMUNE_RESPONSE_REGULATING_CELL_SURFACE_RECEPTOR_SIGNALING_PATHWAY",
+      "n_overlap": 14,
+      "n_term": 304,
+      "percent": 0.046052631578947366,
+      "padj": 3.834013283502788e-08,
+      "neg_log10_padj": 7.416346386778256
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_DEFENSE_RESPONSE",
+      "n_overlap": 37,
+      "n_term": 1851,
+      "percent": 0.019989195029713667,
+      "padj": 9.691241948559321e-11,
+      "neg_log10_padj": 10.013620563832209
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_BIOLOGICAL_PROCESS_INVOLVED_IN_INTERSPECIES_INTERACTION_BETWEEN_ORGANISMS",
+      "n_overlap": 33,
+      "n_term": 1864,
+      "percent": 0.017703862660944206,
+      "padj": 3.1892343254838576e-08,
+      "neg_log10_padj": 7.496313570275405
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_POSITIVE_REGULATION_OF_IMMUNE_RESPONSE",
+      "n_overlap": 22,
+      "n_term": 789,
+      "percent": 0.02788339670468948,
+      "padj": 3.1892343254838576e-08,
+      "neg_log10_padj": 7.496313570275405
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_INNATE_IMMUNE_RESPONSE",
+      "n_overlap": 24,
+      "n_term": 968,
+      "percent": 0.024793388429752067,
+      "padj": 3.1892343254838576e-08,
+      "neg_log10_padj": 7.496313570275405
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_POSITIVE_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 26,
+      "n_term": 1177,
+      "percent": 0.022090059473237042,
+      "padj": 4.250799475399921e-08,
+      "neg_log10_padj": 7.371529381690453
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_REGULATION_OF_IMMUNE_RESPONSE",
+      "n_overlap": 22,
+      "n_term": 986,
+      "percent": 0.02231237322515213,
+      "padj": 1.0760247071897808e-06,
+      "neg_log10_padj": 5.968177756482833
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_DEFENSE_RESPONSE_TO_OTHER_ORGANISM",
+      "n_overlap": 25,
+      "n_term": 1286,
+      "percent": 0.019440124416796267,
+      "padj": 1.0760247071897808e-06,
+      "neg_log10_padj": 5.968177756482833
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 28,
+      "n_term": 1684,
+      "percent": 0.0166270783847981,
+      "padj": 2.676304586295156e-06,
+      "neg_log10_padj": 5.572464461674148
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_POSITIVE_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 24,
+      "n_term": 1177,
+      "percent": 0.020390824129141887,
+      "padj": 6.30315943797898e-07,
+      "neg_log10_padj": 6.200441707286773
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 28,
+      "n_term": 1684,
+      "percent": 0.0166270783847981,
+      "padj": 7.472308691994157e-07,
+      "neg_log10_padj": 6.126545195067516
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_POSITIVE_REGULATION_OF_IMMUNE_RESPONSE",
+      "n_overlap": 18,
+      "n_term": 789,
+      "percent": 0.022813688212927757,
+      "padj": 9.813857271968903e-06,
+      "neg_log10_padj": 5.008160262479728
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_IMMUNE_RESPONSE_REGULATING_CELL_SURFACE_RECEPTOR_SIGNALING_PATHWAY",
+      "n_overlap": 11,
+      "n_term": 304,
+      "percent": 0.03618421052631579,
+      "padj": 7.267060467195016e-05,
+      "neg_log10_padj": 4.13864122614775
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_REGULATION_OF_IMMUNE_RESPONSE",
+      "n_overlap": 18,
+      "n_term": 986,
+      "percent": 0.018255578093306288,
+      "padj": 0.00016821630731822136,
+      "neg_log10_padj": 3.7741319048815973
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_CELL_ACTIVATION",
+      "n_overlap": 19,
+      "n_term": 1221,
+      "percent": 0.015561015561015561,
+      "padj": 0.000550184396084713,
+      "neg_log10_padj": 3.259491730904536
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_DEFENSE_RESPONSE",
+      "n_overlap": 24,
+      "n_term": 1851,
+      "percent": 0.012965964343598054,
+      "padj": 0.000550184396084713,
+      "neg_log10_padj": 3.259491730904536
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_ANTIGEN_RECEPTOR_MEDIATED_SIGNALING_PATHWAY",
+      "n_overlap": 8,
+      "n_term": 185,
+      "percent": 0.043243243243243246,
+      "padj": 0.000550184396084713,
+      "neg_log10_padj": 3.259491730904536
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 33,
+      "n_term": 1684,
+      "percent": 0.019596199524940617,
+      "padj": 3.0738240663812273e-10,
+      "neg_log10_padj": 9.51232099343562
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_POSITIVE_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 28,
+      "n_term": 1177,
+      "percent": 0.0237892948173322,
+      "padj": 3.0738240663812273e-10,
+      "neg_log10_padj": 9.51232099343562
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_POSITIVE_REGULATION_OF_CELL_ADHESION",
+      "n_overlap": 19,
+      "n_term": 518,
+      "percent": 0.03667953667953668,
+      "padj": 1.420211607372791e-09,
+      "neg_log10_padj": 8.847646942189067
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_POSITIVE_REGULATION_OF_RESPONSE_TO_EXTERNAL_STIMULUS",
+      "n_overlap": 21,
+      "n_term": 656,
+      "percent": 0.03201219512195122,
+      "padj": 1.420211607372791e-09,
+      "neg_log10_padj": 8.847646942189067
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_DEFENSE_RESPONSE",
+      "n_overlap": 33,
+      "n_term": 1851,
+      "percent": 0.017828200972447326,
+      "padj": 1.4647098325994482e-09,
+      "neg_log10_padj": 8.834248403011248
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_ALPHA_BETA_T_CELL_ACTIVATION",
+      "n_overlap": 13,
+      "n_term": 203,
+      "percent": 0.06403940886699508,
+      "padj": 4.066014134252558e-09,
+      "neg_log10_padj": 8.390831116003632
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_POSITIVE_REGULATION_OF_MULTICELLULAR_ORGANISMAL_PROCESS",
+      "n_overlap": 32,
+      "n_term": 1888,
+      "percent": 0.01694915254237288,
+      "padj": 9.819269009114688e-09,
+      "neg_log10_padj": 8.007920841859109
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_REGULATION_OF_RESPONSE_TO_EXTERNAL_STIMULUS",
+      "n_overlap": 24,
+      "n_term": 1121,
+      "percent": 0.021409455842997322,
+      "padj": 5.2670917021520704e-08,
+      "neg_log10_padj": 7.278429120337805
+    }
+  ],
+  "cell_type_label_source": "curated_source_obs",
+  "cell_type_label_map": "figures/biovalidation/celltype_label_map.json",
+  "cell_type_label_map_schema": "celltype_label_map.v1",
+  "cell_type_label_cluster_key": "_ct_leiden"
+}

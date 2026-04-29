@@ -22,7 +22,6 @@ def font_dir_candidates() -> tuple[Path, ...]:
         root / "site" / "static" / "fonts",
         root.parent / "FONTS",
         root.parent / "fonts",
-        Path("/home/zeyufu/LAB/FONTS"),
     ])
     seen: set[Path] = set()
     unique: list[Path] = []
@@ -37,9 +36,24 @@ def font_dir_candidates() -> tuple[Path, ...]:
     return tuple(unique)
 
 
+_MIN_VALID_TTF_BYTES = 90_000  # Arial Italic ~62 KB on disk indicates a stub/corrupt file.
+
+
+def _looks_valid_ttf(path: Path) -> bool:
+    try:
+        return path.stat().st_size >= _MIN_VALID_TTF_BYTES
+    except OSError:
+        return False
+
+
 @lru_cache(maxsize=1)
 def arial_font_paths() -> dict[str, Path]:
-    """Find Arial regular/bold/italic faces in the configured font folders."""
+    """Find Arial regular/bold/italic faces in the configured font folders.
+
+    Files smaller than ``_MIN_VALID_TTF_BYTES`` are skipped — the lab font
+    bundle has shipped truncated Arial-Italic / Arial-Bold-Italic stubs in
+    the past which crash matplotlib's PDF font subsetter on embed.
+    """
     names = {
         "regular": ("Arial.ttf", "arial.ttf"),
         "bold": ("Arial Bold.ttf", "Arial-Bold.ttf", "arialbd.ttf"),
@@ -60,7 +74,7 @@ def arial_font_paths() -> dict[str, Path]:
                 continue
             for name in candidates:
                 path = directory / name
-                if path.exists():
+                if path.exists() and _looks_valid_ttf(path):
                     found[face] = path
                     break
     return found

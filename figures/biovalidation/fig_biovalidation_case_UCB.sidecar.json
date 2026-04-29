@@ -1,0 +1,1919 @@
+{
+  "version": 5,
+  "case_id": "UCB",
+  "title": "Cord-blood megakaryocyte differentiation",
+  "theme": "reference",
+  "accession": "Reference subset UCB",
+  "encoder": "GAT",
+  "condition_obs": "batch",
+  "cell_type_obs": null,
+  "condition_is_inferred": false,
+  "cell_type_is_inferred": true,
+  "n_obs": 3000,
+  "n_obs_subsampled": 3000,
+  "n_vars_post_hvg": 2000,
+  "condition_latent": {
+    "dims": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "conditions": [
+      {
+        "label": "D14",
+        "raw_label": "D14",
+        "n": 759
+      },
+      {
+        "label": "D4",
+        "raw_label": "D4",
+        "n": 698
+      },
+      {
+        "label": "D11",
+        "raw_label": "D11",
+        "n": 600
+      },
+      {
+        "label": "D7",
+        "raw_label": "D7",
+        "n": 553
+      },
+      {
+        "label": "D0",
+        "raw_label": "D0",
+        "n": 390
+      }
+    ],
+    "records": [
+      {
+        "dim": 0,
+        "condition": "D14",
+        "raw_condition": "D14",
+        "n": 759,
+        "median_z": 0.18002527655496597,
+        "q25_z": -0.20093373613848134,
+        "q75_z": 0.7403961680062292,
+        "median_raw": -0.7916409969329834
+      },
+      {
+        "dim": 0,
+        "condition": "D4",
+        "raw_condition": "D4",
+        "n": 698,
+        "median_z": -0.34834348059859044,
+        "q25_z": -0.8430036566498448,
+        "q75_z": 0.29410844441146283,
+        "median_raw": -1.3163846135139465
+      },
+      {
+        "dim": 0,
+        "condition": "D11",
+        "raw_condition": "D11",
+        "n": 600,
+        "median_z": -0.10212216588184717,
+        "q25_z": -0.4723648870956296,
+        "q75_z": 0.3617354390164668,
+        "median_raw": -1.0718526244163513
+      },
+      {
+        "dim": 0,
+        "condition": "D7",
+        "raw_condition": "D7",
+        "n": 553,
+        "median_z": -0.3070055524612602,
+        "q25_z": -0.748778360984944,
+        "q75_z": 0.2285699761302661,
+        "median_raw": -1.2753303050994873
+      },
+      {
+        "dim": 0,
+        "condition": "D0",
+        "raw_condition": "D0",
+        "n": 390,
+        "median_z": 2.5,
+        "q25_z": 2.5,
+        "q75_z": 2.5,
+        "median_raw": 2.354819416999817
+      },
+      {
+        "dim": 1,
+        "condition": "D14",
+        "raw_condition": "D14",
+        "n": 759,
+        "median_z": 0.27148498775773966,
+        "q25_z": -0.300778311090834,
+        "q75_z": 0.8422490234334858,
+        "median_raw": 0.3425575792789459
+      },
+      {
+        "dim": 1,
+        "condition": "D4",
+        "raw_condition": "D4",
+        "n": 698,
+        "median_z": -0.10593691971897261,
+        "q25_z": -0.3107171532754196,
+        "q75_z": 0.4300900737077811,
+        "median_raw": -0.23961998522281647
+      },
+      {
+        "dim": 1,
+        "condition": "D11",
+        "raw_condition": "D11",
+        "n": 600,
+        "median_z": 0.6318490115317359,
+        "q25_z": 0.014953399335739845,
+        "q75_z": 1.0176095282997046,
+        "median_raw": 0.8984231650829315
+      },
+      {
+        "dim": 1,
+        "condition": "D7",
+        "raw_condition": "D7",
+        "n": 553,
+        "median_z": 0.016991273344383866,
+        "q25_z": -0.34007297891349336,
+        "q75_z": 0.8375517481966378,
+        "median_raw": -0.050001855939626694
+      },
+      {
+        "dim": 1,
+        "condition": "D0",
+        "raw_condition": "D0",
+        "n": 390,
+        "median_z": -0.9789944933460122,
+        "q25_z": -1.1512221547029848,
+        "q75_z": -0.8532529937699136,
+        "median_raw": -1.5863211750984192
+      },
+      {
+        "dim": 2,
+        "condition": "D14",
+        "raw_condition": "D14",
+        "n": 759,
+        "median_z": 0.8139054999094566,
+        "q25_z": -0.15197237033537794,
+        "q75_z": 1.8788977692442286,
+        "median_raw": 0.45727041363716125
+      },
+      {
+        "dim": 2,
+        "condition": "D4",
+        "raw_condition": "D4",
+        "n": 698,
+        "median_z": -0.44746182981062044,
+        "q25_z": -0.5817436706132311,
+        "q75_z": -0.03244205539964709,
+        "median_raw": -2.4924509525299072
+      },
+      {
+        "dim": 2,
+        "condition": "D11",
+        "raw_condition": "D11",
+        "n": 600,
+        "median_z": 0.8745627220155292,
+        "q25_z": 0.08587697956232668,
+        "q75_z": 1.8052668167077928,
+        "median_raw": 0.5991179943084717
+      },
+      {
+        "dim": 2,
+        "condition": "D7",
+        "raw_condition": "D7",
+        "n": 553,
+        "median_z": -0.13789365884190197,
+        "q25_z": -0.41474873194225437,
+        "q75_z": 0.3285444827449501,
+        "median_raw": -1.7685223817825317
+      },
+      {
+        "dim": 2,
+        "condition": "D0",
+        "raw_condition": "D0",
+        "n": 390,
+        "median_z": -0.16608633213299517,
+        "q25_z": -0.4018812494459568,
+        "q75_z": 0.00010386477901353202,
+        "median_raw": -1.8344512581825256
+      },
+      {
+        "dim": 3,
+        "condition": "D14",
+        "raw_condition": "D14",
+        "n": 759,
+        "median_z": -0.011106684172011171,
+        "q25_z": -0.651687779176487,
+        "q75_z": 0.5964766095061793,
+        "median_raw": 1.4291465282440186
+      },
+      {
+        "dim": 3,
+        "condition": "D4",
+        "raw_condition": "D4",
+        "n": 698,
+        "median_z": -0.012046725971418603,
+        "q25_z": -0.42579985526444614,
+        "q75_z": 0.637635412666989,
+        "median_raw": 1.4274590015411377
+      },
+      {
+        "dim": 3,
+        "condition": "D11",
+        "raw_condition": "D11",
+        "n": 600,
+        "median_z": 0.31362483202776814,
+        "q25_z": -0.26294906853338434,
+        "q75_z": 0.6924886047779469,
+        "median_raw": 2.0120919942855835
+      },
+      {
+        "dim": 3,
+        "condition": "D7",
+        "raw_condition": "D7",
+        "n": 553,
+        "median_z": 0.33412346744269344,
+        "q25_z": -0.05151646208017772,
+        "q75_z": 0.7113467822533651,
+        "median_raw": 2.0488903522491455
+      },
+      {
+        "dim": 3,
+        "condition": "D0",
+        "raw_condition": "D0",
+        "n": 390,
+        "median_z": -2.1576003601768914,
+        "q25_z": -2.445329285150116,
+        "q75_z": -1.824430481335462,
+        "median_raw": -2.4241559505462646
+      },
+      {
+        "dim": 4,
+        "condition": "D14",
+        "raw_condition": "D14",
+        "n": 759,
+        "median_z": 0.5200453737840748,
+        "q25_z": 0.004952069755799173,
+        "q75_z": 0.9760506465077811,
+        "median_raw": 1.4997432231903076
+      },
+      {
+        "dim": 4,
+        "condition": "D4",
+        "raw_condition": "D4",
+        "n": 698,
+        "median_z": -0.5921103739423665,
+        "q25_z": -0.8335415410514617,
+        "q75_z": -0.11204794059397764,
+        "median_raw": -0.19466833770275116
+      },
+      {
+        "dim": 4,
+        "condition": "D11",
+        "raw_condition": "D11",
+        "n": 600,
+        "median_z": 0.5510037663000964,
+        "q25_z": 0.1571170725608062,
+        "q75_z": 0.9442462295210227,
+        "median_raw": 1.546909511089325
+      },
+      {
+        "dim": 4,
+        "condition": "D7",
+        "raw_condition": "D7",
+        "n": 553,
+        "median_z": 0.08782725762101466,
+        "q25_z": -0.2964865469740173,
+        "q75_z": 0.609905417924731,
+        "median_raw": 0.8412424921989441
+      },
+      {
+        "dim": 4,
+        "condition": "D0",
+        "raw_condition": "D0",
+        "n": 390,
+        "median_z": -1.607962344372572,
+        "q25_z": -2.0113394569863257,
+        "q75_z": -1.205404515987902,
+        "median_raw": -1.7423574328422546
+      }
+    ]
+  },
+  "latent_corr": [
+    [
+      1.0,
+      0.7369644532618731,
+      0.11469950192401197,
+      0.9227487359067728,
+      0.5751610495795418,
+      0.13292414229704627,
+      0.42630205189242143,
+      0.052777879024132855,
+      0.06982427468460271,
+      0.6201210181839236
+    ],
+    [
+      0.7369644532618732,
+      1.0,
+      0.5409425852528105,
+      0.6845117944867495,
+      0.47769837892968603,
+      0.23632968983853297,
+      0.7410467727285366,
+      0.4401246036284398,
+      0.5020742887522553,
+      0.07115329282494359
+    ],
+    [
+      0.11469950192401197,
+      0.5409425852528105,
+      1.0,
+      0.17440170276423975,
+      0.5280265686918678,
+      0.772082472735964,
+      0.3111529689916964,
+      0.47036487324734466,
+      0.980397059363074,
+      0.6770733969877558
+    ],
+    [
+      0.9227487359067728,
+      0.6845117944867495,
+      0.17440170276423975,
+      1.0,
+      0.7378130771862565,
+      0.3124059911542013,
+      0.22484870050374645,
+      0.19478768424748358,
+      0.10347648765612047,
+      0.5742638988391592
+    ],
+    [
+      0.5751610495795418,
+      0.47769837892968603,
+      0.5280265686918678,
+      0.7378130771862565,
+      1.0,
+      0.8102512859012527,
+      0.17357555562096286,
+      0.35004763913288567,
+      0.4258509053550187,
+      0.10620470070997937
+    ],
+    [
+      0.1329241422970463,
+      0.236329689838533,
+      0.772082472735964,
+      0.31240599115420126,
+      0.8102512859012526,
+      0.9999999999999999,
+      0.259510743399398,
+      0.1564732477194582,
+      0.7111927985057178,
+      0.41242833408359264
+    ],
+    [
+      0.4263020518924215,
+      0.7410467727285366,
+      0.3111529689916964,
+      0.22484870050374645,
+      0.17357555562096286,
+      0.259510743399398,
+      1.0,
+      0.8271338469492121,
+      0.36484017614025305,
+      0.060030114757278
+    ],
+    [
+      0.05277787902413286,
+      0.44012460362843986,
+      0.47036487324734466,
+      0.19478768424748355,
+      0.3500476391328857,
+      0.1564732477194582,
+      0.8271338469492121,
+      1.0,
+      0.5542543665732724,
+      0.5116593852548817
+    ],
+    [
+      0.06982427468460271,
+      0.5020742887522553,
+      0.980397059363074,
+      0.10347648765612047,
+      0.4258509053550187,
+      0.7111927985057178,
+      0.36484017614025305,
+      0.5542543665732724,
+      1.0,
+      0.7171302158296451
+    ],
+    [
+      0.6201210181839236,
+      0.07115329282494359,
+      0.6770733969877557,
+      0.5742638988391592,
+      0.10620470070997937,
+      0.4124283340835926,
+      0.060030114757278,
+      0.5116593852548817,
+      0.717130215829645,
+      1.0
+    ]
+  ],
+  "top_gene_rows": [
+    {
+      "dim": 0,
+      "rank": 0,
+      "gene": "PROS1",
+      "rho": -0.5893250225283374
+    },
+    {
+      "dim": 1,
+      "rank": 0,
+      "gene": "LTBP1",
+      "rho": 0.8100445766348897
+    },
+    {
+      "dim": 2,
+      "rank": 0,
+      "gene": "CDK6",
+      "rho": -0.8270020658937892
+    },
+    {
+      "dim": 3,
+      "rank": 0,
+      "gene": "PROS1",
+      "rho": 0.7083146677300827
+    },
+    {
+      "dim": 4,
+      "rank": 0,
+      "gene": "ARHGAP6",
+      "rho": 0.7471101963607641
+    },
+    {
+      "dim": 5,
+      "rank": 0,
+      "gene": "NEAT1",
+      "rho": -0.6575624849251653
+    },
+    {
+      "dim": 6,
+      "rank": 0,
+      "gene": "TUBA4A",
+      "rho": 0.5773936365471806
+    },
+    {
+      "dim": 7,
+      "rank": 0,
+      "gene": "CNRIP1",
+      "rho": -0.6393364467501332
+    },
+    {
+      "dim": 8,
+      "rank": 0,
+      "gene": "CDK6",
+      "rho": 0.8488975599526312
+    },
+    {
+      "dim": 9,
+      "rank": 0,
+      "gene": "TYMS",
+      "rho": -0.7489632109677324
+    }
+  ],
+  "top_k_genes_df": [
+    {
+      "dim": 0,
+      "rank": 0,
+      "gene": "PROS1",
+      "rho": -0.5893250225283374,
+      "abs_rho": 0.5893250225283374
+    },
+    {
+      "dim": 0,
+      "rank": 1,
+      "gene": "UBE2C",
+      "rho": -0.5806143835429883,
+      "abs_rho": 0.5806143835429883
+    },
+    {
+      "dim": 0,
+      "rank": 2,
+      "gene": "LAT",
+      "rho": -0.5721832162017145,
+      "abs_rho": 0.5721832162017145
+    },
+    {
+      "dim": 0,
+      "rank": 3,
+      "gene": "CASC15",
+      "rho": 0.5669447646445984,
+      "abs_rho": 0.5669447646445984
+    },
+    {
+      "dim": 0,
+      "rank": 4,
+      "gene": "SOS1",
+      "rho": -0.5658649047660563,
+      "abs_rho": 0.5658649047660563
+    },
+    {
+      "dim": 1,
+      "rank": 0,
+      "gene": "LTBP1",
+      "rho": 0.8100445766348897,
+      "abs_rho": 0.8100445766348897
+    },
+    {
+      "dim": 1,
+      "rank": 1,
+      "gene": "ITGA6",
+      "rho": 0.7832430058943445,
+      "abs_rho": 0.7832430058943445
+    },
+    {
+      "dim": 1,
+      "rank": 2,
+      "gene": "GP9",
+      "rho": 0.7825899438584683,
+      "abs_rho": 0.7825899438584683
+    },
+    {
+      "dim": 1,
+      "rank": 3,
+      "gene": "CMTM5",
+      "rho": 0.7639921769886884,
+      "abs_rho": 0.7639921769886884
+    },
+    {
+      "dim": 1,
+      "rank": 4,
+      "gene": "ACTN1",
+      "rho": 0.7622046554448837,
+      "abs_rho": 0.7622046554448837
+    },
+    {
+      "dim": 2,
+      "rank": 0,
+      "gene": "CDK6",
+      "rho": -0.8270020658937892,
+      "abs_rho": 0.8270020658937892
+    },
+    {
+      "dim": 2,
+      "rank": 1,
+      "gene": "KCNQ5",
+      "rho": -0.7987412747077854,
+      "abs_rho": 0.7987412747077854
+    },
+    {
+      "dim": 2,
+      "rank": 2,
+      "gene": "ITGB3",
+      "rho": 0.7858205662078586,
+      "abs_rho": 0.7858205662078586
+    },
+    {
+      "dim": 2,
+      "rank": 3,
+      "gene": "ITGA4",
+      "rho": -0.7838286703517359,
+      "abs_rho": 0.7838286703517359
+    },
+    {
+      "dim": 2,
+      "rank": 4,
+      "gene": "DNM3",
+      "rho": 0.7825537289952684,
+      "abs_rho": 0.7825537289952684
+    },
+    {
+      "dim": 3,
+      "rank": 0,
+      "gene": "PROS1",
+      "rho": 0.7083146677300827,
+      "abs_rho": 0.7083146677300827
+    },
+    {
+      "dim": 3,
+      "rank": 1,
+      "gene": "DLC1",
+      "rho": 0.7017954655633821,
+      "abs_rho": 0.7017954655633821
+    },
+    {
+      "dim": 3,
+      "rank": 2,
+      "gene": "MED12L",
+      "rho": 0.6625638598650437,
+      "abs_rho": 0.6625638598650437
+    },
+    {
+      "dim": 3,
+      "rank": 3,
+      "gene": "RAB27B",
+      "rho": 0.6601099154023334,
+      "abs_rho": 0.6601099154023334
+    },
+    {
+      "dim": 3,
+      "rank": 4,
+      "gene": "SOS1",
+      "rho": 0.6528673816160714,
+      "abs_rho": 0.6528673816160714
+    },
+    {
+      "dim": 4,
+      "rank": 0,
+      "gene": "ARHGAP6",
+      "rho": 0.7471101963607641,
+      "abs_rho": 0.7471101963607641
+    },
+    {
+      "dim": 4,
+      "rank": 1,
+      "gene": "RAB27B",
+      "rho": 0.7291010781056999,
+      "abs_rho": 0.7291010781056999
+    },
+    {
+      "dim": 4,
+      "rank": 2,
+      "gene": "DNM3",
+      "rho": 0.7188938142617382,
+      "abs_rho": 0.7188938142617382
+    },
+    {
+      "dim": 4,
+      "rank": 3,
+      "gene": "ARHGAP18",
+      "rho": 0.6967134665720189,
+      "abs_rho": 0.6967134665720189
+    },
+    {
+      "dim": 4,
+      "rank": 4,
+      "gene": "PLEK",
+      "rho": 0.6845424040385977,
+      "abs_rho": 0.6845424040385977
+    },
+    {
+      "dim": 5,
+      "rank": 0,
+      "gene": "NEAT1",
+      "rho": -0.6575624849251653,
+      "abs_rho": 0.6575624849251653
+    },
+    {
+      "dim": 5,
+      "rank": 1,
+      "gene": "ARHGAP6",
+      "rho": -0.6513288225467699,
+      "abs_rho": 0.6513288225467699
+    },
+    {
+      "dim": 5,
+      "rank": 2,
+      "gene": "SLC9A9",
+      "rho": -0.645206240558839,
+      "abs_rho": 0.645206240558839
+    },
+    {
+      "dim": 5,
+      "rank": 3,
+      "gene": "DNM3",
+      "rho": -0.6347219397237931,
+      "abs_rho": 0.6347219397237931
+    },
+    {
+      "dim": 5,
+      "rank": 4,
+      "gene": "ARHGAP18",
+      "rho": -0.6300728727928411,
+      "abs_rho": 0.6300728727928411
+    },
+    {
+      "dim": 6,
+      "rank": 0,
+      "gene": "TUBA4A",
+      "rho": 0.5773936365471806,
+      "abs_rho": 0.5773936365471806
+    },
+    {
+      "dim": 6,
+      "rank": 1,
+      "gene": "ELMO1",
+      "rho": -0.5719907387999833,
+      "abs_rho": 0.5719907387999833
+    },
+    {
+      "dim": 6,
+      "rank": 2,
+      "gene": "ZBTB20",
+      "rho": -0.5582763217764061,
+      "abs_rho": 0.5582763217764061
+    },
+    {
+      "dim": 6,
+      "rank": 3,
+      "gene": "STOM",
+      "rho": 0.5327576658289318,
+      "abs_rho": 0.5327576658289318
+    },
+    {
+      "dim": 6,
+      "rank": 4,
+      "gene": "ACTN1",
+      "rho": 0.526168287000381,
+      "abs_rho": 0.526168287000381
+    },
+    {
+      "dim": 7,
+      "rank": 0,
+      "gene": "CNRIP1",
+      "rho": -0.6393364467501332,
+      "abs_rho": 0.6393364467501332
+    },
+    {
+      "dim": 7,
+      "rank": 1,
+      "gene": "XACT",
+      "rho": -0.629705315957426,
+      "abs_rho": 0.629705315957426
+    },
+    {
+      "dim": 7,
+      "rank": 2,
+      "gene": "SLC40A1",
+      "rho": -0.6163394606752157,
+      "abs_rho": 0.6163394606752157
+    },
+    {
+      "dim": 7,
+      "rank": 3,
+      "gene": "ARL15",
+      "rho": -0.615465164475636,
+      "abs_rho": 0.615465164475636
+    },
+    {
+      "dim": 7,
+      "rank": 4,
+      "gene": "ELMO1",
+      "rho": -0.5992647374999528,
+      "abs_rho": 0.5992647374999528
+    },
+    {
+      "dim": 8,
+      "rank": 0,
+      "gene": "CDK6",
+      "rho": 0.8488975599526312,
+      "abs_rho": 0.8488975599526312
+    },
+    {
+      "dim": 8,
+      "rank": 1,
+      "gene": "ITGA4",
+      "rho": 0.8171105622116067,
+      "abs_rho": 0.8171105622116067
+    },
+    {
+      "dim": 8,
+      "rank": 2,
+      "gene": "KCNQ5",
+      "rho": 0.7833396054184985,
+      "abs_rho": 0.7833396054184985
+    },
+    {
+      "dim": 8,
+      "rank": 3,
+      "gene": "ZNF521",
+      "rho": 0.7807909074432035,
+      "abs_rho": 0.7807909074432035
+    },
+    {
+      "dim": 8,
+      "rank": 4,
+      "gene": "ITGB3",
+      "rho": -0.7759727014307649,
+      "abs_rho": 0.7759727014307649
+    },
+    {
+      "dim": 9,
+      "rank": 0,
+      "gene": "TYMS",
+      "rho": -0.7489632109677324,
+      "abs_rho": 0.7489632109677324
+    },
+    {
+      "dim": 9,
+      "rank": 1,
+      "gene": "HMGB2",
+      "rho": -0.7274975129279376,
+      "abs_rho": 0.7274975129279376
+    },
+    {
+      "dim": 9,
+      "rank": 2,
+      "gene": "TUBA1B",
+      "rho": -0.7220013846576854,
+      "abs_rho": 0.7220013846576854
+    },
+    {
+      "dim": 9,
+      "rank": 3,
+      "gene": "FABP5",
+      "rho": -0.6861739311410647,
+      "abs_rho": 0.6861739311410647
+    },
+    {
+      "dim": 9,
+      "rank": 4,
+      "gene": "PVT1",
+      "rho": -0.6833786528502194,
+      "abs_rho": 0.6833786528502194
+    }
+  ],
+  "enrichment": [
+    {
+      "dim": 0,
+      "term": "GOBP_MITOTIC_CELL_CYCLE",
+      "n_overlap": 37,
+      "n_term": 926,
+      "percent": 0.03995680345572354,
+      "padj": 9.094988152224269e-21,
+      "neg_log10_padj": 20.04119786234288
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_MITOTIC_CELL_CYCLE_PROCESS",
+      "n_overlap": 34,
+      "n_term": 774,
+      "percent": 0.04392764857881137,
+      "padj": 2.6293011008049452e-20,
+      "neg_log10_padj": 19.580159676757738
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_ORGANELLE_FISSION",
+      "n_overlap": 28,
+      "n_term": 498,
+      "percent": 0.05622489959839357,
+      "padj": 4.2180068473001854e-19,
+      "neg_log10_padj": 18.37489271958414
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_MITOTIC_NUCLEAR_DIVISION",
+      "n_overlap": 23,
+      "n_term": 283,
+      "percent": 0.0812720848056537,
+      "padj": 6.432947647721024e-19,
+      "neg_log10_padj": 18.19158998293795
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_NUCLEAR_CHROMOSOME_SEGREGATION",
+      "n_overlap": 23,
+      "n_term": 323,
+      "percent": 0.07120743034055728,
+      "padj": 1.0414563463300385e-17,
+      "neg_log10_padj": 16.98235892921629
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_CELL_CYCLE_PROCESS",
+      "n_overlap": 38,
+      "n_term": 1305,
+      "percent": 0.029118773946360154,
+      "padj": 1.5314821003530188e-17,
+      "neg_log10_padj": 16.814888074772092
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_CELL_DIVISION",
+      "n_overlap": 29,
+      "n_term": 644,
+      "percent": 0.04503105590062112,
+      "padj": 1.5314821003530188e-17,
+      "neg_log10_padj": 16.814888074772092
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_CHROMOSOME_SEGREGATION",
+      "n_overlap": 25,
+      "n_term": 429,
+      "percent": 0.05827505827505827,
+      "padj": 1.5314821003530188e-17,
+      "neg_log10_padj": 16.814888074772092
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_HEMOSTASIS",
+      "n_overlap": 21,
+      "n_term": 235,
+      "percent": 0.08936170212765958,
+      "padj": 1.6638116121290895e-17,
+      "neg_log10_padj": 16.778895848985492
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_WOUND_HEALING",
+      "n_overlap": 24,
+      "n_term": 434,
+      "percent": 0.055299539170506916,
+      "padj": 8.042914540928272e-16,
+      "neg_log10_padj": 15.094586545819459
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_REGULATION_OF_BODY_FLUID_LEVELS",
+      "n_overlap": 22,
+      "n_term": 375,
+      "percent": 0.058666666666666666,
+      "padj": 4.047516441634184e-15,
+      "neg_log10_padj": 14.392811378400037
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_PLATELET_ACTIVATION",
+      "n_overlap": 16,
+      "n_term": 138,
+      "percent": 0.11594202898550725,
+      "padj": 4.047516441634184e-15,
+      "neg_log10_padj": 14.392811378400037
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_RESPONSE_TO_WOUNDING",
+      "n_overlap": 25,
+      "n_term": 574,
+      "percent": 0.04355400696864112,
+      "padj": 1.557272462447148e-14,
+      "neg_log10_padj": 13.807635396047663
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_REGULATION_OF_PLATELET_ACTIVATION",
+      "n_overlap": 10,
+      "n_term": 53,
+      "percent": 0.18867924528301888,
+      "padj": 3.063101234005758e-11,
+      "neg_log10_padj": 10.513838649734872
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_PLATELET_AGGREGATION",
+      "n_overlap": 11,
+      "n_term": 76,
+      "percent": 0.14473684210526316,
+      "padj": 3.147756265554837e-11,
+      "neg_log10_padj": 10.501998902940235
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_HOMOTYPIC_CELL_CELL_ADHESION",
+      "n_overlap": 11,
+      "n_term": 100,
+      "percent": 0.11,
+      "padj": 6.180066239901472e-10,
+      "neg_log10_padj": 9.209006869980842
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_HEMOSTASIS",
+      "n_overlap": 18,
+      "n_term": 235,
+      "percent": 0.07659574468085106,
+      "padj": 8.909572348327535e-14,
+      "neg_log10_padj": 13.050143141217763
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_PLATELET_ACTIVATION",
+      "n_overlap": 15,
+      "n_term": 138,
+      "percent": 0.10869565217391304,
+      "padj": 1.1818909451195379e-13,
+      "neg_log10_padj": 12.927422594620433
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_WOUND_HEALING",
+      "n_overlap": 20,
+      "n_term": 434,
+      "percent": 0.04608294930875576,
+      "padj": 8.227192890938548e-12,
+      "neg_log10_padj": 11.08474832030798
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_REGULATION_OF_BODY_FLUID_LEVELS",
+      "n_overlap": 18,
+      "n_term": 375,
+      "percent": 0.048,
+      "padj": 7.756577133508817e-11,
+      "neg_log10_padj": 10.110329884408543
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_RESPONSE_TO_WOUNDING",
+      "n_overlap": 21,
+      "n_term": 574,
+      "percent": 0.036585365853658534,
+      "padj": 8.929454306203193e-11,
+      "neg_log10_padj": 10.049175080758273
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_REGULATION_OF_PLATELET_ACTIVATION",
+      "n_overlap": 9,
+      "n_term": 53,
+      "percent": 0.16981132075471697,
+      "padj": 1.0440061866732864e-09,
+      "neg_log10_padj": 8.981296927741699
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_CELL_ACTIVATION",
+      "n_overlap": 26,
+      "n_term": 1126,
+      "percent": 0.023090586145648313,
+      "padj": 2.143878438547644e-09,
+      "neg_log10_padj": 8.668799843496377
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_PLATELET_AGGREGATION",
+      "n_overlap": 9,
+      "n_term": 76,
+      "percent": 0.11842105263157894,
+      "padj": 2.3026989841965544e-08,
+      "neg_log10_padj": 7.637762830618795
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_PLATELET_ACTIVATION",
+      "n_overlap": 8,
+      "n_term": 138,
+      "percent": 0.057971014492753624,
+      "padj": 0.00020065222928358786,
+      "neg_log10_padj": 3.6975560108108674
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_HEMOSTASIS",
+      "n_overlap": 10,
+      "n_term": 235,
+      "percent": 0.0425531914893617,
+      "padj": 0.00020065222928358786,
+      "neg_log10_padj": 3.6975560108108674
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_REGULATION_OF_BODY_FLUID_LEVELS",
+      "n_overlap": 12,
+      "n_term": 375,
+      "percent": 0.032,
+      "padj": 0.00020065222928358786,
+      "neg_log10_padj": 3.6975560108108674
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_CELL_ACTIVATION",
+      "n_overlap": 19,
+      "n_term": 1126,
+      "percent": 0.016873889875666074,
+      "padj": 0.0004949942599209061,
+      "neg_log10_padj": 3.30539983722629
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_WOUND_HEALING",
+      "n_overlap": 12,
+      "n_term": 434,
+      "percent": 0.027649769585253458,
+      "padj": 0.0004949942599209061,
+      "neg_log10_padj": 3.30539983722629
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_RESPONSE_TO_WOUNDING",
+      "n_overlap": 13,
+      "n_term": 574,
+      "percent": 0.02264808362369338,
+      "padj": 0.0010739464318831257,
+      "neg_log10_padj": 2.9690173805710662
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_CELL_SUBSTRATE_JUNCTION_ORGANIZATION",
+      "n_overlap": 6,
+      "n_term": 103,
+      "percent": 0.05825242718446602,
+      "padj": 0.0026341385850209703,
+      "neg_log10_padj": 2.579361380047504
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_INTEGRIN_MEDIATED_SIGNALING_PATHWAY",
+      "n_overlap": 6,
+      "n_term": 113,
+      "percent": 0.05309734513274336,
+      "padj": 0.003918460284565312,
+      "neg_log10_padj": 2.4068845506522263
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_HEMOSTASIS",
+      "n_overlap": 17,
+      "n_term": 235,
+      "percent": 0.07234042553191489,
+      "padj": 4.1733563692376505e-12,
+      "neg_log10_padj": 11.379514528639536
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_WOUND_HEALING",
+      "n_overlap": 20,
+      "n_term": 434,
+      "percent": 0.04608294930875576,
+      "padj": 2.068462744566539e-11,
+      "neg_log10_padj": 10.68435229684963
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_REGULATION_OF_BODY_FLUID_LEVELS",
+      "n_overlap": 19,
+      "n_term": 375,
+      "percent": 0.050666666666666665,
+      "padj": 2.068462744566539e-11,
+      "neg_log10_padj": 10.68435229684963
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_PLATELET_ACTIVATION",
+      "n_overlap": 13,
+      "n_term": 138,
+      "percent": 0.09420289855072464,
+      "padj": 8.751557367376538e-11,
+      "neg_log10_padj": 10.0579146560206
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_RESPONSE_TO_WOUNDING",
+      "n_overlap": 20,
+      "n_term": 574,
+      "percent": 0.03484320557491289,
+      "padj": 2.180145473952919e-09,
+      "neg_log10_padj": 8.661514526382955
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_HOMOTYPIC_CELL_CELL_ADHESION",
+      "n_overlap": 9,
+      "n_term": 100,
+      "percent": 0.09,
+      "padj": 5.554668258193825e-07,
+      "neg_log10_padj": 6.255341873345618
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_PLATELET_AGGREGATION",
+      "n_overlap": 8,
+      "n_term": 76,
+      "percent": 0.10526315789473684,
+      "padj": 1.1343259572010982e-06,
+      "neg_log10_padj": 5.9452621296825745
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_REGULATION_OF_PLATELET_ACTIVATION",
+      "n_overlap": 7,
+      "n_term": 53,
+      "percent": 0.1320754716981132,
+      "padj": 1.919893702971367e-06,
+      "neg_log10_padj": 5.716722815822972
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_HEMOSTASIS",
+      "n_overlap": 14,
+      "n_term": 235,
+      "percent": 0.059574468085106386,
+      "padj": 1.0223373506938144e-08,
+      "neg_log10_padj": 7.990405772137183
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_PLATELET_ACTIVATION",
+      "n_overlap": 11,
+      "n_term": 138,
+      "percent": 0.07971014492753623,
+      "padj": 5.061027163110993e-08,
+      "neg_log10_padj": 7.2957613317768555
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_REGULATION_OF_BODY_FLUID_LEVELS",
+      "n_overlap": 15,
+      "n_term": 375,
+      "percent": 0.04,
+      "padj": 1.5752957960574602e-07,
+      "neg_log10_padj": 6.802637885979812
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_WOUND_HEALING",
+      "n_overlap": 15,
+      "n_term": 434,
+      "percent": 0.03456221198156682,
+      "padj": 8.829968817844756e-07,
+      "neg_log10_padj": 6.054040830087422
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_REGULATION_OF_PLATELET_ACTIVATION",
+      "n_overlap": 7,
+      "n_term": 53,
+      "percent": 0.1320754716981132,
+      "padj": 2.2314547050307478e-06,
+      "neg_log10_padj": 5.651411924218859
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_HOMOTYPIC_CELL_CELL_ADHESION",
+      "n_overlap": 8,
+      "n_term": 100,
+      "percent": 0.08,
+      "padj": 8.180417031044547e-06,
+      "neg_log10_padj": 5.087224555782855
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_PLATELET_AGGREGATION",
+      "n_overlap": 7,
+      "n_term": 76,
+      "percent": 0.09210526315789473,
+      "padj": 1.638217219345311e-05,
+      "neg_log10_padj": 4.785628513498409
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_INTEGRIN_MEDIATED_SIGNALING_PATHWAY",
+      "n_overlap": 8,
+      "n_term": 113,
+      "percent": 0.07079646017699115,
+      "padj": 1.638217219345311e-05,
+      "neg_log10_padj": 4.785628513498409
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_PLATELET_ACTIVATION",
+      "n_overlap": 13,
+      "n_term": 138,
+      "percent": 0.09420289855072464,
+      "padj": 5.685809165079056e-10,
+      "neg_log10_padj": 9.24520772078767
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_HEMOSTASIS",
+      "n_overlap": 15,
+      "n_term": 235,
+      "percent": 0.06382978723404255,
+      "padj": 1.1514144268977976e-09,
+      "neg_log10_padj": 8.93876833325951
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_REGULATION_OF_PLATELET_ACTIVATION",
+      "n_overlap": 9,
+      "n_term": 53,
+      "percent": 0.16981132075471697,
+      "padj": 4.44640199075939e-09,
+      "neg_log10_padj": 8.351991276122742
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_REGULATION_OF_BODY_FLUID_LEVELS",
+      "n_overlap": 16,
+      "n_term": 375,
+      "percent": 0.042666666666666665,
+      "padj": 3.384975988071387e-08,
+      "neg_log10_padj": 7.470444407712983
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_WOUND_HEALING",
+      "n_overlap": 17,
+      "n_term": 434,
+      "percent": 0.03917050691244239,
+      "padj": 3.384975988071387e-08,
+      "neg_log10_padj": 7.470444407712983
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_CELL_ACTIVATION",
+      "n_overlap": 25,
+      "n_term": 1126,
+      "percent": 0.022202486678507993,
+      "padj": 1.083101017894512e-07,
+      "neg_log10_padj": 6.9653310360171465
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_POSITIVE_REGULATION_OF_PLATELET_ACTIVATION",
+      "n_overlap": 5,
+      "n_term": 13,
+      "percent": 0.38461538461538464,
+      "padj": 1.1949008133396656e-06,
+      "neg_log10_padj": 5.922668143257311
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_RESPONSE_TO_WOUNDING",
+      "n_overlap": 17,
+      "n_term": 574,
+      "percent": 0.029616724738675958,
+      "padj": 1.3694340924989593e-06,
+      "neg_log10_padj": 5.863458864434328
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_WOUND_HEALING",
+      "n_overlap": 14,
+      "n_term": 434,
+      "percent": 0.03225806451612903,
+      "padj": 1.9791858448821215e-05,
+      "neg_log10_padj": 4.70351342377375
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_HEMOSTASIS",
+      "n_overlap": 11,
+      "n_term": 235,
+      "percent": 0.04680851063829787,
+      "padj": 1.9791858448821215e-05,
+      "neg_log10_padj": 4.70351342377375
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_CELL_ACTIVATION",
+      "n_overlap": 21,
+      "n_term": 1126,
+      "percent": 0.018650088809946713,
+      "padj": 4.225255957513839e-05,
+      "neg_log10_padj": 4.37414697723054
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_PLATELET_ACTIVATION",
+      "n_overlap": 8,
+      "n_term": 138,
+      "percent": 0.057971014492753624,
+      "padj": 0.00016836303074157366,
+      "neg_log10_padj": 3.7737532650189634
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_RESPONSE_TO_WOUNDING",
+      "n_overlap": 14,
+      "n_term": 574,
+      "percent": 0.024390243902439025,
+      "padj": 0.00024317467321722383,
+      "neg_log10_padj": 3.614081659065318
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_BLOOD_COAGULATION_FIBRIN_CLOT_FORMATION",
+      "n_overlap": 4,
+      "n_term": 16,
+      "percent": 0.25,
+      "padj": 0.00028833887274236743,
+      "neg_log10_padj": 3.5400968037461746
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_REGULATION_OF_BODY_FLUID_LEVELS",
+      "n_overlap": 11,
+      "n_term": 375,
+      "percent": 0.029333333333333333,
+      "padj": 0.000533065746453921,
+      "neg_log10_padj": 3.2732192233163224
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_CELL_MATRIX_ADHESION",
+      "n_overlap": 9,
+      "n_term": 241,
+      "percent": 0.03734439834024896,
+      "padj": 0.0005404757553540766,
+      "neg_log10_padj": 3.2672237828431383
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_HEMOSTASIS",
+      "n_overlap": 18,
+      "n_term": 235,
+      "percent": 0.07659574468085106,
+      "padj": 8.89579465912909e-14,
+      "neg_log10_padj": 13.050815250428878
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_PLATELET_ACTIVATION",
+      "n_overlap": 15,
+      "n_term": 138,
+      "percent": 0.10869565217391304,
+      "padj": 1.180063278709559e-13,
+      "neg_log10_padj": 12.928094703831547
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_WOUND_HEALING",
+      "n_overlap": 20,
+      "n_term": 434,
+      "percent": 0.04608294930875576,
+      "padj": 8.214470427705139e-12,
+      "neg_log10_padj": 11.085420429519097
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_REGULATION_OF_BODY_FLUID_LEVELS",
+      "n_overlap": 18,
+      "n_term": 375,
+      "percent": 0.048,
+      "padj": 7.744582426601328e-11,
+      "neg_log10_padj": 10.111001993619658
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_RESPONSE_TO_WOUNDING",
+      "n_overlap": 21,
+      "n_term": 574,
+      "percent": 0.036585365853658534,
+      "padj": 8.915645871709064e-11,
+      "neg_log10_padj": 10.049847189969388
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_REGULATION_OF_PLATELET_ACTIVATION",
+      "n_overlap": 9,
+      "n_term": 53,
+      "percent": 0.16981132075471697,
+      "padj": 1.042391744116575e-09,
+      "neg_log10_padj": 8.981969036952814
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_CELL_ACTIVATION",
+      "n_overlap": 26,
+      "n_term": 1126,
+      "percent": 0.023090586145648313,
+      "padj": 2.1405631626117458e-09,
+      "neg_log10_padj": 8.669471952707491
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_PLATELET_AGGREGATION",
+      "n_overlap": 9,
+      "n_term": 76,
+      "percent": 0.11842105263157894,
+      "padj": 2.2991381094787245e-08,
+      "neg_log10_padj": 7.63843493982991
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_MITOTIC_CELL_CYCLE_PROCESS",
+      "n_overlap": 45,
+      "n_term": 774,
+      "percent": 0.05813953488372093,
+      "padj": 8.87478709815857e-35,
+      "neg_log10_padj": 34.051842056662046
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_MITOTIC_CELL_CYCLE",
+      "n_overlap": 47,
+      "n_term": 926,
+      "percent": 0.05075593952483801,
+      "padj": 2.70943219367094e-34,
+      "neg_log10_padj": 33.567121713181955
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_CELL_CYCLE_PROCESS",
+      "n_overlap": 52,
+      "n_term": 1305,
+      "percent": 0.03984674329501916,
+      "padj": 7.3532756647656364e-34,
+      "neg_log10_padj": 33.13351915258634
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_CELL_DIVISION",
+      "n_overlap": 41,
+      "n_term": 644,
+      "percent": 0.06366459627329192,
+      "padj": 3.3847187929910055e-33,
+      "neg_log10_padj": 32.47047740725221
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_CELL_CYCLE",
+      "n_overlap": 54,
+      "n_term": 1684,
+      "percent": 0.032066508313539195,
+      "padj": 6.265571774281253e-31,
+      "neg_log10_padj": 30.20303929065793
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_ORGANELLE_FISSION",
+      "n_overlap": 36,
+      "n_term": 498,
+      "percent": 0.07228915662650602,
+      "padj": 1.334827314220245e-30,
+      "neg_log10_padj": 29.874574915072564
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_CHROMOSOME_SEGREGATION",
+      "n_overlap": 34,
+      "n_term": 429,
+      "percent": 0.07925407925407925,
+      "padj": 4.5479622436064826e-30,
+      "neg_log10_padj": 29.34218314940678
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_MITOTIC_NUCLEAR_DIVISION",
+      "n_overlap": 30,
+      "n_term": 283,
+      "percent": 0.10600706713780919,
+      "padj": 5.6805760962013265e-30,
+      "neg_log10_padj": 29.245607618036505
+    }
+  ],
+  "cell_type_label_source": "marker_genes",
+  "cell_type_label_map": "figures/biovalidation/celltype_label_map.json",
+  "cell_type_label_map_schema": "celltype_label_map.v1",
+  "cell_type_label_cluster_key": "_ct_leiden",
+  "cluster_label_evidence": [
+    {
+      "case_id": "UCB",
+      "cluster_id": "0",
+      "short_label": "Early progenitors",
+      "full_label": "Early erythro-megakaryoid progenitor-like cells",
+      "label_kind": "marker_inferred",
+      "confidence": "medium",
+      "marker_genes": [
+        "XACT",
+        "PVT1",
+        "TFRC",
+        "PIP5K1B",
+        "ZNF609",
+        "RYR3",
+        "ZNF385D",
+        "ITGA4",
+        "CNRIP1",
+        "CDK6"
+      ],
+      "evidence_note": "Top markers: XACT, PVT1, TFRC, PIP5K1B, ZNF609, RYR3.",
+      "n_cells_in_marker_subsample": 154
+    },
+    {
+      "case_id": "UCB",
+      "cluster_id": "1",
+      "short_label": "Cycling progenitors",
+      "full_label": "S-phase/cycling hematopoietic progenitors",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "KCNQ5",
+        "PCNA",
+        "HELLS",
+        "CLSPN",
+        "TFRC",
+        "XACT",
+        "TYMS",
+        "FABP5",
+        "MIR924HG",
+        "PLXNC1"
+      ],
+      "evidence_note": "Top markers: KCNQ5, PCNA, HELLS, CLSPN, TFRC, XACT.",
+      "n_cells_in_marker_subsample": 312
+    },
+    {
+      "case_id": "UCB",
+      "cluster_id": "2",
+      "short_label": "Cycling progenitors",
+      "full_label": "Cycling hematopoietic progenitors",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "SMC4",
+        "CKS1B",
+        "HMGB2",
+        "RRM2",
+        "MKI67",
+        "NUSAP1",
+        "TYMS",
+        "CDKN3",
+        "UBE2S",
+        "PRC1"
+      ],
+      "evidence_note": "Top markers: SMC4, CKS1B, HMGB2, RRM2, MKI67, NUSAP1.",
+      "n_cells_in_marker_subsample": 487
+    },
+    {
+      "case_id": "UCB",
+      "cluster_id": "3",
+      "short_label": "Mitotic cells",
+      "full_label": "G2/M mitotic hematopoietic cells",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "HMGB2",
+        "PTTG1",
+        "CENPF",
+        "CCNB1",
+        "UBE2S",
+        "TUBA1B",
+        "CDC20",
+        "HMMR",
+        "CCNB2",
+        "TPX2"
+      ],
+      "evidence_note": "Top markers: HMGB2, PTTG1, CENPF, CCNB1, UBE2S, TUBA1B.",
+      "n_cells_in_marker_subsample": 87
+    },
+    {
+      "case_id": "UCB",
+      "cluster_id": "4",
+      "short_label": "FCER1A+ myeloid/DC",
+      "full_label": "FCER1A-positive myeloid/dendritic-like cells",
+      "label_kind": "marker_inferred",
+      "confidence": "medium",
+      "marker_genes": [
+        "DLC1",
+        "ARL15",
+        "FAM171A1",
+        "SLC40A1",
+        "FRY",
+        "FCER1A",
+        "SOS1",
+        "WNT5B",
+        "ELMO1",
+        "STXBP5"
+      ],
+      "evidence_note": "Top markers: DLC1, ARL15, FAM171A1, SLC40A1, FRY, FCER1A.",
+      "n_cells_in_marker_subsample": 165
+    },
+    {
+      "case_id": "UCB",
+      "cluster_id": "5",
+      "short_label": "Platelet megakaryocytes",
+      "full_label": "Platelet/megakaryocyte-biased cells",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "HPSE",
+        "THBS1",
+        "DAAM1",
+        "GP1BA",
+        "F13A1",
+        "PCSK6",
+        "NEXN",
+        "ITGB3",
+        "GP9",
+        "DGKG"
+      ],
+      "evidence_note": "Top markers: HPSE, THBS1, DAAM1, GP1BA, F13A1, PCSK6.",
+      "n_cells_in_marker_subsample": 253
+    },
+    {
+      "case_id": "UCB",
+      "cluster_id": "6",
+      "short_label": "Primitive HSPC",
+      "full_label": "Primitive hematopoietic stem/progenitor-like cells",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "MSI2",
+        "RNF220",
+        "ATP8B4",
+        "BAALC",
+        "P2RY8",
+        "SORL1",
+        "PLCB1",
+        "SPINK2",
+        "CALN1",
+        "CASC15"
+      ],
+      "evidence_note": "Top markers: MSI2, RNF220, ATP8B4, BAALC, P2RY8, SORL1.",
+      "n_cells_in_marker_subsample": 231
+    },
+    {
+      "case_id": "UCB",
+      "cluster_id": "7",
+      "short_label": "Primitive HSPC",
+      "full_label": "Primitive hematopoietic stem/progenitor-like cells",
+      "label_kind": "marker_inferred",
+      "confidence": "medium",
+      "marker_genes": [
+        "SPINK2",
+        "PLCB1",
+        "ANKRD28",
+        "MSRB3",
+        "AREG",
+        "TCF4",
+        "C1QTNF4",
+        "AL589693.1",
+        "SELL",
+        "PROM1"
+      ],
+      "evidence_note": "Top markers: SPINK2, PLCB1, ANKRD28, MSRB3, AREG, TCF4.",
+      "n_cells_in_marker_subsample": 159
+    },
+    {
+      "case_id": "UCB",
+      "cluster_id": "8",
+      "short_label": "Activated leukocyte-like",
+      "full_label": "Activated leukocyte-like minor cluster",
+      "label_kind": "putative_marker_inferred",
+      "confidence": "low",
+      "marker_genes": [
+        "PTPRE",
+        "RAB11FIP1",
+        "STK17B",
+        "CYTIP",
+        "FOS",
+        "RGS2",
+        "KLF6",
+        "PIK3R5",
+        "SULF2",
+        "NAMPT"
+      ],
+      "evidence_note": "Top markers: PTPRE, RAB11FIP1, STK17B, CYTIP, FOS, RGS2. Label kept broad/putative because marker evidence is mixed or nonspecific.",
+      "n_cells_in_marker_subsample": 56
+    },
+    {
+      "case_id": "UCB",
+      "cluster_id": "9",
+      "short_label": "Mitotic cycling cells",
+      "full_label": "Mitotic cycling hematopoietic cells",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "TOP2A",
+        "ASPM",
+        "CENPF",
+        "CENPE",
+        "CDCA2",
+        "NUSAP1",
+        "TPX2",
+        "CDK1",
+        "KIF14",
+        "MKI67"
+      ],
+      "evidence_note": "Top markers: TOP2A, ASPM, CENPF, CENPE, CDCA2, NUSAP1.",
+      "n_cells_in_marker_subsample": 181
+    },
+    {
+      "case_id": "UCB",
+      "cluster_id": "10",
+      "short_label": "Leukocyte-like",
+      "full_label": "PTPRC-positive leukocyte-like cluster",
+      "label_kind": "putative_marker_inferred",
+      "confidence": "medium",
+      "marker_genes": [
+        "PTPRC",
+        "ESYT2",
+        "PRKCH",
+        "PLCB1",
+        "RASA2",
+        "PDE7A",
+        "ANKRD44",
+        "FOS",
+        "CCNL1",
+        "CYTH1"
+      ],
+      "evidence_note": "Top markers: PTPRC, ESYT2, PRKCH, PLCB1, RASA2, PDE7A.",
+      "n_cells_in_marker_subsample": 86
+    },
+    {
+      "case_id": "UCB",
+      "cluster_id": "11",
+      "short_label": "Platelet-like MK",
+      "full_label": "Platelet-like mature megakaryocytic cells",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "TUBB1",
+        "TMEM40",
+        "SAT1",
+        "PTPRJ",
+        "CD9",
+        "CLEC1B",
+        "ARHGAP21",
+        "NEAT1",
+        "LINC02284",
+        "GNG11"
+      ],
+      "evidence_note": "Top markers: TUBB1, TMEM40, SAT1, PTPRJ, CD9, CLEC1B.",
+      "n_cells_in_marker_subsample": 171
+    },
+    {
+      "case_id": "UCB",
+      "cluster_id": "12",
+      "short_label": "Stress progenitor-like",
+      "full_label": "Stress/progenitor-like hematopoietic cells",
+      "label_kind": "putative_marker_inferred",
+      "confidence": "low",
+      "marker_genes": [
+        "SLC39A8",
+        "LRBA",
+        "ARIH1",
+        "RERE",
+        "AC069410.1",
+        "RPS6KA3",
+        "PNRC1",
+        "KLHL24",
+        "PHTF1",
+        "WDR48"
+      ],
+      "evidence_note": "Top markers: SLC39A8, LRBA, ARIH1, RERE, AC069410.1, RPS6KA3. Label kept broad/putative because marker evidence is mixed or nonspecific.",
+      "n_cells_in_marker_subsample": 87
+    },
+    {
+      "case_id": "UCB",
+      "cluster_id": "13",
+      "short_label": "Megakaryocyte-biased",
+      "full_label": "Megakaryocyte-biased differentiating cells",
+      "label_kind": "marker_inferred",
+      "confidence": "medium",
+      "marker_genes": [
+        "PLXDC2",
+        "MED12L",
+        "SLC24A3",
+        "PLEK",
+        "RASGRP3",
+        "LTBP1",
+        "RAB27B",
+        "TTC27",
+        "SLC9A9",
+        "ITGA6"
+      ],
+      "evidence_note": "Top markers: PLXDC2, MED12L, SLC24A3, PLEK, RASGRP3, LTBP1.",
+      "n_cells_in_marker_subsample": 218
+    },
+    {
+      "case_id": "UCB",
+      "cluster_id": "14",
+      "short_label": "Platelet-biased MK",
+      "full_label": "Platelet-biased megakaryocytic cells",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "PLEK",
+        "MMRN1",
+        "ARHGAP6",
+        "VCL",
+        "ITGB3",
+        "CNST",
+        "RUFY1",
+        "DNM3",
+        "RAP1B",
+        "GP1BB"
+      ],
+      "evidence_note": "Top markers: PLEK, MMRN1, ARHGAP6, VCL, ITGB3, CNST.",
+      "n_cells_in_marker_subsample": 210
+    },
+    {
+      "case_id": "UCB",
+      "cluster_id": "15",
+      "short_label": "Basophil-like",
+      "full_label": "Basophil/mast-like minor hematopoietic cluster",
+      "label_kind": "putative_marker_inferred",
+      "confidence": "medium",
+      "marker_genes": [
+        "LMO4",
+        "PPM1H",
+        "HPGDS",
+        "HDC",
+        "CNRIP1",
+        "ZNF521",
+        "RAPGEF2",
+        "HPGD",
+        "AHNAK",
+        "ALS2"
+      ],
+      "evidence_note": "Top markers: LMO4, PPM1H, HPGDS, HDC, CNRIP1, ZNF521.",
+      "n_cells_in_marker_subsample": 143
+    }
+  ]
+}

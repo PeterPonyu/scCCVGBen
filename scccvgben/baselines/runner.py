@@ -18,6 +18,7 @@ import numpy as np
 
 from scccvgben.baselines.sklearn_methods import SKLEARN_REGISTRY
 from scccvgben.baselines.deep_methods import DEEP_REGISTRY
+from scccvgben.config import REPO_ROOT
 
 log = logging.getLogger(__name__)
 
@@ -198,5 +199,9 @@ def run_baseline(
         z = _run_scccvgben(X, labels, adata)
     else:
         raise ValueError(f"Dispatch error for '{name}'.")
+
+    _latent_dir = REPO_ROOT / "results" / "latents"
+    _latent_dir.mkdir(parents=True, exist_ok=True)
+    np.save(_latent_dir / f"{h5ad_path.stem}__{name}.npy", z)
 
     return _compute_metrics(z, labels, X, method_name=name)

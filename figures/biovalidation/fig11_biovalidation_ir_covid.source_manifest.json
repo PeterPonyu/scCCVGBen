@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "figure_id": "fig11_biovalidation_ir_covid",
+  "pair_label": "Radiation injury × COVID-19 BALF immune landscape",
+  "source_contract": "scripts, sidecar/manifest metadata, and LaTeX are primary; generated PNG/PDF binaries are local QA evidence",
+  "primary_deliverables": {
+    "script": "scripts/make_biovalidation_pairs.py",
+    "latex": "manuscript/scccvgben/sn-article.tex",
+    "metadata": [
+      "figures/biovalidation/fig11_biovalidation_ir_covid.label_manifest.json",
+      "figures/biovalidation/fig11_biovalidation_ir_covid.source_manifest.json",
+      "figures/biovalidation/fig_biovalidation_case_IR.sidecar.json",
+      "figures/biovalidation/fig_biovalidation_case_COVID.sidecar.json",
+      "figures/biovalidation/celltype_label_map.json"
+    ]
+  },
+  "qa_artifacts": {
+    "generated_pair_binaries": {
+      "role": "qa_evidence_only",
+      "commit_policy": "do_not_commit",
+      "paths": [
+        "figures/fig11_biovalidation_ir_covid.png",
+        "figures/fig11_biovalidation_ir_covid.pdf"
+      ]
+    },
+    "cached_case_render_inputs": [
+      {
+        "case_id": "IR",
+        "png": "figures/biovalidation/fig_biovalidation_case_IR.png",
+        "pdf": "figures/biovalidation/fig_biovalidation_case_IR.pdf",
+        "role": "local_render_cache_for_panel_crops",
+        "commit_policy": "do_not_commit"
+      },
+      {
+        "case_id": "COVID",
+        "png": "figures/biovalidation/fig_biovalidation_case_COVID.png",
+        "pdf": "figures/biovalidation/fig_biovalidation_case_COVID.pdf",
+        "role": "local_render_cache_for_panel_crops",
+        "commit_policy": "do_not_commit"
+      }
+    ]
+  },
+  "detail_sources": [
+    {
+      "case_id": "IR",
+      "sidecar": "figures/biovalidation/fig_biovalidation_case_IR.sidecar.json",
+      "records": [
+        "condition_latent",
+        "cluster_label_evidence",
+        "top_gene_rows",
+        "top_k_genes_df",
+        "latent_corr",
+        "enrichment"
+      ],
+      "role": "traceable_detail_payload_for_main_or_supplement_panels"
+    },
+    {
+      "case_id": "COVID",
+      "sidecar": "figures/biovalidation/fig_biovalidation_case_COVID.sidecar.json",
+      "records": [
+        "condition_latent",
+        "cluster_label_evidence",
+        "top_gene_rows",
+        "top_k_genes_df",
+        "latent_corr",
+        "enrichment"
+      ],
+      "role": "traceable_detail_payload_for_main_or_supplement_panels"
+    }
+  ],
+  "recompute_policy": {
+    "default": "reuse_cached_artifacts_and_sidecars",
+    "training_or_result_recompute": "disabled_by_default",
+    "explicit_flags_required": [
+      "--allow-recompute",
+      "--rebuild-sidecars"
+    ]
+  },
+  "cases": {
+    "left": "IR",
+    "right": "COVID"
+  },
+  "panel_count": 16,
+  "label_sequence": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P"
+  ],
+  "label_manifest": "figures/biovalidation/fig11_biovalidation_ir_covid.label_manifest.json",
+  "manuscript_label": "fig11_biovalidation_ir_covid",
+  "label_evidence": {
+    "label_map": "figures/biovalidation/celltype_label_map.json",
+    "label_map_schema": "celltype_label_map.v1",
+    "cases": {
+      "IR": {
+        "cell_type_label_source": "curated_source_obs",
+        "cluster_key": "_ct_leiden",
+        "cluster_label_count": 0
+      },
+      "COVID": {
+        "cell_type_label_source": "marker_genes",
+        "cluster_key": "_ct_leiden",
+        "cluster_label_count": 16,
+        "sidecar_record": "figures/biovalidation/fig_biovalidation_case_COVID.sidecar.json#cluster_label_evidence"
+      }
+    }
+  }
+}

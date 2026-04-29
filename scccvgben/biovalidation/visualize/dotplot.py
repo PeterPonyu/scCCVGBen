@@ -1,12 +1,12 @@
-"""GO BP enrichment dotplot per latent dimension.
+"""GO BP enrichment dotplot per latent coordinate.
 
 Inspired by ``sc.pl.dotplot`` and the legacy CCVGAE notebooks: each row is a
-GO term, each column a latent dim, dot size encodes the overlap percentage
+GO term, each column a latent coordinate, dot size encodes the overlap percentage
 (``n_overlap / n_term``), dot colour encodes ``-log10(padj)``.
 
 The panel is laid out so that:
   * up to ``max_terms_total`` distinct GO terms appear on the y-axis
-  * x-axis spans every latent dim that returned any term
+  * x-axis spans every latent coordinate that returned any term
   * an inset colorbar in the upper-right corner shows the colour scale
 """
 from __future__ import annotations
@@ -21,12 +21,12 @@ def render_gobp_dotplot(
     ax: plt.Axes,
     enrich_df: pd.DataFrame,
     *,
-    title: str = "H · GO BP enrichment per latent dim (top correlated genes)",
+    title: str = "H · GO BP enrichment per latent coordinate (top correlated genes)",
     max_terms_total: int = 20,
     cmap: str = "viridis",
     size_scale: float = 480.0,
 ) -> None:
-    """Render a dotplot of GO BP terms × latent dims.
+    """Render a dotplot of GO BP terms × latent coordinates.
 
     Parameters
     ----------
@@ -70,7 +70,7 @@ def render_gobp_dotplot(
                     edgecolors="white", linewidths=0.4)
 
     ax.set_xticks(range(len(dims)))
-    ax.set_xticklabels([f"d{d}" for d in dims], fontsize=9)
+    ax.set_xticklabels([f"z{d}" for d in dims], fontsize=9)
     ax.set_yticks(range(len(terms)))
     # Truncate term names. With the case figure left margin now 0.18
     # (≈2.9 in label space at 16-in width) and 9-pt sans, ~60 chars fit
@@ -79,7 +79,7 @@ def render_gobp_dotplot(
     ax.set_xlim(-0.5, len(dims) - 0.5)
     ax.set_ylim(-0.5, len(terms) - 0.5)
     ax.invert_yaxis()  # best-padj at top
-    ax.set_xlabel("latent dim", fontsize=9)
+    ax.set_xlabel("latent coordinate", fontsize=9)
     ax.set_title(title, pad=6, fontsize=11)
     ax.tick_params(axis="x", labelsize=9)
     ax.grid(True, color="#E2E8F0", linewidth=0.4, alpha=0.6, zorder=0)

@@ -1,12 +1,12 @@
-"""Top-K gene correlations per latent dimension and latent self-correlation.
+"""Top-K gene correlations per latent coordinate and latent self-correlation.
 
 The legacy reference bio-validation reported only the top-1 correlated gene per
-latent dim. This module returns the top-K (K configurable, default 5) so the
-multi-panel figure layout can show whether a dimension corresponds to a
+latent coordinate. This module returns the top-K (K configurable, default 5) so the
+multi-panel figure layout can show whether a coordinate corresponds to a
 single gene or to a coherent gene module.
 
 ``latent_self_correlation`` exposes the off-diagonal correlation matrix used
-to assess whether the latent dimensions are well-decorrelated. Same formula
+to assess whether the latent coordinates are well-decorrelated. Same formula
 as the vendored reference ``_calc_corr`` (see
 ``scccvgben.training.metrics.compute_latent_dimension_decorrelation``) but
 returns the full matrix for visualisation.
@@ -24,7 +24,7 @@ def top_k_genes_per_dim(
     k: int = 5,
     method: str = "spearman",
 ) -> pd.DataFrame:
-    """Per latent dimension, return the K genes most strongly correlated with it.
+    """Per latent coordinate, return the K genes most strongly correlated with it.
 
     Parameters
     ----------
@@ -36,7 +36,7 @@ def top_k_genes_per_dim(
         Names matching ``expression`` columns. If ``expression`` is a
         DataFrame its columns are used.
     k : int
-        Number of top genes per dim.
+        Number of top genes per latent coordinate.
     method : ``"spearman"`` | ``"pearson"``
         Correlation method.
 
@@ -93,8 +93,8 @@ def top_k_genes_per_dim(
 
 
 def latent_self_correlation(latent: np.ndarray) -> np.ndarray:
-    """Symmetric (L, L) absolute Pearson correlation matrix of latent dims."""
+    """Symmetric (L, L) absolute Pearson correlation matrix of latent coordinates."""
     Z = np.asarray(latent)
     if Z.ndim != 2 or Z.shape[1] < 2:
-        raise ValueError("latent must be 2-D with >=2 dims")
+        raise ValueError("latent must be 2-D with >=2 coordinates")
     return np.abs(np.corrcoef(Z.T))

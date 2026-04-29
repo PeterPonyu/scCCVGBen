@@ -4,7 +4,7 @@ Renders synthetic figures and asserts:
 - Backend is Agg.
 - pdf.fonttype is 42 inside the render context.
 - Dense metric grids use one row label per row rather than one label per metric.
-- Significance bracket count <= 3 per panel when reference_method given.
+- Significance markers render either as brackets or dense per-method stars.
 - import REA does not appear anywhere in scccvgben.figures.
 """
 
@@ -15,6 +15,7 @@ import io
 from pathlib import Path
 
 import matplotlib
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
@@ -34,6 +35,7 @@ from scccvgben.figures import (
     preliminary_path,
     select_significance_pairs,
 )
+from scccvgben.figures.style import _draw_significance_brackets
 
 
 def _synthetic_long_df(n_datasets: int = 12) -> pd.DataFrame:
@@ -100,6 +102,27 @@ def test_create_publication_figure_with_significance_brackets():
         assert len(bracket_lines) <= 3
 
 
+def test_dense_significance_mode_uses_nonoverlapping_method_markers():
+    fig, ax = plt.subplots()
+    try:
+        pairs = [("ref", f"m{i}", 1e-4) for i in range(6)]
+        method_order = ["ref", *(f"m{i}" for i in range(6))]
+        _draw_significance_brackets(
+            ax,
+            pairs,
+            method_order,
+            y_data_max=1.0,
+            dense_marker_threshold=3,
+        )
+        marker_text = [text.get_text() for text in ax.texts]
+        bracket_lines = [line for line in ax.lines if len(line.get_xdata()) == 4]
+    finally:
+        plt.close(fig)
+
+    assert marker_text == ["***"] * 6
+    assert bracket_lines == []
+
+
 def test_create_metric_family_figure_renders_group_rails():
     df = _synthetic_long_df()
     metric_rows = tuple(
@@ -145,7 +168,7 @@ def test_create_metric_grid_figure_keeps_20_panels_with_missing_badge():
     ]
     assert not any(label in all_text for label in ("E", "F", "G", "T"))
     assert any(text == "BEN" for text in all_text)
-    assert any(text == "DRE-UMAP" for text in all_text)
+    assert any(text == "DRE" for text in all_text)
     assert any(text == "LSE" for text in all_text)
 
 
@@ -175,10 +198,10 @@ def test_no_REA_imports_in_figures_package():
 
 
 def test_preliminary_path_grammar():
-    p_full = preliminary_path("figures/fig08_scrna_benchmark", n_obs=100, target=100)
-    p_part = preliminary_path("figures/fig08_scrna_benchmark", n_obs=78, target=100)
-    assert p_full.name == "fig08_scrna_benchmark.pdf"
-    assert p_part.name == "fig08_scrna_benchmark.PRELIMINARY.pdf"
+    p_full = preliminary_path("figures/fig07_scrna_benchmark", n_obs=100, target=100)
+    p_part = preliminary_path("figures/fig07_scrna_benchmark", n_obs=78, target=100)
+    assert p_full.name == "fig07_scrna_benchmark.pdf"
+    assert p_part.name == "fig07_scrna_benchmark.pdf"
 
 
 def test_significance_pair_selection_handles_small_n():

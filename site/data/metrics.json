@@ -106,16 +106,6 @@
       "name": "overall_quality_intrin",
       "description": "Weighted composite (trajectory-aware)",
       "source": "LSE"
-    },
-    {
-      "name": "data_type_intrin",
-      "description": "Auto-classified: 'trajectory' or 'steady_state'",
-      "source": "LSE"
-    },
-    {
-      "name": "interpretation_intrin",
-      "description": "Structured dict: quality_level, strengths, weaknesses, recommendations",
-      "source": "LSE"
     }
   ]
 }

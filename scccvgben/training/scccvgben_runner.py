@@ -13,6 +13,7 @@ subgraph_size=300). graph_type defaults to 'GAT' for Axis A/B primary cell.
 """
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Any
 
@@ -20,8 +21,60 @@ import numpy as np
 import scanpy as sc
 import anndata as ad
 
+_SEED = int(os.environ.get("SCCCVGBEN_SEED", 42))
+
 from scccvgben.external.reference_core.cgvae import CGVAE_agent
 from scccvgben.training.metrics import compute_metrics
+from scccvgben.config import REPO_ROOT
+
+
+def _env_float(key: str, default: float) -> float:
+    """Read a float hyperparameter from environment, fall back to default."""
+    raw = os.environ.get(key)
+    return float(raw) if raw is not None else default
+
+
+def _env_int(key: str, default: int) -> int:
+    """Read an int hyperparameter from environment, fall back to default."""
+    raw = os.environ.get(key)
+    return int(raw) if raw is not None else default
+
+
+def _build_defaults() -> dict[str, Any]:
+    """Return SCCCVGBEN_DEFAULTS honouring OAT sweep env-var overrides.
+
+    Environment variables (set by run_d2_hyperparam.py):
+        SCCCVGBEN_BETA        -- KL weight beta        (default 1.0, maps to w_kl)
+        SCCCVGBEN_ALPHA       -- centroid coupling      (default 0.5)
+        SCCCVGBEN_W_ADJ       -- adjacency recon weight (default 1.0)
+        SCCCVGBEN_DROPOUT     -- encoder dropout        (default 0.05)
+        SCCCVGBEN_HIDDEN_DIM  -- hidden layer width     (default 128)
+    """
+    return {
+        # Preprocess
+        "subsample_cells": 3000,
+        "n_top_genes": 2000,
+        # CGVAE_agent config (matching reference benchmark defaults)
+        "hidden_dim": _env_int("SCCCVGBEN_HIDDEN_DIM", 128),
+        "hidden_layers": 2,
+        "latent_dim": 10,
+        "i_dim": 5,
+        "lr": 1e-4,
+        "w_recon": 1.0,
+        "w_irecon": 1.0,
+        "w_kl": _env_float("SCCCVGBEN_BETA", 1.0),    # beta maps to w_kl
+        "w_adj": _env_float("SCCCVGBEN_W_ADJ", 1.0),
+        "alpha": _env_float("SCCCVGBEN_ALPHA", 0.5),
+        "dropout": _env_float("SCCCVGBEN_DROPOUT", 0.05),
+        "subgraph_size": 300,
+        "num_subgraphs_per_epoch": 10,
+        "epochs": 100,
+        "tech": "PCA",
+        "n_neighbors": 15,
+        "graph_type": "GAT",
+        "encoder_type": "graph",
+        "device": None,  # auto pick cuda/cpu
+    }
 
 
 SCCCVGBEN_DEFAULTS: dict[str, Any] = {
@@ -64,7 +117,7 @@ def _get_labels(adata: ad.AnnData) -> np.ndarray | None:
 def preprocess_scrna_scccvgben(adata: ad.AnnData,
                             subsample_cells: int = 3000,
                             n_top_genes: int = 2000,
-                            random_state: int = 42,
+                            random_state: int = _SEED,
                             min_counts_per_cell: int = 200,
                             min_cells_per_gene: int = 10) -> ad.AnnData:
     """Preprocess matching the reference benchmark hyperparameter routine.
@@ -130,7 +183,15 @@ def run_scccvgben_one(
     """
     import torch
 
-    cfg = {**SCCCVGBEN_DEFAULTS, **overrides}
+    # Seed all stochastic sources before any randomness in preprocessing or
+    # CGVAE training (which uses bare numpy/torch RNGs in CGVAE_env and CODE/).
+    # Multiseed runs override _SEED via SCCCVGBEN_SEED env var.
+    np.random.seed(_SEED)
+    torch.manual_seed(_SEED)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(_SEED)
+
+    cfg = {**_build_defaults(), **overrides}
     cfg["graph_type"] = graph_type
 
     adata = ad.read_h5ad(str(h5ad_path))
@@ -158,6 +219,10 @@ def run_scccvgben_one(
         device=device,
     ).fit(epochs=epochs, silent=silent)
     latent = agent.get_latent()
+
+    _latent_dir = REPO_ROOT / "results" / "latents"
+    _latent_dir.mkdir(parents=True, exist_ok=True)
+    np.save(_latent_dir / f"{Path(h5ad_path).stem}__{method_name or f'scCCVGBen_{graph_type}'}.npy", latent)
 
     if labels is not None:
         n_labels = len(labels)

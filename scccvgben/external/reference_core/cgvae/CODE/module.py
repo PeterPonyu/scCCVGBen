@@ -256,7 +256,7 @@ class MoCo(nn.Module):
         K=65536,
         m=0.999,
         T=0.2,
-        device=torch.device("cuda"),
+        device=torch.device("cuda" if torch.cuda.is_available() else "cpu"),
     ):
         super(MoCo, self).__init__()
         self.K = K

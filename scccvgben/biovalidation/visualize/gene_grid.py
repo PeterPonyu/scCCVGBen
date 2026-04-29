@@ -1,9 +1,9 @@
-"""Latent dim × top-K gene mini-UMAP grid.
+"""Latent coordinate × top-K gene mini-UMAP grid.
 
-Each row corresponds to a latent dimension (the ``rows_show`` first dims by
+Each row corresponds to a latent coordinate (the ``rows_show`` first dims by
 default), each column to a top-correlated gene of that dim. Each cell is a
 small UMAP scatter coloured by the relevant gene expression. The first
-column of each row is the latent-dim itself for reference.
+column of each row is the latent coordinate itself for reference.
 """
 from __future__ import annotations
 
@@ -24,7 +24,8 @@ def render_gene_grid(
     expression: pd.DataFrame,
     rows_show: int = 3,
     cols_show: int = 5,
-    title: str = "Latent dim × top-correlated genes",
+    title: str = "Latent coordinate × top-correlated genes",
+    cmap: str = "viridis",
 ) -> None:
     """Replace ``ax_grid`` with a (rows × cols) inset grid of mini scatter plots.
 
@@ -80,6 +81,6 @@ def render_gene_grid(
                 continue
             render_continuous_scatter(
                 ax, umap, expression[gene].to_numpy(),
-                title=f"d{r}·{gene} ρ{rho:+.2f}",
-                cmap="viridis", point_size=2.0, show_colorbar=False,
+                title=f"z{r}·{gene} ρ{rho:+.2f}",
+                cmap=cmap, point_size=2.0, show_colorbar=False,
             )

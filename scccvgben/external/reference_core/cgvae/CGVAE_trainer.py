@@ -37,7 +37,7 @@ class CGVAE_Trainer(scviMixin, adjMixin):
         w_kl: float = 1.0,
         w_adj: float = 1.0,
         w_irecon: float = 1.0,
-        device: torch.device = torch.device("cuda"),
+        device: torch.device = torch.device("cuda" if torch.cuda.is_available() else "cpu"),
         latent_type: str = 'q_m',
     ):
         self.cgvae = CGVAE(

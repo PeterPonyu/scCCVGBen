@@ -1,0 +1,39 @@
+name: Webapp CI
+
+on:
+  pull_request:
+    paths:
+      - 'webapp/**'
+      - 'site/data/**'
+      - 'site/static/**'
+      - 'data/benchmark_manifest.csv'
+      - 'scripts/build_site_data.py'
+      - 'scripts/build_supplementary_table.py'
+      - 'scripts/audit_submission_ready.py'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: webapp/package-lock.json
+
+      - name: Install dependencies
+        working-directory: webapp
+        run: npm install
+
+      - name: Lint
+        working-directory: webapp
+        run: npm run lint
+
+      - name: Build
+        working-directory: webapp
+        env:
+          NEXT_PUBLIC_BASE_PATH: /scccvgben-next
+        run: npm run build

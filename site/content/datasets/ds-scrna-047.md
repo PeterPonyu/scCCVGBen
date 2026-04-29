@@ -10,18 +10,18 @@ geekdocHidden: false
 | Field | Value |
 |-------|-------|
 | **Dataset ID** | `ds-scrna-047` |
-| **GSE / GSM accession** | [nan](nan) |
+| **GSE / GSM accession** | PRJEB37166 |
 | **Modality** | scRNA |
 | **Species** | human |
 | **Tissue** | other |
 | **Cell count** | 5,780 |
-| **PubMed** | [PMID:nan](https://pubmed.ncbi.nlm.nih.gov/nan/) |
-| **Submission date** | nan |
-| **Source name (GEO)** | nan |
+| **PubMed** | — |
+| **Submission date** | — |
+| **Source name (GEO)** | — |
 
 ## GEO title
 
-> nan
+> (no online title)
 
 ## Description (local manifest)
 
@@ -29,6 +29,6 @@ setty
 
 ---
 
-<small>Record auto-generated from `data/benchmark_manifest.csv` by
-`scripts/build_site_data.py`. All fields verified against GEO online
-metadata via GEOparse.</small>
+<small>Record assembled from the curated benchmark manifest and public GEO
+metadata. Internal identifiers and local paths are intentionally omitted from
+this public resource.</small>

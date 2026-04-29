@@ -5,20 +5,20 @@
     "scrna": 100,
     "scatac": 100
   },
-  "by_species_geo_verified": {
-    "human": 137,
-    "mouse": 54,
-    "zebrafish": 7,
+  "by_species_manifest_corrected": {
+    "human": 133,
+    "mouse": 60,
+    "zebrafish": 5,
     "rat": 1,
     "pig": 1
   },
   "by_modality_species": {
     "human": {
-      "scatac": 58,
+      "scatac": 54,
       "scrna": 79
     },
     "mouse": {
-      "scatac": 35,
+      "scatac": 41,
       "scrna": 19
     },
     "pig": {
@@ -30,11 +30,11 @@
       "scrna": 1
     },
     "zebrafish": {
-      "scatac": 7,
+      "scatac": 5,
       "scrna": 0
     }
   },
-  "metadata_source": "GEO (GEOparse) + NCBI E-utilities \u2014 no local inference",
+  "metadata_source": "Public GEO/ENA metadata plus local validation/revised-methodology audit records for reviewer-private GSE266511 samples",
   "metadata_artifacts": {
     "raw_cache": "data/geo_metadata_cache.json",
     "processed_manifest": "data/benchmark_manifest.csv",
@@ -60,12 +60,12 @@
     "duplicates_dedup_by_GSE": true,
     "atlas_scale_limit": "<5M cells & <1000 obs/var ratio",
     "species_from_online_GEO": true,
-    "orphan_GSM_excluded": "8 GSMs not findable on GEO were dropped"
+    "private_GEO_entries": "6 GSE266511 scATAC GSMs retained; official GEO pages are private until Jun 09 2026, and local validation/revised-methodology audit records mark them as human BCG-vaccination samples"
   },
   "gap_resolution_history": [
     "64 species labels corrected via GEOparse organism_ch1",
-    "8 unverifiable orphan GSMs dropped (GSM8248668-676, not in GEO)",
-    "8 smallest-but-verified scATAC reinstated to maintain 100/100",
+    "6 GSE266511 BCG-vaccination scATAC GSMs resolved from local validation and revised-methodology audit records while GEO remains reviewer-private",
+    "smallest verified scATAC rows retained to maintain 100/100",
     "setty filename resolved to PRJEB37166 human (CD34+ hematopoiesis, Setty et al)"
   ]
 }
