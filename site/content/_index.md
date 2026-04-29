@@ -52,3 +52,6 @@ The publication image is rendered by the reproducible figure pipeline; generated
   restricted-access record handling documented separately.
 - [**About →**]({{< ref "/about" >}}) Paper citation, reproducibility pointers,
   license.
+
+- [**Next.js companion explorer →**](https://peterponyu.github.io/scccvgben-next/) Open the responsive companion browser for the same benchmark roster. It is published separately from this Hugo atlas, so `/scCCVGBen/` remains the documentation atlas while `/scccvgben-next/` remains the interactive companion route.
+- [**scPortal discovery hub →**](https://peterponyu.github.io/scportal/) Navigate the broader public graph that links the homepage, scPortal, this Hugo atlas, and the Next.js companion.

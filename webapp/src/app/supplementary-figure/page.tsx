@@ -11,10 +11,10 @@ function fmtCompact(value: number): string {
 
 function Panel({ letter, title, children }: { letter: string; title: string; children: React.ReactNode }) {
   return (
-    <section className="figure-panel rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
+    <section className="figure-panel min-w-0 rounded-3xl border border-slate-200 bg-white p-3 shadow-sm sm:p-4">
       <div className="mb-3 flex items-center gap-3">
         <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-teal-600 text-xl font-black text-white">{letter}</span>
-        <h2 className="text-xl font-bold uppercase tracking-[0.18em] text-slate-700">{title}</h2>
+        <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-slate-700 sm:text-lg lg:text-xl">{title}</h2>
       </div>
       {children}
     </section>
@@ -34,11 +34,11 @@ export default async function SupplementaryFigurePage() {
   const metricTotal = metrics.clustering.length + metrics.dre.length + metrics.lse.length;
 
   return (
-    <main className="mx-auto max-w-[1500px] bg-slate-50 px-5 py-5 print:bg-white">
-      <div className="mb-4 rounded-[2rem] border border-teal-100 bg-gradient-to-r from-teal-50 via-white to-amber-50 p-5">
-        <p className="text-xl font-semibold uppercase tracking-[0.28em] text-teal-700">Supplementary Figure S1 source route</p>
-        <h1 className="mt-1 text-3xl font-black tracking-tight text-slate-950">Next.js online benchmark resource</h1>
-        <p className="mt-1 max-w-4xl text-xl leading-5 text-slate-600">
+    <main className="mx-auto max-w-[1500px] overflow-x-hidden bg-slate-50 px-3 py-4 sm:px-5 sm:py-5 print:bg-white">
+      <div className="mb-4 rounded-[2rem] border border-teal-100 bg-gradient-to-r from-teal-50 via-white to-amber-50 p-4 sm:p-5">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-700 sm:text-lg lg:text-xl lg:tracking-[0.28em]">Supplementary Figure S1 source route</p>
+        <h1 className="mt-1 text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">Next.js online benchmark resource</h1>
+        <p className="mt-1 max-w-4xl text-base leading-6 text-slate-600 sm:text-lg lg:text-xl lg:leading-5">
           This route is a browser-rendered companion layout for publication screenshots. It reuses the same sanitized JSON payload as the exported site and presents a compact six-panel online-resource summary.
         </p>
       </div>
@@ -55,17 +55,17 @@ export default async function SupplementaryFigurePage() {
               <div key={String(label)} className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
                 <div className="text-2xl font-black text-teal-700">{value}</div>
                 <div className="text-xl font-bold text-slate-800">{label}</div>
-                <div className="text-xl leading-5 text-slate-500">{sub}</div>
+                <div className="text-sm leading-5 text-slate-500 sm:text-base lg:text-xl">{sub}</div>
               </div>
             ))}
           </div>
           <div className="mt-3 rounded-2xl border border-teal-100 bg-teal-50 p-3">
             <div className="text-xl font-bold uppercase tracking-[0.18em] text-teal-700">Publication-safe contract</div>
-            <p className="mt-1 text-xl leading-5 text-slate-700">
+            <p className="mt-1 text-sm leading-5 text-slate-700 sm:text-base lg:text-xl">
               The figure, static export and supplementary table are generated from the same sanitized manifest: public accessions remain linkable, while restricted rows keep cohort-level reproducibility without disclosing nonpublic accession or file tokens.
             </p>
           </div>
-          <div className="mt-3 grid grid-cols-2 gap-3 text-xl">
+          <div className="mt-3 grid grid-cols-1 gap-3 text-sm sm:grid-cols-2 sm:text-base lg:text-xl">
             {[
               ['JSON export', 'sanitized site/data payload'],
               ['Static pages', '261 generated routes'],
@@ -87,8 +87,8 @@ export default async function SupplementaryFigurePage() {
         </Panel>
 
         <Panel letter="C" title="Dataset browser">
-          <div className="overflow-hidden rounded-2xl border border-slate-200">
-            <table className="w-full table-fixed text-left text-lg">
+          <div className="overflow-x-auto rounded-2xl border border-slate-200">
+            <table className="w-full min-w-[34rem] table-fixed text-left text-sm sm:text-base lg:text-lg">
               <thead className="bg-slate-100 text-slate-500">
                 <tr>
                   <th className="w-[27%] px-2 py-1.5">ID</th><th className="w-[19%] px-2 py-1.5">Modality</th><th className="w-[17%] px-2 py-1.5">Species</th><th className="w-[18%] px-2 py-1.5">Tissue</th><th className="w-[19%] px-2 py-1.5 text-right">Cells</th>
@@ -110,7 +110,7 @@ export default async function SupplementaryFigurePage() {
         </Panel>
 
         <Panel letter="D" title="Per-record provenance">
-          <div className="space-y-2 rounded-2xl border border-slate-200 bg-slate-50 p-3 text-xl">
+          <div className="space-y-2 rounded-2xl border border-slate-200 bg-slate-50 p-3 text-sm sm:text-base lg:text-xl">
             <h3 className="font-mono text-lg font-black text-slate-950">{publicExample.id}</h3>
             <p className="leading-5 text-slate-600">{publicExample.geo_title}</p>
             <dl className="grid grid-cols-2 gap-2 text-xl">
@@ -132,7 +132,7 @@ export default async function SupplementaryFigurePage() {
         </Panel>
 
         <Panel letter="E" title="Methods and metrics">
-          <div className="grid grid-cols-2 gap-3 text-xl">
+          <div className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2 sm:text-base lg:text-xl">
             {[
               ['Graph encoders', methods.scCCVGBen_encoders.length, 'attention and message passing'],
               ['Graph builders', methods.graph_constructions.length, 'neighbourhood definitions'],
@@ -159,7 +159,7 @@ export default async function SupplementaryFigurePage() {
                 <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal-600 text-xl font-black text-white">{index + 1}</span>
                 <div>
                   <div className="font-bold text-slate-900">{title}</div>
-                  <p className="mt-1 text-xl leading-5 text-slate-600">{text}</p>
+                  <p className="mt-1 text-sm leading-5 text-slate-600 sm:text-base lg:text-xl">{text}</p>
                 </div>
               </div>
             ))}

@@ -154,8 +154,11 @@
 .xs-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.25rem;
+  gap: clamp(12px, 2vw, 24px);
   margin: 0.6rem 0 1rem;
+}
+.xs-block {
+  min-width: 0;
 }
 .xs-block h3 {
   margin: 0 0 0.55rem;
@@ -167,7 +170,10 @@
   background: var(--scc-surface-raised);
   border: 1px solid var(--scc-border-soft);
   border-radius: 6px;
-  padding: 0.55rem;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: clamp(10px, 1.4vw, 16px);
 }
 @media (max-width: 900px) {
   .xs-grid { grid-template-columns: 1fr; }

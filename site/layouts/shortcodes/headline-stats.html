@@ -23,8 +23,8 @@
 <style>
 .hs-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(132px, 1fr));
-  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  gap: clamp(8px, 1.5vw, 12px);
   margin: 0.9rem 0 1.25rem;
 }
 .hs-card {
@@ -33,15 +33,18 @@
   border-top: 4px solid var(--scc-accent-blue);
   border-radius: 6px;
   box-shadow: var(--scc-shadow);
-  padding: 0.85rem 1rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  padding: clamp(10px, 1.6vw, 18px);
   text-align: center;
 }
 .hs-card:nth-child(2) { border-top-color: var(--scc-accent-teal); }
 .hs-card:nth-child(3) { border-top-color: var(--scc-accent-amber); }
 .hs-card:nth-child(4) { border-top-color: var(--scc-accent-rose); }
 .hs-num {
-  font-size: 2.15rem;
+  font-size: clamp(26px, 2.6vw, 32px);
   font-weight: 700;
+  white-space: nowrap;
   color: var(--scc-accent-blue);
   line-height: 1;
 }
@@ -49,15 +52,11 @@
 .hs-card:nth-child(3) .hs-num { color: var(--scc-accent-amber); }
 .hs-card:nth-child(4) .hs-num { color: var(--scc-accent-rose); }
 .hs-lbl {
-  font-size: 0.84rem;
   color: var(--scc-muted);
+  font-size: clamp(12px, 1.2vw, 15px);
+  line-height: 1.2;
   margin-top: 0.35rem;
   text-transform: uppercase;
   letter-spacing: 0;
-}
-@media (max-width: 720px) {
-  .hs-grid {
-    grid-template-columns: repeat(2, minmax(132px, 1fr));
-  }
 }
 </style>

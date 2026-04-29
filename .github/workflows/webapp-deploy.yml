@@ -1,16 +1,22 @@
-# webapp-deploy.yml
-# Builds the Next.js benchmark explorer (webapp/) and deploys the static export
-# to a SIBLING repo (peterponyu/scccvgben-next) via GitHub Pages.
-# Prerequisites: (1) create the empty public repo peterponyu/scccvgben-next,
-#                (2) add WEBAPP_DEPLOY_TOKEN (fine-grained PAT, contents:write on that repo)
-#                    to this repo's Settings → Secrets → Actions.
+# Validates the Next.js companion explorer under its public GitHub Pages base path.
+# Deployment is owned by the sibling Pages repository peterponyu/scccvgben-next,
+# so this source repository does not need a cross-repository PAT or deploy token.
 
-name: Deploy Next.js webapp to scccvgben-next
+name: Validate Next.js companion webapp
 
 on:
   push:
     branches:
       - main
+    paths:
+      - 'webapp/**'
+      - 'site/data/**'
+      - 'site/static/**'
+      - 'data/benchmark_manifest.csv'
+      - 'scripts/build_site_data.py'
+      - 'scripts/build_supplementary_table.py'
+      - 'scripts/audit_submission_ready.py'
+  pull_request:
     paths:
       - 'webapp/**'
       - 'site/data/**'
@@ -25,10 +31,8 @@ permissions:
   contents: read
 
 jobs:
-  build-and-deploy:
+  validate-webapp:
     runs-on: ubuntu-latest
-    env:
-      WEBAPP_DEPLOY_TOKEN: ${{ secrets.WEBAPP_DEPLOY_TOKEN }}
     steps:
       - name: Checkout source repo
         uses: actions/checkout@v4
@@ -41,28 +45,15 @@ jobs:
           cache-dependency-path: webapp/package-lock.json
 
       - name: Install dependencies
-        run: cd webapp && npm install
+        working-directory: webapp
+        run: npm ci
 
-      - name: Lint and build
+      - name: Lint
+        working-directory: webapp
+        run: npm run lint
+
+      - name: Build static export with public base path
+        working-directory: webapp
         env:
           NEXT_PUBLIC_BASE_PATH: /scccvgben-next
-        run: cd webapp && npm run lint && npm run build
-
-      - name: Check deployment token
-        id: deploy-token
-        run: |
-          if [ -n "$WEBAPP_DEPLOY_TOKEN" ]; then
-            echo "has_token=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "::notice title=Companion deploy skipped::WEBAPP_DEPLOY_TOKEN is not configured; build completed but sibling repo deploy was skipped."
-            echo "has_token=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Deploy to peterponyu/scccvgben-next (gh-pages)
-        if: steps.deploy-token.outputs.has_token == 'true'
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          personal_token: ${{ secrets.WEBAPP_DEPLOY_TOKEN }}
-          external_repository: peterponyu/scccvgben-next
-          publish_dir: ./webapp/out
-          publish_branch: gh-pages
+        run: npm run build
