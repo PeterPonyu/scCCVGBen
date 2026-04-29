@@ -27,6 +27,8 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      WEBAPP_DEPLOY_TOKEN: ${{ secrets.WEBAPP_DEPLOY_TOKEN }}
     steps:
       - name: Checkout source repo
         uses: actions/checkout@v4
@@ -46,7 +48,18 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: /scccvgben-next
         run: cd webapp && npm run lint && npm run build
 
+      - name: Check deployment token
+        id: deploy-token
+        run: |
+          if [ -n "$WEBAPP_DEPLOY_TOKEN" ]; then
+            echo "has_token=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice title=Companion deploy skipped::WEBAPP_DEPLOY_TOKEN is not configured; build completed but sibling repo deploy was skipped."
+            echo "has_token=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Deploy to peterponyu/scccvgben-next (gh-pages)
+        if: steps.deploy-token.outputs.has_token == 'true'
         uses: peaceiris/actions-gh-pages@v4
         with:
           personal_token: ${{ secrets.WEBAPP_DEPLOY_TOKEN }}
