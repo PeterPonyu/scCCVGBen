@@ -123,10 +123,13 @@
 <style>
 .home-composition-grid {
   display: grid;
-  grid-template-columns: minmax(310px, 0.9fr) minmax(360px, 1fr);
-  gap: 1.35rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(12px, 2vw, 24px);
   align-items: start;
   margin: 0.7rem 0 1.15rem;
+}
+.home-chart-block {
+  min-width: 0;
 }
 .home-chart-block h3 {
   margin: 0 0 0.55rem;
@@ -139,8 +142,10 @@
   background: var(--scc-surface-raised);
   border: 1px solid var(--scc-border-soft);
   border-radius: 6px;
+  box-sizing: border-box;
   max-width: 100%;
-  padding: 0.55rem;
+  overflow-x: auto;
+  padding: clamp(10px, 1.4vw, 16px);
 }
 .home-chart details,
 .home-chart .vega-actions {
