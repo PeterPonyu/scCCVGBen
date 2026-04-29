@@ -1,6 +1,6 @@
 """Per-condition latent-value violin plot.
 
-Shows the distribution of each latent dimension stratified by the case's
+Shows the distribution of each latent coordinate stratified by the case's
 biological condition. Helps detect dimensions that capture condition-level
 biology (e.g. young vs aged, tumor vs normal) versus those that capture
 within-condition heterogeneity.
@@ -23,7 +23,7 @@ def render_condition_violin(
     title: str = "Latent values by condition",
     palette: str = "Set2",
 ) -> None:
-    """Vertical violin matrix: ``n_dims_show`` latent dims × condition groups."""
+    """Vertical violin matrix: ``n_dims_show`` latent coordinates × condition groups."""
     if latent is None or latent.size == 0:
         render_placeholder(ax, "no latent")
 
@@ -56,7 +56,7 @@ def render_condition_violin(
             parts["cmedians"].set_linewidth(0.6)
 
     ax.set_xticks(positions)
-    ax.set_xticklabels([f"d{d}" for d in range(L)], fontsize=9)
+    ax.set_xticklabels([f"z{d}" for d in range(L)], fontsize=9)
     ax.set_ylabel("latent value", fontsize=10)
     ax.set_title(title, pad=4, fontsize=11)
     ax.tick_params(axis="y", labelsize=9)

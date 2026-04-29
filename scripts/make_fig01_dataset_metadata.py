@@ -1,9 +1,11 @@
-"""Generate fig01_dataset_metadata.{pdf,png} from data/benchmark_manifest.csv.
+"""Publication-grade metadata overview of the active scCCVGBen benchmark.
 
-Publication-style dataset metadata overview for the active 100 scRNA + 100
-scATAC benchmark manifest. The layout mirrors the revised supplementary
-metadata figure structure: composition, cell-count distribution, result
-coverage, tissue distribution, and submission-year timeline.
+Three panels: dataset/species composition, cell-count distribution, and
+submission-year timeline. Used as the upper component of Figure 2 (composite)
+and as a standalone reference plate.
+
+Outputs:
+- figures/fig01_dataset_metadata.{pdf,png}  (single canonical stem)
 """
 
 from __future__ import annotations
@@ -28,56 +30,98 @@ from scccvgben.figures import apply_publication_rcparams, preliminary_path  # no
 
 log = logging.getLogger(__name__)
 
+
+def _format_total(n: int) -> str:
+    if n >= 1_000_000:
+        return f"{n / 1e6:.1f}M"
+    if n >= 1_000:
+        return f"{n / 1e3:.1f}K"
+    return f"{n:,}"
+
 C_RNA = "#D35400"
 C_ATAC = "#2471A3"
 C_HUMAN = "#8E44AD"
 C_MOUSE = "#27AE60"
+C_OTHER_SPECIES = "#F39C12"
+C_UNASSIGNED = "#7F8C8D"
 DEFAULT_TARGET = 200
 
 
-def _panel_label(ax: plt.Axes, label: str) -> None:
-    ax.text(-0.12, 1.08, label, transform=ax.transAxes,
-            fontsize=18, fontweight="bold", va="top", ha="right")
+def _panel_label(ax: plt.Axes, label: str, *, x: float = -0.10) -> None:
+    ax.text(x, 1.08, label, transform=ax.transAxes,
+            fontsize=22, fontweight="bold", va="top", ha="left")
 
 
 def _panel_composition(ax: plt.Axes, df: pd.DataFrame) -> None:
     modality_counts = df["modality"].value_counts().reindex(["scrna", "scatac"], fill_value=0)
+    # Pie sits in the LEFT half of its subplot so that the species/modality
+    # legend can be placed vertically along the right side without overlap.
+    ax.set_xlim(-1.9, 3.1)
+    ax.set_ylim(-1.5, 1.5)
+    ax.set_aspect("equal")
+    pie_center = (-0.55, 0.0)
     ax.pie(
         modality_counts.values,
-        radius=0.72,
+        radius=0.70,
+        center=pie_center,
         colors=[C_RNA, C_ATAC],
         startangle=90,
-        wedgeprops={"width": 0.30, "edgecolor": "white", "linewidth": 1.2},
+        wedgeprops={"width": 0.34, "edgecolor": "white", "linewidth": 1.2},
     )
-    species_counts = (
-        df.groupby(["modality", "species_corrected"]).size()
-        .reindex(pd.MultiIndex.from_product([["scrna", "scatac"], ["human", "mouse"]]), fill_value=0)
+    # Outer ring shows the SPECIES split aggregated across modalities — one
+    # purple wedge for human, one green wedge for mouse. Splitting by
+    # (modality, species) made the same colour appear twice and obscured
+    # the simple human/mouse story.
+    species = (
+        df["species_corrected"]
+        .fillna("unassigned")
+        .astype(str)
+        .str.strip()
+        .str.lower()
+        .replace({"": "unassigned", "nan": "unassigned", "none": "unassigned"})
     )
-    outer_sizes = [v for v in species_counts.values if v > 0]
-    outer_colors = []
-    for (_, species), value in species_counts.items():
-        if value <= 0:
-            continue
-        outer_colors.append(C_HUMAN if species == "human" else C_MOUSE)
+    species_counts = species.value_counts()
+    human_total = int(species_counts.get("human", 0))
+    mouse_total = int(species_counts.get("mouse", 0))
+    unassigned_total = int(species_counts.get("unassigned", 0))
+    other_species_total = int(len(df) - human_total - mouse_total - unassigned_total)
+    species_sizes = [human_total, mouse_total, other_species_total]
+    species_colors = [C_HUMAN, C_MOUSE, C_OTHER_SPECIES]
+    if unassigned_total:
+        species_sizes.append(unassigned_total)
+        species_colors.append(C_UNASSIGNED)
     ax.pie(
-        outer_sizes,
-        radius=1.08,
-        colors=outer_colors,
+        species_sizes,
+        radius=1.22,
+        center=pie_center,
+        colors=species_colors,
         startangle=90,
-        wedgeprops={"width": 0.30, "edgecolor": "white", "linewidth": 0.8},
+        wedgeprops={"width": 0.42, "edgecolor": "white", "linewidth": 1.0},
     )
-    ax.text(0, 0.04, f"{len(df)}", ha="center", va="center", fontsize=19, color="#1C2833")
-    ax.text(0, -0.20, "datasets", ha="center", va="center", fontsize=10, color="#555")
-    ax.set_title("Dataset composition", loc="left", fontsize=13, pad=8)
+    ax.text(pie_center[0], pie_center[1] + 0.06, f"{len(df)}", ha="center", va="center",
+            fontsize=26, fontweight="bold", color="#1C2833")
+    ax.text(pie_center[0], pie_center[1] - 0.22, "datasets", ha="center", va="center",
+            fontsize=13, color="#1F2D3D")
+    ax.set_title("Dataset composition", loc="left", fontsize=16, pad=4)
     handles = [
-        mpatches.Patch(color=C_RNA, label=f"scRNA (n={modality_counts['scrna']})"),
-        mpatches.Patch(color=C_ATAC, label=f"scATAC (n={modality_counts['scatac']})"),
-        mpatches.Patch(color=C_HUMAN, label="human"),
-        mpatches.Patch(color=C_MOUSE, label="mouse"),
+        mpatches.Patch(color=C_RNA, label=f"scRNA ({modality_counts['scrna']})"),
+        mpatches.Patch(color=C_ATAC, label=f"scATAC ({modality_counts['scatac']})"),
+        mpatches.Patch(color=C_HUMAN, label=f"human ({human_total})"),
+        mpatches.Patch(color=C_MOUSE, label=f"mouse ({mouse_total})"),
+        mpatches.Patch(color=C_OTHER_SPECIES, label=f"other spp. ({other_species_total})"),
     ]
-    ax.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, -0.18),
-              ncol=2, frameon=False, fontsize=9)
-    _panel_label(ax, "A")
+    if unassigned_total:
+        handles.append(mpatches.Patch(color=C_UNASSIGNED, label=f"pending metadata (n={unassigned_total})"))
+    # Legend stacked vertically along the right side of the pie keeps the
+    # category list compact and avoids the two-row footer that previously
+    # collided with the bottom architecture half.
+    ax.legend(handles=handles, loc="center left", bbox_to_anchor=(0.86, 0.0),
+              bbox_transform=ax.transData, ncol=1, frameon=False,
+              fontsize=9.2, handlelength=1.15, borderaxespad=0.0,
+              labelspacing=0.28)
+    # Panel-label "A" pinned to the axes left edge so it lines up with
+    # panel D's left margin in the architecture composite below.
+    _panel_label(ax, "A", x=-0.32)
 
 
 def _panel_cell_violin(ax: plt.Axes, df: pd.DataFrame) -> None:
@@ -107,20 +151,24 @@ def _panel_cell_violin(ax: plt.Axes, df: pd.DataFrame) -> None:
         jitter=0.18,
         ax=ax,
     )
+    y_top = float(plot_df["cell_count_log10"].max()) + 0.45
+    ax.set_ylim(top=y_top)
     for idx, modality in enumerate(["scrna", "scatac"]):
         sub = plot_df[plot_df["modality"] == modality]
         if sub.empty:
             continue
         med = int(sub["cell_count"].median())
-        total = sub["cell_count"].sum() / 1e6
-        ax.text(idx, sub["cell_count_log10"].quantile(0.88),
-                f"Med {med:,}\nTotal {total:.1f}M", ha="center", va="bottom",
-                fontsize=9, color=C_RNA if modality == "scrna" else C_ATAC,
-                bbox={"boxstyle": "round,pad=0.18", "facecolor": "white", "alpha": 0.85,
-                      "edgecolor": C_RNA if modality == "scrna" else C_ATAC, "linewidth": 0.6})
+        total_int = int(sub["cell_count"].sum())
+        ax.text(idx, y_top - 0.12,
+                f"Med {med:,}\nTotal {_format_total(total_int)}", ha="center", va="top",
+                fontsize=12, color=C_RNA if modality == "scrna" else C_ATAC,
+                bbox={"boxstyle": "round,pad=0.26", "facecolor": "white", "alpha": 0.95,
+                      "edgecolor": C_RNA if modality == "scrna" else C_ATAC,
+                      "linewidth": 0.9}, zorder=5)
     ax.set_xlabel("")
-    ax.set_ylabel("Cell count (log10)")
-    ax.set_title("Cell-count distribution", loc="left", fontsize=13, pad=8)
+    ax.set_ylabel("Cell count (log10)", fontsize=13)
+    ax.set_title("Cell-count distribution", loc="left", fontsize=16, pad=4)
+    ax.tick_params(axis="both", labelsize=12)
     _panel_label(ax, "B")
 
 
@@ -133,13 +181,19 @@ def _panel_coverage(ax: plt.Axes, df: pd.DataFrame, results_root: Path) -> None:
     cov = pd.DataFrame(rows)
     ax.bar(cov["modality"], cov["target"], color="#E5E7EB", label="manifest target")
     ax.bar(cov["modality"], cov["observed"], color=[C_RNA, C_ATAC], label="available result tables")
+    ymax = max(cov["target"].max(), cov["observed"].max()) * 1.18
+    ax.set_ylim(0, ymax)
     for idx, row in cov.iterrows():
-        ax.text(idx, row["observed"] + 1, f"{row['observed']}/{row['target']}",
-                ha="center", va="bottom", fontsize=10)
-    ax.set_ylim(0, max(cov["target"].max(), cov["observed"].max()) * 1.18)
-    ax.set_ylabel("Datasets")
-    ax.set_title("Current result-table coverage", loc="left", fontsize=13, pad=8)
-    ax.legend(frameon=False, fontsize=8, loc="upper right")
+        ax.text(idx, row["observed"] + ymax * 0.015,
+                f"{row['observed']}/{row['target']}",
+                ha="center", va="bottom", fontsize=14, fontweight="bold", zorder=5)
+    ax.set_ylabel("Datasets", fontsize=14)
+    ax.set_title("Current result-table coverage", loc="left", fontsize=18, pad=10)
+    # Legend in the upper-left corner keeps clear space below for the bar-value
+    # annotations now that ymax padding is tighter.
+    ax.legend(frameon=False, fontsize=12, loc="upper left",
+              bbox_to_anchor=(0.02, 0.99))
+    ax.tick_params(axis="both", labelsize=13)
     _panel_label(ax, "C")
 
 
@@ -164,23 +218,24 @@ def _panel_tissue(ax: plt.Axes, df: pd.DataFrame, top_k: int = 12) -> None:
     left = np.zeros(len(tissue_counts))
     for modality, color in [("scrna", C_RNA), ("scatac", C_ATAC)]:
         vals = tissue_counts.get(modality, pd.Series(0, index=tissue_counts.index)).to_numpy()
-        ax.barh(y, vals, left=left, color=color, edgecolor="white", linewidth=0.4, label=modality)
+        ax.barh(y, vals, left=left, color=color, edgecolor="white", linewidth=0.8, label=modality)
         left += vals
     ax.set_yticks(y)
-    ax.set_yticklabels(tissue_counts.index)
-    ax.set_xlabel("Datasets")
+    ax.set_yticklabels(tissue_counts.index, fontsize=13)
+    ax.set_xlabel("Datasets", fontsize=14)
     ax.set_ylabel("")
     ax.set_title(f"Top-{top_k} annotated tissue sources",
-                 loc="left", fontsize=13, pad=8)
+                 loc="left", fontsize=18, pad=10)
+    ax.tick_params(axis="x", labelsize=13)
     # No per-panel legend: panel A already shows the global scRNA/scATAC
     # modality legend, so a duplicate here would just collide with the
     # 'tumor' bar that fills the upper-right.
     if n_unannotated:
         ax.text(
-            0.99, 0.02,
+            0.5, -0.18,
             f"{n_unannotated} datasets without canonical tissue label",
-            transform=ax.transAxes, ha="right", va="bottom",
-            fontsize=7, color="#475569", style="italic",
+            transform=ax.transAxes, ha="center", va="top",
+            fontsize=12, color="#334155",
         )
     _panel_label(ax, "D")
 
@@ -195,11 +250,12 @@ def _panel_year(ax: plt.Axes, df: pd.DataFrame) -> None:
             ax.plot(by_year.index, by_year[modality], marker="o", lw=1.8,
                     color=color, label=modality)
             ax.fill_between(by_year.index, 0, by_year[modality], alpha=0.16, color=color)
-    ax.set_xlabel("GEO submission year")
-    ax.set_ylabel("Datasets")
-    ax.set_title("Submission-year timeline", loc="left", fontsize=13, pad=8)
-    ax.legend(frameon=False, fontsize=8)
-    _panel_label(ax, "E")
+    ax.set_xlabel("GEO submission year", fontsize=13)
+    ax.set_ylabel("Datasets", fontsize=13)
+    ax.set_title("Submission-year timeline", loc="left", fontsize=16, pad=4)
+    ax.legend(frameon=False, fontsize=12)
+    ax.tick_params(axis="both", labelsize=12)
+    _panel_label(ax, "C")
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -227,23 +283,22 @@ def main(argv: list[str] | None = None) -> int:
         log.error("only %d/%d datasets — pass --partial-ok", n_datasets, args.target_n)
         return 1
 
-    fig = plt.figure(figsize=(13.5, 8.4), dpi=300)
-    gs_top = gridspec.GridSpec(1, 3, figure=fig, left=0.04, right=0.98,
-                               top=0.90, bottom=0.54, wspace=0.36,
-                               width_ratios=[1.15, 1.0, 0.95])
-    gs_bot = gridspec.GridSpec(1, 2, figure=fig, left=0.06, right=0.98,
-                               top=0.42, bottom=0.08, wspace=0.34)
+    # Render at the same horizontal extent as fig02 (20.2 in) so the stitched
+    # Figure 2 composite shows equivalent text scale across both halves.
+    # Single row keeps the metadata strip compact above the architecture half.
+    fig = plt.figure(figsize=(20.2, 4.0), dpi=300)
+    gs = gridspec.GridSpec(1, 3, figure=fig, left=0.012, right=0.985,
+                           top=0.94, bottom=0.14, wspace=0.36,
+                           width_ratios=[1.50, 1.0, 1.0])
 
-    _panel_composition(fig.add_subplot(gs_top[0, 0]), df)
-    _panel_cell_violin(fig.add_subplot(gs_top[0, 1]), df)
-    _panel_coverage(fig.add_subplot(gs_top[0, 2]), df, args.results_root)
-    _panel_tissue(fig.add_subplot(gs_bot[0, 0]), df)
-    _panel_year(fig.add_subplot(gs_bot[0, 1]), df)
+    _panel_composition(fig.add_subplot(gs[0, 0]), df)
+    _panel_cell_violin(fig.add_subplot(gs[0, 1]), df)
+    _panel_year(fig.add_subplot(gs[0, 2]), df)
 
-    suffix = "" if n_datasets >= args.target_n else f" (PRELIMINARY: {n_datasets}/{args.target_n})"
-    fig.suptitle(f"Fig 01 — active benchmark metadata{suffix}", fontsize=15, y=0.985)
+    # Suptitle moved to the LaTeX figure caption per paper-layout policy.
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
+    written: list[Path] = []
     stem = "fig01_dataset_metadata"
     pdf_path = args.out_dir / preliminary_path(stem, n_datasets, args.target_n,
                                                suffix=".pdf").name
@@ -251,8 +306,9 @@ def main(argv: list[str] | None = None) -> int:
                                                suffix=".png").name
     fig.savefig(pdf_path)
     fig.savefig(png_path)
-    log.info("wrote %s", pdf_path)
-    log.info("wrote %s", png_path)
+    written.extend([pdf_path, png_path])
+    for path in written:
+        log.info("wrote %s", path)
     return 0
 
 

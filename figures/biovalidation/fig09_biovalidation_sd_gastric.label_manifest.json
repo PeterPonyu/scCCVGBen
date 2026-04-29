@@ -1,0 +1,249 @@
+{
+  "version": 2,
+  "figure_id": "fig09_biovalidation_sd_gastric",
+  "figure_kind": "extended_detail",
+  "pair_label": "Sleep deprivation × Gastric cancer microenvironment",
+  "label_policy": "extended detail output uses the full panel family: left case A-H; right case I-P; source single-case letters stored separately",
+  "cases": {
+    "left": "SD",
+    "right": "GASTRIC"
+  },
+  "outputs": {
+    "png": "figures/fig09_biovalidation_sd_gastric.png",
+    "pdf": "figures/fig09_biovalidation_sd_gastric.pdf",
+    "source_manifest": "figures/biovalidation/fig09_biovalidation_sd_gastric.source_manifest.json"
+  },
+  "role_order": [
+    "condition_umap",
+    "cell_type_umap",
+    "latent_d0_umap",
+    "latent_corr",
+    "latent_gene_grid",
+    "condition_latent_summary",
+    "top_gene_table",
+    "go_enrichment"
+  ],
+  "panels": [
+    {
+      "figure_id": "fig09_biovalidation_sd_gastric",
+      "global_label": "A",
+      "visual_slot": 1,
+      "side": "left",
+      "case_id": "SD",
+      "role": "condition_umap",
+      "source_semantic_id": "A",
+      "source_role_letter": "A",
+      "title": "Condition / batch UMAP",
+      "data_source": "figures/biovalidation/fig_biovalidation_case_SD.png#crop:condition_umap"
+    },
+    {
+      "figure_id": "fig09_biovalidation_sd_gastric",
+      "global_label": "B",
+      "visual_slot": 2,
+      "side": "left",
+      "case_id": "SD",
+      "role": "cell_type_umap",
+      "source_semantic_id": "B",
+      "source_role_letter": "B",
+      "title": "Cell-type UMAP",
+      "data_source": "figures/biovalidation/fig_biovalidation_case_SD.png#crop:cell_type_umap",
+      "cell_type_label_source": "curated_source_obs",
+      "cell_type_label_map": "figures/biovalidation/celltype_label_map.json",
+      "cell_type_label_map_schema": "celltype_label_map.v1",
+      "cell_type_label_cluster_key": "_ct_leiden",
+      "cluster_label_count": 0
+    },
+    {
+      "figure_id": "fig09_biovalidation_sd_gastric",
+      "global_label": "C",
+      "visual_slot": 3,
+      "side": "left",
+      "case_id": "SD",
+      "role": "latent_d0_umap",
+      "source_semantic_id": "C",
+      "source_role_letter": "C",
+      "title": "Latent z0 UMAP",
+      "data_source": "figures/biovalidation/fig_biovalidation_case_SD.png#crop:latent_d0_umap"
+    },
+    {
+      "figure_id": "fig09_biovalidation_sd_gastric",
+      "global_label": "D",
+      "visual_slot": 4,
+      "side": "left",
+      "case_id": "SD",
+      "role": "latent_corr",
+      "source_semantic_id": "D",
+      "source_role_letter": "D",
+      "title": "Latent self-corr",
+      "data_source": "figures/biovalidation/fig_biovalidation_case_SD.sidecar.json#latent_corr"
+    },
+    {
+      "figure_id": "fig09_biovalidation_sd_gastric",
+      "global_label": "E",
+      "visual_slot": 5,
+      "side": "left",
+      "case_id": "SD",
+      "role": "latent_gene_grid",
+      "source_semantic_id": "F",
+      "source_role_letter": "F",
+      "title": "Latent gene mini-UMAPs",
+      "data_source": "figures/biovalidation/fig_biovalidation_case_SD.png+figures/biovalidation/fig_biovalidation_case_SD.sidecar.json#top_k_genes_df"
+    },
+    {
+      "figure_id": "fig09_biovalidation_sd_gastric",
+      "global_label": "F",
+      "visual_slot": 6,
+      "side": "left",
+      "case_id": "SD",
+      "role": "condition_latent_summary",
+      "source_semantic_id": "G",
+      "source_role_letter": "G",
+      "title": "Condition × latent-z summary",
+      "data_source": "figures/biovalidation/fig_biovalidation_case_SD.sidecar.json#condition_latent"
+    },
+    {
+      "figure_id": "fig09_biovalidation_sd_gastric",
+      "global_label": "G",
+      "visual_slot": 7,
+      "side": "left",
+      "case_id": "SD",
+      "role": "top_gene_table",
+      "source_semantic_id": "E",
+      "source_role_letter": "E",
+      "title": "Top gene per latent z",
+      "data_source": "figures/biovalidation/fig_biovalidation_case_SD.sidecar.json#top_gene_rows"
+    },
+    {
+      "figure_id": "fig09_biovalidation_sd_gastric",
+      "global_label": "H",
+      "visual_slot": 8,
+      "side": "left",
+      "case_id": "SD",
+      "role": "go_enrichment",
+      "source_semantic_id": "H",
+      "source_role_letter": "H",
+      "title": "GO biological-process enrichment",
+      "data_source": "figures/biovalidation/fig_biovalidation_case_SD.sidecar.json#enrichment"
+    },
+    {
+      "figure_id": "fig09_biovalidation_sd_gastric",
+      "global_label": "I",
+      "visual_slot": 9,
+      "side": "right",
+      "case_id": "GASTRIC",
+      "role": "condition_umap",
+      "source_semantic_id": "A",
+      "source_role_letter": "A",
+      "title": "Condition / batch UMAP",
+      "data_source": "figures/biovalidation/fig_biovalidation_case_GASTRIC.png#crop:condition_umap"
+    },
+    {
+      "figure_id": "fig09_biovalidation_sd_gastric",
+      "global_label": "J",
+      "visual_slot": 10,
+      "side": "right",
+      "case_id": "GASTRIC",
+      "role": "cell_type_umap",
+      "source_semantic_id": "B",
+      "source_role_letter": "B",
+      "title": "Marker-labelled cell-state UMAP",
+      "data_source": "figures/biovalidation/fig_biovalidation_case_GASTRIC.png#crop:cell_type_umap+figures/biovalidation/fig_biovalidation_case_GASTRIC.sidecar.json#cluster_label_evidence",
+      "cell_type_label_source": "marker_genes",
+      "cell_type_label_map": "figures/biovalidation/celltype_label_map.json",
+      "cell_type_label_map_schema": "celltype_label_map.v1",
+      "cell_type_label_cluster_key": "_ct_leiden",
+      "cluster_label_count": 20,
+      "label_evidence_source": "figures/biovalidation/fig_biovalidation_case_GASTRIC.sidecar.json#cluster_label_evidence"
+    },
+    {
+      "figure_id": "fig09_biovalidation_sd_gastric",
+      "global_label": "K",
+      "visual_slot": 11,
+      "side": "right",
+      "case_id": "GASTRIC",
+      "role": "latent_d0_umap",
+      "source_semantic_id": "C",
+      "source_role_letter": "C",
+      "title": "Latent z0 UMAP",
+      "data_source": "figures/biovalidation/fig_biovalidation_case_GASTRIC.png#crop:latent_d0_umap"
+    },
+    {
+      "figure_id": "fig09_biovalidation_sd_gastric",
+      "global_label": "L",
+      "visual_slot": 12,
+      "side": "right",
+      "case_id": "GASTRIC",
+      "role": "latent_corr",
+      "source_semantic_id": "D",
+      "source_role_letter": "D",
+      "title": "Latent self-corr",
+      "data_source": "figures/biovalidation/fig_biovalidation_case_GASTRIC.sidecar.json#latent_corr"
+    },
+    {
+      "figure_id": "fig09_biovalidation_sd_gastric",
+      "global_label": "M",
+      "visual_slot": 13,
+      "side": "right",
+      "case_id": "GASTRIC",
+      "role": "latent_gene_grid",
+      "source_semantic_id": "F",
+      "source_role_letter": "F",
+      "title": "Latent gene mini-UMAPs",
+      "data_source": "figures/biovalidation/fig_biovalidation_case_GASTRIC.png+figures/biovalidation/fig_biovalidation_case_GASTRIC.sidecar.json#top_k_genes_df"
+    },
+    {
+      "figure_id": "fig09_biovalidation_sd_gastric",
+      "global_label": "N",
+      "visual_slot": 14,
+      "side": "right",
+      "case_id": "GASTRIC",
+      "role": "condition_latent_summary",
+      "source_semantic_id": "G",
+      "source_role_letter": "G",
+      "title": "Condition × latent-z summary",
+      "data_source": "figures/biovalidation/fig_biovalidation_case_GASTRIC.sidecar.json#condition_latent"
+    },
+    {
+      "figure_id": "fig09_biovalidation_sd_gastric",
+      "global_label": "O",
+      "visual_slot": 15,
+      "side": "right",
+      "case_id": "GASTRIC",
+      "role": "top_gene_table",
+      "source_semantic_id": "E",
+      "source_role_letter": "E",
+      "title": "Top gene per latent z",
+      "data_source": "figures/biovalidation/fig_biovalidation_case_GASTRIC.sidecar.json#top_gene_rows"
+    },
+    {
+      "figure_id": "fig09_biovalidation_sd_gastric",
+      "global_label": "P",
+      "visual_slot": 16,
+      "side": "right",
+      "case_id": "GASTRIC",
+      "role": "go_enrichment",
+      "source_semantic_id": "H",
+      "source_role_letter": "H",
+      "title": "GO biological-process enrichment",
+      "data_source": "figures/biovalidation/fig_biovalidation_case_GASTRIC.sidecar.json#enrichment"
+    }
+  ],
+  "label_evidence": {
+    "label_map": "figures/biovalidation/celltype_label_map.json",
+    "label_map_schema": "celltype_label_map.v1",
+    "cases": {
+      "SD": {
+        "cell_type_label_source": "curated_source_obs",
+        "cluster_key": "_ct_leiden",
+        "cluster_label_count": 0
+      },
+      "GASTRIC": {
+        "cell_type_label_source": "marker_genes",
+        "cluster_key": "_ct_leiden",
+        "cluster_label_count": 20,
+        "sidecar_record": "figures/biovalidation/fig_biovalidation_case_GASTRIC.sidecar.json#cluster_label_evidence"
+      }
+    }
+  },
+  "parent_figure_id": "fig09_biovalidation_sd_gastric"
+}

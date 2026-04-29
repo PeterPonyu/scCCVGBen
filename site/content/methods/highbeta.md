@@ -25,6 +25,6 @@ evaluated with the same curated 20 publication-display metrics as scCCVGBen. Ben
 
 ---
 
-<small>Auto-generated from `scripts/build_site_data.py`. scCCVGBen benchmark
-tests each method against the same 200 datasets and curated 20 publication-display
-metrics; see the [Methods index](../) for the full set.</small>
+<small>scCCVGBen benchmark tests each method against the same 200 public dataset
+records and curated 20 publication-display metrics; see the [Methods index](../)
+for the full set.</small>

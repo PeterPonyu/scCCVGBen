@@ -4,10 +4,10 @@ Replaces the original reference bio-validation (3 case studies, 10 latent×gene
 pair UMAPs each) with a 6-case multi-panel pipeline that adds:
 
   * latent-space self-correlation diagnostics
-  * top-K (rather than top-1) gene-per-dim correlations
+  * top-K (rather than top-1) gene-per-latent-coordinate correlations
   * pseudotime trajectory inference (PAGA / dpt)
-  * condition-stratified DEG and per-dim violins
-  * GO / KEGG enrichment per latent dim
+  * condition-stratified DEG and per-coordinate violins
+  * GO / KEGG enrichment per latent coordinate
   * cross-case quantitative summary panel
 
 Six standardized cases:

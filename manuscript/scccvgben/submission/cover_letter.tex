@@ -1,0 +1,103 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{shared/response}
+
+\hypersetup{colorlinks=true, urlcolor=rrborder, linkcolor=black}
+
+%% Custom bullet markers
+\renewcommand{\labelitemi}{\textcolor{rrheader}{$\blacktriangleright$}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+%% ── Header block ──────────────────────────────────────────────────────────
+\noindent
+{\sffamily\bfseries\large\color{rrheader}
+  scCCVGBen --- a single-cell centroid-coupled VAE benchmark}
+
+\smallskip
+\noindent
+{\sffamily Zeyu Fu and co-authors \quad\textperiodcentered\quad
+  School of Computer Science \quad\textperiodcentered\quad \today}
+
+\vspace{4pt}
+\noindent\textcolor{rrheader}{\rule{\linewidth}{0.6pt}}
+\vspace{10pt}
+
+%% ── Salutation ────────────────────────────────────────────────────────────
+Dear Editor,
+
+We submit a revised version of the manuscript previously titled
+``CCVGAE: a centroid-coupled variational graph attention autoencoder for
+stable and interpretable single-cell representation learning'' for further
+consideration.
+
+\medskip
+
+{\itshape
+The revision reflects a title change to \textbf{scCCVGBen} --- a single-cell
+centroid-coupled VAE benchmark. The rename addresses three structural changes
+prompted by reviewer feedback. The dataset cohort grew from 170 to 200
+curated profiles (100 scRNA-seq, 100 scATAC-seq), giving the comparison axes
+the statistical room they require. The encoder backbone, graph construction,
+dataset, and evaluation suite were separated into independent axes so that
+sensitivity to each factor can be read off independently. Figure provenance
+was locked to the released benchmark manifest so that every panel can be
+regenerated end-to-end without re-running training. The algorithmic
+contribution is unchanged, but the manuscript now reads as a benchmark
+companion rather than a method-introduction paper.}
+
+\medskip
+
+The principal architectural and experimental changes are as follows:
+
+\begin{itemize}
+  \item 200-dataset cohort with a full provenance manifest and public-safe
+        supplementary table.
+  \item Encoder-axis robustness across 14 backbones (Fig.~5).
+  \item Graph-construction-axis robustness across 5 similarity definitions
+        (Fig.~6).
+  \item Cross-method scRNA benchmark with 12 completed external baselines
+        (Fig.~7).
+  \item Cross-method scATAC benchmark with 3 modality-specific baselines
+        (Fig.~8).
+  \item Three biological case studies with paired conditions (Figs.~9--11).
+  \item Completed clustering-method sensitivity and seed-control clarifications
+        addressing R1.2, R1.3 and R2.6 without relying on unreported entries.
+  \item Hyperparameter-default justification and a documented sensitivity grid
+        addressing R2.2 while keeping claims limited to completed benchmark
+        results.
+  \item Discussion of current foundation-model comparators, including scGPT and
+        scFoundation, without adding unverified figure columns.
+  \item Per-dataset summary table (Supplementary Table~S1) built from the
+        released benchmark manifest --- addresses R1.1.
+  \item Loss equation correction --- the adjacency-reconstruction term
+        $w_{\mathrm{adj}} \cdot \|\hat{A} - A\|^2_F$ is now explicit in
+        Equation~11 (it appeared in the architecture caption and Table~1 but
+        was absent from the equation), addressing R2.1.
+\end{itemize}
+
+Two point-by-point rebuttal letters follow this cover letter, one per reviewer.
+
+We thank the reviewers for their constructive comments, which materially
+improved the scope and presentation of the work.
+
+\vspace{16pt}
+\noindent\textcolor{rrheader}{\rule{\linewidth}{0.4pt}}
+\vspace{6pt}
+
+\noindent
+{\sffamily\bfseries Zeyu Fu} \quad (corresponding author)\\
+{\small School of Computer Science\\
+\href{mailto:peterponyusmith@gmail.com}{peterponyusmith@gmail.com}}
+
+\vspace{4pt}
+\noindent{\small Manuscript ID: scCCVGBen-2026 \quad\textperiodcentered\quad \today}
+
+\end{document}

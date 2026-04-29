@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #0d9488;
+  --color-primary-dark: #0f766e;
+  --color-primary-light: #ccfbf1;
+  --color-accent: #f59e0b;
+  --color-accent-light: #fef3c7;
+  --color-slate: #475569;
+  --color-slate-light: #f8fafc;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+  }
+
+  body {
+    background: var(--color-slate-light);
+    color: #0f172a;
+  }
+
+  code,
+  pre,
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer utilities {
+  .gradient-hero {
+    background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 50%, #fef3c7 100%);
+  }
+
+  .card-hover {
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+  }
+
+  .card-hover:hover {
+    box-shadow: 0 4px 16px rgba(13, 148, 136, 0.12);
+    transform: translateY(-1px);
+  }
+
+  .figure-chart-slim > section > div:first-child {
+    display: none;
+  }
+
+  .figure-chart-slim .grid {
+    gap: 0.75rem;
+  }
+
+  .figure-chart-slim article {
+    padding: 0.75rem;
+    border-radius: 1rem;
+  }
+
+  .figure-chart-slim article > div:first-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .figure-chart-slim article > div:first-child p {
+    display: none;
+  }
+
+  .figure-chart-slim article [class*="space-y-2.5"] {
+    row-gap: 0.375rem;
+  }
+
+  @media print {
+    .figure-panel {
+      break-inside: avoid;
+      box-shadow: none;
+    }
+  }
+
+  .figure-panel {
+    align-self: start;
+  }
+}

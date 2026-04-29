@@ -17,12 +17,14 @@ import matplotlib
 matplotlib.use("Agg", force=False)
 import matplotlib.pyplot as plt
 
+from ...figures.fonts import register_arial_with_matplotlib
+
 
 PANEL_W_INCH: float = 16.0      # full case figure width
 PANEL_H_INCH: float = 16.0      # full case figure height — accommodates 5 rows
 # 144 DPI keeps text crisp at submission size while keeping each case PNG
 # under ~1 MB. 200 DPI produced 3+ MB PNGs that bloated the stitched
-# pair figures (fig11/12/13) past 3 MB each.
+# pair figures (fig09/10/11) past 3 MB each.
 PANEL_DPI:    int   = 144
 
 
@@ -60,6 +62,7 @@ def apply_publication_rcparams() -> None:
 
     safe to call once per process.
     """
+    register_arial_with_matplotlib()
     plt.rcParams.update({
         "pdf.fonttype": 42,
         "ps.fonttype": 42,
@@ -71,9 +74,9 @@ def apply_publication_rcparams() -> None:
         "savefig.bbox": "standard",
         "savefig.dpi": PANEL_DPI,
         "font.family": "sans-serif",
-        "font.sans-serif": ["DejaVu Sans", "Liberation Sans", "Arial"],
+        "font.sans-serif": ["Arial", "Liberation Sans", "DejaVu Sans"],
         # Body text bumped from 9pt to 12pt so per-case panels stay readable
-        # when stitched into the wider pair figures (fig11/12/13). Pair
+        # when stitched into the wider pair figures (fig09/10/11). Pair
         # title is 22pt; body 12pt → ratio < 2x → no visual cliff.
         "font.size": 12,
         "axes.titlesize": 13,

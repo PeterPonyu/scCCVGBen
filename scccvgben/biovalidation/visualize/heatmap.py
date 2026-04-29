@@ -8,20 +8,26 @@ import pandas as pd
 from .panel import render_placeholder
 
 
-def render_latent_corr(ax: plt.Axes, corr: np.ndarray, *, title: str = "Latent self-correlation") -> None:
+def render_latent_corr(
+    ax: plt.Axes,
+    corr: np.ndarray,
+    *,
+    title: str = "Latent self-correlation",
+    cmap: str = "RdBu_r",
+) -> None:
     """Symmetric (L, L) absolute correlation as a heat map."""
     if corr is None or corr.size == 0:
         render_placeholder(ax, "no latent corr")
 
         return
-    im = ax.imshow(corr, cmap="magma_r", vmin=0, vmax=1, aspect="equal")
+    im = ax.imshow(corr, cmap=cmap, vmin=0, vmax=1, aspect="equal")
     L = corr.shape[0]
     ax.set_xticks(range(L))
     ax.set_yticks(range(L))
     ax.set_xticklabels(range(L), fontsize=9)
     ax.set_yticklabels(range(L), fontsize=9)
-    ax.set_xlabel("latent dim", fontsize=10)
-    ax.set_ylabel("latent dim", fontsize=10)
+    ax.set_xlabel("latent coordinate", fontsize=10)
+    ax.set_ylabel("latent coordinate", fontsize=10)
     ax.set_title(title, pad=4, fontsize=11)
     # Use a small inset axis for the colorbar so the heatmap fills the panel
     # without the cbar consuming ~half the panel width.
@@ -31,8 +37,8 @@ def render_latent_corr(ax: plt.Axes, corr: np.ndarray, *, title: str = "Latent s
 
 
 def render_top_gene_table(ax: plt.Axes, top_k_df: pd.DataFrame,
-                          *, title: str = "Top-1 correlated gene per latent dim") -> None:
-    """Compact text table — one row per latent dim, top 1 gene shown."""
+                          *, title: str = "Top-1 correlated gene per latent coordinate") -> None:
+    """Compact text table — one row per latent coordinate, top 1 gene shown."""
     if top_k_df is None or top_k_df.empty:
         render_placeholder(ax, "no genes")
 
@@ -63,7 +69,7 @@ def render_top_gene_table(ax: plt.Axes, top_k_df: pd.DataFrame,
     for col_idx in range(n_cols):
         x0 = col_idx * col_w
         # column header
-        ax.text(x0 + 0.02, 0.98, "dim",  fontsize=10, fontweight="bold")
+        ax.text(x0 + 0.02, 0.98, "latent",  fontsize=10, fontweight="bold")
         ax.text(x0 + 0.10, 0.98, "gene", fontsize=10, fontweight="bold")
         ax.text(x0 + 0.42, 0.98, "ρ",    fontsize=10, fontweight="bold")
         for j in range(per_col):
@@ -73,6 +79,6 @@ def render_top_gene_table(ax: plt.Axes, top_k_df: pd.DataFrame,
             d, g, rho = rows[idx]
             y = y_top - (j + 0.5) * y_step
             color = "#0EA5E9" if rho > 0 else "#EF4444"
-            ax.text(x0 + 0.02, y, str(d),       fontsize=9)
+            ax.text(x0 + 0.02, y, f"z{d}",      fontsize=9)
             ax.text(x0 + 0.10, y, g[:24],       fontsize=9, fontfamily="monospace")
             ax.text(x0 + 0.42, y, f"{rho:+.3f}", fontsize=9, color=color)

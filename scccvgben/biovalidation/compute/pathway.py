@@ -1,9 +1,8 @@
-"""GO Biological Process enrichment per latent dimension.
+"""GO Biological Process enrichment per latent coordinate.
 
-Mirrors the protocol used in the legacy CCVGAE case-study notebooks
-(``CCVGAE3_IR.ipynb`` cell 11 onwards): for each latent dimension take the
-top-N most strongly correlated genes and run :func:`gseapy.enrich` against a
-local MSigDB GMT file. Returns a long-form DataFrame the dotplot consumes.
+For each latent coordinate, take the top-N most strongly correlated genes and
+run :func:`gseapy.enrich` against a local MSigDB GMT file.  The output is a
+long-form DataFrame consumed by the GO dotplot.
 
 Species selection is automatic: if any of the gene symbols look like
 upper-case human symbols (e.g. ``ACTB``, ``CDKN2A``) we use the human GMT;
@@ -12,6 +11,7 @@ otherwise we fall back to mouse.
 from __future__ import annotations
 
 import logging
+import os
 from pathlib import Path
 from typing import Iterable
 
@@ -20,22 +20,35 @@ import pandas as pd
 
 log = logging.getLogger(__name__)
 
-# Local MSigDB symbol-set GMT files. Order matters — first existing file wins.
-_GMT_HUMAN_CANDIDATES = (
-    Path("/home/zeyufu/Downloads/msigdb/c5.go.bp.v2024.1.Hs.symbols.gmt"),
-    Path("/home/zeyufu/Downloads/msigdb/c5.go.bp.v2023.2.Hs.symbols.gmt"),
-)
-_GMT_MOUSE_CANDIDATES = (
-    Path("/home/zeyufu/Downloads/msigdb/m5.go.bp.v2024.1.Mm.symbols.gmt"),
-    Path("/home/zeyufu/Downloads/msigdb/m5.go.bp.v2023.2.Mm.symbols.gmt"),
-)
+_REPO_ROOT = Path(__file__).resolve().parents[3]
+_GMT_FILES = {
+    "human": (
+        "c5.go.bp.v2024.1.Hs.symbols.gmt",
+        "c5.go.bp.v2023.2.Hs.symbols.gmt",
+    ),
+    "mouse": (
+        "m5.go.bp.v2024.1.Mm.symbols.gmt",
+        "m5.go.bp.v2023.2.Mm.symbols.gmt",
+    ),
+}
+
+
+def _msigdb_dirs() -> tuple[Path, ...]:
+    """Return configured MSigDB search roots without embedding host paths."""
+    roots: list[Path] = []
+    env = os.environ.get("SCCCVGBEN_MSIGDB_DIR")
+    if env:
+        roots.append(Path(env).expanduser())
+    roots.extend((_REPO_ROOT / "resources" / "msigdb", _REPO_ROOT / "msigdb"))
+    return tuple(roots)
 
 
 def _resolve_gmt(species: str) -> Path | None:
-    candidates = _GMT_HUMAN_CANDIDATES if species == "human" else _GMT_MOUSE_CANDIDATES
-    for p in candidates:
-        if p.exists():
-            return p
+    for root in _msigdb_dirs():
+        for filename in _GMT_FILES["human" if species == "human" else "mouse"]:
+            path = root / filename
+            if path.exists():
+                return path
     return None
 
 
@@ -58,7 +71,7 @@ def go_bp_enrichment_per_dim(
     top_terms: int = 8,
     species: str | None = None,
 ) -> pd.DataFrame:
-    """For each latent dim, run GO BP enrichment on the top-N correlated genes.
+    """For each latent coordinate, run GO BP enrichment on the top-N correlated genes.
 
     Inputs
     ------
@@ -66,9 +79,9 @@ def go_bp_enrichment_per_dim(
         ``[dim, rank, gene, rho, abs_rho]``. The function expects the
         provided ``top_k_df`` to have at least ``n_genes_per_dim`` rows per
         dim (caller must ensure ``k >= n_genes_per_dim``); when fewer rows
-        are present that dim simply uses what's available.
-    n_genes_per_dim : top-K gene cutoff per dim (default 100, matching
-        CCVGAE legacy ``head(100)``).
+        are present that coordinate simply uses what's available.
+    n_genes_per_dim : top-K gene cutoff per coordinate (default 100 for a stable
+        latent-gene module summary).
     top_terms : number of GO BP terms to keep per dim.
     species : ``"human"`` / ``"mouse"`` / ``None`` (auto-detect).
 

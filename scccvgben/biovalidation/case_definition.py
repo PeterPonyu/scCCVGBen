@@ -2,7 +2,7 @@
 
 Each :class:`CaseSpec` ties together:
 
-  * the dataset path (legacy-reference SubSampled h5ad or new local h5ad)
+  * the dataset path (reference SubSampled h5ad or new local h5ad)
   * the biological theme + plot-friendly title
   * the ``obs`` column for the *condition* axis (drives DEG, violin,
     UMAP coloring) — falls back to a Leiden partition computed from the
@@ -44,37 +44,37 @@ CASES: dict[str, CaseSpec] = {
     "SD": CaseSpec(
         case_id="SD",
         title="Sleep deprivation",
-        theme="legacy",
+        theme="reference",
         h5ad_path=_LEGACY_RESULTS / "SubSampledSD.h5ad",
-        accession="legacy-reference/SD",
+        accession="Reference subset SD",
         condition_obs="batch",
         cell_type_obs="cell_type",
-        notes="Brain perturbation. Legacy-reference fig10.",
+        notes="Brain perturbation reference case.",
     ),
     "UCB": CaseSpec(
         case_id="UCB",
         title="Cord-blood megakaryocyte differentiation",
-        theme="legacy",
+        theme="reference",
         h5ad_path=_LEGACY_RESULTS / "SubSampledUCB.h5ad",
-        accession="legacy-reference/UCB",
+        accession="Reference subset UCB",
         # SubSampledUCB.h5ad has only 'batch' (5 levels) as a categorical
         # column; L0..L9 are continuous latent embeddings (~2900 unique
         # floats). Using L0/L4 produces "2962 categories" violins which
         # are visually meaningless. Fall back to leiden for cell_type.
         condition_obs="batch",
         cell_type_obs=None,
-        notes="Hematopoietic differentiation. Legacy-reference fig12.",
+        notes="Hematopoietic differentiation reference case.",
     ),
     "IR": CaseSpec(
         case_id="IR",
         title="Radiation injury response",
-        theme="legacy",
+        theme="reference",
         h5ad_path=_LEGACY_RESULTS / "SubSampledIRALL.h5ad",
-        accession="legacy-reference/IR",
+        accession="Reference subset IR",
         condition_obs="batch",
         cell_type_obs="cell_type",
         pseudotime_obs="pseudotime",
-        notes="Tissue damage / blood. Legacy-reference fig11.",
+        notes="Tissue damage / blood reference case.",
     ),
     "GASTRIC": CaseSpec(
         case_id="GASTRIC",

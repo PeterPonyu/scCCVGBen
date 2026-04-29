@@ -2,13 +2,13 @@
 """build_site_data.py — generate Hugo site data + content from benchmark artifacts.
 
 Inputs:
-  data/benchmark_manifest.csv      — 200 rows, 15 cols, online-verified metadata
+  data/benchmark_manifest.csv      — 200 rows, 15 cols, manifest metadata
   data/benchmark_summary.json      — aggregated counts + rules
 
 Outputs:
   site/data/datasets.json          — array of 200 dataset objects (for DataTables)
   site/data/methods.json           — 29 methods grouped by 3 categories
-  site/data/metrics.json           — curated 20 display metrics + 2 annotations
+  site/data/metrics.json           — curated 20 publication-display metrics
   site/data/summary.json           — home-page headline stats + chart data
   site/content/datasets/*.md       — one page per dataset (auto-generated)
 
@@ -29,6 +29,7 @@ SITE = REPO / "site"
 DATA_OUT = SITE / "data"          # Hugo templates read from here (.Site.Data)
 STATIC_OUT = SITE / "static"      # files here are copied 1:1 to public/ (for fetch())
 CONTENT_OUT = SITE / "content"
+VALIDATION = REPO / "data" / "data_validation.csv"
 
 
 def _dump_json_dual(obj, name: str) -> None:
@@ -38,6 +39,21 @@ def _dump_json_dual(obj, name: str) -> None:
     payload = json.dumps(obj, indent=2, ensure_ascii=False)
     (DATA_OUT / f"{name}.json").write_text(payload, encoding="utf-8")
     (STATIC_OUT / f"{name}.json").write_text(payload, encoding="utf-8")
+
+
+def _clean_value(value, default: str = "") -> str:
+    """Return a display-safe scalar, treating pandas/CSV missing values as empty."""
+    if value is None:
+        return default
+    try:
+        if pd.isna(value):
+            return default
+    except TypeError:
+        pass
+    text = str(value).strip()
+    if text.lower() in {"", "nan", "none", "nat"}:
+        return default
+    return text
 
 
 # ─────────────────────────────── Datasets ────────────────────────────────
@@ -76,6 +92,13 @@ _FILENAME_SUFFIX_RE = re.compile(
 _FILENAME_FULL_RE = re.compile(
     r"\bGS[EM]\d+_[A-Za-z0-9_]+_(?:filtered|adata|new|HmCancer|MmCancer|HmDev|MmDev|HmAged|MmAged)\b"
 )
+_ACCESSION_ONLY_RE = re.compile(r"^GS[EM]\d+(?:-\d+)?$", flags=re.IGNORECASE)
+_PRIVATE_ACCESSION_RE = re.compile(r"\b(?:GSE266511|GSM82486(?:68|69|70|72|73|75))\b")
+_FILENAME_TOKEN_RE = re.compile(
+    r"\b(?:GS[EM]\d+[_-]?[A-Za-z0-9_-]*(?:Hm|Mm|PBMC|Cancer|Dev|Aged|filtered|cellranger|adata|PanSci)[A-Za-z0-9_-]*"
+    r"|[A-Za-z]{1,6}_GS[EM]\d+[A-Za-z0-9_-]*)\b",
+    flags=re.IGNORECASE,
+)
 
 
 def _sanitize_text(s: str, *, internal_aliases: tuple[str, ...] = ("irall", "wtko", "hemato")) -> str:
@@ -95,6 +118,7 @@ def _sanitize_text(s: str, *, internal_aliases: tuple[str, ...] = ("irall", "wtk
     if not s:
         return ""
     out = s.strip()
+    out = _PRIVATE_ACCESSION_RE.sub("", out)
     # Whole-string filename → reduce to GSE/GSM accession only.
     # Triggers when the value is exactly "<accession>_<anything>" AND contains
     # any internal-suffix marker (filename suffix, sample tag, or sequencer
@@ -115,10 +139,66 @@ def _sanitize_text(s: str, *, internal_aliases: tuple[str, ...] = ("irall", "wtk
         out = re.sub(rf"\b{re.escape(alias)}\b", "", out, flags=re.IGNORECASE)
     # Drop any filename-shaped substring
     out = _FILENAME_FULL_RE.sub("", out)
+    out = _FILENAME_TOKEN_RE.sub("", out)
     # Drop bare filename suffixes
     out = _FILENAME_SUFFIX_RE.sub("", out)
     out = re.sub(r"\s{2,}", " ", out).strip(" -_")
     return out
+
+
+def _is_restricted_row(*values: str) -> bool:
+    text = " ".join(_clean_value(v) for v in values)
+    return bool(
+        _PRIVATE_ACCESSION_RE.search(text)
+        or re.search(r"reviewer-private|private GEO|scheduled for public release", text, re.IGNORECASE)
+    )
+
+
+def _public_description(*candidates: str, accession: str = "") -> str:
+    """Return the first useful public-safe description from manifest/GEO text.
+
+    Manifest ``description`` occasionally copied the local filename stem.  When
+    sanitisation reduces a field to an accession only, prefer the GEO title or
+    source-name text so the public site remains informative without leaking
+    internal sample aliases or file stems.
+    """
+    for candidate in candidates:
+        cleaned = _sanitize_text(_clean_value(candidate))
+        if not cleaned:
+            continue
+        if accession and cleaned.upper() == accession.upper():
+            continue
+        if _ACCESSION_ONLY_RE.fullmatch(cleaned):
+            continue
+        return cleaned
+    return accession or "Public GEO metadata entry"
+
+
+def _load_validation_counts() -> dict[str, int]:
+    """Load private validation counts for internal reconciliation only.
+
+    The validation file contains absolute local paths and is never published;
+    only the numeric ``n_obs`` values are used to fill manifest rows where
+    ``cell_count`` was missing.
+    """
+    if not VALIDATION.exists():
+        return {}
+    try:
+        df = pd.read_csv(VALIDATION)
+    except Exception:
+        return {}
+    counts: dict[str, int] = {}
+    for _, r in df.iterrows():
+        key = _clean_value(r.get("filename_key"))
+        if not key:
+            continue
+        try:
+            n_obs = int(float(r.get("n_obs", 0)))
+        except Exception:
+            n_obs = 0
+        if n_obs > 0:
+            counts[key] = n_obs
+    return counts
 
 
 def build_datasets() -> list[dict]:
@@ -131,35 +211,69 @@ def build_datasets() -> list[dict]:
     src = REPO / "data" / "benchmark_manifest.csv"
     df = pd.read_csv(src)
     rows: list[dict] = []
+    validation_counts = _load_validation_counts()
 
     # Track GSE collisions so we can append -1, -2 suffixes without exposing
     # the original filename suffix.
     seen_pub_id: dict[str, int] = {}
+    restricted_seen = 0
 
     for idx, (_, r) in enumerate(df.iterrows()):
-        gse = str(r.get("gse_extract") or r.get("GSE") or "").strip()
-        modality = str(r.get("modality", "")).strip()
+        gse = _clean_value(r.get("gse_extract")) or _clean_value(r.get("GSE"))
+        modality = _clean_value(r.get("modality"))
         modality_display = {"scrna": "scRNA", "scatac": "scATAC"}.get(
             modality.lower(), modality
         )
-        species = str(r.get("species_corrected") or r.get("species") or "").strip()
-        tissue = str(r.get("tissue", "")).strip() or "unknown"
+        species = _clean_value(r.get("species_corrected")) or _clean_value(r.get("species"), "unknown")
+        tissue = _clean_value(r.get("tissue"), "unknown")
+        filename_key = _clean_value(r.get("filename_key"))
         try:
-            cell_count = int(r.get("cell_count", 0))
+            cell_count = int(float(r.get("cell_count", 0)))
         except Exception:
             cell_count = 0
-        description = _sanitize_text(str(r.get("description", "")).strip())
-        geo_title   = _sanitize_text(str(r.get("geo_title", "")).strip())
-        geo_url     = str(r.get("scrna_geo_source", "")).strip()
-        pubmed      = str(r.get("geo_pubmed_id", "")).strip()
-        subdate     = str(r.get("geo_submission_date", "")).strip()
-        source_name = _sanitize_text(str(r.get("geo_source_name", "")).strip())
+        cell_count_status = "reported"
+        if cell_count <= 0:
+            cell_count = validation_counts.get(filename_key, 0)
+            cell_count_status = "validated_n_obs" if cell_count > 0 else "not_reported"
+        geo_title   = _sanitize_text(_clean_value(r.get("geo_title")))
+        geo_url     = _clean_value(r.get("scrna_geo_source"))
+        pubmed      = _clean_value(r.get("geo_pubmed_id"))
+        subdate     = _clean_value(r.get("geo_submission_date"))
+        source_name = _sanitize_text(_clean_value(r.get("geo_source_name")))
+        restricted = _is_restricted_row(
+            filename_key,
+            gse,
+            _clean_value(r.get("description")),
+            geo_title,
+            source_name,
+            geo_url,
+        )
+        description = _public_description(
+            _clean_value(r.get("description")),
+            geo_title,
+            source_name,
+            accession=gse,
+        )
 
-        # Compute public-safe identifier (GSE accession only — no filename leak)
-        pub_id = _public_id(str(r.get("filename_key", "")).strip(), gse, modality, idx)
-        seen_pub_id[pub_id] = seen_pub_id.get(pub_id, 0) + 1
-        if seen_pub_id[pub_id] > 1:
-            pub_id = f"{pub_id}-{seen_pub_id[pub_id]}"
+        if restricted:
+            restricted_seen += 1
+            pub_id = f"restricted-{modality.lower()}-{restricted_seen:03d}"
+            gse = "restricted"
+            geo_url = ""
+            pubmed = ""
+            subdate = ""
+            geo_title = "Restricted-access scATAC immune-response benchmark record"
+            description = (
+                "Restricted-access benchmark record retained for cohort-level "
+                "reproducibility without disclosing nonpublic accession details."
+            )
+            source_name = "blood"
+        else:
+            # Compute public-safe identifier (GSE accession only — no filename leak)
+            pub_id = _public_id(filename_key, gse, modality, idx)
+            seen_pub_id[pub_id] = seen_pub_id.get(pub_id, 0) + 1
+            if seen_pub_id[pub_id] > 1:
+                pub_id = f"{pub_id}-{seen_pub_id[pub_id]}"
 
         canon_tissue = _slugify_tissue(tissue, source_name, description, geo_title)
 
@@ -177,6 +291,8 @@ def build_datasets() -> list[dict]:
             "pubmed_id": pubmed,
             "submission_date": subdate,
             "source_name": source_name,
+            "cell_count_status": cell_count_status,
+            "release_status": "restricted" if restricted else "public",
             # NOTE: ``filename_key`` deliberately omitted — this internal
             # identifier may contain unpublished sample suffixes and project
             # aliases that must not leak to the public site.
@@ -331,6 +447,10 @@ METRICS_LSE = [
 
 PUBLICATION_EXCLUDED_METRICS = {
     "core_quality_intrin",
+    # These LSE outputs are metadata annotations rather than scalar benchmark
+    # metrics, so they are deliberately not counted or displayed as metrics.
+    "data_type_intrin",
+    "interpretation_intrin",
 }
 
 
@@ -360,10 +480,11 @@ def build_summary(datasets: list[dict]) -> dict:
     cross_list = cross.to_dict("records")
 
     cell_count = df["cell_count"]
+    positive_cell_count = cell_count[cell_count > 0]
     # Cell-count bins for the skewed size distribution.
     bins = [0, 1_000, 3_000, 10_000, 30_000, 100_000, 300_000, 1_000_000, 5_000_000]
     labels = ["<1k", "1–3k", "3–10k", "10–30k", "30–100k", "100–300k", "300k–1M", ">1M"]
-    hist = pd.cut(cell_count, bins=bins, labels=labels, right=False).value_counts().sort_index()
+    hist = pd.cut(positive_cell_count, bins=bins, labels=labels, right=False).value_counts().sort_index()
     cell_hist = [{"bin": str(k), "count": int(v)} for k, v in hist.items()]
 
     # Submission year timeline.
@@ -395,16 +516,19 @@ def build_summary(datasets: list[dict]) -> dict:
     return {
         "built_at": datetime.now(timezone.utc).isoformat(),
         "total_datasets": int(len(df)),
+        "restricted_datasets": int((df.get("release_status", "") == "restricted").sum())
+        if "release_status" in df else 0,
         "modality": modality_counts,
         "species": species_counts,
         "tissue_top10": dict(sorted(tissue_counts.items(), key=lambda x: -x[1])[:10]),
         "species_modality": cross_list,
         "tissue_modality": tissue_modality_list,
         "cell_count_range": {
-            "min": int(cell_count.min()),
-            "median": int(cell_count.median()),
-            "max": int(cell_count.max()),
+            "min": int(positive_cell_count.min()) if len(positive_cell_count) else 0,
+            "median": int(positive_cell_count.median()) if len(positive_cell_count) else 0,
+            "max": int(positive_cell_count.max()) if len(positive_cell_count) else 0,
         },
+        "cell_count_missing": int((cell_count <= 0).sum()),
         "cell_count_hist": cell_hist,
         "submission_year_timeline": timeline,
         "pubmed_top15": pubmed_top,
@@ -446,9 +570,9 @@ geekdocHidden: false
 
 ---
 
-<small>Record auto-generated from `data/benchmark_manifest.csv` by
-`scripts/build_site_data.py`. All fields verified against GEO online
-metadata via GEOparse.</small>
+<small>Record assembled from the curated benchmark manifest and public GEO
+metadata. Internal identifiers and local paths are intentionally omitted from
+this public resource.</small>
 """
 
 
@@ -528,9 +652,9 @@ geekdocHidden: false
 
 ---
 
-<small>Auto-generated from `scripts/build_site_data.py`. scCCVGBen benchmark
-tests each method against the same 200 datasets and curated 20 publication-display
-metrics; see the [Methods index](../) for the full set.</small>
+<small>scCCVGBen benchmark tests each method against the same 200 public dataset
+records and curated 20 publication-display metrics; see the [Methods index](../)
+for the full set.</small>
 """
 
 METHOD_EXTRA = {
@@ -608,9 +732,8 @@ geekdocHidden: false
 
 ---
 
-<small>Auto-generated from `scripts/build_site_data.py`. Every method's
-latent embedding is scored against this metric across all 200 benchmark
-datasets; see the [Metrics index](../) for the full set.</small>
+<small>Every method's latent embedding is scored against this metric across all
+200 benchmark datasets; see the [Metrics index](../) for the full set.</small>
 """
 
 METRIC_GROUP_DISPLAY = {

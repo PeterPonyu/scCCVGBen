@@ -34,10 +34,12 @@ from .metrics import (
 )
 from .fonts import arial_font_path, arial_font_paths, register_arial_with_matplotlib
 from .style import (
+    METHOD_COLORS,
     apply_publication_rcparams,
     create_metric_family_figure,
     create_metric_grid_figure,
     create_publication_figure,
+    palette_for_methods,
 )
 
 __all__ = [
@@ -48,6 +50,7 @@ __all__ = [
     "METRIC_FAMILY_TITLES",
     "METRIC_PANEL_GRID",
     "METRIC_TO_FAMILY",
+    "METHOD_COLORS",
     "NON_NUMERIC_METRICS",
     "NUMERIC_METRIC_FAMILIES",
     "NUMERIC_METRICS",
@@ -63,6 +66,7 @@ __all__ = [
     "filter_to_manifest",
     "melt_reconciled",
     "preliminary_path",
+    "palette_for_methods",
     "select_significance_pairs",
     "short_method_name",
     "metric_coverage_audit",

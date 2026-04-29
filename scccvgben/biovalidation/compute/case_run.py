@@ -143,14 +143,14 @@ def run_case(
     keep_genes = list(dict.fromkeys(top_k["gene"]))
     expression_subset = expression_df[keep_genes]
 
-    # GO BP enrichment per dim from the full ranking.
-    log.info("[%s] computing GO BP enrichment per latent dim ...", case.case_id)
+    # GO BP enrichment per latent coordinate from the full ranking.
+    log.info("[%s] computing GO BP enrichment per latent coordinate ...", case.case_id)
     enrich_df = go_bp_enrichment_per_dim(
         top_full,
         n_genes_per_dim=enrichment_top_n_genes,
         top_terms=enrichment_top_terms,
     )
-    log.info("[%s] enrichment rows: %d (across %d dims)",
+    log.info("[%s] enrichment rows: %d (across %d coordinates)",
              case.case_id, len(enrich_df), enrich_df["dim"].nunique() if not enrich_df.empty else 0)
 
     return {

@@ -5,17 +5,17 @@ Layout (16in × 16in, 200 DPI)::
     ┌───────────┬───────────┬───────────┬─────────────┐
     │ A         │ B         │ C         │ D           │
     │ UMAP      │ UMAP      │ UMAP      │ Latent      │
-    │ condition │ cell type │ latent d0 │ self-corr   │
+    │ condition │ cell type │ latent z0 │ self-corr   │
     ├───────────┴───────────┴───────────┼─────────────┤
     │ F                                 │ G           │
-    │ Latent dim × top-K gene grid      │ Condition   │
+    │ Latent z × top-K gene grid        │ Condition   │
     │ (3 dims × 5 genes mini-UMAPs)     │ violin      │
     │                                   │             │
     ├───────────────────────────────────┴─────────────┤
-    │ E   Top-1 correlated gene per latent dim table  │
+    │ E   Top-1 correlated gene per latent coordinate │
     ├─────────────────────────────────────────────────┤
     │ H   GO Biological Process enrichment dotplot    │
-    │     terms × latent dim, size = % overlap,       │
+    │     terms × latent coordinate, size = % overlap,│
     │     color = -log10(adj.p)                       │
     └─────────────────────────────────────────────────┘
 
@@ -41,6 +41,7 @@ from ..visualize.heatmap import render_latent_corr, render_top_gene_table
 from ..visualize.violin import render_condition_violin
 from ..visualize.gene_grid import render_gene_grid
 from ..visualize.dotplot import render_gobp_dotplot
+from ..visualize.case_style import case_cmap
 
 log = logging.getLogger(__name__)
 
@@ -61,6 +62,7 @@ def compose_case_figure(payload: dict, out_dir: Path) -> Path:
     """
     apply_publication_rcparams()
     case = payload["case"]
+    continuous_cmap = case_cmap(case.case_id)
     out_dir.mkdir(parents=True, exist_ok=True)
 
     fig = plt.figure(figsize=(PANEL_W_INCH, PANEL_H_INCH), dpi=PANEL_DPI)
@@ -100,13 +102,22 @@ def compose_case_figure(payload: dict, out_dir: Path) -> Path:
         render_categorical_scatter, ax_A,
         payload.get("umap"), payload.get("condition"),
         title="A · UMAP coloured by condition", legend_loc="right",
+        legend_title="condition", summary_limit=5,
     )
     ax_B = fig.add_subplot(gs[0, 1])
 
+    cell_type_title = (
+        "B · annotated cell types"
+        if case.cell_type_obs
+        else "B · inferred cell-state clusters"
+    )
     _safe(
         render_categorical_scatter, ax_B,
         payload.get("umap"), payload.get("cell_type"),
-        title="B · UMAP coloured by cell type", legend_loc="right",
+        title=cell_type_title, legend_loc="right",
+        legend_title="cell type" if case.cell_type_obs else "cluster",
+        max_legend=16 if case.cell_type_obs else 10,
+        summary_limit=10,
     )
     ax_C = fig.add_subplot(gs[0, 2])
     latent = payload.get("latent")
@@ -114,7 +125,7 @@ def compose_case_figure(payload: dict, out_dir: Path) -> Path:
         _safe(
             render_continuous_scatter, ax_C,
             payload.get("umap"), latent[:, 0],
-            title="C · UMAP coloured by latent dim 0", cmap="coolwarm",
+            title="C · UMAP coloured by latent z0", cmap=continuous_cmap,
         )
     else:
         render_placeholder(ax_C, "no latent")
@@ -122,7 +133,8 @@ def compose_case_figure(payload: dict, out_dir: Path) -> Path:
 
     _safe(
         render_latent_corr, ax_D, payload.get("latent_corr"),
-        title="D · |corr| between latent dims",
+        title="D · |corr| between latent coordinates",
+        cmap="RdBu_r",
     )
 
     # ── Mid rows — F (gene grid) + G (violin) ───────────────────────
@@ -134,29 +146,31 @@ def compose_case_figure(payload: dict, out_dir: Path) -> Path:
         top_k_df=payload.get("top_k_genes_df"),
         expression=payload.get("expression"),
         rows_show=3, cols_show=5,
-        title="F · Latent dim × top-5 correlated gene mini-UMAPs",
+        title="F · Latent z × top-5 correlated gene mini-UMAPs",
+        cmap=continuous_cmap,
     )
     ax_G = fig.add_subplot(gs[1:3, 3])
     _safe(
         render_condition_violin, ax_G,
         payload.get("latent"), payload.get("condition"),
         n_dims_show=5,
-        title="G · Per-condition latent value distribution (first 5 dims)",
+        title="G · Per-condition latent value distribution (z0-z4)",
     )
 
     # ── Row 3 — E (top-gene table, half-height) ─────────────────────
     ax_E = fig.add_subplot(gs[3, :])
     _safe(
         render_top_gene_table, ax_E, payload.get("top_k_genes_df"),
-        title="E · Top-1 correlated gene per latent dim",
+        title="E · Top-1 correlated gene per latent coordinate",
     )
 
     # ── Row 4 — H (GO BP enrichment dotplot, full width) ────────────
     ax_H = fig.add_subplot(gs[4, :])
     _safe(
         render_gobp_dotplot, ax_H, payload.get("enrichment_df"),
-        title="H · GO Biological Process enrichment per latent dim "
+        title="H · GO Biological Process enrichment per latent coordinate "
               "(top-100 |correlated| genes; dot size = % overlap, color = -log10 padj)",
+        cmap=continuous_cmap,
     )
 
     pdf_path = out_dir / f"fig_biovalidation_case_{case.case_id}.pdf"

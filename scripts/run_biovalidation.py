@@ -3,10 +3,11 @@
 
 For each case in ``scccvgben.biovalidation.case_definition.CASES``:
 
-  1. ``compute.run_case()`` — train encoder, compute latent + top-K genes
-     + UMAP + latent self-corr, fall-back leiden labels if needed.
-  2. ``compose.compose_case_figure()`` — emit one 16×12-inch PDF + PNG with
-     panels A through G in a fixed GridSpec layout. The composer is fault
+  1. ``compute.run_case()`` — train encoder, compute latent + top-K genes,
+     UMAP, latent self-correlation, and GO-BP enrichment, with Leiden label
+     fall-backs when requested annotations are missing.
+  2. ``compose.compose_case_figure()`` — emit one 16×16-inch PDF + PNG with
+     panels A through H in a fixed GridSpec layout. The composer is fault
      tolerant: a missing payload key produces a placeholder, not a crash.
 
 Resume: a case is skipped when its PDF already exists. Pass ``--force`` to
@@ -40,7 +41,7 @@ def main() -> None:
     parser.add_argument("--out", default="figures/biovalidation/")
     parser.add_argument("--epochs", type=int, default=100)
     parser.add_argument("--top-k-genes", type=int, default=5,
-                        help="Top-K correlated genes per latent dim (gene grid columns).")
+                        help="Top-K correlated genes per latent coordinate (gene grid columns).")
     parser.add_argument("--subsample-cells", type=int, default=3000)
     parser.add_argument("--force", action="store_true",
                         help="Re-render even when output PDF already exists.")
@@ -52,6 +53,7 @@ def main() -> None:
     from scccvgben.biovalidation.case_definition import order
     from scccvgben.biovalidation.compute import run_case
     from scccvgben.biovalidation.compose import compose_case_figure
+    from scccvgben.biovalidation.sidecar import save_case_sidecar
 
     if args.smoke:
         case_ids = ["SD"]
@@ -90,6 +92,7 @@ def main() -> None:
                 silent=True,
             )
             compose_case_figure(payload, out_dir)
+            save_case_sidecar(payload, out_dir)
             n_done += 1
             log.info("  ✓ [%s] %.0fs", case_id, time.time() - t0)
         except Exception as exc:

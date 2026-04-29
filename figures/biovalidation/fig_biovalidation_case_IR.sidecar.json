@@ -1,0 +1,1675 @@
+{
+  "version": 5,
+  "case_id": "IR",
+  "title": "Radiation injury response",
+  "theme": "reference",
+  "accession": "Reference subset IR",
+  "encoder": "GAT",
+  "condition_obs": "batch",
+  "cell_type_obs": "cell_type",
+  "condition_is_inferred": false,
+  "cell_type_is_inferred": false,
+  "n_obs": 3000,
+  "n_obs_subsampled": 3000,
+  "n_vars_post_hvg": 1485,
+  "condition_latent": {
+    "dims": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "conditions": [
+      {
+        "label": "d0",
+        "raw_label": "d0",
+        "n": 784
+      },
+      {
+        "label": "d8",
+        "raw_label": "d8",
+        "n": 595
+      },
+      {
+        "label": "d21",
+        "raw_label": "d21",
+        "n": 491
+      },
+      {
+        "label": "d30",
+        "raw_label": "d30",
+        "n": 395
+      },
+      {
+        "label": "d14",
+        "raw_label": "d14",
+        "n": 322
+      },
+      {
+        "label": "d11",
+        "raw_label": "d11",
+        "n": 318
+      },
+      {
+        "label": "d2",
+        "raw_label": "d2",
+        "n": 95
+      }
+    ],
+    "records": [
+      {
+        "dim": 0,
+        "condition": "d0",
+        "raw_condition": "d0",
+        "n": 784,
+        "median_z": -0.4393266559456991,
+        "q25_z": -0.6582983134718953,
+        "q75_z": -0.009935014255693937,
+        "median_raw": -0.29339633882045746
+      },
+      {
+        "dim": 0,
+        "condition": "d8",
+        "raw_condition": "d8",
+        "n": 595,
+        "median_z": 0.5629653311581126,
+        "q25_z": 0.2356785555056567,
+        "q75_z": 1.1932295462136764,
+        "median_raw": 0.2775294780731201
+      },
+      {
+        "dim": 0,
+        "condition": "d21",
+        "raw_condition": "d21",
+        "n": 491,
+        "median_z": -0.039472752750341566,
+        "q25_z": -0.7861591503275198,
+        "q75_z": 0.7650718859460905,
+        "median_raw": -0.0656314566731453
+      },
+      {
+        "dim": 0,
+        "condition": "d30",
+        "raw_condition": "d30",
+        "n": 395,
+        "median_z": 0.4065727675115366,
+        "q25_z": -0.04728369456568407,
+        "q75_z": 0.8803405121303737,
+        "median_raw": 0.1884451061487198
+      },
+      {
+        "dim": 0,
+        "condition": "d14",
+        "raw_condition": "d14",
+        "n": 322,
+        "median_z": -0.28031703812151343,
+        "q25_z": -1.5344819882902145,
+        "q75_z": 0.739781478107865,
+        "median_raw": -0.20282123982906342
+      },
+      {
+        "dim": 0,
+        "condition": "d11",
+        "raw_condition": "d11",
+        "n": 318,
+        "median_z": -0.9551045541219789,
+        "q25_z": -1.6820446460387304,
+        "q75_z": 0.3403438364486543,
+        "median_raw": -0.5871938765048981
+      },
+      {
+        "dim": 0,
+        "condition": "d2",
+        "raw_condition": "d2",
+        "n": 95,
+        "median_z": -0.0028710234837097115,
+        "q25_z": -0.469158028567838,
+        "q75_z": 0.6365598789443352,
+        "median_raw": -0.0447823703289032
+      },
+      {
+        "dim": 1,
+        "condition": "d0",
+        "raw_condition": "d0",
+        "n": 784,
+        "median_z": -0.019896572111452175,
+        "q25_z": -0.3543518524847686,
+        "q75_z": 0.2545114871877986,
+        "median_raw": -0.29707661271095276
+      },
+      {
+        "dim": 1,
+        "condition": "d8",
+        "raw_condition": "d8",
+        "n": 595,
+        "median_z": 1.0162410601828131,
+        "q25_z": 0.6911585913337026,
+        "q75_z": 1.1041229557114831,
+        "median_raw": 2.0088860988616943
+      },
+      {
+        "dim": 1,
+        "condition": "d21",
+        "raw_condition": "d21",
+        "n": 491,
+        "median_z": -0.5328577730897011,
+        "q25_z": -1.0332144019179426,
+        "q75_z": 0.5314179920409396,
+        "median_raw": -1.4386907815933228
+      },
+      {
+        "dim": 1,
+        "condition": "d30",
+        "raw_condition": "d30",
+        "n": 395,
+        "median_z": 0.09133473434837311,
+        "q25_z": -0.3071541161850714,
+        "q75_z": 0.4662633533162706,
+        "median_raw": -0.04952721670269966
+      },
+      {
+        "dim": 1,
+        "condition": "d14",
+        "raw_condition": "d14",
+        "n": 322,
+        "median_z": -0.536237116696384,
+        "q25_z": -0.8387343946015942,
+        "q75_z": 0.10952195917323732,
+        "median_raw": -1.4462116360664368
+      },
+      {
+        "dim": 1,
+        "condition": "d11",
+        "raw_condition": "d11",
+        "n": 318,
+        "median_z": -0.6990175156285647,
+        "q25_z": -0.8857152759160456,
+        "q75_z": 0.6830808167841862,
+        "median_raw": -1.8084854483604431
+      },
+      {
+        "dim": 1,
+        "condition": "d2",
+        "raw_condition": "d2",
+        "n": 95,
+        "median_z": -0.8238263843524722,
+        "q25_z": -0.9606154130300787,
+        "q75_z": -0.5286257665010168,
+        "median_raw": -2.086252212524414
+      },
+      {
+        "dim": 2,
+        "condition": "d0",
+        "raw_condition": "d0",
+        "n": 784,
+        "median_z": -0.15231972897277446,
+        "q25_z": -0.4039600216986272,
+        "q75_z": 0.3218280395028895,
+        "median_raw": 0.6678791344165802
+      },
+      {
+        "dim": 2,
+        "condition": "d8",
+        "raw_condition": "d8",
+        "n": 595,
+        "median_z": -0.8704860021596652,
+        "q25_z": -1.130510498228069,
+        "q75_z": 0.3199447273755121,
+        "median_raw": -0.09448996931314468
+      },
+      {
+        "dim": 2,
+        "condition": "d21",
+        "raw_condition": "d21",
+        "n": 491,
+        "median_z": 0.158286568702906,
+        "q25_z": -0.41558667998474785,
+        "q75_z": 0.8644383012612067,
+        "median_raw": 0.9976031184196472
+      },
+      {
+        "dim": 2,
+        "condition": "d30",
+        "raw_condition": "d30",
+        "n": 395,
+        "median_z": 0.6437694151871993,
+        "q25_z": 0.15228954903841058,
+        "q75_z": 1.0952183356521905,
+        "median_raw": 1.5129672288894653
+      },
+      {
+        "dim": 2,
+        "condition": "d14",
+        "raw_condition": "d14",
+        "n": 322,
+        "median_z": 0.46856380683376897,
+        "q25_z": -0.3404717430862888,
+        "q75_z": 1.033599444285886,
+        "median_raw": 1.326977789402008
+      },
+      {
+        "dim": 2,
+        "condition": "d11",
+        "raw_condition": "d11",
+        "n": 318,
+        "median_z": -0.394710405228898,
+        "q25_z": -0.7423363386037338,
+        "q75_z": 0.13106164295427486,
+        "median_raw": 0.4105694144964218
+      },
+      {
+        "dim": 2,
+        "condition": "d2",
+        "raw_condition": "d2",
+        "n": 95,
+        "median_z": 1.3074491366729235,
+        "q25_z": 1.1561540656019278,
+        "q75_z": 1.5088098833434485,
+        "median_raw": 2.217496156692505
+      },
+      {
+        "dim": 3,
+        "condition": "d0",
+        "raw_condition": "d0",
+        "n": 784,
+        "median_z": -0.6861978066588506,
+        "q25_z": -0.8371713840234445,
+        "q75_z": -0.31287465248777047,
+        "median_raw": -3.1426976919174194
+      },
+      {
+        "dim": 3,
+        "condition": "d8",
+        "raw_condition": "d8",
+        "n": 595,
+        "median_z": 1.8217217427975398,
+        "q25_z": 0.6970593629204873,
+        "q75_z": 2.007026614138356,
+        "median_raw": 2.443826675415039
+      },
+      {
+        "dim": 3,
+        "condition": "d21",
+        "raw_condition": "d21",
+        "n": 491,
+        "median_z": 0.13632774846784654,
+        "q25_z": -0.10711109306479161,
+        "q75_z": 0.44107303019419986,
+        "median_raw": -1.3104782104492188
+      },
+      {
+        "dim": 3,
+        "condition": "d30",
+        "raw_condition": "d30",
+        "n": 395,
+        "median_z": -0.35575054629955966,
+        "q25_z": -0.5438157624843837,
+        "q75_z": -0.170890712332198,
+        "median_raw": -2.406608819961548
+      },
+      {
+        "dim": 3,
+        "condition": "d14",
+        "raw_condition": "d14",
+        "n": 322,
+        "median_z": 0.10005888827895024,
+        "q25_z": -0.28464062740370066,
+        "q75_z": 0.6217972486081427,
+        "median_raw": -1.391269028186798
+      },
+      {
+        "dim": 3,
+        "condition": "d11",
+        "raw_condition": "d11",
+        "n": 318,
+        "median_z": 1.0069898672124022,
+        "q25_z": 0.6279129904847045,
+        "q75_z": 1.6876187530705833,
+        "median_raw": 0.6289680302143097
+      },
+      {
+        "dim": 3,
+        "condition": "d2",
+        "raw_condition": "d2",
+        "n": 95,
+        "median_z": 0.12608348689816357,
+        "q25_z": 0.027019082687383206,
+        "q75_z": 0.22699442694977517,
+        "median_raw": -1.333297848701477
+      },
+      {
+        "dim": 4,
+        "condition": "d0",
+        "raw_condition": "d0",
+        "n": 784,
+        "median_z": -0.151613413076855,
+        "q25_z": -0.36236799125726593,
+        "q75_z": 0.017982147859987536,
+        "median_raw": -0.1767026111483574
+      },
+      {
+        "dim": 4,
+        "condition": "d8",
+        "raw_condition": "d8",
+        "n": 595,
+        "median_z": 1.3299760915768242,
+        "q25_z": 1.0837637989821824,
+        "q75_z": 1.3888618842324754,
+        "median_raw": 1.7978129386901855
+      },
+      {
+        "dim": 4,
+        "condition": "d21",
+        "raw_condition": "d21",
+        "n": 491,
+        "median_z": -0.28813116083212326,
+        "q25_z": -0.6456095850992085,
+        "q75_z": 0.8945640944221471,
+        "median_raw": -0.3586399257183075
+      },
+      {
+        "dim": 4,
+        "condition": "d30",
+        "raw_condition": "d30",
+        "n": 395,
+        "median_z": 0.04375983753081262,
+        "q25_z": -0.1256078503593751,
+        "q75_z": 0.30052793088820373,
+        "median_raw": 0.08367148041725159
+      },
+      {
+        "dim": 4,
+        "condition": "d14",
+        "raw_condition": "d14",
+        "n": 322,
+        "median_z": -0.129572018576449,
+        "q25_z": -0.38708275999109165,
+        "q75_z": 0.49481607640871894,
+        "median_raw": -0.14732802659273148
+      },
+      {
+        "dim": 4,
+        "condition": "d11",
+        "raw_condition": "d11",
+        "n": 318,
+        "median_z": -0.1206126156742395,
+        "q25_z": -0.4004940316043745,
+        "q75_z": 1.2986101225871625,
+        "median_raw": -0.1353878229856491
+      },
+      {
+        "dim": 4,
+        "condition": "d2",
+        "raw_condition": "d2",
+        "n": 95,
+        "median_z": 0.07858859407585621,
+        "q25_z": -0.13173731462431265,
+        "q75_z": 0.3514118485213026,
+        "median_raw": 0.13008779287338257
+      }
+    ]
+  },
+  "latent_corr": [
+    [
+      1.0,
+      0.6345248720588823,
+      0.5474781804422578,
+      0.08679769397633208,
+      0.7476103686009178,
+      0.5284737375467788,
+      0.47014189101333226,
+      0.1243410775713078,
+      0.21509579513518368,
+      0.42100678789097623
+    ],
+    [
+      0.6345248720588823,
+      1.0,
+      0.02649746273654503,
+      0.3385796682266005,
+      0.8260229850968485,
+      0.5763427646723552,
+      0.8488697051600623,
+      0.10673578169991178,
+      0.3784222749631514,
+      0.684688780348416
+    ],
+    [
+      0.5474781804422579,
+      0.02649746273654503,
+      0.9999999999999999,
+      0.5115104627392436,
+      0.3869083930244567,
+      0.3460337864162352,
+      0.19868993980584496,
+      0.1164932040655034,
+      0.4261440436376795,
+      0.15211876670094712
+    ],
+    [
+      0.0867976939763321,
+      0.33857966822660057,
+      0.5115104627392436,
+      1.0,
+      0.38644344557941485,
+      0.28953202766977,
+      0.15673092564002727,
+      0.631128773513704,
+      0.9413256839917151,
+      0.09009037489741828
+    ],
+    [
+      0.7476103686009178,
+      0.8260229850968486,
+      0.3869083930244567,
+      0.38644344557941485,
+      1.0,
+      0.7415844128493597,
+      0.4809729452401994,
+      0.346431450276126,
+      0.42781520101934417,
+      0.2654477371707409
+    ],
+    [
+      0.5284737375467788,
+      0.5763427646723552,
+      0.34603378641623517,
+      0.28953202766977,
+      0.7415844128493597,
+      1.0,
+      0.16126628109105276,
+      0.3866544810217399,
+      0.47290460946437646,
+      0.018643150915088506
+    ],
+    [
+      0.47014189101333226,
+      0.8488697051600623,
+      0.19868993980584496,
+      0.1567309256400273,
+      0.4809729452401994,
+      0.16126628109105276,
+      1.0,
+      0.45984135113794594,
+      0.15242813678101794,
+      0.9345167609760149
+    ],
+    [
+      0.12434107757130781,
+      0.10673578169991178,
+      0.11649320406550338,
+      0.6311287735137041,
+      0.346431450276126,
+      0.3866544810217399,
+      0.45984135113794594,
+      1.0,
+      0.6136994546047976,
+      0.6740593527811947
+    ],
+    [
+      0.21509579513518368,
+      0.3784222749631514,
+      0.42614404363767944,
+      0.941325683991715,
+      0.4278152010193442,
+      0.4729046094643764,
+      0.15242813678101794,
+      0.6136994546047977,
+      1.0,
+      0.06419781313684737
+    ],
+    [
+      0.42100678789097623,
+      0.684688780348416,
+      0.15211876670094712,
+      0.09009037489741828,
+      0.2654477371707409,
+      0.018643150915088506,
+      0.934516760976015,
+      0.6740593527811947,
+      0.06419781313684736,
+      0.9999999999999998
+    ]
+  ],
+  "top_gene_rows": [
+    {
+      "dim": 0,
+      "rank": 0,
+      "gene": "Zfpm1",
+      "rho": 0.5444657197335412
+    },
+    {
+      "dim": 1,
+      "rank": 0,
+      "gene": "Car2",
+      "rho": 0.8185542381764147
+    },
+    {
+      "dim": 2,
+      "rank": 0,
+      "gene": "Angpt1",
+      "rho": 0.45879224508110367
+    },
+    {
+      "dim": 3,
+      "rank": 0,
+      "gene": "Cd34",
+      "rho": -0.8171569522985032
+    },
+    {
+      "dim": 4,
+      "rank": 0,
+      "gene": "Car2",
+      "rho": 0.776872268132095
+    },
+    {
+      "dim": 5,
+      "rank": 0,
+      "gene": "Ighm",
+      "rho": 0.7085859106289022
+    },
+    {
+      "dim": 6,
+      "rank": 0,
+      "gene": "Car2",
+      "rho": 0.7099888661025641
+    },
+    {
+      "dim": 7,
+      "rank": 0,
+      "gene": "Rgs1",
+      "rho": -0.7020976239044526
+    },
+    {
+      "dim": 8,
+      "rank": 0,
+      "gene": "Cd34",
+      "rho": 0.7787928137561456
+    },
+    {
+      "dim": 9,
+      "rank": 0,
+      "gene": "Junb",
+      "rho": 0.6578472920765519
+    }
+  ],
+  "top_k_genes_df": [
+    {
+      "dim": 0,
+      "rank": 0,
+      "gene": "Zfpm1",
+      "rho": 0.5444657197335412,
+      "abs_rho": 0.5444657197335412
+    },
+    {
+      "dim": 0,
+      "rank": 1,
+      "gene": "Gata1",
+      "rho": 0.5155856821698706,
+      "abs_rho": 0.5155856821698706
+    },
+    {
+      "dim": 0,
+      "rank": 2,
+      "gene": "Gfi1b",
+      "rho": 0.5105602988288269,
+      "abs_rho": 0.5105602988288269
+    },
+    {
+      "dim": 0,
+      "rank": 3,
+      "gene": "Gm15915",
+      "rho": 0.5080804668598831,
+      "abs_rho": 0.5080804668598831
+    },
+    {
+      "dim": 0,
+      "rank": 4,
+      "gene": "Clec12a",
+      "rho": -0.5069766440829782,
+      "abs_rho": 0.5069766440829782
+    },
+    {
+      "dim": 1,
+      "rank": 0,
+      "gene": "Car2",
+      "rho": 0.8185542381764147,
+      "abs_rho": 0.8185542381764147
+    },
+    {
+      "dim": 1,
+      "rank": 1,
+      "gene": "Klf1",
+      "rho": 0.6790526272666654,
+      "abs_rho": 0.6790526272666654
+    },
+    {
+      "dim": 1,
+      "rank": 2,
+      "gene": "Clec12a",
+      "rho": -0.6761705661157336,
+      "abs_rho": 0.6761705661157336
+    },
+    {
+      "dim": 1,
+      "rank": 3,
+      "gene": "Aqp1",
+      "rho": 0.6617855209043145,
+      "abs_rho": 0.6617855209043145
+    },
+    {
+      "dim": 1,
+      "rank": 4,
+      "gene": "Gm15915",
+      "rho": 0.661670893481692,
+      "abs_rho": 0.661670893481692
+    },
+    {
+      "dim": 2,
+      "rank": 0,
+      "gene": "Angpt1",
+      "rho": 0.45879224508110367,
+      "abs_rho": 0.45879224508110367
+    },
+    {
+      "dim": 2,
+      "rank": 1,
+      "gene": "Muc13",
+      "rho": 0.45610417658784,
+      "abs_rho": 0.45610417658784
+    },
+    {
+      "dim": 2,
+      "rank": 2,
+      "gene": "Tspan33",
+      "rho": -0.4532518282626415,
+      "abs_rho": 0.4532518282626415
+    },
+    {
+      "dim": 2,
+      "rank": 3,
+      "gene": "H1fx",
+      "rho": 0.4490616975247953,
+      "abs_rho": 0.4490616975247953
+    },
+    {
+      "dim": 2,
+      "rank": 4,
+      "gene": "Sphk1",
+      "rho": -0.4444009610785531,
+      "abs_rho": 0.4444009610785531
+    },
+    {
+      "dim": 3,
+      "rank": 0,
+      "gene": "Cd34",
+      "rho": -0.8171569522985032,
+      "abs_rho": 0.8171569522985032
+    },
+    {
+      "dim": 3,
+      "rank": 1,
+      "gene": "Tmem176b",
+      "rho": -0.81634145902445,
+      "abs_rho": 0.81634145902445
+    },
+    {
+      "dim": 3,
+      "rank": 2,
+      "gene": "Sox4",
+      "rho": -0.7732163729324599,
+      "abs_rho": 0.7732163729324599
+    },
+    {
+      "dim": 3,
+      "rank": 3,
+      "gene": "Cd27",
+      "rho": -0.7391012879349027,
+      "abs_rho": 0.7391012879349027
+    },
+    {
+      "dim": 3,
+      "rank": 4,
+      "gene": "Dusp2",
+      "rho": -0.7384511381032547,
+      "abs_rho": 0.7384511381032547
+    },
+    {
+      "dim": 4,
+      "rank": 0,
+      "gene": "Car2",
+      "rho": 0.776872268132095,
+      "abs_rho": 0.776872268132095
+    },
+    {
+      "dim": 4,
+      "rank": 1,
+      "gene": "Klf1",
+      "rho": 0.7033489127846801,
+      "abs_rho": 0.7033489127846801
+    },
+    {
+      "dim": 4,
+      "rank": 2,
+      "gene": "Gm15915",
+      "rho": 0.6925471135864335,
+      "abs_rho": 0.6925471135864335
+    },
+    {
+      "dim": 4,
+      "rank": 3,
+      "gene": "Aqp1",
+      "rho": 0.6794596232459981,
+      "abs_rho": 0.6794596232459981
+    },
+    {
+      "dim": 4,
+      "rank": 4,
+      "gene": "Ces2g",
+      "rho": 0.6693300553862206,
+      "abs_rho": 0.6693300553862206
+    },
+    {
+      "dim": 5,
+      "rank": 0,
+      "gene": "Ighm",
+      "rho": 0.7085859106289022,
+      "abs_rho": 0.7085859106289022
+    },
+    {
+      "dim": 5,
+      "rank": 1,
+      "gene": "Gclm",
+      "rho": -0.6396850876692469,
+      "abs_rho": 0.6396850876692469
+    },
+    {
+      "dim": 5,
+      "rank": 2,
+      "gene": "Flt3",
+      "rho": 0.6362921236810096,
+      "abs_rho": 0.6362921236810096
+    },
+    {
+      "dim": 5,
+      "rank": 3,
+      "gene": "Irf8",
+      "rho": 0.6238085699589101,
+      "abs_rho": 0.6238085699589101
+    },
+    {
+      "dim": 5,
+      "rank": 4,
+      "gene": "Car2",
+      "rho": -0.5897297685116272,
+      "abs_rho": 0.5897297685116272
+    },
+    {
+      "dim": 6,
+      "rank": 0,
+      "gene": "Car2",
+      "rho": 0.7099888661025641,
+      "abs_rho": 0.7099888661025641
+    },
+    {
+      "dim": 6,
+      "rank": 1,
+      "gene": "Anxa3",
+      "rho": -0.6492357961865022,
+      "abs_rho": 0.6492357961865022
+    },
+    {
+      "dim": 6,
+      "rank": 2,
+      "gene": "Hp",
+      "rho": -0.6490635320316471,
+      "abs_rho": 0.6490635320316471
+    },
+    {
+      "dim": 6,
+      "rank": 3,
+      "gene": "Trem3",
+      "rho": -0.6455138037019628,
+      "abs_rho": 0.6455138037019628
+    },
+    {
+      "dim": 6,
+      "rank": 4,
+      "gene": "Junb",
+      "rho": 0.627770164011316,
+      "abs_rho": 0.627770164011316
+    },
+    {
+      "dim": 7,
+      "rank": 0,
+      "gene": "Rgs1",
+      "rho": -0.7020976239044526,
+      "abs_rho": 0.7020976239044526
+    },
+    {
+      "dim": 7,
+      "rank": 1,
+      "gene": "Lsp1",
+      "rho": -0.6998497418655379,
+      "abs_rho": 0.6998497418655379
+    },
+    {
+      "dim": 7,
+      "rank": 2,
+      "gene": "Nr4a1",
+      "rho": -0.6911132991573281,
+      "abs_rho": 0.6911132991573281
+    },
+    {
+      "dim": 7,
+      "rank": 3,
+      "gene": "Gimap6",
+      "rho": -0.6741729614737683,
+      "abs_rho": 0.6741729614737683
+    },
+    {
+      "dim": 7,
+      "rank": 4,
+      "gene": "Rrm2",
+      "rho": 0.6740924212976366,
+      "abs_rho": 0.6740924212976366
+    },
+    {
+      "dim": 8,
+      "rank": 0,
+      "gene": "Cd34",
+      "rho": 0.7787928137561456,
+      "abs_rho": 0.7787928137561456
+    },
+    {
+      "dim": 8,
+      "rank": 1,
+      "gene": "Ccl4",
+      "rho": 0.7539717610021841,
+      "abs_rho": 0.7539717610021841
+    },
+    {
+      "dim": 8,
+      "rank": 2,
+      "gene": "Emb",
+      "rho": 0.7451876514668058,
+      "abs_rho": 0.7451876514668058
+    },
+    {
+      "dim": 8,
+      "rank": 3,
+      "gene": "Ccl3",
+      "rho": 0.7301076693046729,
+      "abs_rho": 0.7301076693046729
+    },
+    {
+      "dim": 8,
+      "rank": 4,
+      "gene": "Sox4",
+      "rho": 0.7298016373059885,
+      "abs_rho": 0.7298016373059885
+    },
+    {
+      "dim": 9,
+      "rank": 0,
+      "gene": "Junb",
+      "rho": 0.6578472920765519,
+      "abs_rho": 0.6578472920765519
+    },
+    {
+      "dim": 9,
+      "rank": 1,
+      "gene": "Trem3",
+      "rho": -0.6385734323640059,
+      "abs_rho": 0.6385734323640059
+    },
+    {
+      "dim": 9,
+      "rank": 2,
+      "gene": "Jund",
+      "rho": 0.6326023778581323,
+      "abs_rho": 0.6326023778581323
+    },
+    {
+      "dim": 9,
+      "rank": 3,
+      "gene": "Hp",
+      "rho": -0.6320853545823277,
+      "abs_rho": 0.6320853545823277
+    },
+    {
+      "dim": 9,
+      "rank": 4,
+      "gene": "H2-T23",
+      "rho": 0.630424279705608,
+      "abs_rho": 0.630424279705608
+    }
+  ],
+  "enrichment": [
+    {
+      "dim": 0,
+      "term": "GOBP_HEMOPOIESIS",
+      "n_overlap": 28,
+      "n_term": 1104,
+      "percent": 0.025362318840579712,
+      "padj": 6.156733560010642e-10,
+      "neg_log10_padj": 9.210649640613637
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_MYELOID_CELL_DIFFERENTIATION",
+      "n_overlap": 19,
+      "n_term": 491,
+      "percent": 0.038696537678207736,
+      "padj": 3.199830069927684e-09,
+      "neg_log10_padj": 8.494873084696433
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_MULTICELLULAR_ORGANISMAL_LEVEL_HOMEOSTASIS",
+      "n_overlap": 23,
+      "n_term": 973,
+      "percent": 0.023638232271325797,
+      "padj": 1.78137172952483e-07,
+      "neg_log10_padj": 6.749245444244849
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_MYELOID_CELL_HOMEOSTASIS",
+      "n_overlap": 12,
+      "n_term": 223,
+      "percent": 0.053811659192825115,
+      "padj": 5.768924562446152e-07,
+      "neg_log10_padj": 6.238905140072465
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_HOMEOSTASIS_OF_NUMBER_OF_CELLS",
+      "n_overlap": 15,
+      "n_term": 416,
+      "percent": 0.036057692307692304,
+      "padj": 8.436842524659105e-07,
+      "neg_log10_padj": 6.073820057009879
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_DEFENSE_RESPONSE",
+      "n_overlap": 29,
+      "n_term": 1851,
+      "percent": 0.015667206915180983,
+      "padj": 3.270387589767854e-06,
+      "neg_log10_padj": 5.485400773907808
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_BIOLOGICAL_PROCESS_INVOLVED_IN_INTERSPECIES_INTERACTION_BETWEEN_ORGANISMS",
+      "n_overlap": 29,
+      "n_term": 1864,
+      "percent": 0.01555793991416309,
+      "padj": 3.270387589767854e-06,
+      "neg_log10_padj": 5.485400773907808
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_LEUKOCYTE_DIFFERENTIATION",
+      "n_overlap": 18,
+      "n_term": 712,
+      "percent": 0.025280898876404494,
+      "padj": 3.270387589767854e-06,
+      "neg_log10_padj": 5.485400773907808
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_MYELOID_CELL_DIFFERENTIATION",
+      "n_overlap": 20,
+      "n_term": 491,
+      "percent": 0.04073319755600815,
+      "padj": 3.7445453071198863e-10,
+      "neg_log10_padj": 9.426600910300309
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_HEMOPOIESIS",
+      "n_overlap": 26,
+      "n_term": 1104,
+      "percent": 0.02355072463768116,
+      "padj": 7.933587043384322e-09,
+      "neg_log10_padj": 8.100530409035422
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_MYELOID_LEUKOCYTE_ACTIVATION",
+      "n_overlap": 13,
+      "n_term": 278,
+      "percent": 0.046762589928057555,
+      "padj": 3.593651085856277e-07,
+      "neg_log10_padj": 6.444464091624171
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_MYELOID_LEUKOCYTE_MEDIATED_IMMUNITY",
+      "n_overlap": 10,
+      "n_term": 128,
+      "percent": 0.078125,
+      "padj": 3.593651085856277e-07,
+      "neg_log10_padj": 6.444464091624171
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_MYELOID_CELL_HOMEOSTASIS",
+      "n_overlap": 12,
+      "n_term": 223,
+      "percent": 0.053811659192825115,
+      "padj": 3.593651085856277e-07,
+      "neg_log10_padj": 6.444464091624171
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_ERYTHROCYTE_HOMEOSTASIS",
+      "n_overlap": 10,
+      "n_term": 176,
+      "percent": 0.056818181818181816,
+      "padj": 4.763315779076991e-06,
+      "neg_log10_padj": 5.322090626431991
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_DEFENSE_RESPONSE",
+      "n_overlap": 28,
+      "n_term": 1851,
+      "percent": 0.015126958400864398,
+      "padj": 7.548093527403569e-06,
+      "neg_log10_padj": 5.12216272718972
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_MULTICELLULAR_ORGANISMAL_LEVEL_HOMEOSTASIS",
+      "n_overlap": 20,
+      "n_term": 973,
+      "percent": 0.020554984583761562,
+      "padj": 8.296946256051869e-06,
+      "neg_log10_padj": 5.081081723067119
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_HEMOPOIESIS",
+      "n_overlap": 24,
+      "n_term": 1104,
+      "percent": 0.021739130434782608,
+      "padj": 9.967786662040384e-07,
+      "neg_log10_padj": 6.001401265677896
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 30,
+      "n_term": 1684,
+      "percent": 0.017814726840855107,
+      "padj": 9.967786662040384e-07,
+      "neg_log10_padj": 6.001401265677896
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_HOMEOSTASIS_OF_NUMBER_OF_CELLS",
+      "n_overlap": 13,
+      "n_term": 416,
+      "percent": 0.03125,
+      "padj": 0.000129251654592416,
+      "neg_log10_padj": 3.8885638886536977
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_HOMEOSTATIC_PROCESS",
+      "n_overlap": 27,
+      "n_term": 1919,
+      "percent": 0.014069828035435123,
+      "padj": 0.00035418926937929093,
+      "neg_log10_padj": 3.4507646004580694
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_MYELOID_CELL_DEVELOPMENT",
+      "n_overlap": 7,
+      "n_term": 104,
+      "percent": 0.0673076923076923,
+      "padj": 0.00040659360201291767,
+      "neg_log10_padj": 3.3908394595207705
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_REGULATION_OF_IMMUNE_RESPONSE",
+      "n_overlap": 18,
+      "n_term": 986,
+      "percent": 0.018255578093306288,
+      "padj": 0.000733310529236622,
+      "neg_log10_padj": 3.134712079143849
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_CELL_ACTIVATION",
+      "n_overlap": 20,
+      "n_term": 1221,
+      "percent": 0.01638001638001638,
+      "padj": 0.0008292216114069038,
+      "neg_log10_padj": 3.08132938772572
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_MULTICELLULAR_ORGANISMAL_LEVEL_HOMEOSTASIS",
+      "n_overlap": 17,
+      "n_term": 973,
+      "percent": 0.017471736896197326,
+      "padj": 0.0016232893043865693,
+      "neg_log10_padj": 2.789604072840515
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_HEMOPOIESIS",
+      "n_overlap": 27,
+      "n_term": 1104,
+      "percent": 0.024456521739130436,
+      "padj": 7.4204501640337014e-09,
+      "neg_log10_padj": 8.129569747305135
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_REGULATION_OF_HEMOPOIESIS",
+      "n_overlap": 13,
+      "n_term": 456,
+      "percent": 0.02850877192982456,
+      "padj": 0.00016953983898047233,
+      "neg_log10_padj": 3.7707282336473047
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_ERYTHROCYTE_DEVELOPMENT",
+      "n_overlap": 6,
+      "n_term": 54,
+      "percent": 0.1111111111111111,
+      "padj": 0.00016953983898047233,
+      "neg_log10_padj": 3.7707282336473047
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_REGULATION_OF_MITOTIC_SISTER_CHROMATID_SEGREGATION",
+      "n_overlap": 6,
+      "n_term": 59,
+      "percent": 0.1016949152542373,
+      "padj": 0.00016953983898047233,
+      "neg_log10_padj": 3.7707282336473047
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_POSITIVE_REGULATION_OF_MITOTIC_CELL_CYCLE",
+      "n_overlap": 8,
+      "n_term": 134,
+      "percent": 0.05970149253731343,
+      "padj": 0.00016953983898047233,
+      "neg_log10_padj": 3.7707282336473047
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_REGULATION_OF_CELL_POPULATION_PROLIFERATION",
+      "n_overlap": 26,
+      "n_term": 1793,
+      "percent": 0.014500836586726157,
+      "padj": 0.00016953983898047233,
+      "neg_log10_padj": 3.7707282336473047
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_HOMEOSTASIS_OF_NUMBER_OF_CELLS",
+      "n_overlap": 13,
+      "n_term": 416,
+      "percent": 0.03125,
+      "padj": 0.00016953983898047233,
+      "neg_log10_padj": 3.7707282336473047
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_POSITIVE_REGULATION_OF_CELL_POPULATION_PROLIFERATION",
+      "n_overlap": 19,
+      "n_term": 1049,
+      "percent": 0.01811248808388942,
+      "padj": 0.0002688590485256358,
+      "neg_log10_padj": 3.570475342639998
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_MYELOID_CELL_DIFFERENTIATION",
+      "n_overlap": 16,
+      "n_term": 491,
+      "percent": 0.032586558044806514,
+      "padj": 2.9596805993245862e-06,
+      "neg_log10_padj": 5.528755154290857
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_HEMOPOIESIS",
+      "n_overlap": 23,
+      "n_term": 1104,
+      "percent": 0.020833333333333332,
+      "padj": 2.9596805993245862e-06,
+      "neg_log10_padj": 5.528755154290857
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_MYELOID_CELL_HOMEOSTASIS",
+      "n_overlap": 11,
+      "n_term": 223,
+      "percent": 0.04932735426008968,
+      "padj": 9.474337668840818e-06,
+      "neg_log10_padj": 5.023451140918917
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_HOMEOSTASIS_OF_NUMBER_OF_CELLS",
+      "n_overlap": 13,
+      "n_term": 416,
+      "percent": 0.03125,
+      "padj": 7.079774882155153e-05,
+      "neg_log10_padj": 4.1499805514899135
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_MULTICELLULAR_ORGANISMAL_LEVEL_HOMEOSTASIS",
+      "n_overlap": 19,
+      "n_term": 973,
+      "percent": 0.019527235354573486,
+      "padj": 8.357842406399456e-05,
+      "neg_log10_padj": 4.077905822074465
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_ERYTHROCYTE_HOMEOSTASIS",
+      "n_overlap": 9,
+      "n_term": 176,
+      "percent": 0.05113636363636364,
+      "padj": 8.357842406399456e-05,
+      "neg_log10_padj": 4.077905822074465
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_ANTIGEN_PROCESSING_AND_PRESENTATION_OF_EXOGENOUS_PEPTIDE_ANTIGEN",
+      "n_overlap": 5,
+      "n_term": 30,
+      "percent": 0.16666666666666666,
+      "padj": 9.332648358803059e-05,
+      "neg_log10_padj": 4.029995097474802
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_HOMEOSTATIC_PROCESS",
+      "n_overlap": 27,
+      "n_term": 1919,
+      "percent": 0.014069828035435123,
+      "padj": 9.332648358803059e-05,
+      "neg_log10_padj": 4.029995097474802
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_HEMOPOIESIS",
+      "n_overlap": 23,
+      "n_term": 1104,
+      "percent": 0.020833333333333332,
+      "padj": 3.918162847268596e-06,
+      "neg_log10_padj": 5.4069175177541435
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_MYELOID_CELL_DIFFERENTIATION",
+      "n_overlap": 15,
+      "n_term": 491,
+      "percent": 0.03054989816700611,
+      "padj": 1.4553806069285051e-05,
+      "neg_log10_padj": 4.837023416387256
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_BIOLOGICAL_PROCESS_INVOLVED_IN_INTERSPECIES_INTERACTION_BETWEEN_ORGANISMS",
+      "n_overlap": 28,
+      "n_term": 1864,
+      "percent": 0.015021459227467811,
+      "padj": 2.1586368725991898e-05,
+      "neg_log10_padj": 4.665820408842339
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_DEFENSE_RESPONSE",
+      "n_overlap": 27,
+      "n_term": 1851,
+      "percent": 0.014586709886547812,
+      "padj": 5.739475904516873e-05,
+      "neg_log10_padj": 4.241127763032007
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_POSITIVE_REGULATION_OF_CYTOKINE_PRODUCTION",
+      "n_overlap": 14,
+      "n_term": 525,
+      "percent": 0.02666666666666667,
+      "padj": 9.921629590669561e-05,
+      "neg_log10_padj": 4.003416990737757
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_DEFENSE_RESPONSE_TO_OTHER_ORGANISM",
+      "n_overlap": 21,
+      "n_term": 1286,
+      "percent": 0.016329704510108865,
+      "padj": 0.00023914048386141788,
+      "neg_log10_padj": 3.6213468963671906
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_MULTICELLULAR_ORGANISMAL_LEVEL_HOMEOSTASIS",
+      "n_overlap": 18,
+      "n_term": 973,
+      "percent": 0.018499486125385406,
+      "padj": 0.000257652889009881,
+      "neg_log10_padj": 3.588964983519168
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_CYTOKINE_PRODUCTION",
+      "n_overlap": 17,
+      "n_term": 917,
+      "percent": 0.018538713195201745,
+      "padj": 0.0004138097158394993,
+      "neg_log10_padj": 3.383199316749197
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_MYELOID_CELL_DIFFERENTIATION",
+      "n_overlap": 18,
+      "n_term": 491,
+      "percent": 0.03665987780040733,
+      "padj": 8.834038095661033e-08,
+      "neg_log10_padj": 7.053840732234103
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_HEMOPOIESIS",
+      "n_overlap": 25,
+      "n_term": 1104,
+      "percent": 0.022644927536231884,
+      "padj": 1.4557940065715625e-07,
+      "neg_log10_padj": 6.836900072920207
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 30,
+      "n_term": 1684,
+      "percent": 0.017814726840855107,
+      "padj": 3.040841966560854e-07,
+      "neg_log10_padj": 6.517006149679606
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_RESPONSE_TO_BACTERIUM",
+      "n_overlap": 20,
+      "n_term": 907,
+      "percent": 0.022050716648291068,
+      "padj": 5.661833703720437e-06,
+      "neg_log10_padj": 5.247042890643327
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_DEFENSE_RESPONSE",
+      "n_overlap": 29,
+      "n_term": 1851,
+      "percent": 0.015667206915180983,
+      "padj": 5.661833703720437e-06,
+      "neg_log10_padj": 5.247042890643327
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_RESPONSE_TO_OXYGEN_CONTAINING_COMPOUND",
+      "n_overlap": 28,
+      "n_term": 1745,
+      "percent": 0.016045845272206302,
+      "padj": 5.661833703720437e-06,
+      "neg_log10_padj": 5.247042890643327
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_MYELOID_LEUKOCYTE_ACTIVATION",
+      "n_overlap": 12,
+      "n_term": 278,
+      "percent": 0.04316546762589928,
+      "padj": 5.661833703720437e-06,
+      "neg_log10_padj": 5.247042890643327
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_POSITIVE_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 23,
+      "n_term": 1177,
+      "percent": 0.01954120645709431,
+      "padj": 5.661833703720437e-06,
+      "neg_log10_padj": 5.247042890643327
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_MITOTIC_CELL_CYCLE",
+      "n_overlap": 21,
+      "n_term": 880,
+      "percent": 0.023863636363636365,
+      "padj": 7.575725321174758e-06,
+      "neg_log10_padj": 5.120575780264114
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_MICROTUBULE_CYTOSKELETON_ORGANIZATION_INVOLVED_IN_MITOSIS",
+      "n_overlap": 10,
+      "n_term": 160,
+      "percent": 0.0625,
+      "padj": 1.1609465061412286e-05,
+      "neg_log10_padj": 4.935187791133876
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_REGULATION_OF_MITOTIC_SISTER_CHROMATID_SEGREGATION",
+      "n_overlap": 7,
+      "n_term": 59,
+      "percent": 0.11864406779661017,
+      "padj": 1.639672621372567e-05,
+      "neg_log10_padj": 4.785242854954872
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_POSITIVE_REGULATION_OF_MITOTIC_CELL_CYCLE",
+      "n_overlap": 9,
+      "n_term": 134,
+      "percent": 0.06716417910447761,
+      "padj": 1.7608958056876032e-05,
+      "neg_log10_padj": 4.754266340996762
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_NUCLEAR_CHROMOSOME_SEGREGATION",
+      "n_overlap": 12,
+      "n_term": 317,
+      "percent": 0.03785488958990536,
+      "padj": 3.300625848440443e-05,
+      "neg_log10_padj": 4.481403703530102
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_MITOTIC_SPINDLE_ASSEMBLY",
+      "n_overlap": 7,
+      "n_term": 71,
+      "percent": 0.09859154929577464,
+      "padj": 3.300625848440443e-05,
+      "neg_log10_padj": 4.481403703530102
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_HEMOPOIESIS",
+      "n_overlap": 21,
+      "n_term": 1104,
+      "percent": 0.019021739130434784,
+      "padj": 4.189646017741197e-05,
+      "neg_log10_padj": 4.3778226689277195
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_REGULATION_OF_CELL_CYCLE",
+      "n_overlap": 21,
+      "n_term": 1093,
+      "percent": 0.0192131747483989,
+      "padj": 4.189646017741197e-05,
+      "neg_log10_padj": 4.3778226689277195
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_HEMOPOIESIS",
+      "n_overlap": 27,
+      "n_term": 1104,
+      "percent": 0.024456521739130436,
+      "padj": 4.985103728213229e-09,
+      "neg_log10_padj": 8.302325800617734
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_ERYTHROCYTE_DEVELOPMENT",
+      "n_overlap": 6,
+      "n_term": 54,
+      "percent": 0.1111111111111111,
+      "padj": 0.0001799156602667382,
+      "neg_log10_padj": 3.744931033033401
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_ERYTHROCYTE_HOMEOSTASIS",
+      "n_overlap": 9,
+      "n_term": 176,
+      "percent": 0.05113636363636364,
+      "padj": 0.0001799156602667382,
+      "neg_log10_padj": 3.744931033033401
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_REGULATION_OF_HEMOPOIESIS",
+      "n_overlap": 13,
+      "n_term": 456,
+      "percent": 0.02850877192982456,
+      "padj": 0.00020733476749463278,
+      "neg_log10_padj": 3.683327865947569
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_HOMEOSTASIS_OF_NUMBER_OF_CELLS",
+      "n_overlap": 12,
+      "n_term": 416,
+      "percent": 0.028846153846153848,
+      "padj": 0.00030178122001492516,
+      "neg_log10_padj": 3.520307790066261
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_MYELOID_CELL_DIFFERENTIATION",
+      "n_overlap": 13,
+      "n_term": 491,
+      "percent": 0.026476578411405296,
+      "padj": 0.00030178122001492516,
+      "neg_log10_padj": 3.520307790066261
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_MYELOID_CELL_DEVELOPMENT",
+      "n_overlap": 7,
+      "n_term": 104,
+      "percent": 0.0673076923076923,
+      "padj": 0.00030178122001492516,
+      "neg_log10_padj": 3.520307790066261
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_MYELOID_CELL_HOMEOSTASIS",
+      "n_overlap": 9,
+      "n_term": 223,
+      "percent": 0.04035874439461883,
+      "padj": 0.0004218747126786064,
+      "neg_log10_padj": 3.374816505604783
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 31,
+      "n_term": 1684,
+      "percent": 0.01840855106888361,
+      "padj": 2.0285394113307337e-07,
+      "neg_log10_padj": 6.692816550218866
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_HEMOPOIESIS",
+      "n_overlap": 23,
+      "n_term": 1104,
+      "percent": 0.020833333333333332,
+      "padj": 5.160831762470072e-06,
+      "neg_log10_padj": 5.287280298229369
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_RESPONSE_TO_BACTERIUM",
+      "n_overlap": 20,
+      "n_term": 907,
+      "percent": 0.022050716648291068,
+      "padj": 1.2554381380884229e-05,
+      "neg_log10_padj": 4.90120468235269
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_RESPONSE_TO_OXYGEN_CONTAINING_COMPOUND",
+      "n_overlap": 28,
+      "n_term": 1745,
+      "percent": 0.016045845272206302,
+      "padj": 1.2554381380884229e-05,
+      "neg_log10_padj": 4.90120468235269
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_IMMUNE_EFFECTOR_PROCESS",
+      "n_overlap": 19,
+      "n_term": 851,
+      "percent": 0.022326674500587545,
+      "padj": 1.9758700546078656e-05,
+      "neg_log10_padj": 4.7042416206909285
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_DEFENSE_RESPONSE",
+      "n_overlap": 28,
+      "n_term": 1851,
+      "percent": 0.015126958400864398,
+      "padj": 2.792187974778434e-05,
+      "neg_log10_padj": 4.554055347631613
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_LEUKOCYTE_DIFFERENTIATION",
+      "n_overlap": 17,
+      "n_term": 712,
+      "percent": 0.023876404494382022,
+      "padj": 3.1139469493082094e-05,
+      "neg_log10_padj": 4.506688790553692
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_LEUKOCYTE_MEDIATED_IMMUNITY",
+      "n_overlap": 15,
+      "n_term": 585,
+      "percent": 0.02564102564102564,
+      "padj": 5.890483572809727e-05,
+      "neg_log10_padj": 4.229849050818632
+    }
+  ],
+  "cell_type_label_source": "curated_source_obs",
+  "cell_type_label_map": "figures/biovalidation/celltype_label_map.json",
+  "cell_type_label_map_schema": "celltype_label_map.v1",
+  "cell_type_label_cluster_key": "_ct_leiden"
+}

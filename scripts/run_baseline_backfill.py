@@ -23,6 +23,8 @@ import argparse
 import csv
 import glob
 import logging
+import multiprocessing
+import os
 import sys
 from pathlib import Path
 
@@ -59,7 +61,53 @@ def _old_scrna_keys() -> set[str]:
     return {p.stem for p in REUSED_SCRNA_DIR.glob("*.csv")}
 
 
+# Module-level state set by main() before the pool is spawned so each worker
+# process can read its configuration without pickling closures.
+_WORKER_STATE: dict = {}
+
+
+def _run_one_dataset(h5ad_path_str: str) -> int:
+    """Process one dataset in a pool worker. Returns number of rows written.
+
+    Opens its own imports and connections so each process is self-contained.
+    """
+    from scccvgben.baselines import run_baseline  # process-local import
+
+    h5ad_path = Path(h5ad_path_str)
+    dataset_key = h5ad_path.stem
+    out_dir = Path(_WORKER_STATE["out_dir"])
+    baselines = _WORKER_STATE["baselines"]
+    old_keys = _WORKER_STATE["old_keys"]
+
+    if dataset_key in old_keys:
+        log.info("SKIP (reused): %s", dataset_key)
+        return 0
+
+    out_csv = out_dir / f"scrna_{dataset_key}.csv"
+    rows: list[dict] = []
+
+    for method_name in baselines:
+        log.info("RUN baseline %s on %s", method_name, dataset_key)
+        try:
+            metrics = run_baseline(method_name, h5ad_path, modality="scrna")
+            rows.append(metrics)
+        except Exception as exc:
+            log.error("FAILED %s / %s: %s", dataset_key, method_name, exc)
+            rows.append({"method": method_name})
+
+    if rows:
+        with open(out_csv, "w", newline="") as fh:
+            writer = csv.DictWriter(fh, fieldnames=METRIC_COLUMNS, extrasaction="ignore")
+            writer.writeheader()
+            writer.writerows(rows)
+        log.info("Wrote %d rows -> %s", len(rows), out_csv)
+
+    return len(rows)
+
+
 def main() -> None:
+    _default_workers = min(8, max(1, (os.cpu_count() or 1) // 4))
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--scrna-glob", default="workspace/data/scrna/*.h5ad",
                         help="Glob for scRNA h5ad files.")
@@ -71,12 +119,13 @@ def main() -> None:
                         help="Skip datasets that already have reused baselines (default: True).")
     parser.add_argument("--smoke", action="store_true",
                         help="Run PCA on the first 1 new dataset only.")
+    parser.add_argument("--workers", type=int, default=_default_workers,
+                        help=f"Parallel worker processes for CPU baselines "
+                             f"(default: min(8, cpu_count//4) = {_default_workers}).")
     args = parser.parse_args()
 
     out_dir = REPO_ROOT / args.out
     out_dir.mkdir(parents=True, exist_ok=True)
-
-    from scccvgben.baselines import run_baseline
 
     if args.baselines == "all":
         baselines = ALL_BASELINES
@@ -104,33 +153,22 @@ def main() -> None:
         log.info("No new scRNA h5ad files to process (all covered by reused baselines).")
         return
 
+    # Populate module-level worker state before forking so workers inherit it.
+    _WORKER_STATE.update({
+        "out_dir": str(out_dir),
+        "baselines": baselines,
+        "old_keys": old_keys,
+    })
+
+    n_workers = min(args.workers, len(h5ad_files))
+    log.info("Baseline backfill: %d datasets, %d workers, baselines=%s",
+             len(h5ad_files), n_workers, baselines)
+
     total = 0
-    for h5ad_path in map(Path, h5ad_files):
-        dataset_key = h5ad_path.stem
-
-        if dataset_key in old_keys:
-            log.info("SKIP (reused): %s", dataset_key)
-            continue
-
-        out_csv = out_dir / f"scrna_{dataset_key}.csv"
-        rows: list[dict] = []
-
-        for method_name in baselines:
-            log.info("RUN baseline %s on %s", method_name, dataset_key)
-            try:
-                metrics = run_baseline(method_name, h5ad_path, modality="scrna")
-                rows.append(metrics)
-            except Exception as exc:
-                log.error("FAILED %s / %s: %s", dataset_key, method_name, exc)
-                rows.append({"method": method_name})
-
-        if rows:
-            with open(out_csv, "w", newline="") as fh:
-                writer = csv.DictWriter(fh, fieldnames=METRIC_COLUMNS, extrasaction="ignore")
-                writer.writeheader()
-                writer.writerows(rows)
-            log.info("Wrote %d rows -> %s", len(rows), out_csv)
-            total += len(rows)
+    with multiprocessing.Pool(processes=n_workers) as pool:
+        for n_rows in pool.imap_unordered(_run_one_dataset,
+                                          [str(p) for p in h5ad_files]):
+            total += n_rows
 
     log.info("Baseline backfill complete. Total rows: %d", total)
 

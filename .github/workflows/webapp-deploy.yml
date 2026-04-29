@@ -1,0 +1,55 @@
+# webapp-deploy.yml
+# Builds the Next.js benchmark explorer (webapp/) and deploys the static export
+# to a SIBLING repo (peterponyu/scccvgben-next) via GitHub Pages.
+# Prerequisites: (1) create the empty public repo peterponyu/scccvgben-next,
+#                (2) add WEBAPP_DEPLOY_TOKEN (fine-grained PAT, contents:write on that repo)
+#                    to this repo's Settings → Secrets → Actions.
+
+name: Deploy Next.js webapp to scccvgben-next
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'webapp/**'
+      - 'site/data/**'
+      - 'site/static/**'
+      - 'data/benchmark_manifest.csv'
+      - 'scripts/build_site_data.py'
+      - 'scripts/build_supplementary_table.py'
+      - 'scripts/audit_submission_ready.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: webapp/package-lock.json
+
+      - name: Install dependencies
+        run: cd webapp && npm install
+
+      - name: Lint and build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /scccvgben-next
+        run: cd webapp && npm run lint && npm run build
+
+      - name: Deploy to peterponyu/scccvgben-next (gh-pages)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.WEBAPP_DEPLOY_TOKEN }}
+          external_repository: peterponyu/scccvgben-next
+          publish_dir: ./webapp/out
+          publish_branch: gh-pages

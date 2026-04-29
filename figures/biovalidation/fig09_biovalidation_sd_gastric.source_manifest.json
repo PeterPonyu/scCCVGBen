@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "figure_id": "fig09_biovalidation_sd_gastric",
+  "pair_label": "Sleep deprivation × Gastric cancer microenvironment",
+  "source_contract": "scripts, sidecar/manifest metadata, and LaTeX are primary; generated PNG/PDF binaries are local QA evidence",
+  "primary_deliverables": {
+    "script": "scripts/make_biovalidation_pairs.py",
+    "latex": "manuscript/scccvgben/sn-article.tex",
+    "metadata": [
+      "figures/biovalidation/fig09_biovalidation_sd_gastric.label_manifest.json",
+      "figures/biovalidation/fig09_biovalidation_sd_gastric.source_manifest.json",
+      "figures/biovalidation/fig_biovalidation_case_SD.sidecar.json",
+      "figures/biovalidation/fig_biovalidation_case_GASTRIC.sidecar.json",
+      "figures/biovalidation/celltype_label_map.json"
+    ]
+  },
+  "qa_artifacts": {
+    "generated_pair_binaries": {
+      "role": "qa_evidence_only",
+      "commit_policy": "do_not_commit",
+      "paths": [
+        "figures/fig09_biovalidation_sd_gastric.png",
+        "figures/fig09_biovalidation_sd_gastric.pdf"
+      ]
+    },
+    "cached_case_render_inputs": [
+      {
+        "case_id": "SD",
+        "png": "figures/biovalidation/fig_biovalidation_case_SD.png",
+        "pdf": "figures/biovalidation/fig_biovalidation_case_SD.pdf",
+        "role": "local_render_cache_for_panel_crops",
+        "commit_policy": "do_not_commit"
+      },
+      {
+        "case_id": "GASTRIC",
+        "png": "figures/biovalidation/fig_biovalidation_case_GASTRIC.png",
+        "pdf": "figures/biovalidation/fig_biovalidation_case_GASTRIC.pdf",
+        "role": "local_render_cache_for_panel_crops",
+        "commit_policy": "do_not_commit"
+      }
+    ]
+  },
+  "detail_sources": [
+    {
+      "case_id": "SD",
+      "sidecar": "figures/biovalidation/fig_biovalidation_case_SD.sidecar.json",
+      "records": [
+        "condition_latent",
+        "cluster_label_evidence",
+        "top_gene_rows",
+        "top_k_genes_df",
+        "latent_corr",
+        "enrichment"
+      ],
+      "role": "traceable_detail_payload_for_main_or_supplement_panels"
+    },
+    {
+      "case_id": "GASTRIC",
+      "sidecar": "figures/biovalidation/fig_biovalidation_case_GASTRIC.sidecar.json",
+      "records": [
+        "condition_latent",
+        "cluster_label_evidence",
+        "top_gene_rows",
+        "top_k_genes_df",
+        "latent_corr",
+        "enrichment"
+      ],
+      "role": "traceable_detail_payload_for_main_or_supplement_panels"
+    }
+  ],
+  "recompute_policy": {
+    "default": "reuse_cached_artifacts_and_sidecars",
+    "training_or_result_recompute": "disabled_by_default",
+    "explicit_flags_required": [
+      "--allow-recompute",
+      "--rebuild-sidecars"
+    ]
+  },
+  "cases": {
+    "left": "SD",
+    "right": "GASTRIC"
+  },
+  "panel_count": 16,
+  "label_sequence": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P"
+  ],
+  "label_manifest": "figures/biovalidation/fig09_biovalidation_sd_gastric.label_manifest.json",
+  "manuscript_label": "fig09_biovalidation_sd_gastric",
+  "label_evidence": {
+    "label_map": "figures/biovalidation/celltype_label_map.json",
+    "label_map_schema": "celltype_label_map.v1",
+    "cases": {
+      "SD": {
+        "cell_type_label_source": "curated_source_obs",
+        "cluster_key": "_ct_leiden",
+        "cluster_label_count": 0
+      },
+      "GASTRIC": {
+        "cell_type_label_source": "marker_genes",
+        "cluster_key": "_ct_leiden",
+        "cluster_label_count": 20,
+        "sidecar_record": "figures/biovalidation/fig_biovalidation_case_GASTRIC.sidecar.json#cluster_label_evidence"
+      }
+    }
+  }
+}

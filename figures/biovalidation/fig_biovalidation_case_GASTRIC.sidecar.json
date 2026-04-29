@@ -1,0 +1,2172 @@
+{
+  "version": 5,
+  "case_id": "GASTRIC",
+  "title": "Gastric cancer atlas with tumor microenvironment",
+  "theme": "cancer",
+  "accession": "GSE183904",
+  "encoder": "GAT",
+  "condition_obs": "batch",
+  "cell_type_obs": null,
+  "condition_is_inferred": false,
+  "cell_type_is_inferred": true,
+  "n_obs": 62035,
+  "n_obs_subsampled": 3000,
+  "n_vars_post_hvg": 2000,
+  "condition_latent": {
+    "dims": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "conditions": [
+      {
+        "label": "s15",
+        "raw_label": "GSM5573480_sample15.csv.gz",
+        "n": 657
+      },
+      {
+        "label": "s34",
+        "raw_label": "GSM5573499_sample34.csv.gz",
+        "n": 612
+      },
+      {
+        "label": "s17",
+        "raw_label": "GSM5573482_sample17.csv.gz",
+        "n": 367
+      },
+      {
+        "label": "s25",
+        "raw_label": "GSM5573490_sample25.csv.gz",
+        "n": 177
+      },
+      {
+        "label": "s9",
+        "raw_label": "GSM5573474_sample9.csv.gz",
+        "n": 166
+      },
+      {
+        "label": "s5",
+        "raw_label": "GSM5573470_sample5.csv.gz",
+        "n": 156
+      },
+      {
+        "label": "s36",
+        "raw_label": "GSM5573501_sample36.csv.gz",
+        "n": 156
+      },
+      {
+        "label": "other",
+        "raw_label": "other",
+        "n": 709
+      }
+    ],
+    "records": [
+      {
+        "dim": 0,
+        "condition": "s15",
+        "raw_condition": "GSM5573480_sample15.csv.gz",
+        "n": 657,
+        "median_z": 0.09621369109190751,
+        "q25_z": -0.2082729061234257,
+        "q75_z": 0.2686066665871938,
+        "median_raw": 0.4051744341850281
+      },
+      {
+        "dim": 0,
+        "condition": "s34",
+        "raw_condition": "GSM5573499_sample34.csv.gz",
+        "n": 612,
+        "median_z": -0.2321753033225583,
+        "q25_z": -1.3798644065495451,
+        "q75_z": 0.01751060057950549,
+        "median_raw": -0.046086233109235764
+      },
+      {
+        "dim": 0,
+        "condition": "s17",
+        "raw_condition": "GSM5573482_sample17.csv.gz",
+        "n": 367,
+        "median_z": -0.27025013561373135,
+        "q25_z": -2.3910273642517663,
+        "q75_z": 1.374644291269815,
+        "median_raw": -0.0984073355793953
+      },
+      {
+        "dim": 0,
+        "condition": "s25",
+        "raw_condition": "GSM5573490_sample25.csv.gz",
+        "n": 177,
+        "median_z": 0.6033565135020137,
+        "q25_z": 0.40368701730199147,
+        "q75_z": 0.9182400542099629,
+        "median_raw": 1.1020723581314087
+      },
+      {
+        "dim": 0,
+        "condition": "s9",
+        "raw_condition": "GSM5573474_sample9.csv.gz",
+        "n": 166,
+        "median_z": 0.6066179361097694,
+        "q25_z": 0.24623989011419287,
+        "q75_z": 1.1705918639976445,
+        "median_raw": 1.106554090976715
+      },
+      {
+        "dim": 0,
+        "condition": "s5",
+        "raw_condition": "GSM5573470_sample5.csv.gz",
+        "n": 156,
+        "median_z": 0.28428108766991345,
+        "q25_z": -0.07219104029298724,
+        "q75_z": 1.1881267980490142,
+        "median_raw": 0.6636100709438324
+      },
+      {
+        "dim": 0,
+        "condition": "s36",
+        "raw_condition": "GSM5573501_sample36.csv.gz",
+        "n": 156,
+        "median_z": 0.16922694573601113,
+        "q25_z": -0.1706301373158411,
+        "q75_z": 1.0123620968818887,
+        "median_raw": 0.505506694316864
+      },
+      {
+        "dim": 0,
+        "condition": "other",
+        "raw_condition": "other",
+        "n": 709,
+        "median_z": -0.1456709467321932,
+        "q25_z": -1.2934578311531053,
+        "q75_z": 0.2325651946167874,
+        "median_raw": 0.07278502732515335
+      },
+      {
+        "dim": 1,
+        "condition": "s15",
+        "raw_condition": "GSM5573480_sample15.csv.gz",
+        "n": 657,
+        "median_z": -0.07360446513289474,
+        "q25_z": -0.19445260947728862,
+        "q75_z": 0.2726484552501968,
+        "median_raw": -0.8405023813247681
+      },
+      {
+        "dim": 1,
+        "condition": "s34",
+        "raw_condition": "GSM5573499_sample34.csv.gz",
+        "n": 612,
+        "median_z": -0.08436024535154174,
+        "q25_z": -0.23161406377475807,
+        "q75_z": 0.6944769596583191,
+        "median_raw": -0.8542631268501282
+      },
+      {
+        "dim": 1,
+        "condition": "s17",
+        "raw_condition": "GSM5573482_sample17.csv.gz",
+        "n": 367,
+        "median_z": -0.17071401873245062,
+        "q25_z": -1.1644485603233001,
+        "q75_z": 1.8304248245148886,
+        "median_raw": -0.9647425413131714
+      },
+      {
+        "dim": 1,
+        "condition": "s25",
+        "raw_condition": "GSM5573490_sample25.csv.gz",
+        "n": 177,
+        "median_z": 1.3747516510627378,
+        "q25_z": 0.16134662666064098,
+        "q75_z": 2.0443497163527837,
+        "median_raw": 1.0124975442886353
+      },
+      {
+        "dim": 1,
+        "condition": "s9",
+        "raw_condition": "GSM5573474_sample9.csv.gz",
+        "n": 166,
+        "median_z": 1.3471213479168447,
+        "q25_z": 0.11115994287762694,
+        "q75_z": 1.7458562347523316,
+        "median_raw": 0.9771478474140167
+      },
+      {
+        "dim": 1,
+        "condition": "s5",
+        "raw_condition": "GSM5573470_sample5.csv.gz",
+        "n": 156,
+        "median_z": 0.23490205724689145,
+        "q25_z": -0.023309742287013165,
+        "q75_z": 0.6838520556729275,
+        "median_raw": -0.4458048641681671
+      },
+      {
+        "dim": 1,
+        "condition": "s36",
+        "raw_condition": "GSM5573501_sample36.csv.gz",
+        "n": 156,
+        "median_z": -0.031487726305779035,
+        "q25_z": -0.16656926011752546,
+        "q75_z": 0.3606304609351336,
+        "median_raw": -0.7866190075874329
+      },
+      {
+        "dim": 1,
+        "condition": "other",
+        "raw_condition": "other",
+        "n": 709,
+        "median_z": 0.04866924509536464,
+        "q25_z": -0.1391794708405647,
+        "q75_z": 1.4055788901782307,
+        "median_raw": -0.6840676665306091
+      },
+      {
+        "dim": 2,
+        "condition": "s15",
+        "raw_condition": "GSM5573480_sample15.csv.gz",
+        "n": 657,
+        "median_z": 0.24528923367682953,
+        "q25_z": -0.009735766220752257,
+        "q75_z": 0.7541246426692518,
+        "median_raw": 0.6049878597259521
+      },
+      {
+        "dim": 2,
+        "condition": "s34",
+        "raw_condition": "GSM5573499_sample34.csv.gz",
+        "n": 612,
+        "median_z": 0.0853755088134795,
+        "q25_z": -0.4014324972887584,
+        "q75_z": 0.38199350559433054,
+        "median_raw": 0.4122512489557266
+      },
+      {
+        "dim": 2,
+        "condition": "s17",
+        "raw_condition": "GSM5573482_sample17.csv.gz",
+        "n": 367,
+        "median_z": -0.09948789424449664,
+        "q25_z": -1.422698721647418,
+        "q75_z": 0.01586303311512311,
+        "median_raw": 0.1894439458847046
+      },
+      {
+        "dim": 2,
+        "condition": "s25",
+        "raw_condition": "GSM5573490_sample25.csv.gz",
+        "n": 177,
+        "median_z": -1.1047964923057065,
+        "q25_z": -2.270088359949988,
+        "q75_z": -0.8516746315718827,
+        "median_raw": -1.0222079753875732
+      },
+      {
+        "dim": 2,
+        "condition": "s9",
+        "raw_condition": "GSM5573474_sample9.csv.gz",
+        "n": 166,
+        "median_z": -1.3434929607339916,
+        "q25_z": -2.3185812933816194,
+        "q75_z": -0.6505601976802673,
+        "median_raw": -1.309897780418396
+      },
+      {
+        "dim": 2,
+        "condition": "s5",
+        "raw_condition": "GSM5573470_sample5.csv.gz",
+        "n": 156,
+        "median_z": 0.1357470893040214,
+        "q25_z": -0.1937973710120614,
+        "q75_z": 2.5,
+        "median_raw": 0.47296178340911865
+      },
+      {
+        "dim": 2,
+        "condition": "s36",
+        "raw_condition": "GSM5573501_sample36.csv.gz",
+        "n": 156,
+        "median_z": 0.3682150213625157,
+        "q25_z": 0.10963856117222971,
+        "q75_z": 1.501699297819779,
+        "median_raw": 0.7531446218490601
+      },
+      {
+        "dim": 2,
+        "condition": "other",
+        "raw_condition": "other",
+        "n": 709,
+        "median_z": -0.13565189030991406,
+        "q25_z": -1.4739272538105008,
+        "q75_z": 0.30130743741305166,
+        "median_raw": 0.14585715532302856
+      },
+      {
+        "dim": 3,
+        "condition": "s15",
+        "raw_condition": "GSM5573480_sample15.csv.gz",
+        "n": 657,
+        "median_z": -0.13542348358494313,
+        "q25_z": -0.30697649918912545,
+        "q75_z": 0.4433076077219899,
+        "median_raw": -0.6163095831871033
+      },
+      {
+        "dim": 3,
+        "condition": "s34",
+        "raw_condition": "GSM5573499_sample34.csv.gz",
+        "n": 612,
+        "median_z": -0.13631815694221908,
+        "q25_z": -0.34069889362002914,
+        "q75_z": 0.7256124904978221,
+        "median_raw": -0.6170198321342468
+      },
+      {
+        "dim": 3,
+        "condition": "s17",
+        "raw_condition": "GSM5573482_sample17.csv.gz",
+        "n": 367,
+        "median_z": -0.23873520627304973,
+        "q25_z": -0.5056743219072279,
+        "q75_z": 1.2484028837851078,
+        "median_raw": -0.6983250379562378
+      },
+      {
+        "dim": 3,
+        "condition": "s25",
+        "raw_condition": "GSM5573490_sample25.csv.gz",
+        "n": 177,
+        "median_z": 1.9743584225012407,
+        "q25_z": 0.48454092050966635,
+        "q75_z": 2.2807188764657567,
+        "median_raw": 1.0585702657699585
+      },
+      {
+        "dim": 3,
+        "condition": "s9",
+        "raw_condition": "GSM5573474_sample9.csv.gz",
+        "n": 166,
+        "median_z": 1.6923075410654276,
+        "q25_z": 0.33810364825538575,
+        "q75_z": 2.1982236635388777,
+        "median_raw": 0.8346602320671082
+      },
+      {
+        "dim": 3,
+        "condition": "s5",
+        "raw_condition": "GSM5573470_sample5.csv.gz",
+        "n": 156,
+        "median_z": 0.4984148943466351,
+        "q25_z": -0.11656228860274007,
+        "q75_z": 0.7160283580000067,
+        "median_raw": -0.11312812939286232
+      },
+      {
+        "dim": 3,
+        "condition": "s36",
+        "raw_condition": "GSM5573501_sample36.csv.gz",
+        "n": 156,
+        "median_z": -0.12693508615765964,
+        "q25_z": -0.2364573405756919,
+        "q75_z": 0.7055844111634333,
+        "median_raw": -0.6095709502696991
+      },
+      {
+        "dim": 3,
+        "condition": "other",
+        "raw_condition": "other",
+        "n": 709,
+        "median_z": 0.386745383514735,
+        "q25_z": -0.13567568296452437,
+        "q75_z": 1.280441177253269,
+        "median_raw": -0.20177853107452393
+      },
+      {
+        "dim": 4,
+        "condition": "s15",
+        "raw_condition": "GSM5573480_sample15.csv.gz",
+        "n": 657,
+        "median_z": -0.24283825366657372,
+        "q25_z": -0.5960027053426268,
+        "q75_z": 0.284844265495029,
+        "median_raw": -1.5675615072250366
+      },
+      {
+        "dim": 4,
+        "condition": "s34",
+        "raw_condition": "GSM5573499_sample34.csv.gz",
+        "n": 612,
+        "median_z": -0.12962062436646865,
+        "q25_z": -0.4668636818373967,
+        "q75_z": 0.885215083605472,
+        "median_raw": -1.308881938457489
+      },
+      {
+        "dim": 4,
+        "condition": "s17",
+        "raw_condition": "GSM5573482_sample17.csv.gz",
+        "n": 367,
+        "median_z": 1.106357598045996,
+        "q25_z": 0.6396506106223921,
+        "q75_z": 1.6696311408674198,
+        "median_raw": 1.5150803327560425
+      },
+      {
+        "dim": 4,
+        "condition": "s25",
+        "raw_condition": "GSM5573490_sample25.csv.gz",
+        "n": 177,
+        "median_z": 0.06695780697204863,
+        "q25_z": -0.48932810153453815,
+        "q75_z": 0.8553064335762772,
+        "median_raw": -0.8597396612167358
+      },
+      {
+        "dim": 4,
+        "condition": "s9",
+        "raw_condition": "GSM5573474_sample9.csv.gz",
+        "n": 166,
+        "median_z": -0.07448344326734843,
+        "q25_z": -0.3037128399231489,
+        "q75_z": 0.05674469778130093,
+        "median_raw": -1.1829045414924622
+      },
+      {
+        "dim": 4,
+        "condition": "s5",
+        "raw_condition": "GSM5573470_sample5.csv.gz",
+        "n": 156,
+        "median_z": 0.00475118123899471,
+        "q25_z": -0.7221536695527877,
+        "q75_z": 0.08651563203418454,
+        "median_raw": -1.0018693208694458
+      },
+      {
+        "dim": 4,
+        "condition": "s36",
+        "raw_condition": "GSM5573501_sample36.csv.gz",
+        "n": 156,
+        "median_z": -0.1301952270732365,
+        "q25_z": -0.5457923524463016,
+        "q75_z": 0.03433654876601267,
+        "median_raw": -1.3101947903633118
+      },
+      {
+        "dim": 4,
+        "condition": "other",
+        "raw_condition": "other",
+        "n": 709,
+        "median_z": 0.01491488727547283,
+        "q25_z": -0.5848592842125017,
+        "q75_z": 0.6255598527444269,
+        "median_raw": -0.9786472916603088
+      }
+    ]
+  },
+  "latent_corr": [
+    [
+      1.0,
+      0.1611682650853822,
+      0.436799139238669,
+      0.13273235221684504,
+      0.11323728343821027,
+      0.44236735026441093,
+      0.46784772731093777,
+      0.3145170645057218,
+      0.5750692776861516,
+      0.598769339116049
+    ],
+    [
+      0.16116826508538223,
+      1.0,
+      0.5375133943168983,
+      0.8726994950603432,
+      0.43005427542855007,
+      0.837358767679524,
+      0.15903208145755018,
+      0.33853339957732187,
+      0.2593632005490082,
+      0.7756270700814726
+    ],
+    [
+      0.436799139238669,
+      0.5375133943168983,
+      1.0,
+      0.5000977142469417,
+      0.14930755801235665,
+      0.2543363164744808,
+      0.2949059107964534,
+      0.6784277375296706,
+      0.2933429578181972,
+      0.23113211498052957
+    ],
+    [
+      0.13273235221684507,
+      0.8726994950603431,
+      0.5000977142469417,
+      1.0,
+      0.44918425369094117,
+      0.8369536562692156,
+      0.07171302942581928,
+      0.3457664798933049,
+      0.298619936586526,
+      0.7187202903171633
+    ],
+    [
+      0.11323728343821027,
+      0.43005427542855007,
+      0.14930755801235665,
+      0.44918425369094117,
+      1.0,
+      0.5933554416803811,
+      0.5462307290783489,
+      0.3966049851032306,
+      0.6481774974101067,
+      0.4005543337924465
+    ],
+    [
+      0.44236735026441093,
+      0.8373587676795241,
+      0.2543363164744808,
+      0.8369536562692156,
+      0.593355441680381,
+      0.9999999999999999,
+      0.10365685682841203,
+      0.01492272329377205,
+      0.6254144886778906,
+      0.9107328128489163
+    ],
+    [
+      0.46784772731093777,
+      0.15903208145755018,
+      0.2949059107964534,
+      0.07171302942581927,
+      0.546230729078349,
+      0.10365685682841204,
+      1.0,
+      0.2195363910820244,
+      0.1599354546247263,
+      0.28581728971890585
+    ],
+    [
+      0.3145170645057218,
+      0.3385333995773219,
+      0.6784277375296706,
+      0.34576647989330483,
+      0.39660498510323056,
+      0.014922723293772052,
+      0.2195363910820244,
+      1.0,
+      0.6794538785327218,
+      0.050505710785875506
+    ],
+    [
+      0.5750692776861516,
+      0.2593632005490082,
+      0.2933429578181972,
+      0.2986199365865261,
+      0.6481774974101067,
+      0.6254144886778905,
+      0.15993545462472633,
+      0.6794538785327218,
+      1.0,
+      0.5505645809957362
+    ],
+    [
+      0.598769339116049,
+      0.7756270700814726,
+      0.23113211498052957,
+      0.7187202903171633,
+      0.4005543337924465,
+      0.9107328128489162,
+      0.28581728971890585,
+      0.050505710785875506,
+      0.5505645809957362,
+      1.0
+    ]
+  ],
+  "top_gene_rows": [
+    {
+      "dim": 0,
+      "rank": 0,
+      "gene": "C15orf48",
+      "rho": -0.45739918437763005
+    },
+    {
+      "dim": 1,
+      "rank": 0,
+      "gene": "KRT8",
+      "rho": 0.5729690372496433
+    },
+    {
+      "dim": 2,
+      "rank": 0,
+      "gene": "KRT8",
+      "rho": -0.6046749418383403
+    },
+    {
+      "dim": 3,
+      "rank": 0,
+      "gene": "KRT18",
+      "rho": 0.5587063174326388
+    },
+    {
+      "dim": 4,
+      "rank": 0,
+      "gene": "TIMP1",
+      "rho": 0.6225039280794727
+    },
+    {
+      "dim": 5,
+      "rank": 0,
+      "gene": "CALD1",
+      "rho": -0.5295740413741812
+    },
+    {
+      "dim": 6,
+      "rank": 0,
+      "gene": "CD68",
+      "rho": 0.5437937051200796
+    },
+    {
+      "dim": 7,
+      "rank": 0,
+      "gene": "AGR2",
+      "rho": -0.5470623080049711
+    },
+    {
+      "dim": 8,
+      "rank": 0,
+      "gene": "SPARC",
+      "rho": 0.5537239677412228
+    },
+    {
+      "dim": 9,
+      "rank": 0,
+      "gene": "CALD1",
+      "rho": 0.5196251077039966
+    }
+  ],
+  "top_k_genes_df": [
+    {
+      "dim": 0,
+      "rank": 0,
+      "gene": "C15orf48",
+      "rho": -0.45739918437763005,
+      "abs_rho": 0.45739918437763005
+    },
+    {
+      "dim": 0,
+      "rank": 1,
+      "gene": "SERPINA1",
+      "rho": -0.4456038444946761,
+      "abs_rho": 0.4456038444946761
+    },
+    {
+      "dim": 0,
+      "rank": 2,
+      "gene": "CAV1",
+      "rho": 0.4389117318274445,
+      "abs_rho": 0.4389117318274445
+    },
+    {
+      "dim": 0,
+      "rank": 3,
+      "gene": "CLDN4",
+      "rho": -0.4252463414469505,
+      "abs_rho": 0.4252463414469505
+    },
+    {
+      "dim": 0,
+      "rank": 4,
+      "gene": "LYZ",
+      "rho": -0.421326522066281,
+      "abs_rho": 0.421326522066281
+    },
+    {
+      "dim": 1,
+      "rank": 0,
+      "gene": "KRT8",
+      "rho": 0.5729690372496433,
+      "abs_rho": 0.5729690372496433
+    },
+    {
+      "dim": 1,
+      "rank": 1,
+      "gene": "KRT18",
+      "rho": 0.5710608268994374,
+      "abs_rho": 0.5710608268994374
+    },
+    {
+      "dim": 1,
+      "rank": 2,
+      "gene": "KRT19",
+      "rho": 0.5306202299638864,
+      "abs_rho": 0.5306202299638864
+    },
+    {
+      "dim": 1,
+      "rank": 3,
+      "gene": "TPM1",
+      "rho": 0.5134643248078052,
+      "abs_rho": 0.5134643248078052
+    },
+    {
+      "dim": 1,
+      "rank": 4,
+      "gene": "IGFBP2",
+      "rho": 0.5100421168094534,
+      "abs_rho": 0.5100421168094534
+    },
+    {
+      "dim": 2,
+      "rank": 0,
+      "gene": "KRT8",
+      "rho": -0.6046749418383403,
+      "abs_rho": 0.6046749418383403
+    },
+    {
+      "dim": 2,
+      "rank": 1,
+      "gene": "KRT19",
+      "rho": -0.5895561227884429,
+      "abs_rho": 0.5895561227884429
+    },
+    {
+      "dim": 2,
+      "rank": 2,
+      "gene": "KRT18",
+      "rho": -0.581962568456922,
+      "abs_rho": 0.581962568456922
+    },
+    {
+      "dim": 2,
+      "rank": 3,
+      "gene": "FXYD3",
+      "rho": -0.540925446878485,
+      "abs_rho": 0.540925446878485
+    },
+    {
+      "dim": 2,
+      "rank": 4,
+      "gene": "TSPAN8",
+      "rho": -0.5397968969983427,
+      "abs_rho": 0.5397968969983427
+    },
+    {
+      "dim": 3,
+      "rank": 0,
+      "gene": "KRT18",
+      "rho": 0.5587063174326388,
+      "abs_rho": 0.5587063174326388
+    },
+    {
+      "dim": 3,
+      "rank": 1,
+      "gene": "KRT8",
+      "rho": 0.5561770322744661,
+      "abs_rho": 0.5561770322744661
+    },
+    {
+      "dim": 3,
+      "rank": 2,
+      "gene": "HLA-DPB1",
+      "rho": -0.5233352181851844,
+      "abs_rho": 0.5233352181851844
+    },
+    {
+      "dim": 3,
+      "rank": 3,
+      "gene": "KRT19",
+      "rho": 0.519790882208466,
+      "abs_rho": 0.519790882208466
+    },
+    {
+      "dim": 3,
+      "rank": 4,
+      "gene": "HLA-DPA1",
+      "rho": -0.5109198000054901,
+      "abs_rho": 0.5109198000054901
+    },
+    {
+      "dim": 4,
+      "rank": 0,
+      "gene": "TIMP1",
+      "rho": 0.6225039280794727,
+      "abs_rho": 0.6225039280794727
+    },
+    {
+      "dim": 4,
+      "rank": 1,
+      "gene": "GZMA",
+      "rho": -0.6084397481941023,
+      "abs_rho": 0.6084397481941023
+    },
+    {
+      "dim": 4,
+      "rank": 2,
+      "gene": "SERPING1",
+      "rho": 0.5776854391041724,
+      "abs_rho": 0.5776854391041724
+    },
+    {
+      "dim": 4,
+      "rank": 3,
+      "gene": "GSN",
+      "rho": 0.576547573175072,
+      "abs_rho": 0.576547573175072
+    },
+    {
+      "dim": 4,
+      "rank": 4,
+      "gene": "TMEM176A",
+      "rho": 0.5624187083095641,
+      "abs_rho": 0.5624187083095641
+    },
+    {
+      "dim": 5,
+      "rank": 0,
+      "gene": "CALD1",
+      "rho": -0.5295740413741812,
+      "abs_rho": 0.5295740413741812
+    },
+    {
+      "dim": 5,
+      "rank": 1,
+      "gene": "S100A16",
+      "rho": -0.5224955244157383,
+      "abs_rho": 0.5224955244157383
+    },
+    {
+      "dim": 5,
+      "rank": 2,
+      "gene": "TPM1",
+      "rho": -0.5224889462793567,
+      "abs_rho": 0.5224889462793567
+    },
+    {
+      "dim": 5,
+      "rank": 3,
+      "gene": "IGFBP2",
+      "rho": -0.5212206890829313,
+      "abs_rho": 0.5212206890829313
+    },
+    {
+      "dim": 5,
+      "rank": 4,
+      "gene": "CCL4",
+      "rho": 0.5174221533302645,
+      "abs_rho": 0.5174221533302645
+    },
+    {
+      "dim": 6,
+      "rank": 0,
+      "gene": "CD68",
+      "rho": 0.5437937051200796,
+      "abs_rho": 0.5437937051200796
+    },
+    {
+      "dim": 6,
+      "rank": 1,
+      "gene": "CTSB",
+      "rho": 0.48376296233192095,
+      "abs_rho": 0.48376296233192095
+    },
+    {
+      "dim": 6,
+      "rank": 2,
+      "gene": "CTSL",
+      "rho": 0.471705199620196,
+      "abs_rho": 0.471705199620196
+    },
+    {
+      "dim": 6,
+      "rank": 3,
+      "gene": "CXCL8",
+      "rho": 0.45970415611818455,
+      "abs_rho": 0.45970415611818455
+    },
+    {
+      "dim": 6,
+      "rank": 4,
+      "gene": "CD14",
+      "rho": 0.4516984679030597,
+      "abs_rho": 0.4516984679030597
+    },
+    {
+      "dim": 7,
+      "rank": 0,
+      "gene": "AGR2",
+      "rho": -0.5470623080049711,
+      "abs_rho": 0.5470623080049711
+    },
+    {
+      "dim": 7,
+      "rank": 1,
+      "gene": "SMIM22",
+      "rho": -0.546524568831457,
+      "abs_rho": 0.546524568831457
+    },
+    {
+      "dim": 7,
+      "rank": 2,
+      "gene": "ELF3",
+      "rho": -0.5448140840282827,
+      "abs_rho": 0.5448140840282827
+    },
+    {
+      "dim": 7,
+      "rank": 3,
+      "gene": "TSPAN8",
+      "rho": -0.5411980925702978,
+      "abs_rho": 0.5411980925702978
+    },
+    {
+      "dim": 7,
+      "rank": 4,
+      "gene": "FXYD3",
+      "rho": -0.5318775898791911,
+      "abs_rho": 0.5318775898791911
+    },
+    {
+      "dim": 8,
+      "rank": 0,
+      "gene": "SPARC",
+      "rho": 0.5537239677412228,
+      "abs_rho": 0.5537239677412228
+    },
+    {
+      "dim": 8,
+      "rank": 1,
+      "gene": "CAV1",
+      "rho": 0.5068990528500583,
+      "abs_rho": 0.5068990528500583
+    },
+    {
+      "dim": 8,
+      "rank": 2,
+      "gene": "COL6A2",
+      "rho": 0.5014126992835193,
+      "abs_rho": 0.5014126992835193
+    },
+    {
+      "dim": 8,
+      "rank": 3,
+      "gene": "TCF4",
+      "rho": 0.4955612589480953,
+      "abs_rho": 0.4955612589480953
+    },
+    {
+      "dim": 8,
+      "rank": 4,
+      "gene": "IGFBP7",
+      "rho": 0.49258185264606374,
+      "abs_rho": 0.49258185264606374
+    },
+    {
+      "dim": 9,
+      "rank": 0,
+      "gene": "CALD1",
+      "rho": 0.5196251077039966,
+      "abs_rho": 0.5196251077039966
+    },
+    {
+      "dim": 9,
+      "rank": 1,
+      "gene": "COL6A2",
+      "rho": 0.4926007269054845,
+      "abs_rho": 0.4926007269054845
+    },
+    {
+      "dim": 9,
+      "rank": 2,
+      "gene": "RARRES2",
+      "rho": 0.49172136784284937,
+      "abs_rho": 0.49172136784284937
+    },
+    {
+      "dim": 9,
+      "rank": 3,
+      "gene": "TPM2",
+      "rho": 0.4896658807628295,
+      "abs_rho": 0.4896658807628295
+    },
+    {
+      "dim": 9,
+      "rank": 4,
+      "gene": "CNN3",
+      "rho": 0.4881380967217628,
+      "abs_rho": 0.4881380967217628
+    }
+  ],
+  "enrichment": [
+    {
+      "dim": 0,
+      "term": "GOBP_CELL_MOTILITY",
+      "n_overlap": 35,
+      "n_term": 1863,
+      "percent": 0.01878690284487386,
+      "padj": 8.74262317285189e-09,
+      "neg_log10_padj": 8.058358240298322
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_LEUKOCYTE_CHEMOTAXIS",
+      "n_overlap": 13,
+      "n_term": 237,
+      "percent": 0.05485232067510549,
+      "padj": 1.5397458963804656e-07,
+      "neg_log10_padj": 6.812550944686446
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_EXTERNAL_ENCAPSULATING_STRUCTURE_ORGANIZATION",
+      "n_overlap": 15,
+      "n_term": 338,
+      "percent": 0.04437869822485207,
+      "padj": 1.5397458963804656e-07,
+      "neg_log10_padj": 6.812550944686446
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_HUMORAL_IMMUNE_RESPONSE",
+      "n_overlap": 14,
+      "n_term": 287,
+      "percent": 0.04878048780487805,
+      "padj": 1.5397458963804656e-07,
+      "neg_log10_padj": 6.812550944686446
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_LOCOMOTION",
+      "n_overlap": 27,
+      "n_term": 1355,
+      "percent": 0.01992619926199262,
+      "padj": 3.011773889917169e-07,
+      "neg_log10_padj": 6.521177636072706
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_CELL_CHEMOTAXIS",
+      "n_overlap": 14,
+      "n_term": 324,
+      "percent": 0.043209876543209874,
+      "padj": 4.60595921576135e-07,
+      "neg_log10_padj": 6.336679911888117
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_LEUKOCYTE_MIGRATION",
+      "n_overlap": 15,
+      "n_term": 399,
+      "percent": 0.03759398496240601,
+      "padj": 6.520810184038044e-07,
+      "neg_log10_padj": 6.185698441599728
+    },
+    {
+      "dim": 0,
+      "term": "GOBP_CELL_ADHESION",
+      "n_overlap": 28,
+      "n_term": 1542,
+      "percent": 0.018158236057068743,
+      "padj": 6.758963385899486e-07,
+      "neg_log10_padj": 6.17011990617448
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_CELL_ADHESION",
+      "n_overlap": 33,
+      "n_term": 1542,
+      "percent": 0.021400778210116732,
+      "padj": 5.924976919433796e-10,
+      "neg_log10_padj": 9.227313337095422
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_COLLAGEN_FIBRIL_ORGANIZATION",
+      "n_overlap": 10,
+      "n_term": 67,
+      "percent": 0.14925373134328357,
+      "padj": 1.3333798453868244e-09,
+      "neg_log10_padj": 8.875046113709809
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_SUPRAMOLECULAR_FIBER_ORGANIZATION",
+      "n_overlap": 24,
+      "n_term": 859,
+      "percent": 0.027939464493597205,
+      "padj": 3.319683917772042e-09,
+      "neg_log10_padj": 8.478903265483435
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_ANTIGEN_PROCESSING_AND_PRESENTATION_OF_EXOGENOUS_PEPTIDE_ANTIGEN_VIA_MHC_CLASS_II",
+      "n_overlap": 7,
+      "n_term": 31,
+      "percent": 0.22580645161290322,
+      "padj": 7.908785151306383e-08,
+      "neg_log10_padj": 7.10189022226765
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_ANTIGEN_PROCESSING_AND_PRESENTATION_OF_PEPTIDE_OR_POLYSACCHARIDE_ANTIGEN_VIA_MHC_CLASS_II",
+      "n_overlap": 7,
+      "n_term": 37,
+      "percent": 0.1891891891891892,
+      "padj": 2.4162535981633507e-07,
+      "neg_log10_padj": 6.616857486233406
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_ANTIGEN_PROCESSING_AND_PRESENTATION_OF_EXOGENOUS_PEPTIDE_ANTIGEN",
+      "n_overlap": 7,
+      "n_term": 41,
+      "percent": 0.17073170731707318,
+      "padj": 4.3245157576933523e-07,
+      "neg_log10_padj": 6.364062516068701
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_EXTERNAL_ENCAPSULATING_STRUCTURE_ORGANIZATION",
+      "n_overlap": 14,
+      "n_term": 338,
+      "percent": 0.04142011834319527,
+      "padj": 4.6550008912014044e-07,
+      "neg_log10_padj": 6.332080231536813
+    },
+    {
+      "dim": 1,
+      "term": "GOBP_ANTIGEN_PROCESSING_AND_PRESENTATION_OF_EXOGENOUS_ANTIGEN",
+      "n_overlap": 7,
+      "n_term": 50,
+      "percent": 0.14,
+      "padj": 1.3881588382630879e-06,
+      "neg_log10_padj": 5.857560837458683
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_DESMOSOME_ORGANIZATION",
+      "n_overlap": 3,
+      "n_term": 10,
+      "percent": 0.3,
+      "padj": 0.011690614436357178,
+      "neg_log10_padj": 1.9321626625501518
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_EPITHELIUM_DEVELOPMENT",
+      "n_overlap": 19,
+      "n_term": 1236,
+      "percent": 0.015372168284789644,
+      "padj": 0.011690614436357178,
+      "neg_log10_padj": 1.9321626625501518
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_RESPONSE_TO_ESTROGEN",
+      "n_overlap": 5,
+      "n_term": 71,
+      "percent": 0.07042253521126761,
+      "padj": 0.012214330345443345,
+      "neg_log10_padj": 1.9131303383713418
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_ANTIBACTERIAL_HUMORAL_RESPONSE",
+      "n_overlap": 5,
+      "n_term": 72,
+      "percent": 0.06944444444444445,
+      "padj": 0.012214330345443345,
+      "neg_log10_padj": 1.9131303383713418
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_RESPONSE_TO_ENDOGENOUS_STIMULUS",
+      "n_overlap": 21,
+      "n_term": 1735,
+      "percent": 0.012103746397694525,
+      "padj": 0.02163278098684395,
+      "neg_log10_padj": 1.6648876465523363
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_EPITHELIAL_CELL_DIFFERENTIATION",
+      "n_overlap": 13,
+      "n_term": 753,
+      "percent": 0.017264276228419653,
+      "padj": 0.02163278098684395,
+      "neg_log10_padj": 1.6648876465523363
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_HUMORAL_IMMUNE_RESPONSE",
+      "n_overlap": 8,
+      "n_term": 287,
+      "percent": 0.027874564459930314,
+      "padj": 0.02163278098684395,
+      "neg_log10_padj": 1.6648876465523363
+    },
+    {
+      "dim": 2,
+      "term": "GOBP_RESPONSE_TO_HORMONE",
+      "n_overlap": 14,
+      "n_term": 890,
+      "percent": 0.015730337078651686,
+      "padj": 0.02467946124298107,
+      "neg_log10_padj": 1.607664325260931
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_ANTIGEN_PROCESSING_AND_PRESENTATION_OF_EXOGENOUS_PEPTIDE_ANTIGEN_VIA_MHC_CLASS_II",
+      "n_overlap": 8,
+      "n_term": 31,
+      "percent": 0.25806451612903225,
+      "padj": 5.316641646072635e-09,
+      "neg_log10_padj": 8.274362611150567
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_CELL_ADHESION",
+      "n_overlap": 31,
+      "n_term": 1542,
+      "percent": 0.020103761348897537,
+      "padj": 1.0104975191905975e-08,
+      "neg_log10_padj": 7.9954647483566506
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_ANTIGEN_PROCESSING_AND_PRESENTATION_OF_PEPTIDE_OR_POLYSACCHARIDE_ANTIGEN_VIA_MHC_CLASS_II",
+      "n_overlap": 8,
+      "n_term": 37,
+      "percent": 0.21621621621621623,
+      "padj": 1.0104975191905975e-08,
+      "neg_log10_padj": 7.9954647483566506
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_ANTIGEN_PROCESSING_AND_PRESENTATION_OF_EXOGENOUS_PEPTIDE_ANTIGEN",
+      "n_overlap": 8,
+      "n_term": 41,
+      "percent": 0.1951219512195122,
+      "padj": 1.5433655799921895e-08,
+      "neg_log10_padj": 7.811531189576636
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_PEPTIDE_ANTIGEN_ASSEMBLY_WITH_MHC_CLASS_II_PROTEIN_COMPLEX",
+      "n_overlap": 6,
+      "n_term": 16,
+      "percent": 0.375,
+      "padj": 4.910170929425327e-08,
+      "neg_log10_padj": 7.308903389259085
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_ANTIGEN_PROCESSING_AND_PRESENTATION_OF_EXOGENOUS_ANTIGEN",
+      "n_overlap": 8,
+      "n_term": 50,
+      "percent": 0.16,
+      "padj": 5.5659536993416765e-08,
+      "neg_log10_padj": 7.254460410686858
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_PEPTIDE_ANTIGEN_ASSEMBLY_WITH_MHC_PROTEIN_COMPLEX",
+      "n_overlap": 6,
+      "n_term": 21,
+      "percent": 0.2857142857142857,
+      "padj": 2.3276519807047291e-07,
+      "neg_log10_padj": 6.633081952784195
+    },
+    {
+      "dim": 3,
+      "term": "GOBP_POSITIVE_REGULATION_OF_CELL_ACTIVATION",
+      "n_overlap": 15,
+      "n_term": 385,
+      "percent": 0.03896103896103896,
+      "padj": 2.9606874345254516e-07,
+      "neg_log10_padj": 6.5286074394955484
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_EXTERNAL_ENCAPSULATING_STRUCTURE_ORGANIZATION",
+      "n_overlap": 20,
+      "n_term": 338,
+      "percent": 0.05917159763313609,
+      "padj": 2.7647946543244015e-12,
+      "neg_log10_padj": 11.558337118900152
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_COLLAGEN_FIBRIL_ORGANIZATION",
+      "n_overlap": 11,
+      "n_term": 67,
+      "percent": 0.16417910447761194,
+      "padj": 6.764064632445112e-11,
+      "neg_log10_padj": 10.16979225125464
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_VASCULATURE_DEVELOPMENT",
+      "n_overlap": 26,
+      "n_term": 848,
+      "percent": 0.030660377358490566,
+      "padj": 1.8830120396004607e-10,
+      "neg_log10_padj": 9.725146903182843
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_ANATOMICAL_STRUCTURE_FORMATION_INVOLVED_IN_MORPHOGENESIS",
+      "n_overlap": 29,
+      "n_term": 1281,
+      "percent": 0.02263856362217018,
+      "padj": 8.387244357856391e-09,
+      "neg_log10_padj": 8.076380703861913
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_RESPONSE_TO_WOUNDING",
+      "n_overlap": 20,
+      "n_term": 574,
+      "percent": 0.03484320557491289,
+      "padj": 1.0425770705003103e-08,
+      "neg_log10_padj": 7.981891830785072
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_CIRCULATORY_SYSTEM_DEVELOPMENT",
+      "n_overlap": 28,
+      "n_term": 1240,
+      "percent": 0.02258064516129032,
+      "padj": 1.4735569424273814e-08,
+      "neg_log10_padj": 7.8316330771169556
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_REGULATION_OF_LOCOMOTION",
+      "n_overlap": 27,
+      "n_term": 1170,
+      "percent": 0.023076923076923078,
+      "padj": 1.4757101299419844e-08,
+      "neg_log10_padj": 7.830998941516963
+    },
+    {
+      "dim": 4,
+      "term": "GOBP_CELL_MOTILITY",
+      "n_overlap": 34,
+      "n_term": 1863,
+      "percent": 0.01825013419216318,
+      "padj": 1.4757101299419844e-08,
+      "neg_log10_padj": 7.830998941516963
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_CELL_ADHESION",
+      "n_overlap": 37,
+      "n_term": 1542,
+      "percent": 0.023994811932555125,
+      "padj": 9.609957691951339e-13,
+      "neg_log10_padj": 12.01727852431819
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_EXTERNAL_ENCAPSULATING_STRUCTURE_ORGANIZATION",
+      "n_overlap": 20,
+      "n_term": 338,
+      "percent": 0.05917159763313609,
+      "padj": 9.609957691951339e-13,
+      "neg_log10_padj": 12.01727852431819
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_COLLAGEN_FIBRIL_ORGANIZATION",
+      "n_overlap": 12,
+      "n_term": 67,
+      "percent": 0.1791044776119403,
+      "padj": 9.609957691951339e-13,
+      "neg_log10_padj": 12.01727852431819
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_ANATOMICAL_STRUCTURE_FORMATION_INVOLVED_IN_MORPHOGENESIS",
+      "n_overlap": 30,
+      "n_term": 1281,
+      "percent": 0.0234192037470726,
+      "padj": 1.0762982424164703e-09,
+      "neg_log10_padj": 8.968067368922064
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_SUPRAMOLECULAR_FIBER_ORGANIZATION",
+      "n_overlap": 25,
+      "n_term": 859,
+      "percent": 0.02910360884749709,
+      "padj": 1.0762982424164703e-09,
+      "neg_log10_padj": 8.968067368922064
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_REGULATION_OF_CELL_ADHESION",
+      "n_overlap": 21,
+      "n_term": 812,
+      "percent": 0.02586206896551724,
+      "padj": 5.770027265989557e-07,
+      "neg_log10_padj": 6.238822134601491
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_VASCULATURE_DEVELOPMENT",
+      "n_overlap": 21,
+      "n_term": 848,
+      "percent": 0.024764150943396228,
+      "padj": 1.0691328732125117e-06,
+      "neg_log10_padj": 5.970968316758534
+    },
+    {
+      "dim": 5,
+      "term": "GOBP_ANTIGEN_PROCESSING_AND_PRESENTATION_OF_EXOGENOUS_PEPTIDE_ANTIGEN_VIA_MHC_CLASS_II",
+      "n_overlap": 6,
+      "n_term": 31,
+      "percent": 0.1935483870967742,
+      "padj": 3.5114900907294135e-06,
+      "neg_log10_padj": 5.454508552805891
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_DEFENSE_RESPONSE",
+      "n_overlap": 49,
+      "n_term": 1902,
+      "percent": 0.02576235541535226,
+      "padj": 7.513796932233203e-21,
+      "neg_log10_padj": 20.124140546350393
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 44,
+      "n_term": 1626,
+      "percent": 0.02706027060270603,
+      "padj": 4.2122963567914004e-19,
+      "neg_log10_padj": 18.375481081553147
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_INFLAMMATORY_RESPONSE",
+      "n_overlap": 33,
+      "n_term": 903,
+      "percent": 0.036544850498338874,
+      "padj": 3.6614365129006776e-17,
+      "neg_log10_padj": 16.43634849186605
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_BIOLOGICAL_PROCESS_INVOLVED_IN_INTERSPECIES_INTERACTION_BETWEEN_ORGANISMS",
+      "n_overlap": 43,
+      "n_term": 1780,
+      "percent": 0.024157303370786518,
+      "padj": 6.394709892933117e-17,
+      "neg_log10_padj": 16.194179153258226
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_IMMUNE_EFFECTOR_PROCESS",
+      "n_overlap": 28,
+      "n_term": 718,
+      "percent": 0.03899721448467967,
+      "padj": 5.5616899111024425e-15,
+      "neg_log10_padj": 14.254793228641809
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_POSITIVE_REGULATION_OF_IMMUNE_SYSTEM_PROCESS",
+      "n_overlap": 33,
+      "n_term": 1120,
+      "percent": 0.029464285714285714,
+      "padj": 1.2074642870999202e-14,
+      "neg_log10_padj": 13.918125705416866
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_DEFENSE_RESPONSE_TO_OTHER_ORGANISM",
+      "n_overlap": 34,
+      "n_term": 1268,
+      "percent": 0.026813880126182965,
+      "padj": 5.08986829640118e-14,
+      "neg_log10_padj": 13.293293455165447
+    },
+    {
+      "dim": 6,
+      "term": "GOBP_REGULATION_OF_IMMUNE_RESPONSE",
+      "n_overlap": 30,
+      "n_term": 981,
+      "percent": 0.03058103975535168,
+      "padj": 1.4115997480242264e-13,
+      "neg_log10_padj": 12.850288427835231
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_CELL_ADHESION",
+      "n_overlap": 32,
+      "n_term": 1542,
+      "percent": 0.020752269779507133,
+      "padj": 7.335660656598315e-09,
+      "neg_log10_padj": 8.13456076708388
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_EXTERNAL_ENCAPSULATING_STRUCTURE_ORGANIZATION",
+      "n_overlap": 16,
+      "n_term": 338,
+      "percent": 0.047337278106508875,
+      "padj": 2.0313073075960073e-08,
+      "neg_log10_padj": 7.6922243691125525
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_VASCULATURE_DEVELOPMENT",
+      "n_overlap": 22,
+      "n_term": 848,
+      "percent": 0.025943396226415096,
+      "padj": 2.070282356216795e-07,
+      "neg_log10_padj": 6.683970419091717
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_COLLAGEN_FIBRIL_ORGANIZATION",
+      "n_overlap": 8,
+      "n_term": 67,
+      "percent": 0.11940298507462686,
+      "padj": 1.0082781383547014e-06,
+      "neg_log10_padj": 5.996419649150091
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_CELL_MOTILITY",
+      "n_overlap": 29,
+      "n_term": 1863,
+      "percent": 0.015566290928609769,
+      "padj": 1.6062539819080993e-05,
+      "neg_log10_padj": 4.794185782706064
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_CIRCULATORY_SYSTEM_DEVELOPMENT",
+      "n_overlap": 23,
+      "n_term": 1240,
+      "percent": 0.018548387096774192,
+      "padj": 2.2411526896197882e-05,
+      "neg_log10_padj": 4.6495285539958
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_REGULATION_OF_LOCOMOTION",
+      "n_overlap": 22,
+      "n_term": 1170,
+      "percent": 0.018803418803418803,
+      "padj": 2.8953176806376674e-05,
+      "neg_log10_padj": 4.538303777574317
+    },
+    {
+      "dim": 7,
+      "term": "GOBP_ANATOMICAL_STRUCTURE_FORMATION_INVOLVED_IN_MORPHOGENESIS",
+      "n_overlap": 23,
+      "n_term": 1281,
+      "percent": 0.01795472287275566,
+      "padj": 2.8953176806376674e-05,
+      "neg_log10_padj": 4.538303777574317
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_EXTERNAL_ENCAPSULATING_STRUCTURE_ORGANIZATION",
+      "n_overlap": 25,
+      "n_term": 338,
+      "percent": 0.07396449704142012,
+      "padj": 1.005682627382738e-18,
+      "neg_log10_padj": 17.997539052006477
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_CELL_ADHESION",
+      "n_overlap": 39,
+      "n_term": 1542,
+      "percent": 0.02529182879377432,
+      "padj": 9.983149205451076e-15,
+      "neg_log10_padj": 14.000732437990392
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_VASCULATURE_DEVELOPMENT",
+      "n_overlap": 28,
+      "n_term": 848,
+      "percent": 0.0330188679245283,
+      "padj": 1.4466257389746597e-12,
+      "neg_log10_padj": 11.839643812019755
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_TUBE_DEVELOPMENT",
+      "n_overlap": 32,
+      "n_term": 1182,
+      "percent": 0.02707275803722504,
+      "padj": 1.7707630166067154e-12,
+      "neg_log10_padj": 11.751839557085868
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_COLLAGEN_FIBRIL_ORGANIZATION",
+      "n_overlap": 11,
+      "n_term": 67,
+      "percent": 0.16417910447761194,
+      "padj": 1.973181361167894e-11,
+      "neg_log10_padj": 10.704832995571627
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_CIRCULATORY_SYSTEM_DEVELOPMENT",
+      "n_overlap": 31,
+      "n_term": 1240,
+      "percent": 0.025,
+      "padj": 3.1351777691630556e-11,
+      "neg_log10_padj": 10.503737829003047
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_COLLAGEN_METABOLIC_PROCESS",
+      "n_overlap": 11,
+      "n_term": 107,
+      "percent": 0.102803738317757,
+      "padj": 2.802600679533059e-09,
+      "neg_log10_padj": 8.552438777027275
+    },
+    {
+      "dim": 8,
+      "term": "GOBP_EXTRACELLULAR_MATRIX_ASSEMBLY",
+      "n_overlap": 9,
+      "n_term": 55,
+      "percent": 0.16363636363636364,
+      "padj": 2.802600679533059e-09,
+      "neg_log10_padj": 8.552438777027275
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_COLLAGEN_FIBRIL_ORGANIZATION",
+      "n_overlap": 15,
+      "n_term": 67,
+      "percent": 0.22388059701492538,
+      "padj": 1.0073039541760904e-17,
+      "neg_log10_padj": 16.996839461220898
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_EXTERNAL_ENCAPSULATING_STRUCTURE_ORGANIZATION",
+      "n_overlap": 23,
+      "n_term": 338,
+      "percent": 0.06804733727810651,
+      "padj": 1.3986585563810687e-16,
+      "neg_log10_padj": 15.854288293498305
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_CELL_ADHESION",
+      "n_overlap": 37,
+      "n_term": 1542,
+      "percent": 0.023994811932555125,
+      "padj": 2.3323898114726965e-13,
+      "neg_log10_padj": 12.632198864365918
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_SUPRAMOLECULAR_FIBER_ORGANIZATION",
+      "n_overlap": 27,
+      "n_term": 859,
+      "percent": 0.03143189755529686,
+      "padj": 9.37415043058504e-12,
+      "neg_log10_padj": 11.028068081469874
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_ANATOMICAL_STRUCTURE_FORMATION_INVOLVED_IN_MORPHOGENESIS",
+      "n_overlap": 25,
+      "n_term": 1281,
+      "percent": 0.0195160031225605,
+      "padj": 2.2474544123523453e-06,
+      "neg_log10_padj": 5.648309108789223
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_VASCULATURE_DEVELOPMENT",
+      "n_overlap": 20,
+      "n_term": 848,
+      "percent": 0.02358490566037736,
+      "padj": 3.847456701138777e-06,
+      "neg_log10_padj": 5.414826258972068
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_EXTRACELLULAR_MATRIX_ASSEMBLY",
+      "n_overlap": 7,
+      "n_term": 55,
+      "percent": 0.12727272727272726,
+      "padj": 3.890835587324792e-06,
+      "neg_log10_padj": 5.409957120526559
+    },
+    {
+      "dim": 9,
+      "term": "GOBP_REGULATION_OF_CELL_ADHESION",
+      "n_overlap": 19,
+      "n_term": 812,
+      "percent": 0.023399014778325122,
+      "padj": 8.073066878387184e-06,
+      "neg_log10_padj": 5.092961449746955
+    }
+  ],
+  "cell_type_label_source": "marker_genes",
+  "cell_type_label_map": "figures/biovalidation/celltype_label_map.json",
+  "cell_type_label_map_schema": "celltype_label_map.v1",
+  "cell_type_label_cluster_key": "_ct_leiden",
+  "cluster_label_evidence": [
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "0",
+      "short_label": "Activated/Treg CD4 T",
+      "full_label": "Activated/regulatory CD4 T-cell state",
+      "label_kind": "marker_inferred",
+      "confidence": "medium",
+      "marker_genes": [
+        "LTB",
+        "BATF",
+        "ICOS",
+        "TNFRSF4",
+        "PIM2",
+        "CCR7",
+        "TNFRSF18",
+        "GPR183",
+        "CTLA4",
+        "FOXP3"
+      ],
+      "evidence_note": "Top markers: LTB, BATF, ICOS, TNFRSF4, PIM2, CCR7.",
+      "n_cells_in_marker_subsample": 316
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "1",
+      "short_label": "Cytotoxic T/NK",
+      "full_label": "Cytotoxic T/NK-like lymphocytes with checkpoint/HLA signal",
+      "label_kind": "marker_inferred",
+      "confidence": "medium",
+      "marker_genes": [
+        "GZMA",
+        "GZMB",
+        "LAG3",
+        "HLA-DRB5",
+        "GZMK",
+        "HLA-DPB1",
+        "HLA-DPA1",
+        "MT2A",
+        "IGKV3-20",
+        "LINC02446"
+      ],
+      "evidence_note": "Top markers: GZMA, GZMB, LAG3, HLA-DRB5, GZMK, HLA-DPB1.",
+      "n_cells_in_marker_subsample": 255
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "2",
+      "short_label": "Endothelial",
+      "full_label": "Vascular endothelial cells",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "PLVAP",
+        "IGFBP7",
+        "GNG11",
+        "CRIP2",
+        "RAMP2",
+        "SPARCL1",
+        "PECAM1",
+        "HSPG2",
+        "ENG",
+        "A2M"
+      ],
+      "evidence_note": "Top markers: PLVAP, IGFBP7, GNG11, CRIP2, RAMP2, SPARCL1.",
+      "n_cells_in_marker_subsample": 127
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "3",
+      "short_label": "Fibroblasts",
+      "full_label": "Stromal fibroblasts",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "FBLN2",
+        "PDGFRL",
+        "FSTL1",
+        "DCN",
+        "SERPINF1",
+        "PLA2G2A",
+        "C3",
+        "CYP1B1",
+        "FBN1",
+        "PODN"
+      ],
+      "evidence_note": "Top markers: FBLN2, PDGFRL, FSTL1, DCN, SERPINF1, PLA2G2A.",
+      "n_cells_in_marker_subsample": 19
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "4",
+      "short_label": "SPP1+ macrophages",
+      "full_label": "SPP1-positive tumor-associated macrophage/myeloid state",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "SPP1",
+        "FCGR2B",
+        "CTSB",
+        "TYROBP",
+        "C1QA",
+        "CD68",
+        "PLTP",
+        "CD14",
+        "APOE",
+        "CTSL"
+      ],
+      "evidence_note": "Top markers: SPP1, FCGR2B, CTSB, TYROBP, C1QA, CD68.",
+      "n_cells_in_marker_subsample": 128
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "5",
+      "short_label": "Pericyte/smooth muscle",
+      "full_label": "Pericyte or smooth-muscle-like stromal cells",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "RGS5",
+        "IGFBP7",
+        "CALD1",
+        "TPM2",
+        "TAGLN",
+        "TPM1",
+        "BGN",
+        "MYL9",
+        "SPARC",
+        "COL4A2"
+      ],
+      "evidence_note": "Top markers: RGS5, IGFBP7, CALD1, TPM2, TAGLN, TPM1.",
+      "n_cells_in_marker_subsample": 51
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "6",
+      "short_label": "Cytotoxic T/NK",
+      "full_label": "Cytotoxic T/NK-like lymphocytes",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "GZMA",
+        "CCL4",
+        "GZMB",
+        "GNLY",
+        "KLRD1",
+        "IFNG",
+        "GZMK",
+        "LAG3",
+        "CCL4L2",
+        "KLRB1"
+      ],
+      "evidence_note": "Top markers: GZMA, CCL4, GZMB, GNLY, KLRD1, IFNG.",
+      "n_cells_in_marker_subsample": 440
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "7",
+      "short_label": "Myeloid/macrophage",
+      "full_label": "Antigen-presenting myeloid/macrophage state",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "TYROBP",
+        "FCER1G",
+        "AIF1",
+        "LYZ",
+        "HLA-DPB1",
+        "CTSS",
+        "HLA-DPA1",
+        "SPI1",
+        "BCL2A1",
+        "CD68"
+      ],
+      "evidence_note": "Top markers: TYROBP, FCER1G, AIF1, LYZ, HLA-DPB1, CTSS.",
+      "n_cells_in_marker_subsample": 182
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "8",
+      "short_label": "Collagen fibroblasts",
+      "full_label": "Collagen-rich cancer-associated fibroblasts",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "CCDC80",
+        "COL1A1",
+        "RARRES2",
+        "COL3A1",
+        "THBS2",
+        "C3",
+        "BGN",
+        "COL1A2",
+        "LXN",
+        "SPARC"
+      ],
+      "evidence_note": "Top markers: CCDC80, COL1A1, RARRES2, COL3A1, THBS2, C3.",
+      "n_cells_in_marker_subsample": 130
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "9",
+      "short_label": "Epithelial",
+      "full_label": "EPCAM/KRT epithelial tumor or gastric epithelial cells",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "S100A6",
+        "KRT18",
+        "KRT8",
+        "SPINT2",
+        "LGALS3",
+        "TSPAN8",
+        "KRT19",
+        "EPCAM",
+        "CLDN7",
+        "FXYD3"
+      ],
+      "evidence_note": "Top markers: S100A6, KRT18, KRT8, SPINT2, LGALS3, TSPAN8.",
+      "n_cells_in_marker_subsample": 129
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "10",
+      "short_label": "B cells",
+      "full_label": "B-cell cluster",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "CD79A",
+        "HLA-DQA1",
+        "HLA-DPA1",
+        "HLA-DPB1",
+        "MS4A1",
+        "BANK1",
+        "HLA-DQB1",
+        "LTB",
+        "LY9",
+        "HLA-DRB5"
+      ],
+      "evidence_note": "Top markers: CD79A, HLA-DQA1, HLA-DPA1, HLA-DPB1, MS4A1, BANK1.",
+      "n_cells_in_marker_subsample": 104
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "11",
+      "short_label": "Mucous epithelial",
+      "full_label": "Gastric mucous epithelial cell state",
+      "label_kind": "marker_inferred",
+      "confidence": "medium",
+      "marker_genes": [
+        "TFF1",
+        "MUC5AC",
+        "TFF2",
+        "MUCL3",
+        "GKN1",
+        "PGC",
+        "LYZ",
+        "KLRB1",
+        "PHGR1",
+        "CCL4"
+      ],
+      "evidence_note": "Top markers: TFF1, MUC5AC, TFF2, MUCL3, GKN1, PGC.",
+      "n_cells_in_marker_subsample": 83
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "12",
+      "short_label": "Plasma cells",
+      "full_label": "Immunoglobulin-secreting plasma cells",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "MZB1",
+        "JCHAIN",
+        "DERL3",
+        "IGLC2",
+        "IGHA1",
+        "IGLC3",
+        "CD79A",
+        "TNFRSF17",
+        "POU2AF1",
+        "FCRL5"
+      ],
+      "evidence_note": "Top markers: MZB1, JCHAIN, DERL3, IGLC2, IGHA1, IGLC3.",
+      "n_cells_in_marker_subsample": 108
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "13",
+      "short_label": "Plasma cells",
+      "full_label": "Immunoglobulin-secreting plasma cells",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "IGKC",
+        "MZB1",
+        "JCHAIN",
+        "DERL3",
+        "IGHA1",
+        "IGLL5",
+        "CD79A",
+        "POU2AF1",
+        "JSRP1",
+        "TNFRSF17"
+      ],
+      "evidence_note": "Top markers: IGKC, MZB1, JCHAIN, DERL3, IGHA1, IGLL5.",
+      "n_cells_in_marker_subsample": 190
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "14",
+      "short_label": "MDK+ epithelial",
+      "full_label": "MDK-positive epithelial/tumor epithelial state",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "MDK",
+        "PCSK1N",
+        "CLDN4",
+        "KRT8",
+        "EPCAM",
+        "CLDN7",
+        "LGALS4",
+        "SPINT2",
+        "SMIM24",
+        "KRT18"
+      ],
+      "evidence_note": "Top markers: MDK, PCSK1N, CLDN4, KRT8, EPCAM, CLDN7.",
+      "n_cells_in_marker_subsample": 134
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "15",
+      "short_label": "Mast cells",
+      "full_label": "Mast-cell cluster",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "CPA3",
+        "TPSAB1",
+        "TPSB2",
+        "TPSD1",
+        "MS4A2",
+        "LTC4S",
+        "CLU",
+        "HPGDS",
+        "KIT",
+        "VWA5A"
+      ],
+      "evidence_note": "Top markers: CPA3, TPSAB1, TPSB2, TPSD1, MS4A2, LTC4S.",
+      "n_cells_in_marker_subsample": 40
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "16",
+      "short_label": "Gastric epithelial",
+      "full_label": "Gastric mucous/epithelial cell state",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "TFF1",
+        "TFF2",
+        "MUC5AC",
+        "S100P",
+        "MUC1",
+        "KRT8",
+        "CLDN18",
+        "KRT19",
+        "ELF3",
+        "CAPN8"
+      ],
+      "evidence_note": "Top markers: TFF1, TFF2, MUC5AC, S100P, MUC1, KRT8.",
+      "n_cells_in_marker_subsample": 195
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "17",
+      "short_label": "Fibroblasts",
+      "full_label": "Matrix-producing stromal fibroblasts",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "RARRES2",
+        "C1S",
+        "TMEM176A",
+        "TMEM176B",
+        "CALD1",
+        "MMP2",
+        "COL6A1",
+        "DCN",
+        "COL6A2",
+        "MFAP4"
+      ],
+      "evidence_note": "Top markers: RARRES2, C1S, TMEM176A, TMEM176B, CALD1, MMP2.",
+      "n_cells_in_marker_subsample": 101
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "18",
+      "short_label": "Chief-like epithelial",
+      "full_label": "Pepsinogen/lipase-rich chief-like gastric epithelial state",
+      "label_kind": "marker_inferred",
+      "confidence": "high",
+      "marker_genes": [
+        "PGA3",
+        "LIPF",
+        "PGC",
+        "PGA4",
+        "MT1G",
+        "PGA5",
+        "PDIA2",
+        "CXCL17",
+        "CA9",
+        "VSIG2"
+      ],
+      "evidence_note": "Top markers: PGA3, LIPF, PGC, PGA4, MT1G, PGA5.",
+      "n_cells_in_marker_subsample": 141
+    },
+    {
+      "case_id": "GASTRIC",
+      "cluster_id": "19",
+      "short_label": "Mixed gastric/T cell",
+      "full_label": "Mixed chief-like gastric epithelial and cytotoxic lymphocyte signal",
+      "label_kind": "putative_marker_inferred",
+      "confidence": "low",
+      "marker_genes": [
+        "PGA3",
+        "PGC",
+        "LIPF",
+        "PGA5",
+        "CCL4",
+        "GZMA",
+        "IFNG",
+        "KLRB1",
+        "GZMB",
+        "XCL1"
+      ],
+      "evidence_note": "Top markers: PGA3, PGC, LIPF, PGA5, CCL4, GZMA. Label kept broad/putative because marker evidence is mixed or nonspecific.",
+      "n_cells_in_marker_subsample": 127
+    }
+  ]
+}

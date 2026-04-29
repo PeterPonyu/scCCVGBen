@@ -113,15 +113,21 @@
       width: 310, height: 220,
     }, opt);
 
-    // 4. Top 15 studies: horizontal bar of cell_count
+    // 4. Top 15 studies: horizontal bar of cell_count.
+    // Public summary exposes the sanitised dataset `id` (GSE-derived) — the
+    // internal `filename_key` was intentionally stripped from the published
+    // payload, so we render and tooltip with `id` instead.
     vegaEmbed("#xs-topstudies", {
       $schema: "https://vega.github.io/schema/vega-lite/v5.json",
       data: { values: s.pubmed_top15 },
       config: cfg,
+      transform: [
+        { calculate: "length(datum.id) > 30 ? slice(datum.id, 0, 29) + '…' : datum.id", as: "display_key" }
+      ],
       mark: { type: "bar", tooltip: true },
       encoding: {
-        y: { field: "filename_key", type: "nominal", title: null, sort: "-x",
-             axis: { labelLimit: 250, labelFontSize: 13 } },
+        y: { field: "display_key", type: "nominal", title: null, sort: "-x",
+             axis: { labelLimit: 320, labelFontSize: 11 } },
         x: { field: "cell_count", type: "quantitative", title: "Cell count" },
         color: {
           field: "modality", type: "nominal",
@@ -129,7 +135,7 @@
           legend: { orient: "top" },
         },
         tooltip: [
-          { field: "filename_key" }, { field: "pubmed_id" },
+          { field: "id" }, { field: "pubmed_id" },
           { field: "species" }, { field: "cell_count" },
         ],
       },
