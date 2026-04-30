@@ -84,3 +84,25 @@ Thumbs.db
 # Jupyter
 .ipynb_checkpoints/
 *.csv.bak
+
+# Round 7J — submission package hygiene
+/submission_*.tar.gz
+manuscript/**/.omc/
+manuscript/**/.omx/
+manuscript/**/*.aux
+manuscript/**/*.log
+manuscript/**/*.out
+manuscript/**/*.fls
+manuscript/**/*.fdb_latexmk
+manuscript/**/*.synctex.gz
+manuscript/**/*.toc
+results/foundation_latents/*.npy
+
+# v2.1 policy shift (2026-04-30): scCCVGBen is source-only mirror.
+# Paper products and history live in the private companion repo (scCCVGBen-assets).
+# Manuscript text / PDF / submission package: not authored or stored here.
+# Historical revisions: not stored here.
+/manuscript/
+/archive/
+/submission/
+HANDOFF_NEXT_SESSION.md
