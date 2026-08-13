@@ -25,6 +25,18 @@ PubMed) fetched via GEOparse. Raw metadata cache:
 
 Source: `scccvgben/data/preprocessing.py`.
 
+## Cite
+
+**scCCVGBen for Benchmarking of Single-Cell Representation Learning Anchored on a Centroid-Coupled Variational Graph Attention Autoencoder across scRNA-seq and scATAC-seq**
+
+Fu, Z.<sup>#</sup>, Fu, J.<sup>#</sup>, Chen, C.<sup>#</sup>, Zhang, K., Wang, J.<sup>*</sup>, Ran, T.<sup>*</sup>, Wang, S.<sup>*</sup>
+
+*Frontiers in Genetics* · 2026
+
+- [DOI](https://doi.org/10.3389/fgene.2026.1822168)
+- [Code](https://github.com/PeterPonyu/scCCVGBen)
+- [Site](https://peterponyu.github.io/scccvgben-next/)
+
 ## Reproducibility
 
 Source: [github.com/PeterPonyu/scCCVGBen](https://github.com/PeterPonyu/scCCVGBen).

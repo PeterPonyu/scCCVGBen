@@ -1,0 +1,8 @@
+{{ $doi := default "https://doi.org/10.3389/fgene.2026.1822168" .Site.Params.CiteDOI }}
+{{ $code := default "https://github.com/PeterPonyu/scCCVGBen" .Site.Params.CiteCode }}
+{{ $site := default "https://peterponyu.github.io/scccvgben-next/" .Site.Params.CiteSite }}
+<nav class="scc-cite-strip" aria-label="DOI, Code, and Site">
+  <a href="{{ $doi }}" target="_blank" rel="noopener noreferrer">DOI</a>
+  <a href="{{ $code }}" target="_blank" rel="noopener noreferrer">Code</a>
+  <a href="{{ $site }}">Site</a>
+</nav>
