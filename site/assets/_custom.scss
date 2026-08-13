@@ -299,8 +299,18 @@ textarea {
 }
 
 @media screen and (max-width: 56rem) {
+  html,
+  body,
+  .book-page,
+  .container,
+  .book-header {
+    min-width: 0;
+    max-width: 100%;
+  }
+
   body {
     background: var(--body-background);
+    overflow-x: clip;
   }
 
   .book-header {
@@ -308,6 +318,34 @@ textarea {
     border: 1px solid var(--scc-border-soft);
     border-radius: 6px;
     padding: 0.7rem 0.85rem;
+  }
+
+  .scc-cite-strip,
+  .scc-site-footer {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .markdown h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .home-chart,
+  .xs-chart,
+  .vega-embed {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+@media screen and (max-width: 40rem) {
+  html[data-font-scale="xlarge"] {
+    font-size: var(--scc-root-font-large);
+  }
+
+  html[data-font-scale="large"] {
+    font-size: var(--scc-root-font-normal);
   }
 }
 
