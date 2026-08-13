@@ -1,8 +1,18 @@
 {{ $doi := default "https://doi.org/10.3389/fgene.2026.1822168" .Site.Params.CiteDOI }}
 {{ $code := default "https://github.com/PeterPonyu/scCCVGBen" .Site.Params.CiteCode }}
 {{ $site := default "https://peterponyu.github.io/scccvgben-next/" .Site.Params.CiteSite }}
-<nav class="scc-cite-strip" aria-label="DOI, Code, and Site">
-  <a href="{{ $doi }}" target="_blank" rel="noopener noreferrer">DOI</a>
-  <a href="{{ $code }}" target="_blank" rel="noopener noreferrer">Code</a>
-  <a href="{{ $site }}">Site</a>
-</nav>
+{{ $home := default "https://peterponyu.github.io/" .Site.Params.SeriesHomepage }}
+{{ $scportal := default "https://peterponyu.github.io/scportal/" .Site.Params.SeriesSCPortal }}
+<header class="scc-series-chrome">
+  <nav class="scc-series-chrome__inner" aria-label="Series navigation">
+    <span class="scc-series-chrome__series">
+      <a href="{{ $home }}">Homepage</a>
+      <a href="{{ $scportal }}">SCPortal</a>
+    </span>
+    <span class="scc-series-chrome__cite">
+      <a href="{{ $doi }}" target="_blank" rel="noopener noreferrer">DOI</a>
+      <a href="{{ $code }}" target="_blank" rel="noopener noreferrer">Code</a>
+      <a href="{{ $site }}">Site</a>
+    </span>
+  </nav>
+</header>
