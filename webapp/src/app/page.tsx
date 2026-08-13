@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import SummaryCharts from '@/components/SummaryCharts';
+import { CITE } from '@/lib/cite';
 import { getDatasets, getMethods, getMetrics, getSummary } from '@/lib/data';
 
 function formatNumber(value: number): string {
@@ -96,12 +97,12 @@ export default async function HomePage() {
                 View resource graph
               </Link>
               <a
-                href="https://doi.org/10.1101/2025.02.01.636000"
+                href={CITE.doi}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white/70 px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-teal-400 hover:text-teal-700"
               >
-                Paper DOI
+                DOI
               </a>
             </div>
           </div>

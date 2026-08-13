@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import SiteHeader from '@/components/SiteHeader';
+import { CITE } from '@/lib/cite';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -20,28 +21,36 @@ export default function RootLayout({
 
         <main className="flex-1 w-full">{children}</main>
 
-        {/* Footer */}
-        <footer className="border-t border-slate-200 bg-white mt-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+        <footer className="mt-12 border-t border-slate-200 bg-white">
+          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-[13px] text-slate-500 sm:flex-row sm:px-6">
             <span className="font-medium text-slate-700">scCCVGBen</span>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
               <a
-                href="https://doi.org/10.1101/2025.02.01.636000"
+                href={CITE.doi}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-teal-600 transition-colors"
+                className="transition-colors hover:text-teal-600"
               >
-                Paper (bioRxiv)
+                DOI
               </a>
               <a
-                href="https://github.com/PeterPonyu/scCCVGBen"
+                href={CITE.code}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-teal-600 transition-colors"
+                className="transition-colors hover:text-teal-600"
               >
-                GitHub
+                Code
               </a>
-              <span>Data: 2026-04-28</span>
+              <a href={CITE.site} className="transition-colors hover:text-teal-600">
+                Site
+              </a>
+              <a href={CITE.homepage} className="transition-colors hover:text-teal-600">
+                Homepage
+              </a>
+              <a href={CITE.scportal} className="transition-colors hover:text-teal-600">
+                SCPortal
+              </a>
+              <span>Data: {CITE.dataSnapshot}</span>
             </div>
           </div>
         </footer>

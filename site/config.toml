@@ -1,6 +1,6 @@
 baseURL = "https://peterponyu.github.io/scCCVGBen/"
 languageCode = "en-us"
-title = "scCCVGBen — single-cell scCCVGBen Benchmark"
+title = "scCCVGBen — Benchmark Atlas"
 theme = "hugo-book"
 
 [params]
@@ -8,3 +8,8 @@ theme = "hugo-book"
   BookSearch = true
   BookToC = true
   SccFontScaleDefault = "xlarge"
+  CiteDOI = "https://doi.org/10.3389/fgene.2026.1822168"
+  CiteCode = "https://github.com/PeterPonyu/scCCVGBen"
+  CiteSite = "https://peterponyu.github.io/scccvgben-next/"
+  SeriesHomepage = "https://peterponyu.github.io/"
+  SeriesSCPortal = "https://peterponyu.github.io/scportal/"

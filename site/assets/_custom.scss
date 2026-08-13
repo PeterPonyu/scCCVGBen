@@ -2,37 +2,7 @@
 
 // @import "plugins/numbered";
 
-@font-face {
-  font-display: swap;
-  font-family: "Arial";
-  font-style: normal;
-  font-weight: 400;
-  src: url("fonts/Arial.ttf") format("truetype");
-}
-
-@font-face {
-  font-display: swap;
-  font-family: "Arial";
-  font-style: normal;
-  font-weight: 700 900;
-  src: url("fonts/Arial-Bold.ttf") format("truetype");
-}
-
-@font-face {
-  font-display: swap;
-  font-family: "Arial";
-  font-style: italic;
-  font-weight: 400;
-  src: url("fonts/Arial-Italic.ttf") format("truetype");
-}
-
-@font-face {
-  font-display: swap;
-  font-family: "Arial";
-  font-style: italic;
-  font-weight: 700 900;
-  src: url("fonts/Arial-Bold-Italic.ttf") format("truetype");
-}
+/* Inter via Google Fonts in layouts/partials/docs/inject/head.html (match Next companion). */
 
 :root {
   --scc-root-font-compact: 16px;
@@ -101,7 +71,7 @@ body {
   background:
     linear-gradient(180deg, var(--scc-panel) 0, var(--body-background) 21rem);
   color: var(--scc-text);
-  font-family: "Arial", sans-serif;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
   letter-spacing: 0;
 }
 
@@ -109,7 +79,7 @@ button,
 input,
 select,
 textarea {
-  font-family: "Arial", sans-serif;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
 }
 
 .container {
@@ -216,6 +186,10 @@ textarea {
   color: var(--scc-text);
 }
 
+.markdown h2#benchmark-composition {
+  margin-top: 1.95rem;
+}
+
 .markdown hr {
   background: var(--scc-border-soft);
   margin: 1.35rem 0;
@@ -235,6 +209,19 @@ textarea {
 .markdown table tr th,
 .markdown table tr td {
   border-color: var(--scc-border-soft);
+}
+
+.book-article:has(> h1[id^="gse"]) table tr th,
+.book-article:has(> h1[id^="gse"]) table tr td,
+.book-article:has(> h1[id^="gsm"]) table tr th,
+.book-article:has(> h1[id^="gsm"]) table tr td,
+.book-article:has(> h1[id^="ds-"]) table tr th,
+.book-article:has(> h1[id^="ds-"]) table tr td,
+.book-article:has(> h1[id^="restricted-"]) table tr th,
+.book-article:has(> h1[id^="restricted-"]) table tr td {
+  font-size: 1.08rem;
+  line-height: 1.32;
+  padding: 0.32rem 0.58rem;
 }
 
 .markdown code {
@@ -322,4 +309,62 @@ textarea {
     border-radius: 6px;
     padding: 0.7rem 0.85rem;
   }
+}
+
+.scc-cite-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.9rem;
+  margin: 0 0 0.85rem;
+  padding: 0.35rem 0 0.7rem;
+  border-bottom: 1px solid var(--scc-border-soft);
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.scc-cite-strip a {
+  color: var(--scc-accent-blue);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.scc-cite-strip a:hover {
+  color: var(--scc-accent-teal);
+}
+
+.scc-site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 1rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--scc-border);
+  color: var(--scc-muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.scc-site-footer__name {
+  color: var(--scc-text);
+  font-weight: 700;
+}
+
+.scc-site-footer a {
+  color: var(--scc-muted);
+  text-decoration: none;
+}
+
+.scc-site-footer a:hover {
+  color: var(--scc-accent-blue);
+}
+
+.scc-site-footer__browse,
+.scc-site-footer__cite,
+.scc-site-footer__series {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.55rem;
 }

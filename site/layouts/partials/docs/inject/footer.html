@@ -1,0 +1,27 @@
+{{ $doi := default "https://doi.org/10.3389/fgene.2026.1822168" .Site.Params.CiteDOI }}
+{{ $code := default "https://github.com/PeterPonyu/scCCVGBen" .Site.Params.CiteCode }}
+{{ $site := default "https://peterponyu.github.io/scccvgben-next/" .Site.Params.CiteSite }}
+{{ $home := default "https://peterponyu.github.io/" .Site.Params.SeriesHomepage }}
+{{ $scportal := default "https://peterponyu.github.io/scportal/" .Site.Params.SeriesSCPortal }}
+<nav class="scc-site-footer" aria-label="Atlas footer">
+  <span class="scc-site-footer__name">scCCVGBen</span>
+  <span class="scc-site-footer__browse">
+    <a href="{{ "datasets/" | relURL }}">Datasets</a>
+    <span aria-hidden="true">/</span>
+    <a href="{{ "methods/" | relURL }}">Methods</a>
+    <span aria-hidden="true">/</span>
+    <a href="{{ "metrics/" | relURL }}">Metrics</a>
+    <span aria-hidden="true">/</span>
+    <a href="{{ "about/" | relURL }}">About</a>
+  </span>
+  <span class="scc-site-footer__cite">
+    <a href="{{ $doi }}" target="_blank" rel="noopener noreferrer">DOI</a>
+    <a href="{{ $code }}" target="_blank" rel="noopener noreferrer">Code</a>
+    <a href="{{ $site }}">Site</a>
+  </span>
+  <span>MIT</span>
+  <span class="scc-site-footer__series">
+    <a href="{{ $home }}">Homepage</a>
+    <a href="{{ $scportal }}">SCPortal</a>
+  </span>
+</nav>
