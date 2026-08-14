@@ -3,12 +3,11 @@
 This repository is a **downstream public mirror** of an active scientific
 software project. It contains source code (the `scccvgben` Python package,
 generation scripts, regression tests, the Hugo project page, and the Next.js
-companion explorer) so that journal reviewers and readers can clone, build,
+companion explorer) so that readers and collaborators can clone, build,
 and reproduce the published results.
 
-**It is not the development repository.** Manuscript text, paper figures,
-review-response materials, journal submission packages, and revision history
-do not live here.
+**It is not the development repository.** Internal working documents and
+revision history do not live here.
 
 ## Pull requests and issues are not accepted on this repository
 
@@ -17,13 +16,12 @@ Pull requests opened against this public mirror will be closed with a
 redirect comment; issues will be triaged and either closed or duplicated
 into the private repo at the maintainer's discretion.
 
-If you are a co-author or invited collaborator and need access during the
-review window, contact the corresponding author through the journal's
-editorial system, **not via direct email or this repository**.
+If you are a collaborator and need access, contact the maintainer through
+known channels, **not via this repository**.
 
 ## What lives where
 
-| Concern | This repo (`scCCVGBen`) | Private repo (`scCCVGBen-assets`) |
+| Concern | This repo (`scCCVGBen`) | Private companion repo |
 |---|---|---|
 | Python package source (`scccvgben/`) | yes | yes (authoritative) |
 | Pipeline / figure generation scripts (`scripts/`) | yes (sync'd) | yes (authoritative) |
@@ -31,11 +29,7 @@ editorial system, **not via direct email or this repository**.
 | Examples (`examples/`) | yes | yes |
 | Hugo project page source (`site/`) | yes | yes (authoritative) |
 | Next.js companion (`webapp/`) | yes | yes (authoritative) |
-| Manuscript TeX, PDF, references | **no** | yes |
-| Submission package, cover letter, rebuttals | **no** | yes |
-| Historical revisions / round-diffs (`archive/`) | **no** | yes |
-| Session handoff notes | **no** | yes (`handoff/`) |
-| Asset manifest, sync policy, governance docs | **no** | yes |
+| Internal working documents, revision history, process notes | **no** | yes |
 | Large raw data, model checkpoints | **no** (out-of-band) | **no** (out-of-band) |
 
 ## Reproducing results
@@ -46,6 +40,6 @@ idempotent and resume per `(dataset, method)` row.
 
 ## Citing
 
-If you use this code, please cite the associated manuscript (link will be
-added on publication). For the time being, this repository can be cited via
+If you use this code, please cite the associated publication (link will be
+added when available). For the time being, this repository can be cited via
 its current commit hash.

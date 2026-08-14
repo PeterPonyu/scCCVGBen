@@ -46,6 +46,24 @@ site/.omc/
 scripts/notify.sh
 scripts/watch_*_done.sh
 
+# AI tooling / agent process artifacts (local only, never publish)
+.cursor/
+.cursor.cloud
+.cursorignore
+.claude/
+.codex/
+agent-transcripts/
+*.canvas.tsx
+.aider*
+.codeium/
+.windsurf/
+.continue/
+
+# Environment / credentials
+.env
+.env.*
+!.env.example
+
 # Internal session docs (local only)
 TRAINING_STATE.md
 HANDOFF_GPU_SESSION.md
