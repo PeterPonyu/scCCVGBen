@@ -9,7 +9,7 @@
   --scc-root-font-normal: 18px;
   --scc-root-font-large: 22px;
   --scc-root-font-xlarge: 32px;
-  --body-background: #f6f8fb;
+  --body-background: #f8fafc;
   --body-font-color: #172033;
   --gray-100: #f3f6fa;
   --gray-200: #e4eaf2;
@@ -22,8 +22,8 @@
   --scc-border-soft: #e6ecf4;
   --scc-text: #172033;
   --scc-muted: #586579;
-  --scc-accent-blue: #1f5f9f;
-  --scc-accent-teal: #24989f;
+  --scc-accent-blue: #2563eb;
+  --scc-accent-teal: #0d9488;
   --scc-accent-amber: #b7791f;
   --scc-accent-rose: #b54848;
   --scc-shadow: 0 10px 28px rgba(22, 34, 51, 0.07);
@@ -435,4 +435,23 @@ textarea {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.35rem 0.55rem;
+}
+
+#metrics-root {
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+table.metric-tbl {
+  display: table;
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+}
+
+table.metric-tbl th,
+table.metric-tbl td {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
