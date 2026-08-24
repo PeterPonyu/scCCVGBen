@@ -4,9 +4,19 @@ import { CITE } from '@/lib/cite';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://peterponyu.github.io'),
   title: 'scCCVGBen — Single-Cell Graph VAE Benchmark',
   description:
     'A comprehensive benchmark of graph-encoder variational autoencoders for single-cell omics.',
+  alternates: { canonical: '/scccvgben-next/' },
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: 'scCCVGBen — Single-Cell Graph VAE Benchmark',
+    description:
+      'A comprehensive benchmark of graph-encoder variational autoencoders for single-cell omics.',
+    url: '/scccvgben-next/',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
@@ -52,6 +62,22 @@ export default function RootLayout({
               </a>
               <span>Data: {CITE.dataSnapshot}</span>
             </div>
+            <span className="text-center text-xs text-slate-400">
+              Source:{' '}
+              <a
+                href="https://github.com/PeterPonyu/scCCVGBen"
+                className="transition-colors hover:text-teal-600"
+              >
+                PeterPonyu/scCCVGBen
+              </a>
+              {' · '}Deployment:{' '}
+              <a
+                href="https://github.com/PeterPonyu/scccvgben-next"
+                className="transition-colors hover:text-teal-600"
+              >
+                PeterPonyu/scccvgben-next
+              </a>
+            </span>
           </div>
         </footer>
       </body>
