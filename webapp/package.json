@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --ext .ts,.tsx --max-warnings=0"
+    "lint": "eslint . --ext .ts,.tsx --max-warnings=0",
+    "check:metadata": "node ../scripts/check_webapp_metadata.mjs"
   },
   "dependencies": {
     "next": "15.5.15",

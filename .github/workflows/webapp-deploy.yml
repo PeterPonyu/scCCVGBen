@@ -57,3 +57,7 @@ jobs:
         env:
           NEXT_PUBLIC_BASE_PATH: /scccvgben-next
         run: npm run build
+
+      - name: Audit rendered site metadata
+        working-directory: webapp
+        run: npm run check:metadata
