@@ -15,6 +15,7 @@ const navItems = [
 const seriesLeaves = [
   { href: CITE.homepage, label: 'Homepage' },
   { href: CITE.scportal, label: 'SCPortal' },
+  { href: CITE.autoselect, label: 'AutoSelect' },
   { href: CITE.atlas, label: 'Hugo atlas' },
 ];
 

@@ -60,6 +60,9 @@ export default function RootLayout({
               <a href={CITE.scportal} className="transition-colors hover:text-teal-600">
                 SCPortal
               </a>
+              <a href={CITE.autoselect} className="transition-colors hover:text-teal-600">
+                AutoSelect
+              </a>
               <span>Data: {CITE.dataSnapshot}</span>
             </div>
             <span className="text-center text-xs text-slate-400">

@@ -10,5 +10,6 @@ export const CITE = {
   atlas: 'https://peterponyu.github.io/scCCVGBen/',
   homepage: 'https://peterponyu.github.io/',
   scportal: 'https://peterponyu.github.io/scportal/',
+  autoselect: 'https://peterponyu.github.io/scportal/autoselect/',
   dataSnapshot: '2026-04-28',
 } as const;

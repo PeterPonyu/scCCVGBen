@@ -3,11 +3,13 @@
 {{ $site := default "https://peterponyu.github.io/scccvgben-next/" .Site.Params.CiteSite }}
 {{ $home := default "https://peterponyu.github.io/" .Site.Params.SeriesHomepage }}
 {{ $scportal := default "https://peterponyu.github.io/scportal/" .Site.Params.SeriesSCPortal }}
+{{ $autoselect := default "https://peterponyu.github.io/scportal/autoselect/" .Site.Params.SeriesAutoSelect }}
 <header class="scc-series-chrome">
   <nav class="scc-series-chrome__inner" aria-label="Series navigation">
     <span class="scc-series-chrome__series">
       <a href="{{ $home }}">Homepage</a>
       <a href="{{ $scportal }}">SCPortal</a>
+      <a href="{{ $autoselect }}">AutoSelect</a>
     </span>
     <span class="scc-series-chrome__cite">
       <a href="{{ $doi }}" target="_blank" rel="noopener noreferrer">DOI</a>
