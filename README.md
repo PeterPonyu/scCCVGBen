@@ -44,6 +44,26 @@ per `(dataset, method)` row.
 - Hugo public site: <https://peterponyu.github.io/scCCVGBen/>
 - Next.js companion explorer: <https://peterponyu.github.io/scccvgben-next/>
 
+## Citation
+
+If you use scCCVGBen, please cite the article:
+
+> Fu Z, Fu J, Chen C, Zhang K, Wang J, Ran T, Wang S. scCCVGBen for benchmarking of single-cell representation learning anchored on a centroid-coupled variational graph attention autoencoder across scRNA-seq and scATAC-seq. *Frontiers in Genetics*. 2026;17:1822168. https://doi.org/10.3389/fgene.2026.1822168
+
+```bibtex
+@article{fu2026scccvgben,
+  author  = {Fu, Zeyu and Fu, Jiawei and Chen, Chunlin and Zhang, Keyang and Wang, Junping and Ran, Tianfei and Wang, Song},
+  title   = {scCCVGBen for benchmarking of single-cell representation learning anchored on a centroid-coupled variational graph attention autoencoder across scRNA-seq and scATAC-seq},
+  journal = {Frontiers in Genetics},
+  volume  = {17},
+  pages   = {1822168},
+  year    = {2026},
+  doi     = {10.3389/fgene.2026.1822168}
+}
+```
+
+GitHub's "Cite this repository" button reads the same record from `CITATION.cff`.
+
 ## License
 
 MIT — see [`LICENSE`](LICENSE).
