@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "scccvgben"
 version = "0.1.0"
-description = "Single-cell scCCVGBen Benchmark — multi-encoder, multi-graph, baseline comparison on 200 scRNA+scATAC datasets"
+description = "scCCVGBen: a 200-dataset single-cell representation-learning benchmark anchored on the centroid-coupled variational graph attention autoencoder"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
@@ -50,6 +50,7 @@ Homepage = "https://github.com/PeterPonyu/scCCVGBen"
 Repository = "https://github.com/PeterPonyu/scCCVGBen"
 Documentation = "https://peterponyu.github.io/scCCVGBen/"
 Paper = "https://doi.org/10.3389/fgene.2026.1822168"
+Issues = "https://github.com/PeterPonyu/scCCVGBen/issues"
 
 [tool.setuptools.packages.find]
 where = ["."]

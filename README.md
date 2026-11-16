@@ -1,5 +1,8 @@
 # scCCVGBen
 
+[![PyPI](https://img.shields.io/pypi/v/scccvgben.svg)](https://pypi.org/project/scccvgben/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24272134.svg)](https://doi.org/10.5281/zenodo.24272134)
+
 A 200-dataset single-cell representation-learning benchmark and a Python
 package for the centroid-coupled variational graph attention autoencoder
 (100 scRNA-seq + 100 scATAC-seq, balanced).
@@ -22,7 +25,7 @@ The reference graph model also needs `torch-sparse` (`pip install "scccvgben[spa
 
 ## Reproduce
 
-See [`REPRODUCE.md`](REPRODUCE.md). Sweep scripts are idempotent and resume
+See [`REPRODUCE.md`](https://github.com/PeterPonyu/scCCVGBen/blob/main/REPRODUCE.md). Sweep scripts are idempotent and resume
 per `(dataset, method)` row.
 
 ## Layout
@@ -39,7 +42,7 @@ per `(dataset, method)` row.
 
 - **Figure 1 — site and benchmark overview.** Render with `scripts/make_figure1_site.py`.
 - **Figure 2 — model architecture and benchmark axes.** Render with `scripts/make_figure2_model_architecture.py`.
-- Generated figure binaries are not committed by the figure-pipeline PR.
+- Generated figure binaries are not committed.
 
 ## Sites
 
@@ -68,4 +71,4 @@ GitHub's "Cite this repository" button reads the same record from `CITATION.cff`
 
 ## License
 
-MIT — see [`LICENSE`](LICENSE).
+MIT — see [`LICENSE`](https://github.com/PeterPonyu/scCCVGBen/blob/main/LICENSE).
