@@ -15,8 +15,10 @@ The repository carries:
 ## Install
 
 ```bash
-pip install -e ".[dev]"
+pip install scccvgben
 ```
+
+The reference graph model also needs `torch-sparse` (`pip install "scccvgben[sparse]"`, with a wheel that matches your PyTorch build). To regenerate the benchmark, clone the repository and run `pip install -e ".[dev,full]"`.
 
 ## Reproduce
 

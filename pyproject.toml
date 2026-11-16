@@ -6,8 +6,19 @@ build-backend = "setuptools.build_meta"
 name = "scccvgben"
 version = "0.1.0"
 description = "Single-cell scCCVGBen Benchmark — multi-encoder, multi-graph, baseline comparison on 200 scRNA+scATAC datasets"
+readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
+authors = [{name = "Zeyu Fu"}]
+keywords = ["single-cell", "benchmark", "graph neural network", "variational autoencoder", "scRNA-seq", "scATAC-seq"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
 dependencies = [
     "torch>=2.0",
     "torch-geometric",
@@ -22,17 +33,31 @@ dependencies = [
     "networkx",
     "pyyaml",
     "umap-learn",
+    "seaborn",
+    "psutil",
+    "tqdm",
 ]
 
 [project.optional-dependencies]
 atac = ["episcanpy"]
 geo = ["GEOparse>=2.0.3"]
 dev = ["pytest", "ruff", "mypy"]
+sparse = ["torch-sparse"]
+full = ["episcanpy", "GEOparse>=2.0.3", "torch-sparse", "scib", "scvi-tools", "torchdiffeq"]
+
+[project.urls]
+Homepage = "https://github.com/PeterPonyu/scCCVGBen"
+Repository = "https://github.com/PeterPonyu/scCCVGBen"
+Documentation = "https://peterponyu.github.io/scCCVGBen/"
+Paper = "https://doi.org/10.3389/fgene.2026.1822168"
 
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["scccvgben*"]
 exclude = ["tests*", "scripts*", "site*", "workspace*"]
+
+[tool.setuptools.package-data]
+scccvgben = ["data/*.csv"]
 
 [tool.ruff]
 line-length = 100
